@@ -1,0 +1,66 @@
+Xft.dpi:       96
+Xft.antialias: true
+Xft.hinting:   true
+Xft.rgba:      rgb
+Xft.autohint:  false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+!COLORS-------------------------------------------------------------------------
+! special
+*.foreground:   #bfaf9f
+*.background:   #222227
+*.cursorColor:  #bfaf9f
+
+! black
+*.color0:       #222227
+*.color8:       #222227
+
+! red
+*.color1:       #C37A31
+*.color9:       #ff9e2f
+
+! green
+*.color2:       #6F6149
+*.color10:      #9c8152
+
+! yellow
+*.color3:       #975F2C
+*.color11:      #d17a2c
+
+! blue
+*.color4:       #3F4038
+*.color12:      #575a41
+
+! magenta
+*.color5:       #6E5132
+*.color13:      #996936
+
+! cyan
+*.color6:       #514834
+*.color14:      #71603a
+
+! white
+*.color7:       #bfaf9f
+*.color15:      #ffebd5
+
+!URxvt--------------------------------------------------------------------------
+URxvt.letterSpace: 0
+!URxvt.font:xft:cherry:size=7
+
+URxvt.font:xft:UbuntuMono-R:size=10
+
+URxvt.depth:                      32
+URxvt.background:                 [65]#222227
+URxvt*borderColor:                [65]#222227
+URxvt*internalBorder:             10
+URxvt*scrollBar:                  false
+URxvt*mouseWheelScrollPage:       false
+URxvt*cursorBlink:                true
+URxvt*saveLines:                  5000
+
+! Normal copy-paste keybindings without perls
+URxvt.iso14755:                   false
+URxvt.keysym.Shift-Control-V:     eval:paste_clipboard
+URxvt.keysym.Shift-Control-C:     eval:selection_to_clipboard
+

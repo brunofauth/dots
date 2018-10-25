@@ -1,0 +1,30 @@
+; vim:ft=dosini
+; Docs here: http://github.com/jaagr/polybar
+
+
+include-file = ~/.config/polybar/bars/main.ini
+
+
+include-file = ~/.config/polybar/modules/light.ini
+include-file = ~/.config/polybar/modules/menu.ini
+include-file = ~/.config/polybar/modules/batt.ini
+include-file = ~/.config/polybar/modules/date.ini
+include-file = ~/.config/polybar/modules/etho.ini
+include-file = ~/.config/polybar/modules/wlan.ini
+include-file = ~/.config/polybar/modules/vol.ini
+include-file = ~/.config/polybar/modules/i3.ini
+include-file = ~/.config/polybar/modules/fs.ini
+
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
