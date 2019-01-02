@@ -21,10 +21,10 @@ bindsym $mod+Shift+e exec "~/.config/rofi/quit_menu.sh"
 bindsym $mod+Tab workspace back_and_forth
 
 # Set bg
-exec --no-startup-id feh --bg-scale ~/background.jpg
+exec --no-startup-id feh --bg-scale ~/background_image
 
 # For cool effects and stuff
-exec --no-startup-id "compton -GCb"
+exec --no-startup-id "compton -GCb --blur-method kawase --blur-strength 15 --backend glx"
 
 # Setup COMPOSE key
 exec --no-startup-id "setxkbmap -option compose:ralt"
