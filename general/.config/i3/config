@@ -21,13 +21,13 @@ bindsym $mod+Shift+e exec "~/.config/rofi/quit_menu.sh"
 bindsym $mod+Tab workspace back_and_forth
 
 # Set bg
-exec --no-startup-id feh --bg-scale ~/background_image
+# exec --no-startup-id feh --bg-scale ~/background_image
 
 # For cool effects and stuff
 exec --no-startup-id "compton -GCb --blur-method kawase --blur-strength 15 --backend glx"
 
 # Setup COMPOSE key
-exec --no-startup-id "setxkbmap -option compose:ralt"
+# exec --no-startup-id "setxkbmap -option compose:ralt"
 
 # Lauch pulse audio
 exec --no-startup-id "start-pulseaudio-x11"
@@ -37,9 +37,6 @@ exec --no-startup-id xbacklight -set 20
 
 # launch polybar
 exec --no-startup-id polybar -r main
-
-# Lauch pulse audio
-exec --no-startup-id "start-pulseaudio-x11"
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -79,7 +76,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -169,3 +166,6 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+bindsym --whole-window --border $mod+button4 workspace prev
+bindsym --whole-window --border $mod+button5 workspace next
