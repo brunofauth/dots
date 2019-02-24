@@ -1,6 +1,92 @@
-#
-# ~/.bashrc
-#
+
+
+# XDG FOLDER DEFINITIONS
+
+export XDG_CACHE_HOME=~/.cache
+export XDG_CONFIG_HOME=~/.config
+export XDG_DATA_HOME=~/.local/share
+
+
+
+# Make programs comply to XDG spec
+
+export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME"/bundle
+export BUNDLE_USER_CACHE="$XDG_CACHE_HOME"/bundle
+export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
+export DOTNET_CLI_HOME="$XDG_RUNTIME_DIR"/dotnet
+export GEM_HOME="$XDG_DATA_HOME"/gem
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
+export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/config
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
+export PYLINTHOME="$XDG_CACHE_HOME"/pylint
+export RANDFILE="$XDG_RUNTIME_DIR"/rnd
+export WGETRC="$XDG_CONFIG_HOME"/wgetrc
+# export XAUTHORITY="$XDG_CACHE_DIR"/Xauthority
+# export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
+# export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
+
+
+
+# Aliases to FORCE these programs to comply
+
+alias wget="wget --hsts-file=\"$XDG_CACHE_HOME/wget-hsts\""
+# alias startx="startx \"$XDG_CONFIG_HOME/X11/xinitrc\""
+
+
+
+# Useful aliases and functions
+
+alias py=python3
+alias refresh="source ~/.bashrc"
+alias cls='printf "\033c"'
+alias ls="ls --color=auto"
+alias servicels='systemctl list-unit-files | grep enabled'
+alias myip="curl ipecho.net/plain; echo"
+alias pnum="ps -A --no-headers | wc -l"
+alias graus='curl http://wttr.in/passo%20fundo?1'
+alias poweroof=poweroff
+alias pgrep="pgrep -il"
+alias pss="pacman -Ss"
+alias yss="yay -Ss"
+
+function 2diff { sdiff -l $1 $2 | cat -n | grep -v -e '($' | less; }
+function permanent { echo "$@" >> .bashrc; }
+
+function pi { sudo pacman -S $@ --noconfirm; }
+function yi { yay -S $@ --removemake --noconfirm; }
+
+
+
+# Aliases for  Windows programs
+
+alias overwatch="lutris lutris:rungame/overwatch"
+
+
+
+# Exports
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export PYTHONSTARTUP="$HOME/Scripts/startup.py"
+export EDITOR=vim
+export VISUAL=vim
+
+
+
+# $PATH extensions
+
+PATH="$PATH:~/.local/bin"
+PATH="$PATH:/opt/cuda/lib64/"
+PATH="$PATH:~/useful-scripts/"
+
+
+
+
 
 [[ $- != *i* ]] && return
 
@@ -31,114 +117,24 @@ colors() {
 	done
 }
 
-[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+[[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
 
-# Change the window title of X terminals
-case ${TERM} in
-	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
-		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
-		;;
-	screen*)
-		PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
-		;;
-esac
+[ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
-use_color=true
 
-# Set colorful PS1 only on colorful terminals.
-# dircolors --print-database uses its own built-in database
-# instead of using /etc/DIR_COLORS.  Try to use the external file
-# first to take advantage of user additions.  Use internal bash
-# globbing instead of external grep binary.
-safe_term=${TERM//[^[:alnum:]]/?}   # sanitize TERM
-match_lhs=""
-[[ -f ~/.dir_colors   ]] && match_lhs="${match_lhs}$(<~/.dir_colors)"
-[[ -f /etc/DIR_COLORS ]] && match_lhs="${match_lhs}$(</etc/DIR_COLORS)"
-[[ -z ${match_lhs}    ]] \
-	&& type -P dircolors >/dev/null \
-	&& match_lhs=$(dircolors --print-database)
-[[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] && use_color=true
 
-if ${use_color} ; then
-	# Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
-	if type -P dircolors >/dev/null ; then
-		if [[ -f ~/.dir_colors ]] ; then
-			eval $(dircolors -b ~/.dir_colors)
-		elif [[ -f /etc/DIR_COLORS ]] ; then
-			eval $(dircolors -b /etc/DIR_COLORS)
-		fi
-	fi
+# This enables blur behind terminals on KDE.
 
-	if [[ ${EUID} == 0 ]] ; then
-		PS1='\[\033[01;31m\][\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '
-	else
-		PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
-	fi
-
-	alias ls='ls --color=auto'
-	alias grep='grep --colour=auto'
-	alias egrep='egrep --colour=auto'
-	alias fgrep='fgrep --colour=auto'
-else
-	if [[ ${EUID} == 0 ]] ; then
-		# show root@ when we don't have colors
-		PS1='\u@\h \W \$ '
-	else
-		PS1='\u@\h \w \$ '
-	fi
+if [[ $(ps --no-header -p $PPID -o comm) =~ '^yakuake|kitty$' ]]; then
+    for wid in $(xdotool search --pid $PPID); do
+        xprop -f _KDE_NET_WM_BLUR_BEHIND_REGION 32c -set _KDE_NET_WM_BLUR_BEHIND_REGION 0 -id $wid
+    done
 fi
 
-unset use_color safe_term match_lhs sh
+echo "https://cdn.boob.bot/Gifs/17A2.gif" > /dev/null
 
-alias cp="cp -i"                          # confirm before overwriting something
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
-alias np='nano -w PKGBUILD'
-alias more=less
+source <(kitty + complete setup bash)
 
-xhost +local:root > /dev/null 2>&1
 
-complete -cf sudo
 
-# Bash won't get SIGWINCH if another process is in the foreground.
-# Enable checkwinsize so that bash will check the terminal size when
-# it regains control.  #65623
-# http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
-shopt -s checkwinsize
 
-shopt -s expand_aliases
-
-# export QT_SELECT=4
-
-# Enable history appending instead of overwriting.  #139609
-shopt -s histappend
-
-#
-# # ex - archive extractor
-# # usage: ex <file>
-ex ()
-{
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1     ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
-
-alias cls='printf "\033c"'
-alias sudp=sudo
-alias '~5'=cls
-alias '5~'=cls

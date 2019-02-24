@@ -2,61 +2,24 @@ gaps inner 20
 gaps outer 0
 #smart_gaps on
 
+# numlockx on
+
+exec --no-startup-id setxkbmap -option compose:ralt
+
 for_window [class="^.*"] border pixel 5
+
+exec --no-startup-id ~/Scripts/background-manager
 
 bindsym $mod+g exec --no-startup-id i3lock-fancy
 
-# Execute this on installation if running dual boot
-# timedatectl set-local-rtc 1 --adjust-system-clock
-
-
-
-
-
-# Rofi-based menu for quitting PC
-# bindsym $mod+Shift+e exec "i3-msg exit"
-bindsym $mod+Shift+e exec "~/.config/rofi/quit_menu.sh"
+# Rofi-based menu for quitting Session
+bindsym $mod+Shift+e exec --no-startup-id "~/.config/rofi/quit_menu.sh"
 
 # Use alt + tab like in windows
 bindsym $mod+Tab workspace back_and_forth
 
-# Set bg
-# exec --no-startup-id feh --bg-scale ~/background_image
-
-# For cool effects and stuff
-exec --no-startup-id "compton -GCb --blur-method kawase --blur-strength 15 --backend glx"
-
-# Setup COMPOSE key
-# exec --no-startup-id "setxkbmap -option compose:ralt"
-
-# Lauch pulse audio
-exec --no-startup-id "start-pulseaudio-x11"
-
-# Set startup screen brightness
-exec --no-startup-id xbacklight -set 20
-
-# launch polybar
-exec --no-startup-id polybar -r main
-
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
-
-# Toggle touchpad
-# bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh
-
-# Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-
-
+# compositor
+exec --no-startup-id "compton -GCb --blur-method kawase --blur-strength 3 --backend glx"
 
 
 
@@ -82,18 +45,18 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show run -theme onedark
+bindsym $mod+d exec rofi -show run
 
-# alternatively, you can use the cursor keys:
+# change focus
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Up move up
+# move focused window
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
@@ -153,8 +116,14 @@ bindsym $mod+Shift+r restart
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-
         # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+
+        # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
@@ -166,6 +135,14 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        status_command i3status
+        wheel_up_cmd nop
+        wheel_down_cmd nop
+}
 
 bindsym --whole-window --border $mod+button4 workspace prev
 bindsym --whole-window --border $mod+button5 workspace next
