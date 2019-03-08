@@ -62,7 +62,7 @@ alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
-alias cat=bat
+alias cat="bat --plain"
 
 function oqeh { xdg-open "http://dicio.com.br/$1"; }
 function wtf { man $1 || $1 --help; }
