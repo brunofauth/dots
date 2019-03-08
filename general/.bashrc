@@ -46,21 +46,53 @@ alias wget="wget --hsts-file=\"$XDG_CACHE_HOME/wget-hsts\""
 alias py=python3
 alias refresh="source ~/.bashrc"
 alias cls='printf "\033c"'
-alias ls="ls --color=auto"
 alias servicels='systemctl list-unit-files | grep enabled'
 alias myip="curl ipecho.net/plain; echo"
 alias pnum="ps -A --no-headers | wc -l"
 alias graus='curl http://wttr.in/passo%20fundo?1'
 alias poweroof=poweroff
+alias pwoeroff=poweroff
 alias pgrep="pgrep -il"
 alias pss="pacman -Ss"
 alias yss="yay -Ss"
+alias cp="cp -i"
+alias df='df -h'
+alias free='free -m'
+alias ls='ls --color=auto'
+alias grep='grep --colour=auto'
+alias egrep='egrep --colour=auto'
+alias fgrep='fgrep --colour=auto'
+alias cat=bat
+
+function oqeh { xdg-open "http://dicio.com.br/$1"; }
+function wtf { man $1 || $1 --help; }
 
 function 2diff { sdiff -l $1 $2 | cat -n | grep -v -e '($' | less; }
 function permanent { echo "$@" >> .bashrc; }
 
 function pi { sudo pacman -S $@ --noconfirm; }
 function yi { yay -S $@ --removemake --noconfirm; }
+
+function ex { # # usage: ex <file>
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xjf $1   ;;
+            *.tar.gz)    tar xzf $1   ;;
+            *.bz2)       bunzip2 $1   ;;
+            *.rar)       unrar x $1   ;;
+            *.gz)        gunzip $1    ;;
+            *.tar)       tar xf $1    ;;
+            *.tbz2)      tar xjf $1   ;;
+            *.tgz)       tar xzf $1   ;;
+            *.zip)       unzip $1     ;;
+            *.Z)         uncompress $1;;
+            *.7z)        7z x $1      ;;
+            *)           echo "ex can\'t extract '$1'" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
 
 
 
@@ -86,55 +118,54 @@ PATH="$PATH:~/useful-scripts/"
 
 
 
+# BASH SPECIFIC STUFF BELOW
+echo "https://cdn.boob.bot/Gifs/17A2.gif" > /dev/null
+
+
+
+# Completion for Bash
+source <(kitty + complete setup bash)
+
+
+
+# Options for bad bash 
+shopt -s checkwinsize
+shopt -s expand_aliases
+shopt -s histappend
+
 
 
 [[ $- != *i* ]] && return
 
 colors() {
-	local fgc bgc vals seq0
+    local fgc bgc vals seq0
 
-	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
-	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
-	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
-	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
+    printf "Color escapes are %s\n" '\e[${value};...;${value}m'
+    printf "Values 30..37 are \e[33mforeground colors\e[m\n"
+    printf "Values 40..47 are \e[43mbackground colors\e[m\n"
+    printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
 
-	# foreground colors
-	for fgc in {30..37}; do
-		# background colors
-		for bgc in {40..47}; do
-			fgc=${fgc#37} # white
-			bgc=${bgc#40} # black
+    # foreground colors
+    for fgc in {30..37}; do
+        # background colors
+        for bgc in {40..47}; do
+            fgc=${fgc#37} # white
+            bgc=${bgc#40} # black
 
-			vals="${fgc:+$fgc;}${bgc}"
-			vals=${vals%%;}
+            vals="${fgc:+$fgc;}${bgc}"
+            vals=${vals%%;}
 
-			seq0="${vals:+\e[${vals}m}"
-			printf "  %-9s" "${seq0:-(default)}"
-			printf " ${seq0}TEXT\e[m"
-			printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
-		done
-		echo; echo
-	done
+            seq0="${vals:+\e[${vals}m}"
+            printf "  %-9s" "${seq0:-(default)}"
+            printf " ${seq0}TEXT\e[m"
+            printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
+        done
+        echo; echo
+    done
 }
 
 [[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
 
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
-
-
-
-# This enables blur behind terminals on KDE.
-
-if [[ $(ps --no-header -p $PPID -o comm) =~ '^yakuake|kitty$' ]]; then
-    for wid in $(xdotool search --pid $PPID); do
-        xprop -f _KDE_NET_WM_BLUR_BEHIND_REGION 32c -set _KDE_NET_WM_BLUR_BEHIND_REGION 0 -id $wid
-    done
-fi
-
-echo "https://cdn.boob.bot/Gifs/17A2.gif" > /dev/null
-
-source <(kitty + complete setup bash)
-
-
 
 
