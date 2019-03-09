@@ -95,6 +95,13 @@ function ex { # # usage: ex <file>
     fi
 }
 
+function se {
+    file=$(du -a $@ | awk '{$1="";print}' | fzf)
+    if [[ -n $file ]]; then
+        $EDITOR $file
+    fi
+}
+
 
 
 # Aliases for  Windows programs
