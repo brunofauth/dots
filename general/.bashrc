@@ -43,6 +43,7 @@ alias wget="wget --hsts-file=\"$XDG_CACHE_HOME/wget-hsts\""
 
 # Useful aliases and functions
 
+alias up="cd .."
 alias py=python3
 alias refresh="source ~/.bashrc"
 alias cls='printf "\033c"'
