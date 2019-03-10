@@ -1,0 +1,21 @@
+# Lines configured by zsh-newuser-install
+HISTFILE="$XDG_CACHE_HOME"/zsh/histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory autocd extendedglob
+unsetopt beep
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/bruno/.config/zsh/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+
+
+# Useful aliases
+
+alias cls="printf '\033c'"
+alias refresh="source .config/zsh/.zshrc"
