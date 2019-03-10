@@ -299,6 +299,9 @@ bar {
     bindsym button4 nop
     bindsym button5 nop
     position top
+    mode invisible
+    modifier none
+    tray_output none
 
     strip_workspace_numbers yes
 

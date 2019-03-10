@@ -1,0 +1,13 @@
+#!/bin/bash
+
+## Created By Aditya Shakya
+
+declare -A commands
+commands[" Lock"]="i3lock-fancy"
+commands[" Logout"]="i3-msg exit"
+commands[" Reboot"]="systemctl reboot"
+commands[" Shutdown"]="systemclt poweroff"
+
+str=$(echo "${!commands[@]}" | awk '{gsub (" ","\\n"); print $0}')
+
+${commands[$(echo -e $str | rofi -sep "|" -dmenu -i -p 'System' -location 5 -xoffset -14 -yoffset -52 -width 10 -hide-scrollbar -line-padding 4 -padding 20 -lines 4)]}
