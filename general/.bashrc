@@ -66,6 +66,7 @@ alias fgrep='fgrep --colour=auto'
 alias cat="bat --plain"
 alias indep="bg && disown"
 alias psyu="sudo pacman -Syu"
+alias pko="sudo pacman -Rns $(pacman -Qqdt) --noconfirm"
 
 function stripdata { for i in "$@"; do exiftool -all= "$i"; done; } 
 
