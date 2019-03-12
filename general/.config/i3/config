@@ -301,7 +301,7 @@ bar {
     position top
     mode invisible
     modifier none
-    tray_output none
+    # tray_output none
 
     strip_workspace_numbers yes
 
