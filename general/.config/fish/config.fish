@@ -68,10 +68,10 @@ alias indep="bg && disown"
 alias psyu="sudo pacman -Syu"
 alias pko="sudo pacman -Rns (pacman -Qqdt) --noconfirm"
 
-function stripdata; for i in $argv; exiftool -all= $i; end
+function stripdata; for i in $argv; exiftool -all= $i; end; end
 
 function dicio; xdg-open "http://dicio.com.br/$argv[1]"; end
-function wtf; man $argv[1] || $argv[1] --help
+function wtf; man $argv[1] || $argv[1] --help; end
 
 function 2diff; sdiff -l $argv | cat -n | grep -v -e '($' | less; end;
 
