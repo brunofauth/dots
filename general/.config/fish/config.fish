@@ -43,23 +43,68 @@ alias wget="wget --hsts-file=\"$XDG_CACHE_HOME/wget-hsts\""
 
 # Useful aliases and functions
 
+alias up="cd .."
 alias py=python3
 alias refresh="source ~/.config/fish/config.fish"
 alias cls='printf "\033c"'
-alias ls="ls --color=auto"
 alias servicels='systemctl list-unit-files | grep enabled'
 alias myip="curl ipecho.net/plain; echo"
 alias pnum="ps -A --no-headers | wc -l"
 alias graus='curl http://wttr.in/passo%20fundo?1'
 alias poweroof=poweroff
+alias pwoeroff=poweroff
 alias pgrep="pgrep -il"
 alias pss="pacman -Ss"
 alias yss="yay -Ss"
+alias cp="cp -i"
+alias df='df -h'
+alias free='free -m'
+alias ls='ls --color=auto'
+alias grep='grep --colour=auto'
+alias egrep='egrep --colour=auto'
+alias fgrep='fgrep --colour=auto'
+alias cat="bat --plain"
+alias indep="bg && disown"
+alias psyu="sudo pacman -Syu"
+alias pko="sudo pacman -Rns (pacman -Qqdt) --noconfirm"
+
+function stripdata; for i in $argv; exiftool -all= $i; end
+
+function dicio; xdg-open "http://dicio.com.br/$argv[1]"; end
+function wtf; man $argv[1] || $argv[1] --help
+
+function 2diff; sdiff -l $argv | cat -n | grep -v -e '($' | less; end;
 
 function pi; sudo pacman -S $argv --noconfirm; end;
 function yi; yay -S $argv --removemake --noconfirm; end;
 
-function 2diff; sdiff -l $argv | cat -n | grep -v -e '($' | less; end;
+function ex # usage: ex <file>
+    if !test -f $argv[1]
+        echo "'$argv[1]' is not a valid file!"
+        exit 1
+    end
+    switch $argv[1]
+        case '*'.tar.bz2;   tar xjf $argv[1]
+        case '*'.tar.gz ;   tar xzf $argv[1]
+        case '*'.bz2    ;   bunzip2 $argv[1]
+        case '*'.rar    ;   unrar x $argv[1]
+        case '*'.gz     ;   gunzip $argv[1]
+        case '*'.tar    ;   tar xf $argv[1]
+        case '*'.tbz2   ;   tar xjf $argv[1]
+        case '*'.tgz    ;   tar xzf $argv[1]
+        case '*'.zip    ;   unzip $argv[1]
+        case '*'.Z      ;   uncompress $argv[1]
+        case '*'.7z     ;   7z x $argv[1]
+        case '*'        ;   echo "ex can\'t extract '$argv[1]'"
+    end
+end
+
+function se
+    set file (du -a $argv | awk '{$1="";print}' | fzf| sed -E "s|^ ||")
+    if test -n $file
+        $EDITOR $file
+    end
+end
 
 
 
@@ -89,22 +134,5 @@ set PATH $PATH "~/useful-scripts/"
 
 set fish_greeting
 
-
-
-# This enables blur behind terminals on KDE.
-
-set -x PPID (cat /proc/(echo %self)/stat | tr " " "\n")[4]
-#      (cat /proc/$PPID/comm)
-#if [[ $(ps --no-header -p $PPID -o comm) =~ '^(yakuake)|(kitty)$' ]]; then
-#   for wid in $(xdotool search --pid $PPID); do
-#       xprop -f _KDE_NET_WM_BLUR_BEHIND_REGION 32c -set _KDE_NET_WM_BLUR_BEHIND_REGION 0 -id $wid
-#   done
-#fi
-
-
-
 kitty + complete setup fish | source
-
-
-
 

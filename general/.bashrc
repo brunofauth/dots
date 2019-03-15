@@ -74,7 +74,6 @@ function oqeh { xdg-open "http://dicio.com.br/$1"; }
 function wtf { man $1 || $1 --help; }
 
 function 2diff { sdiff -l $1 $2 | cat -n | grep -v -e '($' | less; }
-function permanent { echo "$@" >> .bashrc; }
 
 function pi { sudo pacman -S $@ --noconfirm; }
 function yi { yay -S $@ --removemake --noconfirm; }
