@@ -116,7 +116,7 @@ alias overwatch="lutris lutris:rungame/overwatch"
 
 # Exports
 set -x QT_QPA_PLATFORMTHEME "qt5ct"
-set -x PYTHONSTARTUP "$HOME/Scripts/startup.py"
+set -x PYTHONSTARTUP "$HOME/useful-scripts/startup.py"
 set -x EDITOR vim
 set -x VISUAL vim
 
