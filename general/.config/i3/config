@@ -301,6 +301,7 @@ bar {
     mode hide
     modifier none
     # tray_output none
+    workspace_buttons no
 
     strip_workspace_numbers yes
 
