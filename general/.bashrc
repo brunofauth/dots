@@ -67,6 +67,7 @@ alias cat="bat --plain"
 alias indep="bg && disown"
 alias psyu="sudo pacman -Syu"
 alias pko="sudo pacman -Rns $(pacman -Qqdt) --noconfirm"
+alias zathura="zathura --fork"
 
 function stripdata { for i in "$@"; do exiftool -all= "$i"; done; } 
 
