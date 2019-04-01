@@ -101,12 +101,18 @@ function ex # usage: ex <file>
 end
 
 function se
-    set file (du -a $argv | awk '{$1="";print}' | fzf| sed -E "s|^ ||")
-    if test -n $file
-        $EDITOR $file
+    if test -z "$argv"
+        set directories "$HOME/useful-scripts"
+    else
+        set directories "$argv"
+    end
+    
+    set file (du -a $directories | awk '{$1="";print}' | fzf| sed -E "s|^ ||")
+    
+    if test -n "$file"
+        $EDITOR "$file"
     end
 end
-
 
 
 # Aliases for  Windows programs

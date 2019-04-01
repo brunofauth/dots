@@ -101,9 +101,16 @@ function ex { # # usage: ex <file>
 }
 
 function se {
-    file=$(du -a $@ | awk '{$1="";print}' | fzf)
-    if [[ -n $file ]]; then
-        $EDITOR $file
+    if [[ -z "$@" ]]; then
+        directories="$HOME/useful-scripts"
+    else
+        directories="$@"
+    fi
+
+    file=$(du -a $directories | awk '{$1="";print}' | fzf | sed -E "s|^ ||")
+
+    if [[ -n "$file" ]]; then
+        $EDITOR "$file"
     fi
 }
 
