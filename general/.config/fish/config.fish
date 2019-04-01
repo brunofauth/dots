@@ -126,14 +126,15 @@ set -x QT_QPA_PLATFORMTHEME "qt5ct"
 set -x PYTHONSTARTUP "$HOME/useful-scripts/startup.py"
 set -x EDITOR vim
 set -x VISUAL vim
+set -x PAGER vimpager
 
 
 
 # $PATH extensions
 
-set PATH $PATH "~/.local/bin"
+set PATH $PATH "$HOME/.local/bin"
 set PATH $PATH "/opt/cuda/lib64/"
-set PATH $PATH "~/useful-scripts/"
+set PATH $PATH "$HOME/useful-scripts/"
 
 
 
