@@ -79,6 +79,11 @@ function 2diff { sdiff -l $1 $2 | cat -n | grep -v -e '($' | less; }
 function pi { sudo pacman -S $@ --noconfirm; }
 function yi { yay -S $@ --removemake --noconfirm; }
 
+function medmenu {
+    prefix="$HOME/materiais-vetes"
+    echo -n "$prefix/$(find "$prefix" -type f | sed -E "s|^$prefix/(.+)\$|\1|" | fzf -e -i)" | xargs -r -d '\n' xdg-open
+}
+
 function ex { # # usage: ex <file>
     if [ -f $1 ] ; then
         case $1 in

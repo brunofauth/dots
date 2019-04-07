@@ -79,6 +79,11 @@ function 2diff; sdiff -l $argv | cat -n | grep -v -e '($' | less; end;
 function pi; sudo pacman -S $argv --noconfirm; end;
 function yi; yay -S $argv --removemake --noconfirm; end;
 
+function medmenu;
+    set prefix "$HOME/materiais-vetes"
+    echo -n "$prefix/"(find "$prefix" -type f | sed -E "s|^$prefix/(.+)\$|\1|" | fzf -e -i) | xargs -r -d '\n' xdg-open
+end
+
 function ex # usage: ex <file>
     if !test -f $argv[1]
         echo "'$argv[1]' is not a valid file!"
