@@ -133,6 +133,7 @@ export PYTHONSTARTUP="$HOME/useful-scripts/startup.py"
 export EDITOR=vim
 export VISUAL=vim
 export PAGER=vimpager
+export FZF_DEFAULT_OPTS="--reverse"
 
 
 

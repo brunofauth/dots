@@ -84,6 +84,14 @@ function medmenu;
     echo -n "$prefix/"(find "$prefix" -type f | sed -E "s|^$prefix/(.+)\$|\1|" | fzf -e -i) | xargs -r -d '\n' xdg-open
 end
 
+function qaudio;
+    set tmp $argv[2]
+    if test -z $tmp; set tmp 1.5; end
+    set thd $argv[3]
+    if test -z $thd; set thd 2%; end
+    sox "$argv[1]" "fast-$argv[1]" silence 1 0.1 $thd 1 0.1 $thd tempo $tmp : restart
+end
+
 function ex # usage: ex <file>
     if !test -f $argv[1]
         echo "'$argv[1]' is not a valid file!"
@@ -132,6 +140,7 @@ set -x PYTHONSTARTUP "$HOME/useful-scripts/startup.py"
 set -x EDITOR vim
 set -x VISUAL vim
 set -x PAGER vimpager
+set -x FZF_DEFAULT_OPTS "--reverse"
 
 
 
