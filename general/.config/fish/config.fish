@@ -93,7 +93,7 @@ function qaudio
 end
 
 function ytdl
-    youtube-dl "(xclip -selection clipboard -o)"
+    xclip -selection clipboard -o | youtube-dl -a -
 end
 
 function ex # usage: ex <file>
