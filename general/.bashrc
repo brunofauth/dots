@@ -84,6 +84,18 @@ function medmenu {
     echo -n "$prefix/$(find "$prefix" -type f | sed -E "s|^$prefix/(.+)\$|\1|" | fzf -e -i)" | xargs -r -d '\n' xdg-open
 }
 
+function qaudio {
+    tmp=$2
+    if [[ -z $tmp ]]; then tmp=1.5; fi
+    thd=$3
+    if [[ -z $thd ]]; then thd=2%; fi
+    sox "$1" "fast-$1" silence 1 0.1 $thd 1 0.1 $thd tempo $tmp : restart
+}
+
+function ytdl {
+    xclip -selection clipboard -o | youtube-dl -a -
+}
+
 function ex { # # usage: ex <file>
     if [ -f $1 ] ; then
         case $1 in
