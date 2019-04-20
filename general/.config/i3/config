@@ -79,6 +79,7 @@ bindsym Print exec --no-startup-id flameshot gui
 bindsym Shift+Print exec --no-startup-id flameshot full
 bindsym $mod+p exec pavucontrol
 bindsym $mod+n exec --no-startup-id ~/useful-scripts/plumb-nag
+bindsym $mod+Shift+y exec --no-startup-id ~/useful-scripts/i3-ytdl
 
 
 # LAPTOP SETTINGS

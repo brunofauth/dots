@@ -81,7 +81,9 @@ function yi { yay -S $@ --removemake --noconfirm; }
 
 function medmenu {
     prefix="$HOME/materiais-vetes"
-    echo -n "$prefix/$(find "$prefix" -type f | sed -E "s|^$prefix/(.+)\$|\1|" | fzf -e -i)" | xargs -r -d '\n' xdg-open &
+    for chosen in $(find "$prefix" -type f | sed -E "s|^$prefix/(.+)\$|\1|" | fzf -e -i -m); do
+        echo -n "$prefix/$chosen" | xargs -r -d '\n' xdg-open &
+    done
 }
 
 function qaudio {
