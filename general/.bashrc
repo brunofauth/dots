@@ -79,13 +79,6 @@ function 2diff { sdiff -l $1 $2 | cat -n | grep -v -e '($' | less; }
 function pi { sudo pacman -S $@ --noconfirm; }
 function yi { yay -S $@ --removemake --noconfirm; }
 
-function medmenu {
-    prefix="$HOME/materiais-vetes"
-    for chosen in $(find "$prefix" -type f | sed -E "s|^$prefix/(.+)\$|\1|" | fzf -e -i -m); do
-        echo -n "$prefix/$chosen" | xargs -r -d '\n' xdg-open &
-    done
-}
-
 function qaudio {
     tmp=$2
     if [[ -z $tmp ]]; then tmp=1.5; fi
@@ -147,7 +140,7 @@ export PYTHONSTARTUP="$HOME/useful-scripts/startup.py"
 export EDITOR=vim
 export VISUAL=vim
 export PAGER=vimpager
-export FZF_DEFAULT_OPTS="--reverse"
+export FZF_DEFAULT_OPTS="--reverse -e -i"
 
 
 
