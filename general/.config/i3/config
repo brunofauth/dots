@@ -67,11 +67,10 @@ exec --no-startup-id polybar -c ~/.config/polybar/config.ini main
 # PROGRAM SHORTCUTS
 
 bindsym $mod+l exec --no-startup-id i3lock-fancy
-bindsym $mod+Shift+e exec --no-startup-id "~/.config/rofi/quit_menu.sh"
 bindsym $mod+Return exec kitty
 #bindsym $mod+Return exec terminal
 bindsym $mod+d exec --no-startup-id rofi -show run
-bindsym $mod+F2 exec firefox
+bindsym $mod+d exec --no-startup-id "rofi -modi drun,run,window -show-icons -show drun"
 bindsym $mod+Shift+F2 exec firefox -private
 bindsym $mod+F3 exec xdg-open ~
 bindsym $mod+Shift+F3 exec gksu xdg-open ~ || kdsu xdg-open ~
