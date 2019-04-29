@@ -69,7 +69,6 @@ exec --no-startup-id polybar -c ~/.config/polybar/config.ini main
 bindsym $mod+l exec --no-startup-id i3lock-fancy
 bindsym $mod+Return exec kitty
 #bindsym $mod+Return exec terminal
-bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+d exec --no-startup-id "rofi -modi drun,run,window -show-icons -show drun"
 bindsym $mod+Shift+F2 exec firefox -private
 bindsym $mod+F3 exec xdg-open ~
@@ -77,6 +76,7 @@ bindsym $mod+Shift+F3 exec gksu xdg-open ~ || kdsu xdg-open ~
 bindsym Print exec --no-startup-id flameshot gui
 bindsym Shift+Print exec --no-startup-id flameshot full
 bindsym $mod+p exec pavucontrol
+bindsym $mod+Shift+p exec --no-startup-id polybar-msg cmd restart
 bindsym $mod+n exec --no-startup-id ~/useful-scripts/plumb-nag
 bindsym $mod+Shift+y exec --no-startup-id ~/useful-scripts/i3-ytdl
 bindsym $mod+u exec --no-startup-id ~/useful-scripts/usbeast -m
