@@ -114,7 +114,7 @@ function ex { # # usage: ex <file>
 
 function se {
     if [[ -z "$@" ]]; then
-        directories="$HOME/useful-scripts"
+        directories="$SCRIPTS"
     else
         directories="$@"
     fi
@@ -136,11 +136,12 @@ alias overwatch="lutris lutris:rungame/overwatch"
 
 # Exports
 export QT_QPA_PLATFORMTHEME="qt5ct"
-export PYTHONSTARTUP="$HOME/useful-scripts/startup.py"
+export PYTHONSTARTUP="$SCRIPTS/startup.py"
 export EDITOR=vim
 export VISUAL=vim
 export PAGER=vimpager
 export FZF_DEFAULT_OPTS="--reverse -e -i"
+export SCRIPTS="$HOME/scripts"
 
 
 
@@ -148,7 +149,7 @@ export FZF_DEFAULT_OPTS="--reverse -e -i"
 
 PATH="$PATH:~/.local/bin"
 PATH="$PATH:/opt/cuda/lib64/"
-PATH="$PATH:~/useful-scripts/"
+PATH="$PATH:$SCRIPTS/"
 
 
 

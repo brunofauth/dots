@@ -77,10 +77,10 @@ bindsym Print exec --no-startup-id flameshot gui
 bindsym Shift+Print exec --no-startup-id flameshot full
 bindsym $mod+p exec pavucontrol
 bindsym $mod+Shift+p exec --no-startup-id polybar-msg cmd restart
-bindsym $mod+n exec --no-startup-id ~/useful-scripts/plumb-nag
-bindsym $mod+Shift+y exec --no-startup-id ~/useful-scripts/i3-ytdl
-bindsym $mod+u exec --no-startup-id ~/useful-scripts/usbeast -m
-bindsym $mod+Shift+u exec --no-startup-id ~/useful-scripts/usbeast -u
+bindsym $mod+n exec --no-startup-id "$SCRIPTS/plumb-nag"
+bindsym $mod+Shift+y exec --no-startup-id "$SCRIPTS/i3-ytdl"
+bindsym $mod+u exec --no-startup-id "$SCRIPTS/usbeast -m"
+bindsym $mod+Shift+u exec --no-startup-id "$SCRIPTS/usbeast -u"
 
 
 # LAPTOP SETTINGS

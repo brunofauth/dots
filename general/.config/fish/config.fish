@@ -114,7 +114,7 @@ end
 
 function se
     if test -z "$argv"
-        set directories "$HOME/useful-scripts"
+        set directories "$SCRIPTS"
     else
         set directories "$argv"
     end
@@ -135,11 +135,12 @@ alias overwatch="lutris lutris:rungame/overwatch"
 
 # Exports
 set -x QT_QPA_PLATFORMTHEME "qt5ct"
-set -x PYTHONSTARTUP "$HOME/useful-scripts/startup.py"
+set -x PYTHONSTARTUP "$SCRIPTS/startup.py"
 set -x EDITOR vim
 set -x VISUAL vim
 set -x PAGER vimpager
 set -x FZF_DEFAULT_OPTS "--reverse -e -i"
+set -x SCRIPTS "$HOME/scripts"
 
 
 
@@ -147,7 +148,7 @@ set -x FZF_DEFAULT_OPTS "--reverse -e -i"
 
 set PATH $PATH "$HOME/.local/bin"
 set PATH $PATH "/opt/cuda/lib64/"
-set PATH $PATH "$HOME/useful-scripts/"
+set PATH $PATH "$SCRIPTS/"
 
 
 
