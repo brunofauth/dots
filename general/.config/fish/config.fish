@@ -63,18 +63,17 @@ alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
-alias cat="bat --plain"
+alias bat="bat --plain"
 alias indep="bg && disown"
 alias psyu="sudo pacman -Syu"
 alias pko="sudo pacman -Rns (pacman -Qqdt) --noconfirm"
 alias zathura="zathura --fork"
+alias ex="unp -u"
 
 function stripdata; for i in $argv; exiftool -all= $i; end; end
 
 function dicio; xdg-open "http://dicio.com.br/$argv[1]"; end
 function wtf; man $argv[1] || $argv[1] --help; end
-
-function 2diff; sdiff -l $argv | cat -n | grep -v -e '($' | less; end;
 
 function pi; sudo pacman -S $argv --noconfirm; end;
 function yi; yay -S $argv --removemake --noconfirm; end;
@@ -91,38 +90,15 @@ function ytdl
     xclip -selection clipboard -o | youtube-dl -a -
 end
 
-function ex # usage: ex <file>
-    if !test -f $argv[1]
-        echo "'$argv[1]' is not a valid file!"
-        exit 1
-    end
-    switch $argv[1]
-        case '*'.tar.bz2;   tar xjf $argv[1]
-        case '*'.tar.gz ;   tar xzf $argv[1]
-        case '*'.bz2    ;   bunzip2 $argv[1]
-        case '*'.rar    ;   unrar x $argv[1]
-        case '*'.gz     ;   gunzip $argv[1]
-        case '*'.tar    ;   tar xf $argv[1]
-        case '*'.tbz2   ;   tar xjf $argv[1]
-        case '*'.tgz    ;   tar xzf $argv[1]
-        case '*'.zip    ;   unzip $argv[1]
-        case '*'.Z      ;   uncompress $argv[1]
-        case '*'.7z     ;   7z x $argv[1]
-        case '*'        ;   echo "ex can\'t extract '$argv[1]'"
-    end
-end
-
 function se
     if test -z "$argv"
-        set directories "$SCRIPTS"
+        set dirs "$SCRIPTS"
     else
-        set directories "$argv"
+        set dirs "$argv"
     end
     
-    set file (du -a $directories | awk '{$1="";print}' | fzf| sed -E "s|^ ||")
-    
-    if test -n "$file"
-        $EDITOR "$file"
+    for file in (find $dirs -type f | fzf -e -i -m)
+        "$EDITOR" "$file"
     end
 end
 

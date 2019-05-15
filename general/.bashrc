@@ -63,18 +63,17 @@ alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
-alias cat="bat --plain"
+alias bat="bat --plain"
 alias indep="bg && disown"
 alias psyu="sudo pacman -Syu"
 alias pko="sudo pacman -Rns $(pacman -Qqdt) --noconfirm"
 alias zathura="zathura --fork"
+alias ex="unp -u"
 
 function stripdata { for i in "$@"; do exiftool -all= "$i"; done; } 
 
 function oqeh { xdg-open "http://dicio.com.br/$1"; }
 function wtf { man $1 || $1 --help; }
-
-function 2diff { sdiff -l $1 $2 | cat -n | grep -v -e '($' | less; }
 
 function pi { sudo pacman -S $@ --noconfirm; }
 function yi { yay -S $@ --removemake --noconfirm; }
@@ -91,39 +90,16 @@ function ytdl {
     xclip -selection clipboard -o | youtube-dl -a -
 }
 
-function ex { # # usage: ex <file>
-    if [ -f $1 ] ; then
-        case $1 in
-            *.tar.bz2)   tar xjf $1   ;;
-            *.tar.gz)    tar xzf $1   ;;
-            *.bz2)       bunzip2 $1   ;;
-            *.rar)       unrar x $1   ;;
-            *.gz)        gunzip $1    ;;
-            *.tar)       tar xf $1    ;;
-            *.tbz2)      tar xjf $1   ;;
-            *.tgz)       tar xzf $1   ;;
-            *.zip)       unzip $1     ;;
-            *.Z)         uncompress $1;;
-            *.7z)        7z x $1      ;;
-            *)           echo "ex can\'t extract '$1'" ;;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
-}
-
 function se {
     if [[ -z "$@" ]]; then
-        directories="$SCRIPTS"
+        dirs="$SCRIPTS"
     else
-        directories="$@"
+        dirs="$@"
     fi
 
-    file=$(du -a $directories | awk '{$1="";print}' | fzf | sed -E "s|^ ||")
-
-    if [[ -n "$file" ]]; then
-        $EDITOR "$file"
-    fi
+    for file in $(find $dirs -type f | fzf -e -i -m); do
+        "$EDITOR" "$file"
+    done
 }
 
 
