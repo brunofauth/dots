@@ -56,16 +56,3 @@ export BROWSER=/usr/bin/firefox
 PATH="$PATH:~/.local/bin"
 PATH="$PATH:/opt/cuda/lib64/"
 PATH="$PATH:$SCRIPTS/"
-
-
-
-# Useful aliases and functions
-
-alias zathura="zathura --fork"
-alias ex="unp -u"
-alias cls='printf "\033c"'
-alias ls='ls --color=auto'
-alias grep='grep --colour=auto'
-alias egrep='egrep --colour=auto'
-alias fgrep='fgrep --colour=auto'
-

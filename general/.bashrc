@@ -19,6 +19,13 @@ alias bat="bat --plain"
 alias indep="bg && disown"
 alias psyu="sudo pacman -Syu"
 alias pko="sudo pacman -Rns $(pacman -Qqdt) --noconfirm"
+alias zathura="zathura --fork"
+alias ex="unp -u"
+alias cls='printf "\033c"'
+alias ls='ls --color=auto'
+alias grep='grep --colour=auto'
+alias egrep='egrep --colour=auto'
+alias fgrep='fgrep --colour=auto'
 
 function stripdata { for i in "$@"; do exiftool -all= "$i"; done; } 
 
