@@ -1,8 +1,8 @@
 # XDG FOLDER DEFINITIONS
 
-export XDG_CACHE_HOME=~/.cache
-export XDG_CONFIG_HOME=~/.config
-export XDG_DATA_HOME=~/.local/share
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
 
 
 
@@ -53,6 +53,7 @@ export BROWSER=/usr/bin/firefox
 
 # $PATH extensions
 
-PATH="$PATH:~/.local/bin"
+PATH="$PATH:$HOME/.local/bin"
 PATH="$PATH:/opt/cuda/lib64/"
 PATH="$PATH:$SCRIPTS/"
+
