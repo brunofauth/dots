@@ -3,18 +3,21 @@
 # Set inner/outer gaps
 # gaps inner 14
 # gaps outer -2
-gaps inner 20
-gaps outer 0
+set $igaps 20
+set $ogaps 0
+
+gaps inner $igaps
+gaps outer $ogaps
 
 # Disables borders if No of containers > 1 automatically.
 # on (always active)|no_gaps (creen is 0)
 # smart_borders on
 
 # Mode for adjusting inner and outer gaps at any time.
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
+set $mode_gaps Gaps: (o)uter, (i)nner
+set $mode_gaps_outer Outer Gaps: +, -, 0, (r)estore
+set $mode_gaps_inner Inner Gaps: +, -, 0, (r)estore
+bindsym $mod+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
         bindsym o      mode "$mode_gaps_outer"
@@ -24,26 +27,20 @@ mode "$mode_gaps" {
 }
 
 mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
-
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
+        bindsym plus  gaps inner all plus 5
+        bindsym minus gaps inner all minus 5
+        bindsym 0     gaps inner all set 0
+        bindsym r     gaps inner all set $igaps
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
 
 mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
-
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
+        bindsym plus  gaps outer all plus 5
+        bindsym minus gaps outer all minus 5
+        bindsym 0     gaps outer all set 0
+        bindsym r     gaps outer all set $ogaps
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -81,6 +78,7 @@ bindsym $mod+n exec --no-startup-id "$SCRIPTS/plumb-nag"
 bindsym $mod+Shift+y exec --no-startup-id "$SCRIPTS/i3-ytdl"
 bindsym $mod+u exec --no-startup-id "$SCRIPTS/usbeast -m"
 bindsym $mod+Shift+u exec --no-startup-id "$SCRIPTS/usbeast -u"
+bindsym $mod+e exec --no-startup-id "$SCRIPTS/pick-emoji"
 
 
 # LAPTOP SETTINGS
