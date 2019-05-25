@@ -3,3 +3,6 @@ set hlsearch
 syntax enable
 filetype plugin indent on
 set tabstop=4 shiftwidth=4 expandtab
+set ff=unix
+set splitbelow
+set splitright
