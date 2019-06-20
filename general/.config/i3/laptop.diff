@@ -1,0 +1,22 @@
+--- /home/bruno/Dotfiles/general/.config/i3/config	2019-06-20 15:03:44.363915160 -0300
++++ /home/bruno/.config/i3/config	2019-06-20 15:29:42.623934431 -0300
+@@ -57,6 +57,7 @@
+ exec --no-startup-id compton -GCb --blur-method kawase --blur-strength 3 --backend glx
+ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+ exec --no-startup-id polybar -c ~/.config/polybar/config.ini main
++exec --no-startup-id nitrogen --restore
+ 
+ 
+ 
+@@ -83,6 +84,11 @@
+ 
+ 
+ # BEGIN LAPTOP
++bindsym XF86MonBrightnessUp exec "xbacklight -inc 5; notify-send 'brightness up'"
++bindsym XF86MonBrightnessDown exec "xbacklight -dec 5; notify-send 'brightness down'"
++exec --no-startup-id nm-applet
++exec --no-startup-id xfce4-power-manager
++exec --no-startup-id blueman-applet
+ # END LAPTOP
+ 
+ 

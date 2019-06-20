@@ -50,13 +50,12 @@ mode "$mode_gaps_outer" {
 
 # Desktop Environment startup routines
 
-exec --no-startup-id pulseaudio
-exec --no-startup-id sleep 10 && volumeicon
+exec --no-startup-id "$SCRIPTS/pavi"
 exec --no-startup-id setxkbmap -option compose:ralt
 # exec --no-startup-id ~/Scripts/background-manager
 exec --no-startup-id xautolock -time 10 -locker i3lock-fancy
 exec --no-startup-id compton -GCb --blur-method kawase --blur-strength 3 --backend glx
-# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id polybar -c ~/.config/polybar/config.ini main
 
 
@@ -65,13 +64,14 @@ exec --no-startup-id polybar -c ~/.config/polybar/config.ini main
 
 bindsym $mod+l exec --no-startup-id i3lock-fancy
 bindsym $mod+Return exec kitty
-#bindsym $mod+Return exec terminal
+# bindsym $mod+Return exec terminal
 bindsym $mod+d exec --no-startup-id "rofi -modi drun,run,window -show-icons -show drun"
+bindsym $mod+F2 exec firefox
 bindsym $mod+Shift+F2 exec firefox -private
 bindsym $mod+F3 exec xdg-open ~
 bindsym $mod+Shift+F3 exec gksu xdg-open ~ || kdsu xdg-open ~
 bindsym Print exec --no-startup-id flameshot gui
-bindsym Shift+Print exec --no-startup-id flameshot full
+bindsym Shift+Print exec --no-startup-id flameshot full -p ~/Pictures
 bindsym $mod+p exec pavucontrol
 bindsym $mod+Shift+p exec --no-startup-id polybar-msg cmd restart
 bindsym $mod+n exec --no-startup-id "$SCRIPTS/plumb-nag"
@@ -81,13 +81,9 @@ bindsym $mod+Shift+u exec --no-startup-id "$SCRIPTS/usbeast -u"
 bindsym $mod+e exec --no-startup-id "$SCRIPTS/pick-emoji"
 
 
-# LAPTOP SETTINGS
 
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 5; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 5; notify-send 'brightness down'"
-# exec --no-startup-id nm-applet
-# exec --no-startup-id xfce4-power-manager
-# exec --no-startup-id blueman-applet
+# BEGIN LAPTOP
+# END LAPTOP
 
 
 
@@ -149,6 +145,8 @@ default_floating_border normal
 
 # Default workspace assignment
 assign [class="Firefox"] 2
+assign [class="Steam"] 5
+assign [class="Zathura"] 4
 
 # Open these apps in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -212,6 +210,10 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym --whole-window --border $mod+button4 workspace prev
 bindsym --whole-window --border $mod+button5 workspace next
 
+# Use PgUp and PgDn to switch workspaces
+bindsym --whole-window --border $mod+Prior workspace prev
+bindsym --whole-window --border $mod+Next workspace next
+
 # scratchpad control
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+plus scratchpad show
@@ -230,14 +232,13 @@ mode "$mode_system" {
     bindsym u exec --no-startup-id i3exit switch_user, mode "default"
     bindsym e exec --no-startup-id i3exit logout, mode "default"
     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym r exec --no-startup-id reboot, mode "default"
+    bindsym s exec --no-startup-id poweroff, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
-# resize window (you can also use the mouse for that)
 bindsym $mod+r mode "$mode_resize"
 set $mode_resize ← width-10, → width+10, ↑ height+10, ↓ height-10
 
@@ -247,10 +248,19 @@ mode "$mode_resize" {
     bindsym Up resize shrink height 10 px or 10 ppt
     bindsym Right resize grow width 10 px or 10 ppt
     
-    bindsym Shift+Left move left 15
-    bindsym Shift+Down move down 15
-    bindsym Shift+Up move up 15
-    bindsym Shift+Right move right 15
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# MOVE FLOATING WINDOWS WITH KEYS
+bindsym $mod+Shift+m mode "$mode_move" focus floating
+set $mode_move ←, →, ↑, ↓
+
+mode "$mode_move" {
+    bindsym Left  move left  15
+    bindsym Down  move down  15
+    bindsym Up    move up    15
+    bindsym Right move right 15
     
     bindsym Return mode "default"
     bindsym Escape mode "default"

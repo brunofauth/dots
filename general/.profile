@@ -42,6 +42,7 @@ alias wget="wget --hsts-file=\"$XDG_CACHE_HOME/wget-hsts\""
 # Exports
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export PYTHONSTARTUP="$SCRIPTS/startup.py"
+export PYTHONPATH="$HOME/libs"
 export EDITOR=vim
 export VISUAL=vim
 export PAGER=less
