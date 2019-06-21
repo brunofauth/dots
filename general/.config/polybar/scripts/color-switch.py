@@ -181,6 +181,11 @@ COLORS = {
         "s/bi = .*/bi = #8e24aa/g",
         "s/be = .*/be = #8e24aa/g",
         "s/mf = .*/mf = #f5f5f5/g"],
+    "magenta-dark": [
+        "s/ac = .*/ac = #fb0f8b/g",
+        "s/bi = .*/bi = #fb0f8b/g",
+        "s/be = .*/be = #fb0f8b/g",
+        "s/mf = .*/mf = #f5f5f5/g"],
     "red-dark": [
         "s/ac = .*/ac = #e53935/g",
         "s/bi = .*/bi = #e53935/g",
