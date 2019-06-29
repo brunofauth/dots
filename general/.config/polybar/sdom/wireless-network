@@ -1,5 +1,0 @@
-[module/wireless-network]
-type = internal/network
-interface = wlp3s0
-
-; Normal Module
