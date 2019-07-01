@@ -1,0 +1,16 @@
+#! /usr/bin/env sh
+
+
+while read file; do
+    case "$1" in
+        c)
+            cat "$file" | xclip -t "$(file -b --mime-type "$file")" -selection clipboard
+            ;;
+        d)
+            mv "$file" ~/.recycle-bin
+            ;;
+        n)
+            echo -n "$file" | xclip -selection clipboard
+            ;;
+    esac
+done
