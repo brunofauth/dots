@@ -206,13 +206,11 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# Scroll to switch workspaces
-bindsym --whole-window --border $mod+button4 workspace prev
-bindsym --whole-window --border $mod+button5 workspace next
-
-# Use PgUp and PgDn to switch workspaces
+# Switch workspaces with PgUp, PgDn and mouse scrolling
 bindsym --whole-window --border $mod+Prior workspace prev
 bindsym --whole-window --border $mod+Next workspace next
+bindsym --whole-window --border $mod+button4 workspace prev
+bindsym --whole-window --border $mod+button5 workspace next
 
 # scratchpad control
 bindsym $mod+Shift+minus move scratchpad
