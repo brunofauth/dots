@@ -144,6 +144,7 @@ default_floating_border normal
 
 # Default workspace assignment
 assign [class="Firefox"] 2
+assign [class="qutebrowser"] 2
 assign [class="Steam"] 5
 assign [class="Zathura"] 4
 
