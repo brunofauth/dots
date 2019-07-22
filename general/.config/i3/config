@@ -65,8 +65,8 @@ bindsym $mod+l exec --no-startup-id i3lock-fancy
 bindsym $mod+Return exec kitty
 # bindsym $mod+Return exec terminal
 bindsym $mod+d exec --no-startup-id "rofi -modi drun,run,window -show-icons -show drun"
-bindsym $mod+F2 exec firefox
-bindsym $mod+Shift+F2 exec firefox -private
+bindsym $mod+F2 exec qutebrowser
+bindsym $mod+Shift+F2 exec qutebrowser ":open -p"
 bindsym $mod+F3 exec xdg-open ~
 bindsym $mod+Shift+F3 exec gksu xdg-open ~ || kdsu xdg-open ~
 bindsym Print exec --no-startup-id flameshot gui

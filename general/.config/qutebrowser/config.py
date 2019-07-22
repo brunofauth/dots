@@ -1,3 +1,10 @@
+import qutebrowser.mainwindow.tabwidget as qbtw
+
+
+qbtw.TabWidget.MUTE_STRING = "🔇 "
+qbtw.TabWidget.AUDIBLE_STRING = "🔊 "
+
+
 ## Documentation:
 ##   qute://help/configuring.html
 ##   qute://help/settings.html
@@ -1270,7 +1277,7 @@ c.session.lazy_restore = True
 ##   - tabs: Current active tab, e.g. `2`.
 ##   - keypress: Display pressed keys when composing a vi command.
 ##   - progress: Progress bar for the current page loading.
-# c.statusbar.widgets = ['keypress', 'url', 'scroll', 'history', 'tabs', 'progress']
+c.statusbar.widgets = ['progress', 'keypress', 'url', 'scroll', 'history']
 
 ## Open new tabs (middleclick/ctrl+click) in the background.
 ## Type: Bool
@@ -1448,7 +1455,7 @@ c.tabs.show = 'never'
 ##    * `{protocol}`: Protocol (http/https/...) of the current web page.
 ##    * `{audio}`: Indicator for audio/mute status.
 ## Type: FormatString
-# c.tabs.title.format = '{audio}{private}{index}: {title}'
+c.tabs.title.format = '{audio}{private}{index}: {title}'
 
 ## Format to use for the tab title for pinned tabs. The same placeholders
 ## like for `tabs.title.format` are defined.
