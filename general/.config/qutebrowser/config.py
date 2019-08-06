@@ -1455,7 +1455,7 @@ c.tabs.show = 'never'
 ##    * `{protocol}`: Protocol (http/https/...) of the current web page.
 ##    * `{audio}`: Indicator for audio/mute status.
 ## Type: FormatString
-c.tabs.title.format = '{audio}{private}{index}: {title}'
+c.tabs.title.format = '{audio}{private}{index}: {current_title}'
 
 ## Format to use for the tab title for pinned tabs. The same placeholders
 ## like for `tabs.title.format` are defined.
