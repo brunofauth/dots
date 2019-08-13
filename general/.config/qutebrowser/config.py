@@ -5,6 +5,10 @@ qbtw.TabWidget.MUTE_STRING = "🔇 "
 qbtw.TabWidget.AUDIBLE_STRING = "🔊 "
 
 
+STARTPAGE_CONFIGURED = 'https://www.startpage.com/do/mypage.pl?' \
+    'prfe=36c84513558a2d34bf0d89ea505333ad7b891f436dd7ccc60adc2e9be9271a9b5065027ac0acf304745625d261b6aec0'
+
+
 ## Documentation:
 ##   qute://help/configuring.html
 ##   qute://help/settings.html
@@ -1483,6 +1487,7 @@ c.tabs.title.format = '{audio}{private}{index}: {current_title}'
 ## for a blank page.
 ## Type: FuzzyUrl
 # c.url.default_page = 'https://start.duckduckgo.com/'
+c.url.default_page = STARTPAGE_CONFIGURED
 
 ## URL segments where `:navigate increment/decrement` will search for a
 ## number.
@@ -1510,14 +1515,30 @@ c.tabs.title.format = '{audio}{private}{index}: {current_title}'
 ## `:open google qutebrowser`.
 ## Type: Dict
 c.url.searchengines = {
-    'DEFAULT': 'https://duckduckgo.com/?q={}',
+    "DEFAULT": "https://www.startpage.com/sp/search?query={}&t=nite&lui=english&language=english&cat=web",
+
+    "ggl":  "https://www.google.com/search?q={}",
+    "ggli": "https://www.google.com/search?q={}&tbm=isch",
+    "gglv": "https://www.google.com/search?q={}&tbm=vid",
+    "ggls": "https://www.google.com/search?q={}&tbm=shop",
+    "gglm": "https://www.google.com/maps/search/{}",
+
+    "sp":  "https://www.startpage.com/sp/search?query={}&t=nite&lui=english&language=english&cat=web",
+    "spi": "https://www.startpage.com/sp/search?query={}&t=nite&lui=english&language=english&cat=pics",
+    "spv": "https://www.startpage.com/sp/search?query={}&t=nite&lui=english&language=english&cat=video",
+
     "wikt": "https://en.m.wiktionary.org/wiki/{}",
-    "yt": "https://www.youtube.com/results?search_query={}"
+    'ddg': 'https://duckduckgo.com/?q={}',
+    "osm": "https://www.openstreetmap.org/search?query={}",
+    "yt": "https://www.youtube.com/results?search_query={}",
+    "ph": "https://www.pornhub.com/video/search?search={}",
+    "xv": "https://www.xvideos.com/?k={}"
 }
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
 # c.url.start_pages = ['https://start.duckduckgo.com']
+c.url.start_pages = [STARTPAGE_CONFIGURED]
 
 ## URL parameters to strip with `:yank url`.
 ## Type: List of String
