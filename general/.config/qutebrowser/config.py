@@ -1523,9 +1523,13 @@ c.url.searchengines = {
     "ggls": "https://www.google.com/search?q={}&tbm=shop",
     "gglm": "https://www.google.com/maps/search/{}",
 
-    "sp":  "https://www.startpage.com/sp/search?query={}&t=nite&lui=english&language=english&cat=web",
-    "spi": "https://www.startpage.com/sp/search?query={}&t=nite&lui=english&language=english&cat=pics",
-    "spv": "https://www.startpage.com/sp/search?query={}&t=nite&lui=english&language=english&cat=video",
+    # "sp":  "https://www.startpage.com/sp/search?query={}&t=nite&lui=english&language=english&cat=web",
+    # "spi": "https://www.startpage.com/sp/search?query={}&t=nite&lui=english&language=english&cat=pics",
+    # "spv": "https://www.startpage.com/sp/search?query={}&t=nite&lui=english&language=english&cat=video",
+
+    "sp":  "https://www.startpage.com/sp/search?query={}&cat=web",
+    "spi": "https://www.startpage.com/sp/search?query={}&cat=pics",
+    "spv": "https://www.startpage.com/sp/search?query={}&cat=video",
 
     "wikt": "https://en.m.wiktionary.org/wiki/{}",
     'ddg': 'https://duckduckgo.com/?q={}',
