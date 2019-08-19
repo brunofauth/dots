@@ -48,13 +48,13 @@ export VISUAL=vim
 export PAGER=less
 export FZF_DEFAULT_OPTS="--reverse -e -i"
 export SCRIPTS="$HOME/scripts"
-export BROWSER=/usr/bin/firefox
+export BROWSER=/usr/bin/qutebrowser
 
 
 
 # $PATH extensions
 
-PATH="$PATH:$HOME/.local/bin"
+PATH="$SCRIPTS/:$PATH"
+PATH="$HOME/.local/bin:$PATH"
 PATH="$PATH:/opt/cuda/lib64/"
-PATH="$PATH:$SCRIPTS/"
 
