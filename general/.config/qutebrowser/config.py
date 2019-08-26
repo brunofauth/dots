@@ -831,7 +831,7 @@ c.content.headers.do_not_track = True
 ## `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 ## Same as `{column}`, but starting from index 0.
 ## Type: ShellCommand
-# c.editor.command = ['gvim', '-f', '{file}', '-c', 'normal {line}G{column0}l']
+c.editor.command = ['vim', '-f', '{file}', '-c', 'normal {line}G{column0}l']
 
 ## Encoding to use for the editor.
 ## Type: Encoding
@@ -1523,10 +1523,7 @@ c.url.searchengines = {
     "ggls": "https://www.google.com/search?q={}&tbm=shop",
     "gglm": "https://www.google.com/maps/search/{}",
 
-    # "sp":  "https://www.startpage.com/sp/search?query={}&t=nite&lui=english&language=english&cat=web",
-    # "spi": "https://www.startpage.com/sp/search?query={}&t=nite&lui=english&language=english&cat=pics",
-    # "spv": "https://www.startpage.com/sp/search?query={}&t=nite&lui=english&language=english&cat=video",
-
+    # "sp":  "...&t=nite&lui=english&language=english",
     "sp":  "https://www.startpage.com/sp/search?query={}&cat=web",
     "spi": "https://www.startpage.com/sp/search?query={}&cat=pics",
     "spv": "https://www.startpage.com/sp/search?query={}&cat=video",
@@ -1536,7 +1533,12 @@ c.url.searchengines = {
     "osm": "https://www.openstreetmap.org/search?query={}",
     "yt": "https://www.youtube.com/results?search_query={}",
     "ph": "https://www.pornhub.com/video/search?search={}",
-    "xv": "https://www.xvideos.com/?k={}"
+    "xv": "https://www.xvideos.com/?k={}",
+
+    "tpb": "https://thepiratebay.org/search/{}/0/99/0",
+
+    "sci": "https://search.scielo.org/?q={}",
+    "pm": "https://www.ncbi.nlm.nih.gov/pubmed/?term={}"
 }
 
 ## Page(s) to open at the start.
@@ -1863,4 +1865,6 @@ c.url.start_pages = [STARTPAGE_CONFIGURED]
 # config.bind('n', 'prompt-accept no', mode='yesno')
 # config.bind('y', 'prompt-accept yes', mode='yesno')
 
+
+config.bind('dr', 'download-remove')
 config.bind("<Ctrl-L>", "config-cycle tabs.show always never", mode="normal")
