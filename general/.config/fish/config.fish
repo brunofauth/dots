@@ -9,6 +9,7 @@ bass source ~/.profile
 # Useful aliases and functions
 
 alias up="cd .."
+alias xo=xdg-open
 alias py=python3
 alias refresh="source ~/.config/fish/config.fish"
 alias servicels='systemctl list-unit-files | grep enabled'

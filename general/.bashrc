@@ -1,6 +1,7 @@
 # Useful aliases and functions
 
 alias up="cd .."
+alias xo=xdg-open
 alias py=python3
 alias refresh="source ~/.bashrc"
 alias servicels='systemctl list-unit-files | grep enabled'
