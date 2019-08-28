@@ -1,0 +1,13 @@
+#! /usr/bin/env sh
+
+
+case "$QUTE_URL" in
+    *youtube.com/watch?*)
+        notify-send -t 3000 "About to download and play '$QUTE_URL'"
+        mpv "$QUTE_URL"
+        ;;
+    *)
+        notify-send -t 3000 "What is '$QUTE_URL'?"
+        ;;
+esac
+
