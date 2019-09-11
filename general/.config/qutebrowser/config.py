@@ -1642,7 +1642,7 @@ c.url.start_pages = [STARTPAGE_CONFIGURED]
 # config.bind('@', 'run-macro')
 # config.bind('B', 'set-cmd-text -s :quickmark-load -t')
 # config.bind('D', 'tab-close -o')
-config.bind('F', 'hint -r all tab')
+# config.bind('F', 'hint all tab')
 # config.bind('G', 'scroll-to-perc')
 # config.bind('H', 'back')
 # config.bind('J', 'tab-next')

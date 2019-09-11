@@ -13,6 +13,8 @@ alias pwoeroff=poweroff
 alias pgrep="pgrep -il"
 alias pss="pacman -Ss"
 alias yss="yay -Ss"
+alias pr="pacman --noconfirm -Rcns"
+alias yr="yay --noconfirm -Rcns"
 alias cp="cp -i"
 alias df='df -h'
 alias free='free -m'
@@ -23,6 +25,7 @@ alias pko="sudo pacman -Rns $(pacman -Qqdt) --noconfirm"
 alias zathura="zathura --fork"
 alias ex="unp -u"
 alias cls='printf "\033[2J\033[H"'
+# alias cls='printf "\033c"'
 alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
