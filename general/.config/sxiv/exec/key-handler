@@ -1,6 +1,10 @@
 #! /usr/bin/env sh
 
 
+ICO_ERR="/usr/share/icons/Papirus/32x32/categories/script-error.svg"
+ICO_YES="/usr/share/icons/Papirus/32x32/categories/gnome-info.svg"
+
+
 while read file; do
     case "$1" in
         c)
@@ -12,5 +16,22 @@ while read file; do
         n)
             echo -n "$file" | xclip -selection clipboard
             ;;
+        m)
+            destination="$(zenity \
+                --title="Move picture" \
+                --entry \
+                --text="Type where to move this picture to:" \
+                --entry-text="$file" \
+            )"
+
+            mv "$file" "$destination"
+
+            if [ "$?" -eq 0 ]; then
+                notify-send -a sxiv.desktop -t 2000 -i "$ICO_YES" -u normal \
+                    "Moved file successfully" "'$file' -> '$destination'"
+            else
+                notify-send -a sxiv.desktop -t 2000 -i "$ICO_ERR" -u critical \
+                    "Failed to move file" "'$file' -> '$destination'"
+            fi
     esac
 done

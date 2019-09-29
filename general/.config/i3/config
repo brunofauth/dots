@@ -70,7 +70,7 @@ bindsym $mod+Shift+F2 exec qutebrowser ":open -p"
 bindsym $mod+F3 exec xdg-open ~
 bindsym $mod+Shift+F3 exec gksu xdg-open ~ || kdsu xdg-open ~
 bindsym Print exec --no-startup-id flameshot gui
-bindsym Shift+Print exec --no-startup-id flameshot full -p ~/Pictures
+bindsym Shift+Print exec --no-startup-id flameshot full -p "$XDG_PICTURES_DIR"
 bindsym $mod+p exec pavucontrol
 bindsym $mod+Shift+p exec --no-startup-id polybar-msg cmd restart
 bindsym $mod+n exec --no-startup-id "$SCRIPTS/plumb-nag"

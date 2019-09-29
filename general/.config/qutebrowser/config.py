@@ -579,7 +579,7 @@ c.content.headers.do_not_track = True
 ## User agent to send. Unset to send the default. Note that the value
 ## read from JavaScript is always the global value.
 ## Type: String
-# c.content.headers.user_agent = None
+c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36'
 
 ## Enable host blocking.
 ## Type: Bool
