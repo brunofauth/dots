@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Purges LibreOffice and gimp from opening PDFs!
+When = PostTransaction
+Exec = /etc/pacman.d/hooks/default-apps.sh
+
