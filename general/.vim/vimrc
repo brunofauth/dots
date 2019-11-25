@@ -2,18 +2,33 @@ set number
 set hlsearch
 syntax enable
 filetype plugin indent on
-set tabstop=4 shiftwidth=4 expandtab
 set ff=unix
 set wildmode=longest,list,full
 set splitbelow splitright
 set showcmd
 let mapleader = "\\"
 
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+set foldmethod=indent
+set foldlevel=1
+" set foldclose=all
+
+set breakindent
+set breakindentopt=shift:4,min:40
+" set breakindentopt=shift:2,min:40,sbr
+" set showbreak=>>
+
+autocmd FileType markdown set breakindentopt=shift:2
+
 inoremap ;nn <Esc>/<++><Enter>:noh<Enter>"_c4l
 nnoremap <Leader>n <Esc>/<++><Enter>:noh<Enter>"_c4l
 nnoremap <Leader>s :!cls && shellcheck %<Enter>
 nnoremap <Leader>c :!cls && compileit %<Enter>
 nnoremap <Leader>Z :w !sudo tee %<Enter>
+nnoremap <Leader>y :!cat % \| xclip -selection clipboard<Enter>
 
 vnoremap <A-c> "+y
  noremap <A-p> "+p
