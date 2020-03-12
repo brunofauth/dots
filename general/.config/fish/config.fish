@@ -2,7 +2,8 @@
 # Compatibility with POSIX shells
 
 bass source /etc/profile
-bass source ~/.profile
+# bass source ~/.profile
+source (sed -e 's/^export \(\w\+\?\)=\(.\+\)$/set -x \1 \2/' ~/.profile | psub)
 
 
 

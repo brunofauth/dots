@@ -67,7 +67,7 @@ export SHELL="/usr/bin/fish"
 
 # $PATH extensions
 
-PATH="$SCRIPTS/:$PATH"
-PATH="$HOME/.local/bin:$PATH"
-PATH="$PATH:/opt/cuda/lib64/"
+export PATH="$SCRIPTS/:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:/opt/cuda/lib64/"
 
