@@ -61,7 +61,7 @@ export BROWSER=qutebrowser
 export BROWSER_PRIVATE="qutebrowser \":open -p\""
 export TERMINAL=kitty
 export DOTFILES="$HOME/dots"
-export SHELL="/usr/bin/fish"
+export SHELL="/usr/bin/profish"
 
 
 
