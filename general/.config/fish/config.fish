@@ -1,11 +1,4 @@
 
-# Compatibility with POSIX shells
-
-bass source /etc/profile
-bass source ~/.profile
-
-
-
 # Useful aliases and functions
 
 alias up="cd .."

@@ -1,0 +1,66 @@
+# PROGRAM SHORTCUTS
+
+super + Return
+    $TERMINAL
+
+super + d
+    "rofi -modi drun,run,window -show-icons -show drun"
+
+super + F2
+    $BROWSER
+
+super + shift + F2
+    $BROWSER_PRIVATE
+
+# Starts file manager at ~
+super + F3
+    xdg-open ~
+
+# Starts file manager at ~ as sudo
+super + shift + F3
+    gksu xdg-open ~ || kdsu xdg-open ~
+
+Print
+    flameshot gui
+
+shift + Print
+    flameshot full -p "$XDG_PICTURES_DIR"
+
+super + p
+    pavucontrol
+
+super + shift + p
+    polybar-msg cmd restart
+
+super + n
+    "$SCRIPTS/plumb-nag"
+
+super + shift + y
+    "$SCRIPTS/i3-ytdl"
+
+super + u
+    "$SCRIPTS/usbeast -m"
+
+super + shift + u
+    "$SCRIPTS/usbeast -u"
+
+super + e
+    "$SCRIPTS/pick-emoji"
+
+XF86MonBrightness{Up,Down}
+    xbacklight -{inc,dec} 5; notify-send "brightness {up,down}" -t 2000
+
+super + shift + m
+    notify-send "System Menu" "(l)ock\nswitch (u)ser\n(e)xit\nsus(p)end\n(h)ybernate\n(r)eboot\n(s)hutdown"
+
+super + m; {l, u, e, p, h, r, s}
+    { \
+        i3lock-fancy, \
+        dm-tool switch-to-greeter, \
+        i3-msg logout, \
+        systemctl suspend, \
+        systemctl hybernate, \
+        systemctl reboot, \
+        systemctl poweroff \
+    }
+

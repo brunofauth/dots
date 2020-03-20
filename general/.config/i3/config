@@ -56,28 +56,7 @@ exec --no-startup-id setxkbmap -option compose:ralt
 exec --no-startup-id compton -GCb --blur-method kawase --blur-strength 5 --backend glx
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id polybar -c ~/.config/polybar/config.ini main
-
-
-
-# PROGRAM SHORTCUTS
-
-bindsym $mod+l exec --no-startup-id i3lock-fancy
-bindsym $mod+Return exec kitty
-# bindsym $mod+Return exec terminal
-bindsym $mod+d exec --no-startup-id "rofi -modi drun,run,window -show-icons -show drun"
-bindsym $mod+F2 exec qutebrowser
-bindsym $mod+Shift+F2 exec qutebrowser ":open -p"
-bindsym $mod+F3 exec xdg-open ~
-bindsym $mod+Shift+F3 exec gksu xdg-open ~ || kdsu xdg-open ~
-bindsym Print exec --no-startup-id flameshot gui
-bindsym Shift+Print exec --no-startup-id flameshot full -p "$XDG_PICTURES_DIR"
-bindsym $mod+p exec pavucontrol
-bindsym $mod+Shift+p exec --no-startup-id polybar-msg cmd restart
-bindsym $mod+n exec --no-startup-id "$SCRIPTS/plumb-nag"
-bindsym $mod+Shift+y exec --no-startup-id "$SCRIPTS/i3-ytdl"
-bindsym $mod+u exec --no-startup-id "$SCRIPTS/usbeast -m"
-bindsym $mod+Shift+u exec --no-startup-id "$SCRIPTS/usbeast -u"
-bindsym $mod+e exec --no-startup-id "$SCRIPTS/pick-emoji"
+exec --no-startup-id SHELL=/usr/bin/sh sxhkd
 
 
 
@@ -222,21 +201,21 @@ bindsym $mod+plus scratchpad show
 # MISCELLANEOUS SETTINGS
 
 # System Menu Mode
-bindsym $mod+m mode "$mode_system"
-set $mode_system (l)ock, (e)xit, switch (u)ser, sus(p)end, (h)ibernate, (r)eboot, (s)hutdown
-
-mode "$mode_system" {
-    bindsym l exec --no-startup-id i3lock-fancy, mode "default"
-    bindsym p exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id reboot, mode "default"
-    bindsym s exec --no-startup-id poweroff, mode "default"
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
+# bindsym $mod+m mode "$mode_system"
+# set $mode_system (l)ock, (e)xit, switch (u)ser, sus(p)end, (h)ibernate, (r)eboot, (s)hutdown
+# 
+# mode "$mode_system" {
+#     bindsym l exec --no-startup-id i3lock-fancy, mode "default"
+#     bindsym p exec --no-startup-id i3exit suspend, mode "default"
+#     bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+#     bindsym e exec --no-startup-id i3exit logout, mode "default"
+#     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+#     bindsym r exec --no-startup-id reboot, mode "default"
+#     bindsym s exec --no-startup-id poweroff, mode "default"
+# 
+#     bindsym Return mode "default"
+#     bindsym Escape mode "default"
+# }
 
 bindsym $mod+r mode "$mode_resize"
 set $mode_resize ← width-10, → width+10, ↑ height+10, ↓ height-10

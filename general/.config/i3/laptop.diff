@@ -12,8 +12,6 @@
  
  
  # BEGIN LAPTOP
-+bindsym XF86MonBrightnessUp exec "xbacklight -inc 5; notify-send 'brightness up'"
-+bindsym XF86MonBrightnessDown exec "xbacklight -dec 5; notify-send 'brightness down'"
 +exec --no-startup-id nm-applet
 +exec --no-startup-id xfce4-power-manager
 +exec --no-startup-id blueman-applet

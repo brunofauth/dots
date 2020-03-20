@@ -4,6 +4,15 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 
+export XDG_DESKTOP_DIR="$HOME/top"
+export XDG_DOCUMENTS_DIR="$HOME/docs"
+export XDG_DOWNLOAD_DIR="$HOME/dl"
+export XDG_MUSIC_DIR="$HOME/music"
+export XDG_PICTURES_DIR="$HOME/pics"
+export XDG_PUBLICSHARE_DIR="$HOME/pub"
+export XDG_TEMPLATES_DIR="$HOME/templates"
+export XDG_VIDEOS_DIR="$HOME/vids"
+
 
 
 # Make programs comply to XDG spec
@@ -48,14 +57,17 @@ export VISUAL=vim
 export PAGER=less
 export FZF_DEFAULT_OPTS="--reverse -e -i"
 export SCRIPTS="$HOME/scripts"
+export BROWSER=qutebrowser
+export BROWSER_PRIVATE="qutebrowser \":open -p\""
+export TERMINAL=kitty
 export DOTFILES="$HOME/dots"
-export BROWSER=/usr/bin/qutebrowser
+export SHELL="/usr/bin/dash"
 
 
 
 # $PATH extensions
 
-PATH="$SCRIPTS/:$PATH"
-PATH="$HOME/.local/bin:$PATH"
-PATH="$PATH:/opt/cuda/lib64/"
+export PATH="$SCRIPTS/:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:/opt/cuda/lib64/"
 

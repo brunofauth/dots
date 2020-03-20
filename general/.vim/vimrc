@@ -1,3 +1,5 @@
+runtime vundle-cfg.vim
+
 set number
 set hlsearch
 syntax enable
