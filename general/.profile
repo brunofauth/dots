@@ -48,6 +48,7 @@ export VISUAL=vim
 export PAGER=less
 export FZF_DEFAULT_OPTS="--reverse -e -i"
 export SCRIPTS="$HOME/scripts"
+export DOTFILES="$HOME/dots"
 export BROWSER=/usr/bin/qutebrowser
 
 
