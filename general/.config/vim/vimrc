@@ -1,3 +1,6 @@
+set viminfo+='1000,n$XDG_DATA_HOME/vim/viminfo
+set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
+
 runtime vundle-cfg.vim
 
 set number
@@ -40,7 +43,7 @@ autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
 autocmd FileType tex inoremap ;bb <Bslash>begin{}<Esc>i
 autocmd FileType tex inoremap ;ee <Esc>yyplcwend<Esc>o<++><Esc>kO
 
-autocmd FileType html inoremap ;ee <Esc>yypl/<Esc>o<++><Esc>kO
+autocmd FileType html inoremap ;ee ><Esc>yypa/<Esc>O
 
 autocmd FileType python inoremap ;ifm if<Space>__name__<Space>==<Space>"__main__":<Enter>
 

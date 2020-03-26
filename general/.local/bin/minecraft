@@ -1,0 +1,5 @@
+#! /usr/bin/env sh
+
+
+TMPDIR="$XDG_CACHE_HOME/minecraft" minecraft-launcher --workDir "$XDG_DATA_HOME/minecraft"
+
