@@ -38,6 +38,8 @@ export WGETRC="$XDG_CONFIG_HOME"/wgetrc
 # export XAUTHORITY="$XDG_CACHE_DIR"/Xauthority
 # export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 # export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+export VIMINIT=":source $XDG_CONFIG_HOME"/vim/vimrc
 
 
 
@@ -45,6 +47,8 @@ export WGETRC="$XDG_CONFIG_HOME"/wgetrc
 
 alias wget="wget --hsts-file=\"$XDG_CACHE_HOME/wget-hsts\""
 # alias startx="startx \"$XDG_CONFIG_HOME/X11/xinitrc\""
+alias minecraft-launcher="TMPDIR=\"$XDG_CACHE_HOME/minecraft\" /usr/bin/minecraft-launcher --workDir \"$XDG_DATA_HOME/minecraft\""
+alias feedthebeast="/usr/bin/feedthebeast --pack-dir \"$XDG_DATA_HOME/feedthebeast\" --cache-dir \"$XDG_CACHE_HOME/feedthebeast\""
 
 
 

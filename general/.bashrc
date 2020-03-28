@@ -1,3 +1,9 @@
+# Bad Bash can't use XDG specs
+
+export HISTFILE="$XDG_DATA_HOME"/bash/history
+
+
+
 # Useful aliases and functions
 
 alias up="cd .."
