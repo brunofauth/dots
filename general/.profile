@@ -53,19 +53,20 @@ alias feedthebeast="/usr/bin/feedthebeast --pack-dir \"$XDG_DATA_HOME/feedthebea
 
 
 # Exports
+
+export DOTFILES="$HOME/dots"
+export SHELL="/usr/bin/dash"
+export SCRIPTS="$HOME/scripts"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export PYTHONSTARTUP="$SCRIPTS/startup.py"
-export PYTHONPATH="$HOME/libs"
+export PYTHONPATH="$PYTHONPATH:$SCRIPTS"
+export FZF_DEFAULT_OPTS="--reverse -e -i"
 export EDITOR=vim
 export VISUAL=vim
 export PAGER=less
-export FZF_DEFAULT_OPTS="--reverse -e -i"
-export SCRIPTS="$HOME/scripts"
+export TERMINAL=kitty
 export BROWSER=qutebrowser
 export BROWSER_PRIVATE="qutebrowser \":open -p\""
-export TERMINAL=kitty
-export DOTFILES="$HOME/dots"
-export SHELL="/usr/bin/dash"
 
 
 
