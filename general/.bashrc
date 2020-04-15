@@ -36,6 +36,8 @@ alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
+alias ffmpeg='ffmpeg -pattern_type glob'
+alias sxiv='sxiv -a'
 
 function stripdata { for i in "$@"; do exiftool -all= "$i"; done; } 
 
@@ -57,38 +59,39 @@ function ytdl {
     xclip -selection clipboard -o | youtube-dl -a -
 }
 
-function se {
-    if [[ -z "$@" ]]; then
-        dirs="$SCRIPTS"
-    else
-        dirs="$@"
-    fi
-
-    for file in $(find $dirs -type f | fzf -e -i -m); do
-        "$EDITOR" "$file"
-    done
-}
-
 
 
 # BASH SPECIFIC STUFF BELOW
-echo "https://cdn.boob.bot/Gifs/17A2.gif" > /dev/null
+# "https://cdn.boob.bot/Gifs/17A2.gif"
+
+
+
+# Only run these lines if in interactive mode
+[[ $- != *i* ]] && return
 
 
 
 # Completion for Bash
+COMPLETE_FILE="/usr/share/bash-completion/bash_completion"
+[ -r "$COMPLETE_FILE" ] && source "$COMPLETE_FILE"
 source <(kitty + complete setup bash)
 
 
 
 # Options for bad bash 
+shopt -s checkjobs
 shopt -s checkwinsize
 shopt -s expand_aliases
 shopt -s histappend
+shopt -s autocd
+
+# \e[ : Start color scheme.
+# x;y : Color pair to use (x;y)
+# \e[m : Stop color scheme.
+PS1='\e[34;1m[\e[36m\u\e[34m@\e[36m\h \e[32m\w\e[34m] \e[36m\$ \e[m'
+# PS1='\e[36;1m\u\e[34m@\e[36m\h \e[32m\w\e[m $ '
 
 
-
-[[ $- != *i* ]] && return
 
 colors() {
     local fgc bgc vals seq0
@@ -116,9 +119,4 @@ colors() {
         echo; echo
     done
 }
-
-[[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
-
-[ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
-
 

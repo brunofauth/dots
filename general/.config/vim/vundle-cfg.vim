@@ -1,7 +1,6 @@
 " be iMproved, required
 set nocompatible 
 
-inoremap a b
 filetype off
 
 " set the runtime path to include Vundle and initialize
@@ -15,7 +14,17 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'https://github.com/ycm-core/YouCompleteMe'
+" Fish syntax highlighting
+Plugin 'dag/vim-fish'
+
+" Looking cute, might test it later
+" Plugin 'neoclide/coc.nvim'
+
+" python 'intellisense'
+Plugin 'davidhalter/jedi-vim'
+
+" Manage tags, quotes, brackets...
+Plugin 'tpope/vim-surround'
 
 
 call vundle#end()

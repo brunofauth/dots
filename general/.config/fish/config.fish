@@ -31,6 +31,8 @@ alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
+alias ffmpeg='ffmpeg -pattern_type glob'
+alias sxiv='sxiv -a'
 
 function stripdata; for i in $argv; exiftool -all= $i; end; end
 
@@ -50,18 +52,6 @@ end
 
 function ytdl
     xclip -selection clipboard -o | youtube-dl -a -
-end
-
-function se
-    if test -z "$argv"
-        set dirs "$SCRIPTS"
-    else
-        set dirs "$argv"
-    end
-    
-    for file in (find $dirs -type f | fzf -e -i -m)
-        "$EDITOR" "$file"
-    end
 end
 
 
