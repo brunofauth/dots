@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/bruno/Desktop/Dotfiles/general/.config/i3'
-let g:netrw_dirhist_2='/home/bruno/.mitmproxy'
-let g:netrw_dirhist_3='/home/bruno/.mozilla/firefox/hhyl5uup.default'
