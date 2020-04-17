@@ -9,7 +9,7 @@ set rtp+=~/.local/share/vim/bundle/Vundle.vim
 
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
-call vundle#begin($XDG_CONFIG_HOME . '/vim/bundle/')
+call vundle#begin($XDG_DATA_HOME . '/vim/bundle/')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
