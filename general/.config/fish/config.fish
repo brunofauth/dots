@@ -1,43 +1,4 @@
-
-# Useful aliases and functions
-
-alias up="cd .."
-alias xo=xdg-open
-alias py=python3
-alias refresh="source ~/.config/fish/config.fish"
-alias servicels='systemctl list-unit-files | grep enabled'
-alias myip="curl ipecho.net/plain; echo"
-alias pnum="ps -A --no-headers | wc -l"
-alias graus='curl http://wttr.in/passo%20fundo?1'
-alias poweroof=poweroff
-alias pwoeroff=poweroff
-alias pgrep="pgrep -il"
-alias pss="pacman -Ss"
-alias yss="yay -Ss"
-alias pr="pacman --noconfirm -Rcns"
-alias yr="yay --noconfirm -Rcns"
-alias cp="cp -i"
-alias df='df -h'
-alias free='free -m'
-alias bat="bat --plain"
-alias indep="bg && disown"
-alias psyu="sudo pacman -Syu"
-alias pko="sudo pacman -Rns (pacman -Qqdt) --noconfirm"
-alias zathura="zathura --fork"
-alias ex="unp -u"
-# alias cls='printf "\033[2J\033[H"'
-alias cls='printf "\033c"'
-alias ls='ls --color=auto'
-alias grep='grep --colour=auto'
-alias egrep='egrep --colour=auto'
-alias fgrep='fgrep --colour=auto'
-alias ffmpeg='ffmpeg -pattern_type glob'
-alias sxiv='sxiv -a'
-
-function stripdata; for i in $argv; exiftool -all= $i; end; end
-
-function dicio; xdg-open "http://dicio.com.br/$argv[1]"; end
-function wtf; man $argv[1] || $argv[1] --help; end
+source "$XDG_CONFIG_HOME/aliases.sh"
 
 function pi; sudo pacman -S $argv --noconfirm; end;
 function yi; yay -S $argv --removemake --noconfirm; end;
@@ -48,10 +9,6 @@ function qaudio
     set thd $argv[3]
     if test -z $thd; set thd 2%; end
     sox "$argv[1]" "fast-$argv[1]" silence 1 0.1 $thd 1 0.1 $thd tempo $tmp : restart
-end
-
-function ytdl
-    xclip -selection clipboard -o | youtube-dl -a -
 end
 
 
