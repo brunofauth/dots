@@ -1717,7 +1717,7 @@ c.url.start_pages = [STARTPAGE_CONFIGURED]
 # config.bind('b', 'set-cmd-text -s :quickmark-load')
 # config.bind('cd', 'download-clear')
 # config.bind('co', 'tab-only')
-# config.bind('d', 'tab-close')
+config.unbind('d')
 # config.bind('f', 'hint')
 # config.bind('g$', 'tab-focus -1')
 # config.bind('g0', 'tab-focus 1')

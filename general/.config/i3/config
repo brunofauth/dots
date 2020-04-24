@@ -231,6 +231,20 @@ mode "$mode_resize" {
     bindsym Escape mode "default"
 }
 
+# MOVE FLOATING WINDOWS WITH KEYS
+bindsym $mod+Shift+m mode "$mode_move" focus floating
+set $mode_move ←, →, ↑, ↓
+
+mode "$mode_move" {
+    bindsym Left  move left  15
+    bindsym Down  move down  15
+    bindsym Up    move up    15
+    bindsym Right move right 15
+    
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
 
 
 # BAR SETTINGS

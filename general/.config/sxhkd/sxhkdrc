@@ -4,7 +4,7 @@ super + Return
     $TERMINAL
 
 super + d
-    "rofi -modi drun,run,window -show-icons -show drun"
+    rofi -modi drun,run,window -show-icons -show drun
 
 super + F2
     $BROWSER
@@ -39,13 +39,13 @@ super + shift + y
     "$SCRIPTS/i3-ytdl"
 
 super + u
-    "$SCRIPTS/usbeast -m"
+    $SCRIPTS/usbeast -m
 
 super + shift + u
-    "$SCRIPTS/usbeast -u"
+    $SCRIPTS/usbeast -u
 
 super + e
-    "$SCRIPTS/pick-emoji"
+    $SCRIPTS/pick-emoji
 
 XF86MonBrightness{Up,Down}
     xbacklight -{inc,dec} 5; notify-send "brightness {up,down}" -t 2000

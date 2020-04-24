@@ -7,7 +7,7 @@ set number
 set hlsearch
 syntax enable
 filetype plugin indent on
-set ff=unix
+set fileformat=unix
 set wildmode=longest,list,full
 set splitbelow splitright
 set showcmd
@@ -32,18 +32,13 @@ inoremap ;nn <Esc>/<++><Enter>:noh<Enter>"_c4l
 nnoremap <Leader>n <Esc>/<++><Enter>:noh<Enter>"_c4l
 nnoremap <Leader>s :!cls && shellcheck %<Enter>
 nnoremap <Leader>c :!cls && compileit %<Enter>
-nnoremap <Leader>Z :w !sudo tee %<Enter>
+nnoremap <Leader>w :w !sudo tee %<Enter>
 nnoremap <Leader>y :!cat % \| xclip -selection clipboard<Enter>
 
 vnoremap <A-c> "+y
- noremap <A-p> "+p
+ noremap <A-v> "+p
 
 autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
-
-autocmd FileType tex inoremap ;bb <Bslash>begin{}<Esc>i
-autocmd FileType tex inoremap ;ee <Esc>yyplcwend<Esc>o<++><Esc>kO
-
-autocmd FileType html inoremap ;ee ><Esc>yypa/<Esc>O
 
 autocmd FileType python inoremap ;ifm if<Space>__name__<Space>==<Space>"__main__":<Enter>
 
