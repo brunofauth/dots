@@ -26,6 +26,8 @@ set breakindentopt=shift:4,min:40
 " set breakindentopt=shift:2,min:40,sbr
 " set showbreak=>>
 
+set belloff=all
+
 autocmd FileType markdown set breakindentopt=shift:2
 
 inoremap ;nn <Esc>/<++><Enter>:noh<Enter>"_c4l
