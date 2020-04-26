@@ -4,7 +4,7 @@ super + Return
     $TERMINAL
 
 super + d
-    "rofi -modi drun,run,window -show-icons -show drun"
+    rofi -modi drun,run,window -show-icons -show drun
 
 super + F2
     $BROWSER
@@ -63,4 +63,10 @@ super + m; {l, u, e, p, h, r, s}
         systemctl reboot, \
         systemctl poweroff \
     }
+
+super + k
+    notify-send "Network Error" "No internet connection" -t 3000; llk
+
+super + shift + k
+    notify-send "Network Online" "Internet connection found" -t 3000; llkk
 
