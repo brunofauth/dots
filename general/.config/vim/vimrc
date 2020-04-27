@@ -1,7 +1,22 @@
-set viminfo+='1000,n$XDG_DATA_HOME/vim/viminfo
-set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
+if $XDG_CONFIG_HOME == ''
+    echoerr 'Please, set $XDG_CONFIG_HOME.'
+    normal :q!
+endif
 
-runtime vundle-cfg.vim
+if $XDG_DATA_HOME == ''
+    echoerr 'Please, set $XDG_DATA_HOME.'
+    normal :q!
+endif
+
+" Sets the location for the viminfo file
+set viminfo+=n$XDG_DATA_HOME/vim/viminfo
+
+" So that Vim complies to the XDG specs
+set runtimepath=$XDG_CONFIG_HOME/vim
+set runtimepath+=$VIMRUNTIME
+set runtimepath+=$XDG_CONFIG_HOME/vim/after
+
+runtime plug-cfg.vim
 
 set number relativenumber
 set hlsearch incsearch
