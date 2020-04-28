@@ -41,6 +41,7 @@ shopt -s checkwinsize
 shopt -s expand_aliases
 shopt -s histappend
 shopt -s autocd
+set -o vi
 
 
 

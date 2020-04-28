@@ -19,3 +19,7 @@ set fish_greeting
 
 kitty + complete setup fish | source
 
+fish_vi_keybindings
+bind -s --preset ge backward-word backward-char backward-char
+bind -s --preset gE backward-bigword backward-char backward-char
+
