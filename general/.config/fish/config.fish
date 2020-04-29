@@ -2,6 +2,7 @@ source "$XDG_CONFIG_HOME/aliases.sh"
 
 function pi; sudo pacman -S $argv --noconfirm; end;
 function yi; yay -S $argv --removemake --noconfirm; end;
+alias cln='git clone (xclip -o -sel c)'
 
 function qaudio
     set tmp $argv[2]
