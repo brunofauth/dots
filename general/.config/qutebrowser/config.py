@@ -8,6 +8,9 @@ qbtw.TabWidget.AUDIBLE_STRING = "🔊 "
 STARTPAGE_CONFIGURED = 'https://www.startpage.com/do/mypage.pl?' \
     'prfe=36c84513558a2d34bf0d89ea505333ad7b891f436dd7ccc60adc2e9be9271a9b5065027ac0acf304745625d261b6aec0'
 
+STARTPAGE_CONFIGURED = r'https://www.startpage.com/do/mypage.pl?'\
+    'prfe=36c84513558a2d34bf0d89ea505333ad7b891f436dd7ccc60adc2e9be9271a9b5065027ac0acf304600bf14a6d642703'
+
 
 ## Documentation:
 ##   qute://help/configuring.html
