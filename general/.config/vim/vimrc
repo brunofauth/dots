@@ -68,11 +68,13 @@ let mapleader = "\\"
 nnoremap <Leader>s :!cls && shellcheck %<CR>
 nnoremap <Leader>c :!cls && compileit %<CR>
 
-"Writes as root
+" Writes as root
 nnoremap <Leader>w :w !sudo tee %<CR>
 
-"Copies whole file to clipboard
-nnoremap <Leader>y :!cat % \| xclip -selection clipboard<CR>
+" Copies '+' register into system clipboard
+nnoremap <Leader>y :call system("xsel -ib", getreg('+'))<CR>
+" Copies whole file to clipboard
+nnoremap <Leader>Y :!cat % \| xclip -selection clipboard<CR>
 
 " Turns off search match highlighting
 nnoremap <Leader>h :nohlsearch<CR>

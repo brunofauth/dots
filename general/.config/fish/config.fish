@@ -23,4 +23,5 @@ kitty + complete setup fish | source
 fish_vi_key_bindings
 bind -s --preset ge backward-word backward-char backward-char
 bind -s --preset gE backward-bigword backward-char backward-char
-
+bind -s --preset \e\[1\;5C forward-word forward-char
+bind -s --preset \e\[1\;5D backward-word
