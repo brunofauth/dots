@@ -55,7 +55,7 @@ alias feedthebeast="/usr/bin/feedthebeast --pack-dir \"$XDG_DATA_HOME/feedthebea
 # Exports
 
 export DOTFILES="$HOME/dots"
-export SHELL="/usr/bin/dash"
+export SHELL="/usr/bin/fish"
 export SCRIPTS="$HOME/scripts"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export PYTHONSTARTUP="$SCRIPTS/startup.py"
