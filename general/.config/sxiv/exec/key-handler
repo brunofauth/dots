@@ -5,33 +5,71 @@ ICO_ERR="/usr/share/icons/Papirus/32x32/categories/script-error.svg"
 ICO_YES="/usr/share/icons/Papirus/32x32/categories/gnome-info.svg"
 
 
+query_destination() {
+    zenity \
+        --title="Move picture" \
+        --entry \
+        --text="Type where to move this picture to:" \
+        --entry-text="$1"
+}
+
+
+success() {
+    notify-send -a sxiv.desktop -t 2000 -i "$ICO_YES" -u normal "$1"
+}
+
+
+error() {
+    notify-send -a sxiv.desktop -t 2000 -i "$ICO_ERR" -u critical "$1"
+}
+
+
+cmd_feedback() {
+    { [ "$?" -eq 0 ] && success "$1"; } || error "$2"
+}
+
+
 while read file; do
     case "$1" in
         c)
-            cat "$file" | xclip -t "$(file -b --mime-type "$file")" -selection clipboard
+            <"$file" xclip -t "$(file -b --mime-type "$file")" -sel c
             ;;
         d)
             mv "$file" ~/.recycle-bin
             ;;
         n)
-            echo -n "$file" | xclip -selection clipboard
+            printf "%s" "$file" | xclip -sel c
             ;;
         m)
-            destination="$(zenity \
-                --title="Move picture" \
-                --entry \
-                --text="Type where to move this picture to:" \
-                --entry-text="$file" \
-            )"
+            destination="$(query_destination "$file")"
 
-            mv "$file" "$destination"
+            [ -f "$destination" ] \
+                && error "Failed to move file: destination '$destination' alredy exists." \
+                && exit 1
 
-            if [ "$?" -eq 0 ]; then
-                notify-send -a sxiv.desktop -t 2000 -i "$ICO_YES" -u normal \
-                    "Moved file successfully" "'$file' -> '$destination'"
-            else
-                notify-send -a sxiv.desktop -t 2000 -i "$ICO_ERR" -u critical \
-                    "Failed to move file" "'$file' -> '$destination'"
-            fi
+            mv -n "$file" "$destination"
+            cmd_feedback \
+                "Moved file successfully '$file' -> '$destination'" \
+                "Failed to move file '$file' -> '$destination'"
+            ;;
+        M)
+            destination="$(query_destination "$file")"
+            mv -f "$file" "$destination"
+            cmd_feedback \
+                "Moved file successfully '$file' -> '$destination'" \
+                "Failed to move file '$file' -> '$destination'"
+            ;;
+        r)
+            mogrify -rotate 90 "$file"
+            cmd_feedback \
+                "Rotated '$file' 90 degrees." \
+                "Failed to rotate '$file'"
+            ;;
+        R)
+            mogrify -rotate -90 "$file"
+            cmd_feedback \
+                "Rotated '$file' -90 degrees." \
+                "Failed to rotate '$file'"
+            ;;
     esac
 done

@@ -1,46 +1,34 @@
-#!/usr/bin/env bash
+#! /bin/sh
 
-BAR_ICON=""
-NOTIFY_ICON=/usr/share/icons/Papirus/32x32/apps/system-software-update.svg
 
-get_total_updates() { UPDATES=$(checkupdates 2>/dev/null | wc -l); }
+# Export this variable to change the path of the temporary database.
+TMP_DB_PATH="${TMP_DB_PATH:-"$(mktemp -dt "update-db-$USER-XXXXXX")"}"
+! [ -d "$TMP_DB_PATH" ] && >&2 echo 'Invalid "$TMP_DB_PATH".' && exit 1
+
+
+PACMAN_DB="$(pacman-conf DBPath)"
+[ -d "$PACMAN_DB" ] || { >&2 echo "Can't find pacman db." && exit 1; }
+
+
+sync_fake_db() {
+    fakeroot -- pacman -Sy \
+        --dbpath "$TMP_DB_PATH" \
+        --logfile /dev/null \
+    >/dev/null
+    2>&1
+}
+
+
+fetch_updates() {
+    trap 'rm -f "$TMP_DB_PATH/db.lck"' INT TERM EXIT
+    ln -s "${PACMAN_DB}/local" "$TMP_DB_PATH"
+    sync_fake_db || { >&2 echo "Cannot fetch updates" && exit 1; };
+    pacman -Quq --dbpath "$TMP_DB_PATH" 2>/dev/null
+}
+
 
 while true; do
-    get_total_updates
-
-    # notify user of updates
-    # if hash notify-send &>/dev/null; then
-    #     if (( UPDATES > 50 )); then
-    #         notify-send -t 5000 -u critical -i $NOTIFY_ICON \
-    #             "You really need to update!!" "$UPDATES New packages"
-    #     elif (( UPDATES > 25 )); then
-    #         notify-send -t 5000 -u normal -i $NOTIFY_ICON \
-    #             "You should update soon" "$UPDATES New packages"
-    #     elif (( UPDATES > 2 )); then
-    #         notify-send -t 5000 -u low -i $NOTIFY_ICON \
-    #             "$UPDATES New packages"
-    #     fi
-    # fi
-
-    # when there are updates available
-    # every 10 seconds another check for updates is done
-    while (( UPDATES > 0 )); do
-        if (( UPDATES == 1 )); then
-            echo " $UPDATES Update"
-        elif (( UPDATES > 1 )); then
-            echo " $UPDATES Updates"
-        else
-            echo $BAR_ICON
-        fi
-        sleep 10
-        get_total_updates
-    done
-
-    # when no updates are available, use a longer loop, this saves on CPU
-    # and network uptime, only checking once every 30 min for new updates
-    while (( UPDATES == 0 )); do
-        echo $BAR_ICON
-        sleep 1800
-        get_total_updates
-    done
+    echo " $(fetch_updates | wc -l)"
+    sleep 600
 done
+
