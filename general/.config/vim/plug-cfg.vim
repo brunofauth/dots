@@ -27,5 +27,10 @@ Plug 'tpope/vim-surround'
 " Text objects and motions for Latex editing
 Plug 'gibiansky/vim-latex-objects'
 
+" Vim sugar for the UNIX shell commands that need it the most.
+Plug 'tpope/vim-eunuch'
+
+Plug 'tpope/vim-repeat'
+
 call plug#end()
 
