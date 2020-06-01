@@ -1,0 +1,11 @@
+#! /bin/sh
+
+
+# truncate old cfg
+: > ./mpd.conf
+
+
+while read -r line; do
+    eval echo "$line" >> ./mpd.conf
+done < ./mpd.vars
+

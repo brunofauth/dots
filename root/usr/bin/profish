@@ -1,4 +1,4 @@
-#! /usr/bin/sh
+#! /bin/sh -l
 
 # This passes the values read on ~/.profile to fish
 fish "$@"

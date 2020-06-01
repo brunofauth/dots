@@ -1,0 +1,12 @@
+[Unit]
+Description=Turn compose key on
+# After=
+
+[Service]
+Type=oneshot
+# PIDFile=/var/run/openvpn/%i.pid
+ExecStart=/usr/bin/setxkbmap -option compose:ralt
+
+[Install]
+WantedBy=multi-user.target
+

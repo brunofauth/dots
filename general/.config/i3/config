@@ -50,13 +50,12 @@ mode "$mode_gaps_outer" {
 
 # Desktop Environment startup routines
 
-exec --no-startup-id "$SCRIPTS/pavi"
+exec --no-startup-id "volumeicon"
 exec --no-startup-id setxkbmap -option compose:ralt
 # exec --no-startup-id ~/Scripts/background-manager
 exec --no-startup-id compton -GCb --blur-method kawase --blur-strength 5 --backend glx
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id polybar -c ~/.config/polybar/config.ini main
-exec --no-startup-id SHELL=/usr/bin/sh sxhkd
 exec --no-startup-id xwallpaper --zoom /usr/share/backgrounds/vaporwave/cool-sunset.png
 
 

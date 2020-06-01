@@ -70,3 +70,12 @@ super + k
 super + shift + k
     notify-send "Network Online" "Internet connection found" -t 3000; llkk
 
+XF86AudioPlay
+    mpc toggle
+
+XF86AudioNext
+    mpc next
+
+XF86AudioPrev
+    mpc prev
+
