@@ -57,6 +57,7 @@ exec --no-startup-id compton -GCb --blur-method kawase --blur-strength 5 --backe
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id polybar -c ~/.config/polybar/config.ini main
 exec --no-startup-id xwallpaper --zoom /usr/share/backgrounds/vaporwave/cool-sunset.png
+exec --no-startup-id sxhkd
 
 
 
