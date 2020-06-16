@@ -1,9 +1,5 @@
 source "$XDG_CONFIG_HOME/aliases.sh"
 
-function pi; sudo pacman -S $argv --noconfirm; end;
-function yi; yay -S $argv --removemake --noconfirm; end;
-alias cln='git clone (xclip -o -sel c)'
-
 function qaudio
     set tmp $argv[2]
     if test -z $tmp; set tmp 1.5; end
@@ -20,8 +16,5 @@ set fish_greeting
 
 kitty + complete setup fish | source
 
-fish_vi_key_bindings
-bind -s --preset ge backward-word backward-char backward-char
-bind -s --preset gE backward-bigword backward-char backward-char
-bind -s --preset \e\[1\;5C forward-word forward-char
-bind -s --preset \e\[1\;5D backward-word
+fish_default_key_bindings
+
