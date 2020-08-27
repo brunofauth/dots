@@ -30,6 +30,7 @@ Plug 'gibiansky/vim-latex-objects'
 " Vim sugar for the UNIX shell commands that need it the most.
 Plug 'https://github.com/tpope/vim-eunuch.git'
 
+" Repeat.vim remaps '.' in a way that plugins can tap into it.
 Plug 'tpope/vim-repeat'
 
 " Things you can do with fzf and Vim.

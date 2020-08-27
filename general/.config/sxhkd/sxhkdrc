@@ -10,7 +10,7 @@ super + F2
     $BROWSER
 
 super + shift + F2
-    $BROWSER_PRIVATE
+    priv "$BROWSER"
 
 # Starts file manager at ~
 super + F3

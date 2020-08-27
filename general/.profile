@@ -64,8 +64,7 @@ export EDITOR=vim
 export VISUAL=vim
 export PAGER=less
 export TERMINAL=kitty
-export BROWSER=qutebrowser
-export BROWSER_PRIVATE="qutebrowser \":open -p\""
+export BROWSER=firefox
 
 
 
