@@ -50,7 +50,6 @@ mode "$mode_gaps_outer" {
 
 # Desktop Environment startup routines
 
-exec --no-startup-id "volumeicon"
 exec --no-startup-id setxkbmap -option compose:ralt
 # exec --no-startup-id ~/Scripts/background-manager
 exec --no-startup-id compton -GCb --blur-method kawase --blur-strength 5 --backend glx
