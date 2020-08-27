@@ -28,9 +28,15 @@ Plug 'tpope/vim-surround'
 Plug 'gibiansky/vim-latex-objects'
 
 " Vim sugar for the UNIX shell commands that need it the most.
-Plug 'tpope/vim-eunuch'
+Plug 'https://github.com/tpope/vim-eunuch.git'
 
 Plug 'tpope/vim-repeat'
+
+" Things you can do with fzf and Vim.
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
+runtime fzf-vim-cfg.vim
 
 call plug#end()
 

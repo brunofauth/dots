@@ -60,7 +60,6 @@ export SCRIPTS="$HOME/scripts"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export PYTHONSTARTUP="$SCRIPTS/startup.py"
 export PYTHONPATH="$PYTHONPATH:$SCRIPTS"
-export FZF_DEFAULT_OPTS="--reverse -e -i"
 export EDITOR=vim
 export VISUAL=vim
 export PAGER=less
@@ -85,4 +84,11 @@ export PATH="$PATH:$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_HOME/tools"
 export PATH="$PATH:$ANDROID_HOME/tools/bin"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+
+
+# Random programs' cfgs
+
+export PIP_REQUIRE_VIRTUALENV=true
+export FZF_DEFAULT_OPTS="--reverse -e -i"
 
