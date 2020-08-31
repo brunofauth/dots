@@ -1,0 +1,12 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Target = pokemmo
+
+[Action]
+Description = Changing 'pokemmo-launcher' to use '$XDG_DATA_HOME/pokemmo' instead of '$HOME/.pokemmo'
+When = PostTransaction
+Exec = /etc/pacman.d/hooks/pokemmo.sh
+Depends = sed
+

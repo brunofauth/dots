@@ -1,0 +1,11 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Target = minecraft-launcher
+
+[Action]
+Description = Giving minecraft an executable temporary directory
+When = PostTransaction
+Exec = /etc/pacman.d/hooks/minecraft-launcher.sh
+
