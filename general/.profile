@@ -55,7 +55,6 @@ alias feedthebeast="/usr/bin/feedthebeast --pack-dir \"$XDG_DATA_HOME/feedthebea
 # Exports
 
 export DOTFILES="$HOME/dots"
-export SHELL="/usr/bin/fish"
 export SCRIPTS="$HOME/scripts"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export PYTHONSTARTUP="$SCRIPTS/startup.py"
@@ -63,6 +62,7 @@ export PYTHONPATH="$PYTHONPATH:$SCRIPTS"
 export EDITOR=vim
 export VISUAL=vim
 export PAGER=less
+export SHELL=fish
 export TERMINAL=kitty
 export BROWSER=firefox
 
@@ -90,4 +90,5 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
 export PIP_REQUIRE_VIRTUALENV=true
 export FZF_DEFAULT_OPTS="--reverse -e -i"
+export WINEDLLOVERRIDES="mscoree=d;mshtml=d"
 
