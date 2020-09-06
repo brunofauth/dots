@@ -36,8 +36,17 @@ Plug 'tpope/vim-repeat'
 " Things you can do with fzf and Vim.
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-
 runtime fzf-vim-cfg.vim
+
+" Toggle fullscreen for vim windows, useful when using splits
+Plug 'https://github.com/vim-scripts/ZoomWin'
+
+" Allows you to use <Tab> for insert completion (:h ins-completion).
+Plug 'https://github.com/ervandew/supertab'
+
+" This plugin uses clang for accurately completing C and C++ code.
+Plug 'https://github.com/xavierd/clang_complete'
+let g:clang_library_path='/usr/lib64/libclang.so'
 
 call plug#end()
 
