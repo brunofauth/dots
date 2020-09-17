@@ -76,3 +76,6 @@ XF86Audio{Raise,Lower}Volume
 XF86MonBrightness{Up,Down}
     xbacklight -{inc,dec} 5
 
+super + apostrophe; {q, a, h, c, t}
+    dunstctl {close, close-all, history-pop, context, set-paused toggle}
+
