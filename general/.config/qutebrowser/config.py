@@ -5,11 +5,31 @@ qbtw.TabWidget.MUTE_STRING = "🔇 "
 qbtw.TabWidget.AUDIBLE_STRING = "🔊 "
 
 
-STARTPAGE_CONFIGURED = 'https://www.startpage.com/do/mypage.pl?' \
-    'prfe=36c84513558a2d34bf0d89ea505333ad7b891f436dd7ccc60adc2e9be9271a9b5065027ac0acf304745625d261b6aec0'
+# STARTPAGE_CONFIGURED = 'https://www.startpage.com/do/mypage.pl?' \
+#     'prfe=36c84513558a2d34bf0d89ea505333ad7b891f436dd7ccc60adc2e9be9271a9b5065027ac0acf304745625d261b6aec0'
+# 
+# STARTPAGE_CONFIGURED = r'https://www.startpage.com/do/mypage.pl?'\
+#     'prfe=36c84513558a2d34bf0d89ea505333ad7b891f436dd7ccc60adc2e9be9271a9b5065027ac0acf304600bf14a6d642703'
 
-STARTPAGE_CONFIGURED = r'https://www.startpage.com/do/mypage.pl?'\
-    'prfe=36c84513558a2d34bf0d89ea505333ad7b891f436dd7ccc60adc2e9be9271a9b5065027ac0acf304600bf14a6d642703'
+# 'EEE' = '='; 'N1N' = '&'.
+STARTPAGE_CONFIGURED = (
+    "https://www.startpage.com/do/mypage.pl?prfh="
+        "disable_family_filterEEE1"
+        "N1Ndisable_open_in_new_windowEEE1"
+        "N1Ndisable_video_family_filterEEE1"
+        "N1Nenable_post_methodEEE1"
+        "N1Nenable_proxy_safety_suggestEEE1"
+        "N1Nenable_stay_controlEEE0"
+        "N1Ngeo_mapEEE1"
+        "N1Nlang_homepageEEEs%2Fnite%2Fen%2F"
+        "N1NlanguageEEEenglish"
+        "N1Nlanguage_uiEEEenglish"
+        "N1Nnum_of_resultsEEE10"
+        "N1Nother_iaEEE1"
+        "N1NsuggestionsEEE1"
+        "N1Nwikipedia_iaEEE1"
+        "N1Nwt_unitEEEcelsius"
+)
 
 
 ## Documentation:
@@ -55,7 +75,16 @@ c.auto_save.session = True
 ## when a key is bound (via `bindings.default` or `bindings.commands`),
 ## the mapping is ignored.
 ## Type: Dict
-# c.bindings.key_mappings = {'<Ctrl-[>': '<Escape>', '<Ctrl-6>': '<Ctrl-^>', '<Ctrl-M>': '<Return>', '<Ctrl-J>': '<Return>', '<Shift-Return>': '<Return>', '<Enter>': '<Return>', '<Shift-Enter>': '<Return>', '<Ctrl-Enter>': '<Ctrl-Return>'}
+# c.bindings.key_mappings = {
+#     '<Ctrl-[>': '<Escape>',
+#     '<Ctrl-6>': '<Ctrl-^>',
+#     '<Ctrl-M>': '<Return>',
+#     '<Ctrl-J>': '<Return>',
+#     '<Shift-Return>': '<Return>',
+#     '<Enter>': '<Return>',
+#     '<Shift-Enter>': '<Return>',
+#     '<Ctrl-Enter>': '<Ctrl-Return>'
+# }
 
 ## Background color of the completion widget category headers.
 ## Type: QssColor
@@ -1569,11 +1598,11 @@ c.url.default_page = STARTPAGE_CONFIGURED
 c.url.searchengines = {
     "DEFAULT": "https://www.startpage.com/sp/search?query={}&t=nite&lui=english&language=english&cat=web",
 
-    "ggl":  "https://www.google.com/search?q={}",
-    "ggli": "https://www.google.com/search?q={}&tbm=isch",
-    "gglv": "https://www.google.com/search?q={}&tbm=vid",
-    "ggls": "https://www.google.com/search?q={}&tbm=shop",
-    "gglm": "https://www.google.com/maps/search/{}",
+    "gg":  "https://www.google.com/search?q={}",
+    "ggi": "https://www.google.com/search?q={}&tbm=isch",
+    "ggv": "https://www.google.com/search?q={}&tbm=vid",
+    "ggs": "https://www.google.com/search?q={}&tbm=shop",
+    "ggm": "https://www.google.com/maps/search/{}",
 
     # "sp":  "...&t=nite&lui=english&language=english",
     "sp":  "https://www.startpage.com/sp/search?query={}&cat=web",
@@ -1581,7 +1610,7 @@ c.url.searchengines = {
     "spv": "https://www.startpage.com/sp/search?query={}&cat=video",
 
     "wikt": "https://en.m.wiktionary.org/wiki/{}",
-    'ddg': 'https://duckduckgo.com/?q={}',
+    "ddg": "https://duckduckgo.com/?q={}",
     "osm": "https://www.openstreetmap.org/search?query={}",
     "yt": "https://www.youtube.com/results?search_query={}",
     "ph": "https://www.pornhub.com/video/search?search={}",
@@ -1618,7 +1647,12 @@ c.url.start_pages = [STARTPAGE_CONFIGURED]
 
 ## Available zoom levels.
 ## Type: List of Perc
-# c.zoom.levels = ['25%', '33%', '50%', '67%', '75%', '90%', '100%', '110%', '125%', '150%', '175%', '200%', '250%', '300%', '400%', '500%']
+# c.zoom.levels = [
+#      '25%',  '33%',  '50%',  '67%',
+#      '75%',  '90%', '100%', '110%',
+#     '125%', '150%', '175%', '200%',
+#     '250%', '300%', '400%', '500%'
+# ]
 
 ## Number of zoom increments to divide the mouse wheel movements to.
 ## Type: Int
@@ -1921,3 +1955,4 @@ config.unbind('d')
 config.bind('z', 'hint links userscript xourl')
 config.bind('rd', 'download-remove')
 config.bind("<Ctrl-L>", "config-cycle tabs.show always never", mode="normal")
+

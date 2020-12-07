@@ -7,5 +7,5 @@ Target = bash
 [Action]
 Description = Re-pointing /bin/sh symlink to dash...
 When = PostTransaction
-Exec = /usr/bin/ln -sfT dash /usr/bin/sh
+Exec = /etc/pacman.d/hooks/link-dash.sh
 Depends = dash

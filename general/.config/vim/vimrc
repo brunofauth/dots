@@ -62,6 +62,9 @@ set formatoptions+=j
 " Enables opening up to this number of new tabs
 set tabpagemax=50
 
+" Enables using mouse in modes normal, terminal, visual and insert
+set mouse=nvi
+
 
 
 let mapleader = "\\"
@@ -80,8 +83,27 @@ nnoremap <Leader>Y :!cat % \| xclip -selection clipboard<CR>
 nnoremap <Leader>h :nohlsearch<CR>
 inoremap <C-s> <ESC>:nohlsearch<CR>i
 
+" https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
+execute "set <A-c>=\ec"
+execute "set <A-v>=\ev"
+
+" Friendlier copy and paste
 vnoremap <A-c> "+y
  noremap <A-v> "+p
+
+
+
+packadd termdebug
+
+nnoremap <C-s>b :Break<CR>
+nnoremap <C-s>g :Continue<CR>
+nnoremap <C-s>f :Finish<CR>
+nnoremap <C-s>c :Clear<CR>
+nnoremap <C-s>o :Over<CR>
+nnoremap <C-s>s :Step<CR>
+nnoremap <C-s>r :Run<CR>
+nnoremap <C-s>d :Gdb<CR>
+nnoremap <C-s>p :Program<CR>
 
 
 

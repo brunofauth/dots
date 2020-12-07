@@ -10,7 +10,7 @@ super + F2
     $BROWSER
 
 super + shift + F2
-    $BROWSER_PRIVATE
+    priv "$BROWSER"
 
 # Starts file manager at ~
 super + F3
@@ -47,9 +47,6 @@ super + shift + u
 super + e
     $SCRIPTS/pick-emoji
 
-XF86MonBrightness{Up,Down}
-    xbacklight -{inc,dec} 5; notify-send "brightness {up,down}" -t 2000
-
 super + shift + m
     notify-send "System Menu" "(l)ock\nswitch (u)ser\n(e)xit\nsus(p)end\n(h)ybernate\n(r)eboot\n(s)hutdown"
 
@@ -70,12 +67,15 @@ super + k
 super + shift + k
     notify-send "Network Online" "Internet connection found" -t 3000; llkk
 
-XF86AudioPlay
-    mpc toggle
+XF86Audio{Play,Next,Prev}
+    mpc {toggle,next,prev}
 
-XF86AudioNext
-    mpc next
+XF86Audio{Raise,Lower}Volume
+    pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
 
-XF86AudioPrev
-    mpc prev
+XF86MonBrightness{Up,Down}
+    xbacklight -{inc,dec} 5
+
+super + apostrophe; {q, a, h, c, t}
+    dunstctl {close, close-all, history-pop, context, set-paused toggle}
 
