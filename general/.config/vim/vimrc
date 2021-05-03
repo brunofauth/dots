@@ -47,5 +47,5 @@ augroup options_per_ftype
     autocmd FileType markdown setlocal ignorecase infercase
 augroup END
 
-augroup sess_on_crash | autocmd VimLeave * call SaveDeathSession() | augroup END
+augroup sess_on_crash | autocmd! VimLeave * call SaveDeathSession() | augroup END
 
