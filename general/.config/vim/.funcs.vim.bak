@@ -58,6 +58,7 @@ def TakeScreenshot(out_fmt: string): void
 
         var spath = exepath('screenshot.ps1')
         spath = s:platf == 'wsl' ? WslToW32(spath) : spath
+        echo 'kek' spath
 
         if !!spath
             SystemF("powershell.exe -File '%s' '%s'", spath, out_fmt)
@@ -99,12 +100,5 @@ def SaveScreenshot(out_dir: string='', mk_dirs: bool=true): string
     TakeScreenshot(out_file)
     return out_file
 
-enddef
-
-
-def SaveDeathSession(): void
-    if v:dying
-        mksession! ~/.cache/vim/death-sess.vim
-    endif
 enddef
 

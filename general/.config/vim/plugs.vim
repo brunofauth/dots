@@ -22,7 +22,8 @@ Plug 'dag/vim-fish'
 Plug 'davidhalter/jedi-vim'
 
 " Manage tags, quotes, brackets...
-Plug 'tpope/vim-surround'
+Plug 'https://github.com/tpope/vim-surround.git'
+runtime cfgs/surround.vim
 
 " Text objects and motions for Latex editing
 Plug 'gibiansky/vim-latex-objects'
@@ -41,9 +42,17 @@ Plug 'https://github.com/vim-scripts/ZoomWin'
 " Allows you to use <Tab> for insert completion (:h ins-completion).
 Plug 'https://github.com/ervandew/supertab'
 
-" This plugin uses clang for accurately completing C and C++ code.
-Plug 'https://github.com/xavierd/clang_complete'
-let g:clang_library_path='/usr/lib64/libclang.so'
+" " This plugin uses clang for accurately completing C and C++ code.
+" Plug 'https://github.com/xavierd/clang_complete'
+" let g:clang_library_path='/usr/lib64/libclang.so'
+
+" HTML, CSS abbreviations
+Plug 'https://github.com/mattn/emmet-vim/'
+runtime cfgs/emmet.vim
+
+" Support for all of Pandoc's markdown syntax features
+Plug 'vim-pandoc/vim-pandoc-syntax'
+runtime cfgs/pandoc-syntax.vim
 
 call plug#end()
 

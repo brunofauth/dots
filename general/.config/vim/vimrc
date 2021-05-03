@@ -33,15 +33,19 @@ runtime sets.vim
 runtime maps.vim
 
 
+augroup reload_when_save
+    autocmd!
+    autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
+    autocmd BufWritePost ~/.config/vim/vimrc source %
+    autocmd BufWritePost ~/.config/vim/abbr/* source %
+augroup END
 
-" Reloads these files when they're saved
-autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
-autocmd BufWritePost ~/.config/vim/vimrc source %
+augroup options_per_ftype
+    autocmd!
+    " When wrapping markdown lines, indent by 2 spaces instead of 4
+    autocmd FileType markdown setlocal breakindentopt=shift:2
+    autocmd FileType markdown setlocal ignorecase infercase
+augroup END
 
-" When wrapping markdown lines, indent by 2 spaces instead of 4
-autocmd FileType markdown set breakindentopt=shift:2
-
-autocmd FileType python inoremap ;main if __name__ == "__main__":<CR>
-autocmd FileType cpp inoremap ;main int main(int argc, char *argv[]) {<CR>}<ESC><<O
-autocmd FileType c inoremap ;main int main(int argc, char *argv[]) {<CR>}<ESC><<O
+augroup sess_on_crash | autocmd VimLeave * call SaveDeathSession() | augroup END
 

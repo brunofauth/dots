@@ -61,3 +61,9 @@ set formatoptions+=j
 " Enables opening up to this number of new tabs
 set tabpagemax=50
 
+if isdirectory($HOME . '/notes/med5/')
+    let &dictionary = substitute(glob('~/notes/med5/*/*.md'), "\n", ",", "g")
+    set complete+=k
+endif
+
+

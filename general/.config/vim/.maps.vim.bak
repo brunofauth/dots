@@ -39,7 +39,7 @@ nnoremap <Leader>PR :call 'Saved' SaveScreenshot(getreg('"'))<CR>
 
 
 " Capitalize last word
-inoremap ;;c <ESC>B~Ela
+inoremap ;;c <ESC>B~Ea
 
 
 " For some reason, when I accidentally type 'cie', vim hangs and I lose
@@ -49,10 +49,10 @@ nnoremap cie <ESC>
 
 " Mappings for 'https://github.com/junegunn/fzf.vim'.
 " See './fzf-vim-cfg.vim'
-nmap <Leader>f <Plug>(fzf-prefix)
-nmap <Leader><tab> <Plug>(fzf-maps-n)
-xmap <Leader><tab> <Plug>(fzf-maps-x)
-omap <Leader><tab> <Plug>(fzf-maps-o)
+nnoremap <Leader>f <Plug>(fzf-maps-custom)
+nnoremap <Leader><tab> <Plug>(fzf-maps-n)
+xnoremap <Leader><tab> <Plug>(fzf-maps-x)
+onoremap <Leader><tab> <Plug>(fzf-maps-o)
 
 
 " Mappings for :help termdebug
@@ -66,15 +66,4 @@ nnoremap <Leader>ds :Step<CR>
 nnoremap <Leader>dr :Run<CR>
 nnoremap <Leader>dd :Gdb<CR>
 nnoremap <Leader>dp :Program<CR>
-
-let s:path = expand('<sfile>:p:h') . '/snippets'
-
-augroup snippets
-    autocmd!
-    autocmd FileType markdown   exec 'source' s:path .. '/md.vim'
-    autocmd FileType python     exec 'source' s:path .. '/py.vim'
-    autocmd FileType cpp        exec 'source' s:path .. '/cpp.vim'
-    autocmd FileType c          exec 'source' s:path .. '/c.vim'
-    autocmd FileType vim.abbr   exec 'source' s:path .. '/abbr.vim'
-augroup END
 
