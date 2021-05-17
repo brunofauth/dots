@@ -5,7 +5,7 @@ Operation = Upgrade
 Target = minecraft-launcher
 
 [Action]
-Description = Giving minecraft an executable temporary directory
+Description = Making Minecraft point to minecraft-launcher.sh
 When = PostTransaction
 Exec = /etc/pacman.d/hooks/minecraft-launcher.sh
 
