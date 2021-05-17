@@ -1,3 +1,4 @@
+
 if $XDG_CONFIG_HOME == ''
     echoerr 'Please, set $XDG_CONFIG_HOME.'
     normal :q!
@@ -8,108 +9,43 @@ if $XDG_DATA_HOME == ''
     normal :q!
 endif
 
+
+
 " Sets the location for the viminfo file
 set viminfo+=n$XDG_DATA_HOME/vim/viminfo
 
 " So that Vim complies to the XDG specs
-set runtimepath=$XDG_CONFIG_HOME/vim
-set runtimepath+=$VIMRUNTIME
+set runtimepath=$VIMRUNTIME
+set runtimepath+=$XDG_CONFIG_HOME/vim
 set runtimepath+=$XDG_CONFIG_HOME/vim/after
-
-runtime plug-cfg.vim
-
-set number relativenumber
-set hlsearch incsearch
-syntax enable
-filetype plugin indent on
-set fileformat=unix
-set splitbelow splitright
-set showcmd
-
-" Insert and delete 4 spaces instead of a <Tab>
-set smarttab
-set shiftwidth=4
-set expandtab
-
-set foldmethod=indent
-set foldlevel=1
-" set foldclose=all
-
-set breakindent
-set breakindentopt=shift:4,min:40
-" set breakindentopt=shift:2,min:40,sbr
-" set showbreak=>>
-
-" Disables annoying ding everuwhere
-set belloff=all
-
-" Enables backspacing through lines and over autoindent
-set backspace=indent,eol,start
-
-" Leaves three lines as context above and below the cursor
-set scrolloff=3
-
-" Disable considering number starting with a 0 as octal when inc/dec
-set nrformats-=octal
-
-" Enable better glob completion
-set wildmode=longest,full
-set wildmenu
-
-" remove a comment leader when joining lines
-set formatoptions+=j
-
-" Enables opening up to this number of new tabs
-set tabpagemax=50
-
-" Enables using mouse in modes normal, terminal, visual and insert
-set mouse=nvi
-
-
-
-let mapleader = "\\"
-nnoremap <Leader>s :!cls && shellcheck %<CR>
-nnoremap <Leader>c :!cls && compileit %<CR>
-
-" Writes as root
-nnoremap <Leader>w :w !sudo tee %<CR>
-
-" Copies '+' register into system clipboard
-nnoremap <Leader>y :call system("xsel -ib", getreg('+'))<CR>
-" Copies whole file to clipboard
-nnoremap <Leader>Y :!cat % \| xclip -selection clipboard<CR>
-
-" Turns off search match highlighting
-nnoremap <Leader>h :nohlsearch<CR>
-inoremap <C-s> <ESC>:nohlsearch<CR>i
-
-" https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
-execute "set <A-c>=\ec"
-execute "set <A-v>=\ev"
-
-" Friendlier copy and paste
-vnoremap <A-c> "+y
- noremap <A-v> "+p
-
 
 
 packadd termdebug
 
-nnoremap <C-s>b :Break<CR>
-nnoremap <C-s>g :Continue<CR>
-nnoremap <C-s>f :Finish<CR>
-nnoremap <C-s>c :Clear<CR>
-nnoremap <C-s>o :Over<CR>
-nnoremap <C-s>s :Step<CR>
-nnoremap <C-s>r :Run<CR>
-nnoremap <C-s>d :Gdb<CR>
-nnoremap <C-s>p :Program<CR>
+
+" Must run first
+runtime plugs.vim
+" Must run after plugs.vim
+runtime funcs.vim
+" Must run after plugs.vim
+runtime sets.vim
+" Must run after funcs.vim
+runtime maps.vim
 
 
+augroup reload_when_save
+    autocmd!
+    autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
+    autocmd BufWritePost ~/.config/vim/vimrc source %
+    autocmd BufWritePost ~/.config/vim/abbr/* source %
+augroup END
 
-autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
+augroup options_per_ftype
+    autocmd!
+    " When wrapping markdown lines, indent by 2 spaces instead of 4
+    autocmd FileType markdown setlocal breakindentopt=shift:2
+    autocmd FileType markdown setlocal ignorecase infercase
+augroup END
 
-autocmd FileType markdown set breakindentopt=shift:2
-
-autocmd FileType python inoremap ;ifm if __name__ == "__main__":<CR>
+augroup sess_on_crash | autocmd! VimLeave * call SaveDeathSession() | augroup END
 
