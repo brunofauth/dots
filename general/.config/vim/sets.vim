@@ -61,9 +61,9 @@ set formatoptions+=j
 " Enables opening up to this number of new tabs
 set tabpagemax=50
 
-if isdirectory($HOME . '/notes/med5/')
-    let &dictionary = substitute(glob('~/notes/med5/*/*.md'), "\n", ",", "g")
-    set complete+=k
-endif
+" Show as much as possible of the last line in a window, putting "@@@" in the
+" end of that line fragment, to denote that this line hasn't ended yet.
+set display=lastline
 
+let g:med_dir = $HOME . '/notes/med5/'
 

@@ -12,18 +12,20 @@ nnoremap <Leader>w :call WriteAndBackUp()<CR>
 nnoremap <Leader>W :w !sudo tee %<CR>
 
 
+" Caret > Home; I don't want to press <S-6> every time
+noremap <Home> ^
+noremap <S-Home> <Home>
+
+" J but upwards, and I don't use default K so.....
+nnoremap gK K
+nnoremap K kJ
+
 " Yanks the whole buffer to '+'
 nnoremap <Leader>ya ggVG"+y<C-o><C-o>
 " Copies '+' register into system clipboard
 nnoremap <Leader>yc :call WriteToClipboard(getreg('+'))<CR>
-
-
-" https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
-execute "set <A-c>=\ec"
-execute "set <A-v>=\ev"
-" Allows coping and pasting to and from '+' with 'alt'
-vnoremap <A-c> "+y
-noremap <A-v> "+p
+" Copies te whole buffer to '+' and then copies it into the system's clipboard
+nmap <Leader>yC yayc
 
 
 " Turns off search match highlighting
@@ -45,6 +47,8 @@ inoremap ;;c <ESC>B~Ela
 " For some reason, when I accidentally type 'cie', vim hangs and I lose
 " everything, so I might as well just map it to something harmless.
 nnoremap cie <ESC>
+" gqi as well
+nnoremap gqi <ESC>
 
 
 " Mappings for 'https://github.com/junegunn/fzf.vim'.
@@ -67,14 +71,17 @@ nnoremap <Leader>dr :Run<CR>
 nnoremap <Leader>dd :Gdb<CR>
 nnoremap <Leader>dp :Program<CR>
 
+nnoremap <Leader>gg :Goyo<CR>
+
 let s:path = expand('<sfile>:p:h') . '/snippets'
 
 augroup snippets
     autocmd!
-    autocmd FileType markdown   exec 'source' s:path .. '/md.vim'
-    autocmd FileType python     exec 'source' s:path .. '/py.vim'
-    autocmd FileType cpp        exec 'source' s:path .. '/cpp.vim'
-    autocmd FileType c          exec 'source' s:path .. '/c.vim'
-    autocmd FileType vim.abbr   exec 'source' s:path .. '/abbr.vim'
+    autocmd FileType markdown           exec 'source' s:path .. '/md.vim'
+    autocmd FileType markdown.pandoc    exec 'source' s:path .. '/md.vim'
+    autocmd FileType python             exec 'source' s:path .. '/py.vim'
+    autocmd FileType cpp                exec 'source' s:path .. '/cpp.vim'
+    autocmd FileType c                  exec 'source' s:path .. '/c.vim'
+    autocmd FileType vim.abbr           exec 'source' s:path .. '/abbr.vim'
 augroup END
 

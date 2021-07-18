@@ -34,6 +34,17 @@ iabbr nvv nervos
 iabbr duc ducto
 iabbr ducs ductos
 
+iabbr trc tronco
+iabbr trcs troncos
+iabbr brqcef braquicefálico
+iabbr brqcefs braquicefálicos
+iabbr ctd carótida
+iabbr ctds carótidas
+iabbr ctdo carotídeo
+iabbr ctdos carotídeos
+iabbr ctda carotídea
+iabbr ctdas carotídeas
+
 iabbr tx tórax
 iabbr txo torácico
 iabbr txa torácica
@@ -151,12 +162,13 @@ iabbr hptnos hipotensos
 iabbr hptnas hipotensas
 
 iabbr 2dno duodeno
+iabbr 2dnal duodenal
 iabbr core coração
 iabbr tire tireóide
-iabbr pul pulmão
-iabbr puls pulmões
-iabbr pulm pulmonar
-iabbr pulms pulmonares
+iabbr pm pulmão
+iabbr pms pulmões
+iabbr pmr pulmonar
+iabbr pmrs pulmonares
 iabbr brq brônquio
 iabbr brqs brônquios
 iabbr brqo brônquico
@@ -172,13 +184,24 @@ iabbr alvrs alveolares
 iabbr mio músculo
 iabbr mios músculos
 iabbr fig fígado
-iabbr pancr pâncreas
 iabbr delg intestino delgado
 iabbr colec vesícula biliar
 iabbr sigm sigmóide
 iabbr bex bexiga
 iabbr ut útero
 iabbr ptt próstata
+
+iabbr pancr pâncreas
+iabbr pancro pancreático
+iabbr pancra pancreática
+iabbr pancros pancreáticos
+iabbr pancras pancreáticas
+
+iabbr ittn intestino
+iabbr ittns intestinos
+iabbr itdg intestino delgado
+iabbr ittl intestinal
+iabbr ittls intestinais
 
 iabbr simp simpático
 iabbr simpa simpática
@@ -188,6 +211,21 @@ iabbr paras parassimpático
 iabbr parasa parassimpática
 iabbr parass parassimpáticos
 iabbr parasas parasimpáticas
+
+iabbr il ílio
+iabbr ila ilíaca
+iabbr ilo ilíaco
+iabbr ilas ilíacas
+iabbr ilos ilíacos
+
+iabbr abd abdome
+iabbr abdl abdominal
+iabbr abdls abdominais
+
+iabbr ptn peritôneo
+iabbr ptns peritôneos
+iabbr pntl peritoneal
+iabbr pntls peritoneais
 
 iabbr leiomio músculo liso
 iabbr leiomios músculos lisos
@@ -201,6 +239,45 @@ iabbr displ displasia
 iabbr metapl metaplasia
 iabbr hrtrof hipertrofia
 iabbr hptrof hipotrofia
+
+iabbr secr secreção
+iabbr secra secreta
+iabbr secrm secretam
+
+iabbr necr necrose
+iabbr necto necrótico
+iabbr necta necrótica
+iabbr necrs necroses
+iabbr nectos necróticos
+iabbr nectas necróticas
+
+iabbr metab metabolismo
+iabbr metabs metabolismos
+iabbr metabo metabólico
+iabbr metaba metabólica
+iabbr metabos metabólicos
+iabbr metabas metabólicas
+
+iabbr catab catabolismo
+iabbr catabs catabolismos
+iabbr catabo catabólico
+iabbr cataba catabólica
+iabbr catabos catabólicos
+iabbr catabas catabólicas
+
+iabbr anab anabolismo
+iabbr anabs anabolismos
+iabbr anabo anabólico
+iabbr anaba anabólica
+iabbr anabos anabólicos
+iabbr anabas anabólicas
+
+iabbr isq isquemia
+iabbr isqs isquemias
+iabbr isqo isquêmico
+iabbr isqa isquêmica
+iabbr isqos isquêmicos
+iabbr isqas isquêmicas
 
 iabbr hepo hepático
 iabbr hepa hepática
@@ -216,6 +293,10 @@ iabbr tus tumores
 iabbr tul tumoral
 iabbr tuls tumorais
 
+iabbr deb débito
+iabbr debs débitos
+iabbr debc débito cardíaco
+iabbr debcs débitos cardíacos
 iabbr crdo cardíaco
 iabbr crdos cardíacos
 iabbr crda cardíaca
@@ -318,21 +399,24 @@ iabbr totipot totipotente
 iabbr penetr penetração
 iabbr resol resolução
 
-iabbr freq frequência
-iabbr freqm frequentemente
 iabbr fc frequência cardíaca
 iabbr fr frequência respiratória
 iabbr pa pressão arterial
+iabbr pas pressões arteriais
 
 iabbr cresc crescimento
 iabbr fcresc fator de crescimento
 iabbr fscresc fatores de crescimento
 
+iabbr o2 oxigênio
+iabbr O2 O~2~
+iabbr sao2 SaO~2~
+
 iabbr t3 tri-iodotironina
 iabbr t4 tiroxina
 iabbr epo eritropoietina
-iabbr il interleucina
-iabbr ils interleucinas
+iabbr ilc interleucina
+iabbr ilcs interleucinas
 iabbr pgln prostalandina
 iabbr pglns prostalandinas
 iabbr l3n leucotrieno
@@ -348,6 +432,13 @@ iabbr igs imunoglobulinas
 
 iabbr tto tratamento
 iabbr ttos tratamentos
+iabbr ttar tratar
+iabbr ttou tratou
+iabbr ttdo tratado
+iabbr ttda tratada
+iabbr ttdos tratados
+iabbr ttdas tratadas
+
 iabbr dg diagnóstico
 iabbr dgs diagnósticos
 iabbr intro introdução
@@ -374,9 +465,13 @@ iabbr respas respiratórias
 iabbr sensi sensibilidade
 iabbr espec especificidade
 iabbr rx raio-x
+iabbr rxg radiografia
 iabbr rm ressonância magnética
+iabbr rmg ressonância
 iabbr tc tomografia computadorizada
-iabbr us ultrassonografia
+iabbr tcg tomografia
+iabbr us ultrassom
+iabbr usg ultrassonografia
 iabbr hg hemograma
 iabbr colono colonoscopia
 iabbr eda endoscopia digestiva alta
@@ -425,7 +520,7 @@ iabbr gus genitourinários
 iabbr gua genitourinária
 iabbr guas genitourinárias
 iabbr tgu trato genitourinário
-iabbr gi gatrointestinal
+iabbr gi gastrointestinal
 iabbr gis gastrointestinais
 iabbr tgi trato gastrointestinal
 
@@ -455,9 +550,9 @@ iabbr crna crônica
 iabbr crns crônicos
 iabbr crnas crônicas
 
-iabbr cln clínico
+iabbr clno clínico
 iabbr clna clínica
-iabbr clns clínicos
+iabbr clnos clínicos
 iabbr clnas clínicas
 
 iabbr tbc tuberculose
@@ -484,7 +579,6 @@ iabbr hpecos hipoecogênicos
 
 iabbr apd apêndice
 iabbr xif xifóide
-iabbr abd abdome
 
 iabbr lab laboratorial
 iabbr labs laboratoriais
@@ -528,8 +622,8 @@ iabbr tbg tabagismo
 
 iabbr abloq alfabloqueador
 iabbr abloqs alfabloqueadores
-iabbr bbloq betabloqueador
-iabbr bbloqs betabloqueadores
+iabbr bbloq \(\beta\)-bloqueador
+iabbr bbloqs \(\beta\)-bloqueadores
 iabbr bloqca bloqueador de canais de cálcio
 iabbr bloqcas bloqueadores de canais de cálcio
 

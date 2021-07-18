@@ -1,3 +1,10 @@
+iabbr atk ataque
+iabbr atks ataques
+iabbr def defesa
+iabbr defs defesas
+iabbr spe velocidade
+iabbr spes velocidades
+
 iabbr +r maior
 iabbr -r menor
 iabbr pqno pequeno
@@ -12,6 +19,26 @@ iabbr dfx disfunção
 iabbr dfxs disfunções
 iabbr qol qualidade de vida
 iabbr pex por exemplo
+
+iabbr fiso físico
+iabbr fisa física
+iabbr fisos físicos
+iabbr fisas físicas
+
+iabbr mtplo múltiplo
+iabbr mtpla múltipla
+iabbr mtplos múltiplos
+iabbr mtplas múltiplas
+
+iabbr freq frequência
+iabbr freqs frequências
+iabbr freqt frequente
+iabbr freqts frequentes
+iabbr freqm frequentemente
+
+iabbr carac característica
+iabbr caracs características
+iabbr caracm caracteristicamente
 
 iabbr prov provável
 iabbr provm provavelmente
@@ -45,6 +72,7 @@ iabbr qtd quantidade
 iabbr qqr qualquer
 
 iabbr lvl nível
+iabbr lvls níveis
 
 iabbr liq líquido
 iabbr liqa líquida
@@ -122,6 +150,14 @@ iabbr 1ia primária
 iabbr 1ias primárias
 iabbr 2ia secundária
 iabbr 2ias secundárias
+iabbr 3o terceiro
+iabbr 3a terceira
+iabbr 3os terceiros
+iabbr 3as terceiras
+iabbr 3io terciário
+iabbr 3ia terciária
+iabbr 3ios terciários
+iabbr 3ias terciárias
 
 iabbr sec século
 iabbr secs séculos
