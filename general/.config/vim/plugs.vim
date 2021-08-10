@@ -20,6 +20,7 @@ Plug 'dag/vim-fish'
 
 " python 'intellisense'
 Plug 'davidhalter/jedi-vim'
+runtime cfgs/jedi.vim
 
 " Manage tags, quotes, brackets...
 Plug 'https://github.com/tpope/vim-surround.git'

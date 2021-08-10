@@ -3,8 +3,8 @@ let mapleader = '\'
 
 
 " Shorten REPL cycle duration.
-nnoremap <Leader>s :!cls && shellcheck %<CR>
-nnoremap <Leader>c :!cls && compileit %<CR>
+nnoremap <Leader>cs :!cls && shellcheck %<CR>
+nnoremap <Leader>cc :!cls && compileit %<CR>
 
 
 " Write and backup; write as root.
@@ -26,6 +26,11 @@ nnoremap <Leader>ya ggVG"+y<C-o><C-o>
 nnoremap <Leader>yc :call WriteToClipboard(getreg('+'))<CR>
 " Copies te whole buffer to '+' and then copies it into the system's clipboard
 nmap <Leader>yC yayc
+
+
+" Substitutes inner word/WORD by yanked text.
+nnoremap <Leader>cw ciw<C-r>0<ESC>
+nnoremap <Leader>cW ciW<C-r>0<ESC>
 
 
 " Turns off search match highlighting
@@ -57,6 +62,11 @@ nmap <Leader>f <Plug>(fzf-prefix)
 nmap <Leader><tab> <Plug>(fzf-maps-n)
 xmap <Leader><tab> <Plug>(fzf-maps-x)
 omap <Leader><tab> <Plug>(fzf-maps-o)
+
+
+" Mappings for https://github.com/davidhalter/jedi-vim
+" are made in "runtime 'cfgs/jedi.vim'", as this plugin
+" handles mappings with variables, which shouldn't be here.
 
 
 " Mappings for :help termdebug
