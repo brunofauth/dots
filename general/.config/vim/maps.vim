@@ -57,7 +57,7 @@ nnoremap gqi <ESC>
 
 
 " Mappings for 'https://github.com/junegunn/fzf.vim'.
-" See './fzf-vim-cfg.vim'
+" See './cfgs/fzf.vim'
 nmap <Leader>f <Plug>(fzf-prefix)
 nmap <Leader><tab> <Plug>(fzf-maps-n)
 xmap <Leader><tab> <Plug>(fzf-maps-x)
@@ -65,8 +65,8 @@ omap <Leader><tab> <Plug>(fzf-maps-o)
 
 
 " Mappings for https://github.com/davidhalter/jedi-vim
-" are made in "runtime 'cfgs/jedi.vim'", as this plugin
-" handles mappings with variables, which shouldn't be here.
+" are made in './cfgs/jedi.vim', as this plugin handles
+" mappings with variables, which shouldn't be here.
 
 
 " Mappings for :help termdebug
