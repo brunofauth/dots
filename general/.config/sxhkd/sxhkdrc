@@ -4,7 +4,7 @@ super + Return
     $TERMINAL
 
 super + d
-    rofi -modi drun,run,window -show-icons -show drun
+    rofi -modi drun,run,window -show-icons -show drun -theme theme.rasi
 
 super + F2
     $BROWSER
