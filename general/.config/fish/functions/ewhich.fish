@@ -1,6 +1,6 @@
 function ewhich \
-    --wraps='$EDITOR (which $argv[1])' \
-    --description 'alias ewhich=$EDITOR (which $argv[1])'
+    --wraps='Similar to: $EDITOR (which $argv[1])' \
+    --description 'Use $EDITOR on files found by which'
 
     set files
     for name in $argv
