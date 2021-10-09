@@ -1,6 +1,10 @@
-source "$XDG_CONFIG_HOME/aliases.sh"
+set -x WSL_ALIASES ~/.config/fish/wsl-aliases.fish
+if uname -a | grep -q microsoft
+    test -f $WSL_ALIASES && source $WSL_ALIASES
+end
 
-function qaudio
+
+function qaudio --description "I did this a long time ago and don't remember what it's for."
     set tmp $argv[2]
     if test -z $tmp; set tmp 1.5; end
     set thd $argv[3]
@@ -14,7 +18,9 @@ end
 
 set fish_greeting
 
-kitty + complete setup fish | source
+if pstree -s | grep -q kitty
+    kitty + complete setup fish | source
+end
 
 fish_default_key_bindings
 
