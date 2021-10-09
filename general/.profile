@@ -62,9 +62,10 @@ export PYTHONPATH="$PYTHONPATH:$SCRIPTS"
 export EDITOR=vim
 export VISUAL=vim
 export PAGER=less
-export SHELL=fish
+export SHELL=/usr/bin/profish
 export TERMINAL=kitty
 export BROWSER=firefox
+export BROWSER_PRIVATE="firefox --private"
 
 
 

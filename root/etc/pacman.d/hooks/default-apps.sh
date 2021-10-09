@@ -1,6 +1,9 @@
 #! /usr/bin/env sh
 
 
+# This would better be done by creating a mimeapps.list (is that the file?) in /etc/skel, but whatever
+
+
 sed -i \
     -e "/application\/pdf/s/.*/application\/pdf=org.pwmt.zathura-pdf-mupdf.desktop;/" \
     -e "/image\/bmp/s/.*/image\/bmp=sxiv.desktop;/" \
