@@ -18,7 +18,7 @@ end
 
 set fish_greeting
 
-if pstree -s | grep -q kitty
+if pstree -s $fish_pid | grep -q kitty
     kitty + complete setup fish | source
 end
 
