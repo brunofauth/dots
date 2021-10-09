@@ -79,3 +79,6 @@ XF86MonBrightness{Up,Down}
 super + apostrophe; {q, a, h, c, t}
     dunstctl {close, close-all, history-pop, context, set-paused toggle}
 
+super + w
+    notify-send -t 3000 "Password Copied" (passmenu)
+
