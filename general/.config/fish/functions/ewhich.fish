@@ -1,5 +1,5 @@
 function ewhich \
-    --wraps='Similar to: $EDITOR (which $argv[1])' \
+    --wraps=which \
     --description 'Use $EDITOR on files found by which'
 
     set files
