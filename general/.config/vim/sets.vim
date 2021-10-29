@@ -67,3 +67,6 @@ set display=lastline
 
 let g:med_dir = $HOME . '/notes/med5/'
 
+" This allows me to use 'fish' with ':sh' while having '$SHELL' set to '/bin/sh'
+set shell=/bin/sh
+
