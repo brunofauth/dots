@@ -5,8 +5,6 @@ disconnected=""
 wireless_connected=""
 ethernet_connected=""
 
-ID=""
-
 HOSTS="" 
 HOSTS="$HOSTS sourceforge.net"
 HOSTS="$HOSTS archlinux.org"
