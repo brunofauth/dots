@@ -70,6 +70,9 @@ super + shift + k
 XF86Audio{Play,Next,Prev}
     mpc {toggle,next,prev}
 
+shift + XF86Audio{Play,Next,Prev}
+    wcc {toggle_cycle,next,prev}
+
 XF86Audio{Raise,Lower}Volume
     pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
 
