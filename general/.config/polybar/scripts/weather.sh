@@ -1,5 +1,6 @@
 #! /bin/sh
 
-notify-send execd -t 5000
-curl 'wttr.in/?format=1'
+
+# sed is used to remove \uFE0F
+curl -sS 'wttr.in/?format=1' | sed 's|️||'
 

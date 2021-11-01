@@ -74,7 +74,7 @@ XF86Audio{Raise,Lower}Volume
     pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
 
 XF86MonBrightness{Up,Down}
-    xbacklight -{inc,dec} 5
+    brightnessctl set 5%{+,-}
 
 super + apostrophe; {q, a, h, c, t}
     dunstctl {close, close-all, history-pop, context, set-paused toggle}
