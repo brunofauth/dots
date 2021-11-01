@@ -15,9 +15,8 @@ HOSTS="$HOSTS github.com"
 
 is_online() {
     for host in $HOSTS; do
-        if wget -q --spider "$host"; then
-            return 0;
-        fi
+        wget -q --spider "$host" \
+            && return 0
     done
     return 1;
 }
