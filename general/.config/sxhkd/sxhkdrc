@@ -82,3 +82,6 @@ super + apostrophe; {q, a, h, c, t}
 super + w
     notify-send -t 3000 "Password Copied" (passmenu)
 
+super + shift + w
+    networkmanager_dmenu
+
