@@ -60,7 +60,10 @@ runtime cfgs/pandoc-syntax.vim
 " Plug 'plasticboy/vim-markdown'
 
 " Reading mode
- Plug 'https://github.com/junegunn/goyo.vim'
+Plug 'https://github.com/junegunn/goyo.vim'
+
+" indent, highlight syntax and detect sxhkd config files
+Plug 'kovetskiy/sxhkd-vim'
 
 call plug#end()
 

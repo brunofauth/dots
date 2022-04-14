@@ -13,6 +13,11 @@ iabbr epid epidemiologia
 iabbr incid incidência
 iabbr prev prevalência
 
+iabbr coag coágulo
+iabbr coags coágulos
+iabbr coagpat coagulopatia
+iabbr coagpats coagulopatias
+
 iabbr vv veia
 iabbr vvv veias
 iabbr vn venosa
@@ -44,6 +49,9 @@ iabbr ctdo carotídeo
 iabbr ctdos carotídeos
 iabbr ctda carotídea
 iabbr ctdas carotídeas
+
+iabbr tol tolerância
+iabbr tols tolerâncias
 
 iabbr tx tórax
 iabbr txo torácico
@@ -101,6 +109,7 @@ iabbr postm posteriormente
 iabbr latm lateralmente
 iabbr medm medialmente
 
+iabbr sgar sangrar
 iabbr sg sangue
 iabbr sgm sangramento
 iabbr sga sanguínea
@@ -115,6 +124,9 @@ iabbr vsgs vasos sanguíneos
 iabbr rvq relação ventilação-perfusão
 iabbr vol volume
 iabbr vols volumes
+iabbr volm volemia
+iabbr volma volêmica
+iabbr volmas volêmicas
 iabbr capac capacidade
 iabbr capacs capacidades
 
@@ -222,6 +234,9 @@ iabbr abd abdome
 iabbr abdl abdominal
 iabbr abdls abdominais
 
+iabbr rot rotação
+iabbr rots rotações
+
 iabbr ptn peritôneo
 iabbr ptns peritôneos
 iabbr pntl peritoneal
@@ -293,6 +308,13 @@ iabbr tus tumores
 iabbr tul tumoral
 iabbr tuls tumorais
 
+iabbr tpnam tamponamento
+iabbr tpnams tamponamentos
+iabbr tp terapia
+iabbr tps terapias
+
+iabbr bbb barreira hematoencefálica
+
 iabbr deb débito
 iabbr debs débitos
 iabbr debc débito cardíaco
@@ -301,6 +323,10 @@ iabbr crdo cardíaco
 iabbr crdos cardíacos
 iabbr crda cardíaca
 iabbr crdas cardíacas
+iabbr atr átrio
+iabbr atrs átrios
+iabbr vntr ventrículo
+iabbr vntrs ventrículos
 
 iabbr cx córtex
 iabbr sp espinha
@@ -353,6 +379,10 @@ iabbr lfcitp linfopenia
 iabbr lucitp leucopenia
 iabbr pacitp pancitopenia
 iabbr bicitp bicitopenia
+
+iabbr plqt plaqueta
+iabbr plqts plaquetas
+iabbr plqtp plaquetopenia
 
 iabbr condr cartilagem
 iabbr condrs cartilagens
@@ -524,6 +554,8 @@ iabbr gi gastrointestinal
 iabbr gis gastrointestinais
 iabbr tgi trato gastrointestinal
 
+iabbr cindic contraindicação
+iabbr cindics contraindicações
 iabbr indic indicação
 iabbr indics indicações
 iabbr sel seleção
@@ -532,6 +564,9 @@ iabbr prescr prescrição
 iabbr prescrs prescrições
 iabbr acomp acompanhamento
 iabbr acomps acompanhamentos
+
+iabbr sfx efeito colateral
+iabbr sfxs efeitos colaterais
 
 iabbr pcte paciente
 iabbr pctes pacientes
@@ -577,8 +612,30 @@ iabbr isoecos isoecogênicos
 iabbr hrecos hiperecogênicos
 iabbr hpecos hipoecogênicos
 
+iabbr acd acidose
+iabbr acds acidoses
+iabbr alc alcalose
+iabbr alcs alcaloses
+
+iabbr crgoo cirurgião
+iabbr crgoos cirurgiões
+iabbr crgaa cirurgiã
+iabbr crgaas cirurgiãs
+
+iabbr artm arritmia
+iabbr artms arritmias
+iabbr bica bicarbonato
+
+iabbr cttr catéter
+
 iabbr apd apêndice
 iabbr xif xifóide
+iabbr clav clavícula
+iabbr clavs clavículas
+iabbr sbclo subclávio
+iabbr sbclos subclávios
+iabbr sbcla subclávia
+iabbr sbclas subclávias
 
 iabbr lab laboratorial
 iabbr labs laboratoriais

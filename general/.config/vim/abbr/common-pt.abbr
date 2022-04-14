@@ -5,6 +5,23 @@ iabbr defs defesas
 iabbr spe velocidade
 iabbr spes velocidades
 
+iabbr ga água
+
+iabbr gd grande
+iabbr gds grandes
+
+iabbr pd pode
+iabbr pdem podem
+iabbr pdia podia
+
+iabbr adm administrar
+iabbr admo administrado
+iabbr admos administrados
+iabbr adma administrada
+iabbr admas administradas
+iabbr admin administrador
+iabbr admins administradores
+
 iabbr +r maior
 iabbr -r menor
 iabbr pqno pequeno
@@ -70,6 +87,7 @@ iabbr qd quando
 iabbr qt quanto
 iabbr qtd quantidade
 iabbr qqr qualquer
+iabbr qm quem
 
 iabbr lvl nível
 iabbr lvls níveis
@@ -92,11 +110,16 @@ iabbr ++o aumento
 iabbr --o diminuição
 " iabbr ++os aumentos
 " iabbr --os diminuições
+iabbr ++nd
+
+iabbr cprtm compartimento
+iabbr cprtms compartimentos
 
 iabbr ++a aumenta
 iabbr --a diminui
 " iabbr ++as aumentam
 " iabbr --as diminuem
+iabbr --nd
 
 iabbr +o positivo
 iabbr -o negativo
@@ -113,7 +136,15 @@ iabbr pops populações
 
 iabbr dist distância
 iabbr diam diâmetro
+iabbr diams diâmetros
 iabbr cprm comprimento
+
+iabbr btt bastante
+iabbr btts bastantes
+iabbr dms demais
+iabbr smp sempre
+iabbr td todo
+iabbr tds todos
 
 iabbr max máximo
 iabbr maxa máxima
@@ -187,7 +218,27 @@ iabbr obvm obviamente
 iabbr ats antes
 iabbr dps depois
 
+iabbr dep depende
+iabbr depm dependem
+iabbr det determina
+iabbr detm determinam
+
 iabbr oq o que
+iabbr doq do que
+
+iabbr disp disponível
+iabbr disps disponíveis
+iabbr dispdd disponibilidade
+iabbr dispdds disponibilidades
+
+iabbr dtrib distribuir
+iabbr dtribo distribuído
+iabbr dtribos distribuídos
+iabbr dtriba distribuída
+iabbr dtribas distribuídas
+
+iabbr eqpm equipamento
+iabbr eqpms equipamentos
 
 iabbr perif periferia
 iabbr perifs periferias

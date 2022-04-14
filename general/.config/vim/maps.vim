@@ -20,6 +20,10 @@ noremap <S-Home> <Home>
 nnoremap gK K
 nnoremap K kJ
 
+" tabn/tabp in terminals which dont support pgup/pgdn
+nnoremap <Leader><right> :tabn<CR>
+nnoremap <Leader><left>  :tabp<CR>
+
 " Yanks the whole buffer to '+'
 nnoremap <Leader>ya ggVG"+y<C-o><C-o>
 " Copies '+' register into system clipboard
