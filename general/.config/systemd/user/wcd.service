@@ -1,0 +1,9 @@
+[Unit]
+Description=Wallpaper Changer Daemon
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/home/bruno/.local/bin/wcd
+
+[Install]
+WantedBy=default.target

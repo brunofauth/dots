@@ -7,10 +7,10 @@ super + d
     rofi -modi drun,run,window -show-icons -show drun -theme theme.rasi
 
 super + F2
-    $BROWSER
+    notify-send "Starting '$BROWSER'" -t 3000 && $BROWSER
 
 super + shift + F2
-    priv "$BROWSER"
+    notify-send "Starting '$BROWSER' in private mode" -t 3000 && priv "$BROWSER"
 
 # Starts file manager at ~
 super + F3
@@ -36,7 +36,7 @@ super + n
     "$SCRIPTS/plumb-nag"
 
 super + shift + y
-    "$SCRIPTS/i3-ytdl"
+    notify-send "Downloading video from clipboard..." "Source: $(xclip -ib)" -t 3000 && "$SCRIPTS/i3-ytdl"
 
 super + u
     $SCRIPTS/usbeast -m
@@ -67,14 +67,26 @@ super + k
 super + shift + k
     notify-send "Network Online" "Internet connection found" -t 3000; llkk
 
+XF86TouchpadToggle
+    xset -display :0.0 dpms force {off,on}
+
 XF86Audio{Play,Next,Prev}
     mpc {toggle,next,prev}
 
 shift + XF86Audio{Play,Next,Prev}
     wcc {toggle_cycle,next,prev}
 
+shift + XF86Audio{Raise,Lower}Volume
+    mpc seek {+,-}00:00:05
+
 XF86Audio{Raise,Lower}Volume
     pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
+
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+shift + XF86AudioMute
+    pkill -USR1 redshift
 
 XF86MonBrightness{Up,Down}
     brightnessctl set 5%{+,-}
@@ -83,7 +95,7 @@ super + apostrophe; {q, a, h, c, t}
     dunstctl {close, close-all, history-pop, context, set-paused toggle}
 
 super + w
-    notify-send -t 3000 "Password Copied" (passmenu)
+    passmenu | xargs -r notify-send -t 3000 "Password Copied"
 
 super + shift + w
     networkmanager_dmenu
