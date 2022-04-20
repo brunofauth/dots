@@ -13,6 +13,8 @@ iabbr gds grandes
 iabbr pd pode
 iabbr pdem podem
 iabbr pdia podia
+iabbr ep episódio
+iabbr eps episódios
 
 iabbr adm administrar
 iabbr admo administrado
@@ -21,6 +23,20 @@ iabbr adma administrada
 iabbr admas administradas
 iabbr admin administrador
 iabbr admins administradores
+
+iabbr asoc associação
+iabbr asocs associações
+iabbr asoca associada
+iabbr asocas associadas
+iabbr asoco associado
+iabbr asocos associados
+
+iabbr ccmtt concomitante
+iabbr ccmtts concomitantes
+iabbr ccmttm concomitantemente
+iabbr pcp principal
+iabbr pcps principais
+iabbr pcpm principalmente
 
 iabbr +r maior
 iabbr -r menor
@@ -34,6 +50,10 @@ iabbr fx função
 iabbr fxs funções
 iabbr dfx disfunção
 iabbr dfxs disfunções
+iabbr fxal funcional
+iabbr fxals funcionais
+iabbr dfxal desfuncional
+iabbr dfxals desfuncionais
 iabbr qol qualidade de vida
 iabbr pex por exemplo
 
@@ -52,6 +72,9 @@ iabbr freqs frequências
 iabbr freqt frequente
 iabbr freqts frequentes
 iabbr freqm frequentemente
+iabbr geralm geralmente
+iabbr ctl controle
+iabbr ctls controles
 
 iabbr carac característica
 iabbr caracs características
@@ -83,6 +106,7 @@ iabbr nn não
 iabbr ss sim
 iabbr eh é
 
+iabbr enqt enquanto
 iabbr qd quando
 iabbr qt quanto
 iabbr qtd quantidade
@@ -110,7 +134,7 @@ iabbr ++o aumento
 iabbr --o diminuição
 " iabbr ++os aumentos
 " iabbr --os diminuições
-iabbr ++nd
+" iabbr ++nd
 
 iabbr cprtm compartimento
 iabbr cprtms compartimentos
@@ -119,7 +143,7 @@ iabbr ++a aumenta
 iabbr --a diminui
 " iabbr ++as aumentam
 " iabbr --as diminuem
-iabbr --nd
+" iabbr --nd
 
 iabbr +o positivo
 iabbr -o negativo
@@ -156,6 +180,9 @@ iabbr mna mínima
 iabbr mns mínimos
 iabbr mnas mínimas
 
+iabbr aqlo aquilo
+iabbr daqlo daquilo
+iabbr naqlo naquilo
 iabbr aqle aquele
 iabbr aqla aquela
 iabbr aqles aqueles
@@ -164,6 +191,10 @@ iabbr daqle daquele
 iabbr daqla daquela
 iabbr daqles daqueles
 iabbr daqlas daquelas
+iabbr naqle naquele
+iabbr naqla naquela
+iabbr naqles naqueles
+iabbr naqlas naquelas
 
 iabbr 1o primeiro
 iabbr 1a primeira

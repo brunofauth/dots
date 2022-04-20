@@ -111,3 +111,12 @@ def SaveDeathSession(): void
     endif
 enddef
 
+
+" Remove diacritical signs from characters in specified range of lines.
+function! s:RemoveDiacritics(begin, end)
+    let ilines = join(getline(a:begin, a:end), "\n")
+    let olines = system("iconv -f utf8 -t ascii//TRANSLIT", ilines)
+    call setline(a:begin, split(olines, "\n"))
+endfunction
+command! -range=% RemoveDiacritics call s:RemoveDiacritics(<line1>, <line2>)
+

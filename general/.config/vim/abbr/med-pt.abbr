@@ -6,12 +6,35 @@ iabbr htp hematopoiese
 iabbr htpt hematopoiético
 iabbr htpts hematopoiéticos
 
+iabbr recep receptor
+iabbr receps receptores
+
 iabbr og órgão
 iabbr ogs órgãos
+iabbr ogn organismo
+iabbr ogns organismos
 
+iabbr etio etiologia
+iabbr etios etiologias
 iabbr epid epidemiologia
 iabbr incid incidência
+iabbr incids incidências
+iabbr incidt incidente
 iabbr prev prevalência
+iabbr prevs prevalências
+iabbr prevt prevalente
+iabbr crit critério
+iabbr crits critérios
+
+iabbr atb antibiótico
+iabbr atd antidepressivo
+iabbr aco anticoncepcional
+iabbr mdcm medicamento
+iabbr mdcms medicamentos
+iabbr subst substância
+iabbr substs substâncias
+iabbr cctr concentração
+iabbr cctrs concentrações
 
 iabbr coag coágulo
 iabbr coags coágulos
@@ -130,7 +153,10 @@ iabbr volmas volêmicas
 iabbr capac capacidade
 iabbr capacs capacidades
 
+iabbr suf suficiência
+iabbr suft suficiente
 iabbr insuf insuficiência
+iabbr insuft insuficiente
 iabbr pnm pneumonia
 iabbr pnms pneumonias
 iabbr insp inspiração
@@ -315,6 +341,11 @@ iabbr tps terapias
 
 iabbr bbb barreira hematoencefálica
 
+iabbr tqpn taquipneia
+iabbr brdpn bradipneia
+
+iabbr tqcrd taquicardia
+iabbr brdcrd bradicardia
 iabbr deb débito
 iabbr debs débitos
 iabbr debc débito cardíaco
@@ -534,10 +565,21 @@ iabbr hemorr hemorragia
 iabbr diarr diarréia
 iabbr rinorr rinorréia
 
+iabbr st sintoma
+iabbr sts sintomas
 iabbr sd síndrome
 iabbr sds síndromes
 iabbr dca doença
 iabbr dcas doenças
+
+iabbr ttrn transtorno
+iabbr ttrns transtornos
+iabbr toc transtorno obcessivo-compulsivo
+iabbr depr depressão
+iabbr depro depressivo
+iabbr depros depressivos
+iabbr depra depressiva
+iabbr depras depressivas
 
 iabbr vasc vascular
 iabbr vascs vasculares
@@ -568,8 +610,8 @@ iabbr acomps acompanhamentos
 iabbr sfx efeito colateral
 iabbr sfxs efeitos colaterais
 
-iabbr pcte paciente
-iabbr pctes pacientes
+iabbr pct paciente
+iabbr pcts pacientes
 
 iabbr bact bactéria
 iabbr bacts bactérias
