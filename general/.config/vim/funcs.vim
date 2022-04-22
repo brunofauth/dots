@@ -1,35 +1,16 @@
 " vim9script
 
-
-let s:platf = 'unsupported'
-
-if has('win32')
-    let s:platf = 'w32'
-elseif has('unix')
-    let original_shell = &shell
-    setlocal shell=/bin/sh " If shell was fish, system() would throw E484
-    if stridx(system('uname -r'), 'microsoft') != -1
-        let s:platf = 'wsl'
-    elseif system('uname') == 'Darwin'
-        let s:platf = 'mac'
-    else
-        let s:platf = 'gnu'
-    endif
-    let &shell = original_shell
-endif
+runtime funcs/platf.vim
+runtime funcs/util.vim
+runtime funcs/iabbr.vim
 
 
-func SystemF(...)
-    return system(call('printf', a:000))
-endfunc
-
-
-def WslToW32(path: string): string
+def! WslToW32(path: string): string
     return trim(SystemF('wslpath -m "%s"', path))
 enddef
 
 
-def WriteAndBackUp(): void
+def! WriteAndBackUp(): void
     const bak = printf("%s/.%s.bak", expand('%:h'), expand('%:t'))
     silent execute 'write!'
     silent execute 'write!' bak
@@ -37,75 +18,71 @@ def WriteAndBackUp(): void
 enddef
 
 
-def WriteToClipboard(data: string): void
+def! ThrowIfMissing(exec_file: string): string
+    var path = exepath(exec_file)
+    if !path
+        throw "Couldn't find executable: " .. exec_file
+    endif
+    return path
+enddef
+
+
+def! WriteToClipboard(data: string): void
     if s:platf == 'w32' || s:platf == 'wsl'
-        if executable('clip.exe')
-            system('clip.exe', data)
-        else
-            throw 'Missing "clip.exe"'
-        endif
+        ThrowIfMissing("clip.exe")
+        system('clip.exe', data)
     elseif s:platf == 'gnu' || s:platf == 'mac'
-        if executable('xsel')
-            system('xsel -ib', data)
-        else
-            throw 'Please, install "xsel"'
-        endif
+        ThrowIfMissing("xsel")
+        system('xsel -ib', data)
     else
         throw 'Unsupported platform'
     endif
 enddef
 
 
-def TakeScreenshot(out_fmt: string): void
+def! TakeScreenshot(out_fmt: string): void
+
     if s:platf == 'w32' || s:platf == 'wsl'
-
-        var spath = exepath('screenshot.ps1')
+        var spath = ThrowIfMissing('screenshot.ps1')
         spath = s:platf == 'wsl' ? WslToW32(spath) : spath
-
-        if !!spath
-            SystemF("powershell.exe -File '%s' '%s'", spath, out_fmt)
-        else
-            throw 'Missing "screenshot.ps1"'
-        endif
+        SystemF("powershell.exe -File '%s' '%s'", spath, out_fmt)
 
     elseif s:platf == 'gnu' || s:platf == 'mac'
-        # python3 << endpython3
-        # import mss
-        # import vim
-        # endpython3
+        ThrowIfMissing("import")
+        SystemF("import -window root '%s'", out_fmt)
+
     endif
 enddef
 
 
-def SaveScreenshot(out_dir: string='', mk_dirs: bool=true): string
+def! SaveScreenshot(out_dir: string='', mk_dirs: bool=true): string
 
-    const wcmd = 'powershell -Command Get-Date -UFormat %Y-%m-%d_%H-%M-%S_.png'
-    const ucmd = 'date "+%Y-%m-%d_%H-%M-%S_.png"'
-    const fname = trim(system(s:platf == 'w32' ? wcmd : ucmd))
+    const win32_cmd = 'powershell -Command Get-Date -UFormat %Y-%m-%d_%H-%M-%S_.png'
+    const linux_cmd = 'date "+%Y-%m-%d_%H-%M-%S_.png"'
+    const file_name = trim(system(s:platf == 'w32' ? win32_cmd : linux_cmd))
     
     if s:platf != 'w32' && !executable('date')
         throw 'Unsupported platform.'
     endif
 
-    var dname = !!out_dir ? out_dir : getcwd()
+    var dname = !!out_dir ? out_dir : (expand("%:p") .. ".shots")
     if !isdirectory(out_dir)
-        if mk_dirs
-            mkdir(dname, 'p')
-        else
+        if !mk_dirs
             throw printf('Directory "%s" does not exist')
         endif
+        mkdir(dname, 'p')
     endif
 
-    dname = s:platf == 'wsl' ? WslToW32(dname) : dname
-    const out_file = printf("%s/%s", dname, fname)
+    dname = s:platf == 'wsl' ? s:WslToW32(dname) : dname
+    const out_file = printf("%s/%s", dname, file_name)
 
-    TakeScreenshot(out_file)
+    s:TakeScreenshot(out_file)
     return out_file
 
 enddef
 
 
-def SaveDeathSession(): void
+def! SaveDeathSession(): void
     if v:dying
         mksession! ~/.cache/vim/death-sess.vim
     endif
