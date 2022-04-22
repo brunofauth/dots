@@ -1,6 +1,6 @@
 def! IabbrPlural(base_abbr: string, full_sg: string, full_pl: string = ""): void
     silent execute "iabbr"  base_abbr full_sg
-    silent execute "iabbr" (base_abbr .. 's') (full_pl .. full_pl != "" ? "" : "s")
+    silent execute "iabbr" (base_abbr .. 's') (full_pl != "" ? full_pl : full_sg .. "s")
 enddef
 command! -nargs=+ IabbrPlural call IabbrPlural(<f-args>)
 

@@ -12,7 +12,7 @@ enddef
 def LoadAbbrCompletions(): list<dict<string>>
 
     const abbr_dir = GetAbbrHome()
-    const grep_out = system("grep iabbr '" .. GetAbbrHome() .. "/med-pt.abbr'")
+    const grep_out = system("grep ^[iI]abbr '" .. GetAbbrHome() .. "/med-pt.abbr'")
     const cut_out = systemlist("cut -d ' ' -f 2-", grep_out)
 
     var completions = []
@@ -48,8 +48,8 @@ augroup ftdetect_md
     autocmd!
     autocmd BufRead,BufNewFile *.md runtime! abbr/*.abbr
     autocmd BufRead,BufNewFile *.md setlocal omnifunc=s:CompleteAbbrs
+    autocmd BufRead,BufNewFile *.md setlocal spell spelllang=pt_br,en_us
 augroup END
 
 
-set spell spelllang=pt_br,en_us
 

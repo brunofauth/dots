@@ -26,15 +26,12 @@ iabbr prevt prevalente
 iabbr crit critério
 iabbr crits critérios
 
-iabbr atb antibiótico
-iabbr atd antidepressivo
-iabbr aco anticoncepcional
-iabbr mdcm medicamento
-iabbr mdcms medicamentos
-iabbr subst substância
-iabbr substs substâncias
-iabbr cctr concentração
-iabbr cctrs concentrações
+IabbrPlural mdcm medicamento
+IabbrPlural subst substância
+IabbrPlural atb antibiótico
+IabbrPlural atd antidepressivo
+IabbrPlural aco anticoncepcional anticoncepcionais
+IabbrPlural cctr concentração concentrações
 
 iabbr coag coágulo
 iabbr coags coágulos
@@ -77,10 +74,7 @@ iabbr tol tolerância
 iabbr tols tolerâncias
 
 iabbr tx tórax
-iabbr txo torácico
-iabbr txa torácica
-iabbr txos torácicos
-iabbr txas torácicas
+IabbrGenderPlural tx torácic
 iabbr hetx hemotórax
 iabbr pntx pneumotórax
 iabbr hptx hemopneumotórax
@@ -90,14 +84,8 @@ iabbr qutx quilotórax
 iabbr mem membrana
 iabbr mems membranas
 
-iabbr esq esquerdo
-iabbr esqa esquerda
-iabbr dir direito
-iabbr dira direita
-iabbr esqs esquerdos
-iabbr esqas esquerdas
-iabbr dirs direitos
-iabbr diras direitas
+IabbrGenderPlural esq esquerd
+IabbrGenderPlural dir direit
 
 iabbr sup superior
 iabbr inf inferior
@@ -135,10 +123,7 @@ iabbr medm medialmente
 iabbr sgar sangrar
 iabbr sg sangue
 iabbr sgm sangramento
-iabbr sga sanguínea
-iabbr sgas sanguíneas
-iabbr sgo sanguíneo
-iabbr sgos sanguíneos
+IabbrGenderPlural sg sanguíne
 iabbr fsg fluxo sanguíneo
 iabbr ssg anemia
 iabbr vsg vaso sanguíneo
@@ -148,8 +133,7 @@ iabbr rvq relação ventilação-perfusão
 iabbr vol volume
 iabbr vols volumes
 iabbr volm volemia
-iabbr volma volêmica
-iabbr volmas volêmicas
+IabbrGenderPlural volm volêmic
 iabbr capac capacidade
 iabbr capacs capacidades
 
@@ -170,34 +154,16 @@ iabbr intv intervalo
 iabbr intvs intervalos
 iabbr stol sístole
 iabbr dtol diástole
-iabbr stolo sistólico
-iabbr dtolo diastólico
-iabbr stola sistólica
-iabbr dtola diastólica
-iabbr stolos sistólicos
-iabbr dtolos diastólicos
-iabbr stolas sistólicas
-iabbr dtolas diastólicas
+IabbrGenderPlural stol sistólic
+IabbrGenderPlural dtolo diastólic
 iabbr hrtn hipertensão
 iabbr hrtns hipertensões
-iabbr hrtnvo hipertensivo
-iabbr hrtnva hipertensiva
-iabbr hrtnvos hipertensivos
-iabbr hrtnvas hipertensivas
-iabbr hrtno hipertenso
-iabbr hrtna hipertensa
-iabbr hrtnos hipertensos
-iabbr hrtnas hipertensas
+IabbrGenderPlural hrtnv hipertensiv
+IabbrGenderPlural hrtn hipertens
 iabbr hptn hipotensão
 iabbr hptns hipotensões
-iabbr hptnvo hipotensivo
-iabbr hptnva hipotensiva
-iabbr hptnvos hipotensivos
-iabbr hptnvas hipotensivas
-iabbr hptno hipotenso
-iabbr hptna hipotensa
-iabbr hptnos hipotensos
-iabbr hptnas hipotensas
+IabbrGenderPlural hptnv hipotensiv
+IabbrGenderPlural hptn hipotens
 
 iabbr 2dno duodeno
 iabbr 2dnal duodenal
@@ -209,10 +175,7 @@ iabbr pmr pulmonar
 iabbr pmrs pulmonares
 iabbr brq brônquio
 iabbr brqs brônquios
-iabbr brqo brônquico
-iabbr brqa brônquica
-iabbr brqos brônquicos
-iabbr brqas brônquicas
+IabbrGenderPlural brq brônquic
 iabbr brql bronquíolo
 iabbr brqls bronquíolos
 iabbr alv alvéolo
@@ -230,10 +193,7 @@ iabbr ut útero
 iabbr ptt próstata
 
 iabbr pancr pâncreas
-iabbr pancro pancreático
-iabbr pancra pancreática
-iabbr pancros pancreáticos
-iabbr pancras pancreáticas
+IabbrGenderPlural pancr pancreátic
 
 iabbr ittn intestino
 iabbr ittns intestinos
@@ -241,20 +201,11 @@ iabbr itdg intestino delgado
 iabbr ittl intestinal
 iabbr ittls intestinais
 
-iabbr simp simpático
-iabbr simpa simpática
-iabbr simps simpáticos
-iabbr simpas simpáticas
-iabbr paras parassimpático
-iabbr parasa parassimpática
-iabbr parass parassimpáticos
-iabbr parasas parasimpáticas
+IabbrGenderPlural spt simpátic
+IabbrGenderPlural pspt parassimpátic
 
 iabbr il ílio
-iabbr ila ilíaca
-iabbr ilo ilíaco
-iabbr ilas ilíacas
-iabbr ilos ilíacos
+IabbrGenderPlural il ilíac
 
 iabbr abd abdome
 iabbr abdl abdominal
@@ -267,11 +218,15 @@ iabbr ptn peritôneo
 iabbr ptns peritôneos
 iabbr pntl peritoneal
 iabbr pntls peritoneais
+iabbr rptn retroperitôneo
+iabbr rptns retroperitôneos
+iabbr rptnl retroperitoneal
+iabbr rtpnls retroperitoneais
 
-iabbr leiomio músculo liso
-iabbr leiomios músculos lisos
-iabbr rabdomio músculo estriado
-iabbr rabdomios músculos estriados
+iabbr lmio músculo liso
+iabbr lmios músculos lisos
+iabbr rmio músculo estriado
+iabbr rmios músculos estriados
 
 iabbr hrpl hiperplasia
 iabbr hppl hipoplasia
@@ -286,44 +241,24 @@ iabbr secra secreta
 iabbr secrm secretam
 
 iabbr necr necrose
-iabbr necto necrótico
-iabbr necta necrótica
 iabbr necrs necroses
-iabbr nectos necróticos
-iabbr nectas necróticas
+IabbrGenderPlural necr necrótic
 
 iabbr metab metabolismo
 iabbr metabs metabolismos
-iabbr metabo metabólico
-iabbr metaba metabólica
-iabbr metabos metabólicos
-iabbr metabas metabólicas
-
+IabbrGenderPlural metab metabólic
 iabbr catab catabolismo
 iabbr catabs catabolismos
-iabbr catabo catabólico
-iabbr cataba catabólica
-iabbr catabos catabólicos
-iabbr catabas catabólicas
-
+IabbrGenderPlural catab catabólic
 iabbr anab anabolismo
 iabbr anabs anabolismos
-iabbr anabo anabólico
-iabbr anaba anabólica
-iabbr anabos anabólicos
-iabbr anabas anabólicas
+IabbrGenderPlural anab anabólic
 
 iabbr isq isquemia
 iabbr isqs isquemias
-iabbr isqo isquêmico
-iabbr isqa isquêmica
-iabbr isqos isquêmicos
-iabbr isqas isquêmicas
+IabbrGenderPlural isq isquêmic
 
-iabbr hepo hepático
-iabbr hepa hepática
-iabbr hepos hepáticos
-iabbr hepas hepáticas
+IabbrGenderPlural hep hepátic
 
 iabbr ccl cálculo
 iabbr ccls cálculos
@@ -348,12 +283,9 @@ iabbr tqcrd taquicardia
 iabbr brdcrd bradicardia
 iabbr deb débito
 iabbr debs débitos
-iabbr debc débito cardíaco
-iabbr debcs débitos cardíacos
-iabbr crdo cardíaco
-iabbr crdos cardíacos
-iabbr crda cardíaca
-iabbr crdas cardíacas
+iabbr dc débito cardíaco
+iabbr dcs débitos cardíacos
+IabbrGenderPlural crd cardíac
 iabbr atr átrio
 iabbr atrs átrios
 iabbr vntr ventrículo
@@ -366,14 +298,10 @@ iabbr cxsp corticoespinal
 iabbr cxoid corticóide
 iabbr cxoids corticóides
 
-iabbr nod nódulo
-iabbr nods nódulos
+IabbrPlural nod nódulo
 iabbr lf linfa
-iabbr lfn linfonodo
-iabbr lfco linfático
-iabbr lfca linfática
-iabbr lfcos linfáticos
-iabbr lfcas linfáticas
+IabbrPlural lfn linfonodo
+IabbrGenderPlural lf linfátic
 
 iabbr cel célula
 iabbr cels células
@@ -441,18 +369,11 @@ iabbr circ circulação
 iabbr micirc microcirculação
 iabbr macirc macrocirculação
 
-iabbr dif diferença
 iabbr difr dferenciar
-iabbr difo diferenciado
-iabbr difa diferenciada
-iabbr difos diferenciados
-iabbr difas diferenciadas
-iabbr indifo indiferenciado
-iabbr indifa indiferenciada
-iabbr indifos indiferenciados
-iabbr indifas indiferenciadas
-iabbr dift diferente
-iabbr difts diferentes
+IabbrPlural dift diferente
+IabbrPlural dif diferença
+IabbrGenderPlural dif diferenciad
+IabbrGenderPlural indif indiferenciad
 
 iabbr pluripot pluripotente
 iabbr totipot totipotente
@@ -491,14 +412,10 @@ iabbr aldos aldosterona
 iabbr ig imunoglobulina
 iabbr igs imunoglobulinas
 
-iabbr tto tratamento
-iabbr ttos tratamentos
 iabbr ttar tratar
 iabbr ttou tratou
-iabbr ttdo tratado
-iabbr ttda tratada
-iabbr ttdos tratados
-iabbr ttdas tratadas
+IabbrGenderPlural tto tratamento
+IabbrGenderPlural ttd tratad
 
 iabbr dg diagnóstico
 iabbr dgs diagnósticos
@@ -508,20 +425,13 @@ iabbr ddifs diagnósticos diferenciais
 iabbr progn prognóstico
 iabbr progns prognósticos
 iabbr crg cirurgia
-iabbr crgs cirurgias
-iabbr crgo cirúrgico
-iabbr crga cirúrgica
-iabbr crgos cirúrgicos
-iabbr crgas cirúrgicas
+IabbrGenderPlural crg cirúrgic
 iabbr proc procedimento
 iabbr procs procedimentos
 iabbr prod produção
 
 iabbr resp respiração
-iabbr respo respiratório
-iabbr respa respiratória
-iabbr respos respiratórios
-iabbr respas respiratórias
+IabbrGenderPlural resp respiratóri
 
 iabbr sensi sensibilidade
 iabbr espec especificidade
@@ -551,15 +461,9 @@ iabbr ho homem
 iabbr hos homens
 
 iabbr obstr obstrução
-iabbr obstro obstrutivo
-iabbr obstra obstrutiva
-iabbr obstros obstrutivos
-iabbr obstras obstrutivas
+IabbrGenderPlural obstr obstrutiv
 iabbr inflm inflamação
-iabbr inflmo inflamatório
-iabbr inflma inflamatória
-iabbr inflmos inflamatórios
-iabbr inflmas inflamatórias
+IabbrGenderPlural inflm inflamatóri
 
 iabbr hemorr hemorragia
 iabbr diarr diarréia
@@ -576,10 +480,7 @@ iabbr ttrn transtorno
 iabbr ttrns transtornos
 iabbr toc transtorno obcessivo-compulsivo
 iabbr depr depressão
-iabbr depro depressivo
-iabbr depros depressivos
-iabbr depra depressiva
-iabbr depras depressivas
+IabbrGenderPlural depr depressiv
 
 iabbr vasc vascular
 iabbr vascs vasculares
@@ -613,24 +514,13 @@ iabbr sfxs efeitos colaterais
 iabbr pct paciente
 iabbr pcts pacientes
 
-iabbr bact bactéria
-iabbr bacts bactérias
-iabbr bacta bacteriana
-iabbr bactas bacterianas
-iabbr bacto bacteriano
-iabbr bactos bacterianos
+IabbrPlural bact bactéria
+IabbrGenderPlural bact bacterian
 
 iabbr ag agudo
 iabbr aga aguda
-iabbr crn crônico
-iabbr crna crônica
-iabbr crns crônicos
-iabbr crnas crônicas
-
-iabbr clno clínico
-iabbr clna clínica
-iabbr clnos clínicos
-iabbr clnas clínicas
+IabbrGenderPlural crn crônic
+IabbrGenderPlural cln clínic
 
 iabbr tbc tuberculose
 iabbr sif sífilis
@@ -641,28 +531,19 @@ iabbr cov coronavírus
 iabbr sc2 SARS-CoV-2
 
 iabbr infec infecção
-iabbr infeco infeccioso
-iabbr infeca infecciosa
 iabbr infecs infecções
-iabbr infecos infecciosos
-iabbr infecas infecciosas
+IabbrGenderPlural infec infeccios
 
-iabbr isoeco isoecogênico
-iabbr hreco hiperecogênico
-iabbr hpeco hipoecogênico
-iabbr isoecos isoecogênicos
-iabbr hrecos hiperecogênicos
-iabbr hpecos hipoecogênicos
+IabbrGenderPlural isoeco isoecogênic
+IabbrGenderPlural hreco hiperecogênic
+IabbrGenderPlural hoeco hipoecogênic
 
 iabbr acd acidose
 iabbr acds acidoses
 iabbr alc alcalose
 iabbr alcs alcaloses
 
-iabbr crgoo cirurgião
-iabbr crgoos cirurgiões
-iabbr crgaa cirurgiã
-iabbr crgaas cirurgiãs
+IabbrGenderPlural crgi cirurgi ão ã ões ãs
 
 iabbr artm arritmia
 iabbr artms arritmias
@@ -674,10 +555,7 @@ iabbr apd apêndice
 iabbr xif xifóide
 iabbr clav clavícula
 iabbr clavs clavículas
-iabbr sbclo subclávio
-iabbr sbclos subclávios
-iabbr sbcla subclávia
-iabbr sbclas subclávias
+IabbrGenderPlural sbcl subclávi
 
 iabbr lab laboratorial
 iabbr labs laboratoriais
@@ -711,10 +589,7 @@ iabbr lprot lipoproteína
 iabbr lprots lipoproteínas
 iabbr alb albumina
 
-iabbr cjug conjugado
-iabbr cjuga conjugada
-iabbr cjugs conjugados
-iabbr cjugas conjugadas
+IabbrGenderPlural cjug conjugad
 
 iabbr etl etilismo
 iabbr tbg tabagismo
