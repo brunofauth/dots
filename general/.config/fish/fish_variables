@@ -3,7 +3,8 @@ SETUVAR _fish_abbr_def:dict\x20\x28read\x20\x2dP\x20\x27Word\x3a\x20\x27\x29\x20
 SETUVAR _fish_abbr_ffmpeg:ffmpeg\x20\x2dhide_banner
 SETUVAR _fish_abbr_ffprobe:ffprobe\x20\x2dhide_banner
 SETUVAR _fish_abbr_gc:git\x20clone
-SETUVAR _fish_abbr_gcm:git\x20commit\x20\x2dm\x20""
+SETUVAR _fish_abbr_gcm:git\x20commit\x20\x2dm\x20\x22\x22
+SETUVAR _fish_abbr_ga:git\x20add
 SETUVAR _fish_abbr_gp:git\x20push
 SETUVAR _fish_abbr_gs:git\x20status
 SETUVAR _fish_abbr_mpv:mpv\x20\x2d\x2dkeep\x2dopen\x3dyes
@@ -20,6 +21,8 @@ SETUVAR _fish_abbr_psyu:pacman\x20\x2dSyu
 SETUVAR _fish_abbr_pvt:fish\x20\x2d\x2dprivate
 SETUVAR _fish_abbr_py:python
 SETUVAR _fish_abbr_pytohn:python
+SETUVAR _fish_abbr_rf:rm\x20\x2drf
+SETUVAR _fish_abbr_rr:rm\x20\x2dr
 SETUVAR _fish_abbr_touche:touch
 SETUVAR _fish_abbr_vs:vim\x20\x2dS\x20Session\x2evim
 SETUVAR _fish_abbr_xo:xdg\x2dopen
