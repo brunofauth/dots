@@ -1,5 +1,9 @@
 # PROGRAM SHORTCUTS
 
+
+shift + F6
+    xdotool search --class mpv key space
+
 super + Return
     $TERMINAL
 
@@ -54,7 +58,7 @@ super + m; {l, u, e, p, h, r, s}
     { \
         i3lock-fancy, \
         dm-tool switch-to-greeter, \
-        i3-msg logout, \
+        i3-msg exit, \
         systemctl suspend, \
         systemctl hybernate, \
         systemctl reboot, \

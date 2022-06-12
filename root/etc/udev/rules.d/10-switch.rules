@@ -1,0 +1,4 @@
+# For this to work, you must also run these commands:
+#       sudo groupadd nintendo_switch_rcm
+#       sudo usermod -aG nintendo_switch_rcm $USER
+SUBSYSTEMS=="usb", ATTRS{manufacturer}=="NVIDIA Corp.", ATTRS{product}=="APX", GROUP="nintendo_switch_rcm"

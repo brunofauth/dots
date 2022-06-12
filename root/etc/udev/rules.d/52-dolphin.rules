@@ -1,0 +1,9 @@
+# SUBSYSTEM=="usb", ATTRS{idVendor}=="0cf3", ATTRS{idProduct}=="0036", TAG+="uaccess"
+
+# For this to work, you must also run these commands:
+#       sudo groupadd dolphin_emu_bluetooth
+#       sudo chgrp dolphin_emu_bluetooth /usr/bin/dolphin-emu
+#       sudo chgrp dolphin_emu_bluetooth /usr/bin/dolphin-emu-nogui
+#       sudo chmod g+s /usr/bin/dolphin-emu
+#       sudo chmod g+s /usr/bin/dolphin-emu-nogui
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0cf3", ATTRS{idProduct}=="0036", GROUP="dolphin_emu_bluetooth"

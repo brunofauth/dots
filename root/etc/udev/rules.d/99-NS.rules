@@ -1,0 +1,4 @@
+# For this to work, you must also run these commands:
+#       sudo groupadd nintendo_switch_cfw
+#       sudo usermod -aG nintendo_switch_cfw $USER
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", GROUP="nintendo_switch_cfw"
