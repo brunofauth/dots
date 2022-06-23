@@ -65,5 +65,14 @@ Plug 'https://github.com/junegunn/goyo.vim'
 " indent, highlight syntax and detect sxhkd config files
 Plug 'kovetskiy/sxhkd-vim'
 
+" syntax highlighting and filetype detection for RON
+Plug 'ron-rs/ron.vim'
+
+" Async Language Server Protocol plugin for vim8 and neovim.
+Plug 'prabirshrestha/vim-lsp'
+runtime cfgs/vim-lsp.vim
+
+" Plug 'https://github.com/tpope/vim-repeat'
+
 call plug#end()
 

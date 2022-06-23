@@ -52,4 +52,6 @@ augroup ftdetect_md
 augroup END
 
 
+# :help ft-markdown-plugin
+g:markdown_folding = 1
 

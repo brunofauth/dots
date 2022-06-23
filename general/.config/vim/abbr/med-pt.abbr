@@ -2,29 +2,37 @@
 
 source ~/.config/vim/abbr/common-pt.abbr
 
+IabbrPlural gtt gestante
+IabbrPlural gz gravidez gravidezes
 iabbr htp hematopoiese
 iabbr htpt hematopoiético
 iabbr htpts hematopoiéticos
 
-iabbr recep receptor
-iabbr receps receptores
+IabbrGenderPlural psiq psiquiátric
 
-iabbr og órgão
-iabbr ogs órgãos
-iabbr ogn organismo
-iabbr ogns organismos
+IabbrPlural dmc demência
+IabbrPlural neun neurônio
 
-iabbr etio etiologia
-iabbr etios etiologias
-iabbr epid epidemiologia
-iabbr incid incidência
-iabbr incids incidências
-iabbr incidt incidente
-iabbr prev prevalência
-iabbr prevs prevalências
-iabbr prevt prevalente
-iabbr crit critério
-iabbr crits critérios
+IabbrPlural aleitm aleitamento
+IabbrGenderPlural matn matern
+IabbrGenderPlural patn patern
+IabbrCapital ppt pós-parto
+IabbrPlural puerp puerpério
+iabbr ppar palpar
+
+IabbrPlural og órgão
+IabbrPlural ogn organismo
+IabbrPlural recep receptor
+
+IabbrPlural eti etiologia
+IabbrGenderPlural eti etiológic
+IabbrPlural epid epidemiologia
+IabbrGenderPlural epid epidemiológic
+IabbrPlural incid incidência
+IabbrPlural incidt incidente
+IabbrPlural prev prevalência
+IabbrPlural prevt prevalente
+IabbrPlural crit critério
 
 IabbrPlural mdcm medicamento
 IabbrPlural subst substância
@@ -148,20 +156,16 @@ iabbr expi expiração
 iabbr insps inspirações
 iabbr expis expirações
 
-iabbr segm segmento
-iabbr segms segmentos
-iabbr intv intervalo
-iabbr intvs intervalos
-iabbr stol sístole
-iabbr dtol diástole
+IabbrPlural segm segmento
+IabbrPlural intv intervalo
+IabbrPlural stol sístole
+IabbrPlural dtol diástole
 IabbrGenderPlural stol sistólic
 IabbrGenderPlural dtolo diastólic
-iabbr hrtn hipertensão
-iabbr hrtns hipertensões
+IabbrPlural hrtn hipertensão hipertensões
 IabbrGenderPlural hrtnv hipertensiv
 IabbrGenderPlural hrtn hipertens
-iabbr hptn hipotensão
-iabbr hptns hipotensões
+IabbrPlural hotn hipotensão hipotensões
 IabbrGenderPlural hptnv hipotensiv
 IabbrGenderPlural hptn hipotens
 
@@ -228,13 +232,22 @@ iabbr lmios músculos lisos
 iabbr rmio músculo estriado
 iabbr rmios músculos estriados
 
-iabbr hrpl hiperplasia
-iabbr hppl hipoplasia
-iabbr neopl neoplasia
-iabbr displ displasia
-iabbr metapl metaplasia
-iabbr hrtrof hipertrofia
-iabbr hptrof hipotrofia
+IabbrPlural hrpl hiperplasia
+IabbrGenderPlural hrpl hiperplásic
+IabbrPlural hppl hipoplasia
+IabbrGenderPlural hppl hipoplásic
+IabbrPlural neopl neoplasia
+IabbrGenderPlural neopl neoplásic
+IabbrPlural displ displasia
+IabbrGenderPlural displ displásic
+IabbrPlural metapl metaplasia
+IabbrGenderPlural metapl metaplásic
+IabbrPlural hrtrof hipertrofia
+IabbrGenderPlural hrtrof hipertrófic
+IabbrPlural atrof hipotrofia
+IabbrGenderPlural atrof atrófic
+IabbrPlural mtt metástase
+IabbrGenderPlural mtt metastátic
 
 iabbr secr secreção
 iabbr secra secreta
@@ -268,6 +281,10 @@ iabbr tum tumor
 iabbr tus tumores
 iabbr tul tumoral
 iabbr tuls tumorais
+IabbrGenderPlural bg benign
+IabbrGenderPlural mg malign
+IabbrPlural cfl cefaleia
+IabbrPlural migr migrânea
 
 iabbr tpnam tamponamento
 iabbr tpnams tamponamentos
@@ -308,23 +325,14 @@ iabbr cels células
 iabbr celr celular
 iabbr celrs celulares
 
-iabbr nfil neutrófilo
-iabbr bfil basófilo
-iabbr efil eosinófilo
-iabbr mocit monócito
-iabbr lfcit linfócito
-iabbr mgcit megacariócito
-iabbr mtcit mastócito
-iabbr lucit leucócito
-
-iabbr nfils neutrófilos
-iabbr bfils basófilos
-iabbr efils eosinófilos
-iabbr mocits monócitos
-iabbr lfcits linfócitos
-iabbr mgcits megacariócitos
-iabbr mtcits mastócitos
-iabbr lucits leucócitos
+IabbrPlural nfil neutrófilo
+IabbrPlural bfil basófilo
+IabbrPlural efil eosinófilo
+IabbrPlural mocit monócito
+IabbrPlural lfcit linfócito
+IabbrPlural mgcit megacariócito
+IabbrPlural mtcit mastócito
+IabbrPlural lucit leucócito
 
 iabbr nfilo neutrofilia
 iabbr efilo eosinofilia
@@ -339,12 +347,10 @@ iabbr lucitp leucopenia
 iabbr pacitp pancitopenia
 iabbr bicitp bicitopenia
 
-iabbr plqt plaqueta
-iabbr plqts plaquetas
+IabbrPlural plqt plaqueta
 iabbr plqtp plaquetopenia
 
-iabbr condr cartilagem
-iabbr condrs cartilagens
+IabbrPlural condr cartilagem cartilagens
 iabbr pqm parênquima
 iabbr stm estroma
 iabbr lig ligamento
@@ -385,6 +391,9 @@ iabbr fc frequência cardíaca
 iabbr fr frequência respiratória
 iabbr pa pressão arterial
 iabbr pas pressões arteriais
+iabbr pic pressão intracraniana
+iabbr Pic Pressão intracraniana
+iabbr PIc Pressão Intracraniana
 
 iabbr cresc crescimento
 iabbr fcresc fator de crescimento
@@ -412,29 +421,33 @@ iabbr aldos aldosterona
 iabbr ig imunoglobulina
 iabbr igs imunoglobulinas
 
+IabbrPlural mng meninge
+IabbrPlural mgt meningite
+
+IabbrCapital lcr líquor
+IabbrGenderPlural lcr liquóric
 iabbr ttar tratar
 iabbr ttou tratou
-IabbrGenderPlural tto tratamento
+IabbrPlural tto tratamento
 IabbrGenderPlural ttd tratad
 
-iabbr dg diagnóstico
-iabbr dgs diagnósticos
-iabbr intro introdução
+IabbrPlural dg diagnóstico
+IabbrPlural intro introdução introduções
 iabbr ddif diagnóstico diferencial
 iabbr ddifs diagnósticos diferenciais
-iabbr progn prognóstico
-iabbr progns prognósticos
-iabbr crg cirurgia
+IabbrPlural progn prognóstico
+IabbrPlural crg cirurgia
 IabbrGenderPlural crg cirúrgic
-iabbr proc procedimento
-iabbr procs procedimentos
-iabbr prod produção
+IabbrPlural procdm procedimento
+IabbrPlural prod produção produções
 
-iabbr resp respiração
+IabbrPlural resp respiração respirações
 IabbrGenderPlural resp respiratóri
 
-iabbr sensi sensibilidade
-iabbr espec especificidade
+IabbrPlural icptt imunocompetente
+IabbrPlural icpmt imunocomprometido
+IabbrPlural sensi sensibilidade
+IabbrPlural espec especificidade
 iabbr rx raio-x
 iabbr rxg radiografia
 iabbr rm ressonância magnética
@@ -455,98 +468,88 @@ iabbr miccs micções
 iabbr micl miccional
 iabbr micls miccionais
 
-iabbr mu mulher
-iabbr mus mulheres
-iabbr ho homem
-iabbr hos homens
+IabbrPlural mu mulher mulheres
+IabbrPlural ho homem homens
 
-iabbr obstr obstrução
+IabbrPlural obstr obstrução obstruções
 IabbrGenderPlural obstr obstrutiv
-iabbr inflm inflamação
+IabbrPlural inflm inflamação inflamações
 IabbrGenderPlural inflm inflamatóri
 
 iabbr hemorr hemorragia
 iabbr diarr diarréia
 iabbr rinorr rinorréia
 
-iabbr st sintoma
-iabbr sts sintomas
-iabbr sd síndrome
-iabbr sds síndromes
-iabbr dca doença
-iabbr dcas doenças
+IabbrPlural st sintoma
+IabbrPlural sd síndrome
+IabbrPlural dca doença
+IabbrGenderPlural ast assintomátic
 
-iabbr ttrn transtorno
-iabbr ttrns transtornos
+IabbrPlural ttrn transtorno
 iabbr toc transtorno obcessivo-compulsivo
 iabbr depr depressão
 IabbrGenderPlural depr depressiv
+IabbrPlural ps pressão pressões
 
-iabbr vasc vascular
-iabbr vascs vasculares
+IabbrPlural vasc vascular
 iabbr vascz vascularização
 iabbr vasczs vascularizações
-iabbr cv cardiovascular
-iabbr cvs cardiovasculares
+IabbrPlural cv cardiovascular
 iabbr gu genitourinário
 iabbr gus genitourinários
 iabbr gua genitourinária
 iabbr guas genitourinárias
 iabbr tgu trato genitourinário
-iabbr gi gastrointestinal
-iabbr gis gastrointestinais
+IabbrPlural gi gastrointestinal gastrointestinais
 iabbr tgi trato gastrointestinal
 
-iabbr cindic contraindicação
-iabbr cindics contraindicações
-iabbr indic indicação
-iabbr indics indicações
-iabbr sel seleção
-iabbr sels seleções
-iabbr prescr prescrição
-iabbr prescrs prescrições
-iabbr acomp acompanhamento
-iabbr acomps acompanhamentos
+IabbrPlural cindic contraindicação
+IabbrGenderPlural cindic contraindicad
+IabbrPlural indic indicação
+IabbrGenderPlural indic indicad
+IabbrPlural sel seleção
+IabbrGenderPlural sel selecionad
+IabbrPlural prescr prescrição prescrições
+IabbrGenderPlural prescr prescrit
+IabbrPlural acomp acompanhamento
+IabbrGenderPlural acomp acompanhad
 
-iabbr sfx efeito colateral
-iabbr sfxs efeitos colaterais
+iabbr sfx efeitos colaterais
+iabbr sfx1 efeito colateral
 
-iabbr pct paciente
-iabbr pcts pacientes
+IabbrPlural pct paciente
+IabbrPlural cria criança
+IabbrPlural bb bebê
 
 IabbrPlural bact bactéria
 IabbrGenderPlural bact bacterian
 
-iabbr ag agudo
-iabbr aga aguda
+IabbrPlural ag agudo
+IabbrGenderPlural ag agud
 IabbrGenderPlural crn crônic
 IabbrGenderPlural cln clínic
 
-iabbr tbc tuberculose
-iabbr sif sífilis
-iabbr cmv citomegalovírus
-iabbr mononu mononucleose
-iabbr toxo toxoplasmose
-iabbr cov coronavírus
+IabbrCapital tbc tuberculose
+IabbrCapital sif sífilis
+IabbrCapital cmv citomegalovírus
+IabbrCapital mononu mononucleose
+IabbrCapital toxo toxoplasmose
+IabbrCapital cov coronavírus
 iabbr sc2 SARS-CoV-2
 
-iabbr infec infecção
-iabbr infecs infecções
+IabbrPlural infec infecção infecções
 IabbrGenderPlural infec infeccios
 
 IabbrGenderPlural isoeco isoecogênic
 IabbrGenderPlural hreco hiperecogênic
 IabbrGenderPlural hoeco hipoecogênic
 
-iabbr acd acidose
-iabbr acds acidoses
-iabbr alc alcalose
-iabbr alcs alcaloses
+IabbrPlural acd acidose
+IabbrPlural alc alcalose
 
 IabbrGenderPlural crgi cirurgi ão ã ões ãs
 
-iabbr artm arritmia
-iabbr artms arritmias
+IabbrPlural artm arritmia
 iabbr bica bicarbonato
 
 iabbr cttr catéter
@@ -567,15 +570,11 @@ iabbr agns antígenos
 iabbr acp anticorpo
 iabbr acps anticorpos
 
-iabbr pdm pandemia
-iabbr pdms pandemias
-iabbr epdm epidemia
-iabbr epdm epidemias
+IabbrPlural pdm pandemia
+IabbrPlural epdm epidemia
 
-iabbr cp comprimido
-iabbr cps comprimidos
-iabbr cxa caixa
-iabbr cxas caixas
+IabbrPlural cp comprimido
+IabbrPlural cxa caixa
 
 iabbr vit vitamina
 iabbr chl colesterol

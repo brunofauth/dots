@@ -1,14 +1,10 @@
-iabbr atk ataque
-iabbr atks ataques
-iabbr def defesa
-iabbr defs defesas
-iabbr spe velocidade
-iabbr spes velocidades
+IabbrPlural atk ataque
+IabbrPlural def defesa
+IabbrPlural spe velocidade
 
 iabbr ga água
 
-iabbr gd grande
-iabbr gds grandes
+IabbrPlural gd grande
 
 iabbr pd pode
 iabbr pdem podem
@@ -17,55 +13,30 @@ iabbr ep episódio
 iabbr eps episódios
 
 iabbr adm administrar
-iabbr admo administrado
-iabbr admos administrados
-iabbr adma administrada
-iabbr admas administradas
-iabbr admin administrador
-iabbr admins administradores
+IabbrGenderPlural adm administrad
+IabbrPlural admin administrador administradores
+IabbrPlural asoc associação associações
+IabbrGenderPlural asoc associad
 
-iabbr asoc associação
-iabbr asocs associações
-iabbr asoca associada
-iabbr asocas associadas
-iabbr asoco associado
-iabbr asocos associados
-
-iabbr ccmtt concomitante
-iabbr ccmtts concomitantes
-iabbr ccmttm concomitantemente
-iabbr pcp principal
-iabbr pcps principais
-iabbr pcpm principalmente
+IabbrPlural ccmtt concomitante
+IabbrCapital ccmttm concomitantemente
+IabbrPlural pcp principal principais
+IabbrCapital pcpm principalmente
 
 iabbr +r maior
 iabbr -r menor
-iabbr pqno pequeno
-iabbr pqna pequena
-iabbr pqnos pequenos
-iabbr pqnas pequenas
+IabbrGenderPlural pqn pequen
 iabbr q que
 iabbr no. número
-iabbr fx função
-iabbr fxs funções
-iabbr dfx disfunção
-iabbr dfxs disfunções
-iabbr fxal funcional
-iabbr fxals funcionais
-iabbr dfxal desfuncional
-iabbr dfxals desfuncionais
+IabbrPlural fx função funções
+IabbrPlural dfx disfunção disfunções
+IabbrPlural fxal funcional funcionais
+IabbrPlural dfxal desfuncional desfuncionais
 iabbr qol qualidade de vida
 iabbr pex por exemplo
 
-iabbr fiso físico
-iabbr fisa física
-iabbr fisos físicos
-iabbr fisas físicas
-
-iabbr mtplo múltiplo
-iabbr mtpla múltipla
-iabbr mtplos múltiplos
-iabbr mtplas múltiplas
+IabbrGenderPlural fis físic
+IabbrGenderPlural mpl múltipl
 
 iabbr freq frequência
 iabbr freqs frequências
@@ -75,17 +46,16 @@ iabbr freqm frequentemente
 iabbr geralm geralmente
 iabbr ctl controle
 iabbr ctls controles
+IabbrGenderPlural ctl controlad
 
-iabbr carac característica
-iabbr caracs características
-iabbr caracm caracteristicamente
+IabbrPlural carac característica
+IabbrCapital caracm caracteristicamente
 
-iabbr prov provável
-iabbr provm provavelmente
-iabbr conseq consequência
-iabbr conseqs consequências
-iabbr conseqm consequentemente
-iabbr majm majoritariamente
+IabbrPlural prov provável prováveis
+IabbrCapital provm provavelmente
+IabbrPlural conseq consequência
+IabbrCapital conseqm consequentemente
+IabbrCapital majm majoritariamente
 iabbr progr progresso
 iabbr progrm progressivamente
 iabbr desenvm desenvolvimento
@@ -97,14 +67,12 @@ iabbr fragc fragmentação
 iabbr invm inversamente
 iabbr dirm diretamente
 
-iabbr mt muito
-iabbr mts muitos
-iabbr mta muita
-iabbr mtas muitas
+IabbrCapital mt muito
+IabbrGenderPlural mt muit
 
-iabbr nn não
-iabbr ss sim
-iabbr eh é
+IabbrCapital nn não
+IabbrCapital ss sim
+IabbrCapital eh é
 
 iabbr enqt enquanto
 iabbr qd quando
@@ -113,8 +81,7 @@ iabbr qtd quantidade
 iabbr qqr qualquer
 iabbr qm quem
 
-iabbr lvl nível
-iabbr lvls níveis
+IabbrPlural lvl nível níveis
 
 iabbr liq líquido
 iabbr liqa líquida
@@ -124,11 +91,8 @@ iabbr agr agora
 iabbr aggro agressivo
 iabbr aggrd agressividade
 
-iabbr alt alteração
-iabbr alts alterações
-
-iabbr prcip principal
-iabbr prcips principais
+IabbrPlural alt alteração alterações
+IabbrGenderPlural altd alterad
 
 iabbr ++o aumento
 iabbr --o diminuição
@@ -158,17 +122,16 @@ iabbr -a negativa
 iabbr pop população
 iabbr pops populações
 
-iabbr dist distância
-iabbr diam diâmetro
-iabbr diams diâmetros
-iabbr cprm comprimento
+IabbrPlural dist distância
+IabbrPlural diam diâmetro
+IabbrPlural cpm comprimento
+IabbrPlural dim dimensão dimensões
 
-iabbr btt bastante
-iabbr btts bastantes
+IabbrPlural btt bastante
 iabbr dms demais
 iabbr smp sempre
-iabbr td todo
-iabbr tds todos
+IabbrPlural td todo
+IabbrGenderPlural td tod
 
 iabbr max máximo
 iabbr maxa máxima
@@ -196,49 +159,23 @@ iabbr naqla naquela
 iabbr naqles naqueles
 iabbr naqlas naquelas
 
-iabbr 1o primeiro
-iabbr 1a primeira
-iabbr 2o segundo
-iabbr 2a segunda
-iabbr 1os primeiros
-iabbr 1as primeiras
-iabbr 2os segundos
-iabbr 2as segundas
-iabbr 1io primário
-iabbr 1ios primários
-iabbr 2io secundário
-iabbr 2ios secundários
-iabbr 1ia primária
-iabbr 1ias primárias
-iabbr 2ia secundária
-iabbr 2ias secundárias
-iabbr 3o terceiro
-iabbr 3a terceira
-iabbr 3os terceiros
-iabbr 3as terceiras
-iabbr 3io terciário
-iabbr 3ia terciária
-iabbr 3ios terciários
-iabbr 3ias terciárias
+IabbrGenderPlural 1 primeir
+IabbrGenderPlural 2 segund
+IabbrGenderPlural 3 terceir
+IabbrGenderPlural 4 quart
+IabbrGenderPlural 5 quint
+IabbrGenderPlural 1i primári
+IabbrGenderPlural 2i secundári
+IabbrGenderPlural 3i terciári
 
-iabbr sec século
-iabbr secs séculos
-iabbr hr hora
-iabbr hrs horas
+IabbrPlural sec século
+IabbrPlural hr hora
  
-iabbr atv atividade
-iabbr atvs atividades
-iabbr obj objetivo
-iabbr objs objetivos
+IabbrPlural atv atividade
+IabbrPlural obj objetivo
+IabbrPlural info informação informações
 
-iabbr info informação
-iabbr infos informações
-
-iabbr img imagem
-iabbr imgs imagens
-
-iabbr dim dimensão
-iabbr dims dimensões
+IabbrPlural img imagem imagens
 
 iabbr obv óbvio
 iabbr obvs óbvios
@@ -271,21 +208,14 @@ iabbr dtribas distribuídas
 iabbr eqpm equipamento
 iabbr eqpms equipamentos
 
-iabbr perif periferia
-iabbr perifs periferias
-iabbr perifo periférico
-iabbr perifos periféricos
-iabbr perifa periférica
-iabbr perifas periféricas
+IabbrPlural perif periferia
+IabbrGenderPlural perif periféric
 
-iabbr sys sistema
-iabbr syss sistemas
+IabbrPlural sys sistema
 
 iabbr cpnh companhia
 iabbr cpnhs companhias
 
-iabbr ref referência
-iabbr refs referências
-iabbr reft referente
-iabbr refts referentes
+IabbrPlural ref referência
+IabbrPlural reft referente
 
