@@ -1,4 +1,4 @@
-#! /usr/bin/env sh
+#! /bin/sh
 
 rofi \
     -modi window \
@@ -8,3 +8,4 @@ rofi \
     -line-padding 4 \
     -width 40 \
     -lines 6
+
