@@ -71,5 +71,11 @@ while read file; do
                 "Rotated '$file' -90 degrees." \
                 "Failed to rotate '$file'"
             ;;
+        w)
+            xwallpaper --zoom "$file"
+            # cmd_feedback \
+            #     "Set desktop wallpaper to '$1'" \
+            #     "Failed setting desktop wallpaper to '$1'"
+            ;;
     esac
 done
