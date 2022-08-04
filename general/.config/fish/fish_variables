@@ -17,7 +17,7 @@ SETUVAR _fish_abbr_gc:git\x20clone
 SETUVAR _fish_abbr_gcm:git\x20commit\x20\x2dm\x20\x22\x22
 SETUVAR _fish_abbr_gp:git\x20push
 SETUVAR _fish_abbr_gs:git\x20status
-SETUVAR _fish_abbr_hn:hugo\x20new\x20\x2d\x2deditor\x3dvim
+SETUVAR _fish_abbr_hn:hugo\x20new
 SETUVAR _fish_abbr_hs:hugo\x20server
 SETUVAR _fish_abbr_l:ls
 SETUVAR _fish_abbr_lat:ls\x20\x2dlAht
@@ -39,7 +39,9 @@ SETUVAR _fish_abbr_py:python
 SETUVAR _fish_abbr_pytohn:python
 SETUVAR _fish_abbr_rf:rm\x20\x2drf
 SETUVAR _fish_abbr_rr:rm\x20\x2dr
-SETUVAR _fish_abbr_soffice:detach\x20soffice
+SETUVAR _fish_abbr_sctl:systemctl
+SETUVAR _fish_abbr_sctlu:systemctl\x20\x2d\x2duser
+SETUVAR _fish_abbr_sof:detach\x20soffice
 SETUVAR _fish_abbr_touche:touch
 SETUVAR _fish_abbr_um:usbeast\x20\x2dm
 SETUVAR _fish_abbr_uu:usbeast\x20\x2du
@@ -49,7 +51,7 @@ SETUVAR _fish_abbr_xo:xdg\x2dopen
 SETUVAR _fish_abbr_yi:yay\x20\x2d\x2daur\x20\x2d\x2dnoconfirm\x20\x2d\x2dremovemake\x20\x2dS
 SETUVAR _fish_abbr_ysi:yay\x20\x2d\x2daur\x20\x2dSi
 SETUVAR _fish_abbr_yss:yay\x20\x2d\x2daur\x20\x2dSs
-SETUVAR _fish_abbr_ysyu:uau\x20\x2d\x2daur\x20\x2dSyu
+SETUVAR _fish_abbr_ysyu:yay\x20\x2d\x2daur\x20\x2dSyu
 SETUVAR _fish_abbr_zt:zathura\x20\x2d\x2dfork
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
