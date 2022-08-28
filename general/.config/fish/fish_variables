@@ -29,8 +29,10 @@ SETUVAR _fish_abbr_pgp:pass\x20git\x20push
 SETUVAR _fish_abbr_pgs:pass\x20git\x20status
 SETUVAR _fish_abbr_pgv:pgrep\x20vim
 SETUVAR _fish_abbr_pi:sudo\x20pacman\x20\x2dS
+SETUVAR _fish_abbr_pqi:pacman\x20\x2dQi
 SETUVAR _fish_abbr_pql:pacman\x20\x2dQl
 SETUVAR _fish_abbr_pqo:pacman\x20\x2dQo
+SETUVAR _fish_abbr_pqs:pacman\x20\x2dQs
 SETUVAR _fish_abbr_psi:pacman\x20\x2dSi
 SETUVAR _fish_abbr_pss:pacman\x20\x2dSs
 SETUVAR _fish_abbr_psyu:sudo\x20pacman\x20\x2dSyu
@@ -48,10 +50,10 @@ SETUVAR _fish_abbr_uu:usbeast\x20\x2du
 SETUVAR _fish_abbr_uusb:usbeast\x20\x2du
 SETUVAR _fish_abbr_vs:vim\x20\x2dS\x20Session\x2evim
 SETUVAR _fish_abbr_xo:xdg\x2dopen
-SETUVAR _fish_abbr_yi:yay\x20\x2d\x2daur\x20\x2d\x2dnoconfirm\x20\x2d\x2dremovemake\x20\x2dS
+SETUVAR _fish_abbr_yi:yay\x20\x2d\x2daur\x20\x2d\x2dnoconfirm\x20\x2d\x2dremovemake\x20\x2d\sudoloop\x20\x2dS
 SETUVAR _fish_abbr_ysi:yay\x20\x2d\x2daur\x20\x2dSi
 SETUVAR _fish_abbr_yss:yay\x20\x2d\x2daur\x20\x2dSs
-SETUVAR _fish_abbr_ysyu:yay\x20\x2d\x2daur\x20\x2dSyu
+SETUVAR _fish_abbr_ysyu:yay\x20\x2d\x2daur\x20\x2d\sudoloop\x20\x2dSyu
 SETUVAR _fish_abbr_zt:zathura\x20\x2d\x2dfork
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
