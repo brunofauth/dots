@@ -34,7 +34,7 @@ super + p
     pavucontrol
 
 super + shift + p
-    polybar-msg cmd restart
+    polybar-msg cmd restart && kill -USR1 "$(pgrep sxhkd)"
 
 super + n
     "$SCRIPTS/plumb-nag"
@@ -103,4 +103,7 @@ super + w
 
 super + shift + w
     networkmanager_dmenu
+
+super + s; {p,c}
+    {playsong, mpc clear}
 

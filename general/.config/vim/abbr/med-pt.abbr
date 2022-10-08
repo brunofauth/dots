@@ -13,6 +13,11 @@ IabbrGenderPlural psiq psiquiátric
 IabbrPlural dmc demência
 IabbrPlural neun neurônio
 
+IabbrGenderPlural amn amniótic
+IabbrPlural plct placenta
+IabbrGenderPlural utn uterin
+IabbrPlural mov movimento
+
 IabbrPlural aleitm aleitamento
 IabbrGenderPlural matn matern
 IabbrGenderPlural patn patern
@@ -105,8 +110,8 @@ iabbr supf superficial
 iabbr prof profundo
 iabbr int interno
 iabbr ext externo
-iabbr inta interno
-iabbr exta externo
+iabbr inta interna
+iabbr exta externa
 
 iabbr sups superiores
 iabbr infs inferiores
@@ -118,8 +123,8 @@ iabbr supfs superficiais
 iabbr profs profundos
 iabbr ints internos
 iabbr exts externos
-iabbr intas internos
-iabbr extas externos
+iabbr intas internas
+iabbr extas externas
 
 iabbr supm superiormente
 iabbr infm inferiormente

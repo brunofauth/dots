@@ -20,6 +20,10 @@ noremap <S-Home> <Home>
 nnoremap gK K
 nnoremap K kJ
 
+" Move lines up and down
+nnoremap <C-J> :move +1<CR>
+nnoremap <C-K> :move -2<CR>
+
 " tabn/tabp in terminals which dont support pgup/pgdn
 nnoremap <Leader><right> :tabn<CR>
 nnoremap <Leader><left>  :tabp<CR>

@@ -22,9 +22,11 @@ SETUVAR _fish_abbr_hs:hugo\x20server
 SETUVAR _fish_abbr_l:ls
 SETUVAR _fish_abbr_lat:ls\x20\x2dlAht
 SETUVAR _fish_abbr_lht:ls\x20\x2dlht
+SETUVAR _fish_abbr_lhtr:ls\x20\x2dlhtr
 SETUVAR _fish_abbr_mpv:mpv\x20\x2d\x2dkeep\x2dopen\x3dyes
 SETUVAR _fish_abbr_musb:usbeast\x20\x2dm
 SETUVAR _fish_abbr_pg:pgrep\x20\x2dil
+SETUVAR _fish_abbr_pgff:pgrep\x20\x2dil\x20firefox
 SETUVAR _fish_abbr_pgp:pass\x20git\x20push
 SETUVAR _fish_abbr_pgs:pass\x20git\x20status
 SETUVAR _fish_abbr_pgv:pgrep\x20vim
@@ -37,7 +39,7 @@ SETUVAR _fish_abbr_psi:pacman\x20\x2dSi
 SETUVAR _fish_abbr_pss:pacman\x20\x2dSs
 SETUVAR _fish_abbr_psyu:sudo\x20pacman\x20\x2dSyu
 SETUVAR _fish_abbr_pvt:fish\x20\x2d\x2dprivate
-SETUVAR _fish_abbr_py:python
+SETUVAR _fish_abbr_py:ptpython
 SETUVAR _fish_abbr_pytohn:python
 SETUVAR _fish_abbr_rf:rm\x20\x2drf
 SETUVAR _fish_abbr_rr:rm\x20\x2dr
