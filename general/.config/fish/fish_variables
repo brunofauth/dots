@@ -31,6 +31,7 @@ SETUVAR _fish_abbr_pgp:pass\x20git\x20push
 SETUVAR _fish_abbr_pgs:pass\x20git\x20status
 SETUVAR _fish_abbr_pgv:pgrep\x20vim
 SETUVAR _fish_abbr_pi:sudo\x20pacman\x20\x2dS
+SETUVAR _fish_abbr_pqe:pacman\x20\x2dQeq\x20\x7c\x20fzf\x20\x2d\x2dpreview\x2dwindow\x3dwrap\x20\x2d\x2dpreview\x20\x27env\x20COLUMNS\x3d9999\x20pacman\x20\x2dQi\x20\x7b\x7d\x20\x7c\x20grep\x20Description\x20\x7c\x20cut\x20\x2dd\x3a\x20\x2df2\x2d\x27
 SETUVAR _fish_abbr_pqi:pacman\x20\x2dQi
 SETUVAR _fish_abbr_pql:pacman\x20\x2dQl
 SETUVAR _fish_abbr_pqo:pacman\x20\x2dQo
