@@ -15,6 +15,7 @@ SETUVAR _fish_abbr_ffprobe:ffprobe\x20\x2dhide_banner
 SETUVAR _fish_abbr_ga:git\x20add
 SETUVAR _fish_abbr_gc:git\x20clone
 SETUVAR _fish_abbr_gcm:git\x20commit\x20\x2dm\x20\x22\x22
+SETUVAR _fish_abbr_gd:git\x20diff
 SETUVAR _fish_abbr_gp:git\x20push
 SETUVAR _fish_abbr_gs:git\x20status
 SETUVAR _fish_abbr_hn:hugo\x20new
