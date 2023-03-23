@@ -1,12 +1,12 @@
 
-if $XDG_CONFIG_HOME == ''
+if $XDG_CONFIG_HOME ==# ''
     echoerr 'Please, set $XDG_CONFIG_HOME.'
-    normal :q!
+    quit!
 endif
 
-if $XDG_DATA_HOME == ''
+if $XDG_DATA_HOME ==# ''
     echoerr 'Please, set $XDG_DATA_HOME.'
-    normal :q!
+    quit!
 endif
 
 

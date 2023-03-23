@@ -28,3 +28,5 @@ fish_default_key_bindings
 # https://github.com/gazorby/fish-abbreviation-tips
 # yss fish-abbreviation-tips
 
+abbr pylint ruff
+

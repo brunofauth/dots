@@ -6,6 +6,13 @@ function! s:get_capabilities_without_formatting()
 endfunction
 
 
+function! s:get_capabilities_for_ruff_lsp()
+    let l:capabilities = lsp#default_get_supported_capabilities({})
+    let l:capabilities.textDocument.completion.completionItemKind.valueSet = []
+    return l:capabilities
+endfunction
+
+
 if executable('rust-analyzer')
     augroup vim_lsp_rust
         autocmd!
@@ -18,6 +25,34 @@ if executable('rust-analyzer')
     augroup END
 else
     echoerr "Couldn't find 'rust-analyzer'"
+endif
+
+if executable('ruff-lsp')
+    augroup vim_lsp_python_ruff
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'ruff-lsp',
+            \ 'cmd': {server_info->['ruff-lsp']},
+            \ 'allowlist': ['python'],
+            \ 'capabilities': s:get_capabilities_without_formatting(),
+            \ })
+    augroup END
+else
+    echoerr "Couldn't find 'ruff-lsp'"
+endif
+
+if executable('jedi-language-server')
+    augroup vim_lsp_python_jedi
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'jedi-language-server',
+            \ 'cmd': {server_info->['jedi-language-server']},
+            \ 'allowlist': ['python'],
+            \ 'capabilities': s:get_capabilities_without_formatting(),
+            \ })
+    augroup END
+else
+    echoerr "Couldn't find 'ruff-lsp'"
 endif
 
 
@@ -41,6 +76,8 @@ function! s:on_lsp_buffer_enabled() abort
     nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
     let g:lsp_format_sync_timeout = 1000
+    let g:lsp_diagnostics_virtual_text_enabled = 0
+
     augroup lsp_on_enable
         autocmd!
         autocmd BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')

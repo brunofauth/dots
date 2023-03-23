@@ -97,3 +97,22 @@ function! s:RemoveDiacritics(begin, end)
 endfunction
 command! -range=% RemoveDiacritics call s:RemoveDiacritics(<line1>, <line2>)
 
+
+function! s:ToTitleCase(begin, end)
+    let fst = '\w\|[áâéêíîóôúûç]'
+    let nth = '\l\|[áâéêíîóôúûç]'
+    let pattern = printf(' \(%s\)\(\%%(%s\)\%%(%s\)\)', fst, nth, nth)
+    let result = ' \u\1\2'
+
+    let offset = 0
+    for line in getline(a:begin, a:end)
+        call setline(a:begin + offset, substitute(line, pattern, result, 'g'))
+        let offset +=1
+    endfor
+endfunction
+command! -range ToTitleCase call s:ToTitleCase(<line1>, <line2>)
+
+" function! s:ReplaceChar(begin, end)
+"     call setline(a:begin + offset, substitute(getline(a:begin, a:end), , result, 'g'))
+" endfunction
+

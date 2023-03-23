@@ -36,6 +36,9 @@ super + p
 super + shift + p
     polybar-msg cmd restart && kill -USR1 "$(pgrep sxhkd)"
 
+super + shift + b
+    "$SCRIPTS/set-bg"
+
 super + n
     "$SCRIPTS/plumb-nag"
 

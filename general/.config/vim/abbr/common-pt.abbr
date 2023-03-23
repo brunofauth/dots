@@ -42,8 +42,8 @@ iabbr freq frequência
 iabbr freqs frequências
 iabbr freqt frequente
 iabbr freqts frequentes
-iabbr freqm frequentemente
-iabbr geralm geralmente
+iabbr freqtm frequentemente
+IabbrCapital geralm geralmente
 iabbr ctl controle
 iabbr ctls controles
 IabbrGenderPlural ctl controlad
@@ -77,14 +77,13 @@ IabbrCapital eh é
 iabbr enqt enquanto
 iabbr qd quando
 iabbr qt quanto
-iabbr qtd quantidade
+IabbrPlural qtd quantidade
 iabbr qqr qualquer
 iabbr qm quem
 
 IabbrPlural lvl nível níveis
 
-iabbr liq líquido
-iabbr liqa líquida
+IabbrGenderPlural liq líquid
 
 iabbr tb também
 iabbr agr agora
@@ -146,18 +145,12 @@ iabbr mnas mínimas
 iabbr aqlo aquilo
 iabbr daqlo daquilo
 iabbr naqlo naquilo
-iabbr aqle aquele
-iabbr aqla aquela
-iabbr aqles aqueles
-iabbr aqlas aquelas
-iabbr daqle daquele
-iabbr daqla daquela
-iabbr daqles daqueles
-iabbr daqlas daquelas
-iabbr naqle naquele
-iabbr naqla naquela
-iabbr naqles naqueles
-iabbr naqlas naquelas
+IabbrPlural aqle aquele
+IabbrPlural aqla aquela
+IabbrPlural daqle daquele
+IabbrPlural daqla daquela
+IabbrPlural naqle naquele
+IabbrPlural naqla naquela
 
 IabbrGenderPlural 1 primeir
 IabbrGenderPlural 2 segund
@@ -167,6 +160,9 @@ IabbrGenderPlural 5 quint
 IabbrGenderPlural 1i primári
 IabbrGenderPlural 2i secundári
 IabbrGenderPlural 3i terciári
+IabbrGenderPlural 1I Primári
+IabbrGenderPlural 2I Secundári
+IabbrGenderPlural 3I Terciári
 
 IabbrPlural sec século
 IabbrPlural hr hora

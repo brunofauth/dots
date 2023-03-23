@@ -7,8 +7,8 @@ enddef
 
 
 def IabbrCapital(base_abbr: string, full: string): void
-    silent execute "iabbr" CapitalizeWord(base_abbr) CapitalizeWord(full)
-    silent execute "iabbr" base_abbr full
+    silent execute "iabbr <buffer>" CapitalizeWord(base_abbr) CapitalizeWord(full)
+    silent execute "iabbr <buffer>" base_abbr full
 enddef
 command! -nargs=+ IabbrCapital call IabbrCapital(<f-args>)
 

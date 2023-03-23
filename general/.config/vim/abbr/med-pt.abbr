@@ -1,607 +1,487 @@
 " Plugin que cria versão title case, plural (e gênero?) de cada palavra
 
+" '<,'>sort i /^\w\+ \w\+ /
 source ~/.config/vim/abbr/common-pt.abbr
 
+IabbrCapital eank espondilite\ anquilosante
+IabbrPlural mfstc manifestação manifestações
+IabbrCapital arh artrite\ reumatoide
+IabbrPlural hrpara hiperparatireoidismo
+IabbrPlural ptire paratireoide
+IabbrPlural adg androgênio
+IabbrGenderPlural adg androgênic
+IabbrPlural etg estrogênio
+IabbrGenderPlural etg estrogênic
+IabbrPlural pgtg progestogênio
+IabbrGenderPlural pgtg progestogênic
+IabbrPlural pgtr progesterona
+IabbrPlural hpt hipotálamo
+IabbrGenderPlural hpt hipotalâmic
+IabbrPlural hpf hipófise
+IabbrGenderPlural hpf hipofisári
+IabbrCapital les lúpus\ eritematoso\ sistêmico
+IabbrCapital phs púrpura\ de\ Henoch-Schönlein
+IabbrCapital weg poliangiite\ granulomatosa\ de\ Wegener
+IabbrPlural frt fratura
+IabbrPlural abd abdome
+IabbrPlural abdl abdominal abdominais
+iabbr ach acetilcolina
+IabbrPlural acd acidose
+IabbrGenderPlural acomp acompanhad
+IabbrPlural acomp acompanhamento
+iabbr acromeg acromegalia
+IabbrGenderPlural ag agud
+IabbrPlural ag agudo
+iabbr alb albumina
+IabbrPlural alc alcalose
+iabbr aldos aldosterona
+IabbrPlural aleitm aleitamento
+IabbrPlural abloq alfabloqueador alfabloqueadores
+IabbrPlural alvr alveolar alveolares
+IabbrPlural alv alvéolo
+IabbrGenderPlural amn amniótic
+IabbrPlural anab anabolismo
+IabbrGenderPlural anab anabólic
+iabbr ssg anemia
+iabbr ang1 angiotensina-1
+iabbr ang2 angiotensina-2
+IabbrPlural ant anterior anteriores
+IabbrCapital antm anteriormente
+IabbrPlural atb antibiótico
+IabbrPlural aco anticoncepcional anticoncepcionais
+IabbrPlural acp anticorpo
+IabbrPlural atd antidepressivo
+IabbrPlural atpsiq antipsicótico
+IabbrPlural agn antígeno
+IabbrPlural apdc apêndice
+IabbrPlural artm arritmia
+iabbr aal arteriais
+iabbr al arterial
+iabbr aa artéria
+iabbr aabc artéria braquicefálica
+iabbr aaa artérias
+iabbr aabcs artérias braquicefálicas
+IabbrGenderPlural ast assintomátic
+IabbrGenderPlural atrof atrófic
+IabbrGenderPlural bact bacterian
+IabbrPlural bact bactéria
+iabbr bbb barreira hematoencefálica
+IabbrPlural bfil basófilo
+IabbrPlural bb bebê
+IabbrGenderPlural bg benign
+IabbrPlural bbloq betabloqueador
+IabbrPlural bex bexiga
+IabbrPlural bica bicarbonato
+iabbr bicitp bicitopenia
+iabbr bloqca bloqueador de canais de cálcio
+iabbr bloqcas bloqueadores de canais de cálcio
+IabbrPlural brdcrd bradicardia
+iabbr brdpn bradipneia
+IabbrPlural brqcef braquicefálico
+IabbrPlural brql bronquíolo
+IabbrGenderPlural brq brônquic
+IabbrPlural brq brônquio
+IabbrPlural cxa caixa
+IabbrPlural capac capacidade capacidades
+IabbrPlural cap capilar capilares
+IabbrPlural cv cardiovascular
+IabbrGenderPlural crd cardíac
+IabbrPlural cariomeg cariomegalia
+IabbrGenderPlural ctd carotíde
+IabbrPlural condr cartilagem cartilagens
+IabbrPlural ctd carótida
+IabbrPlural catab catabolismo
+IabbrGenderPlural catab catabólic
+IabbrPlural cttr catéter cateteres
+IabbrPlural cfl cefaleia
+IabbrPlural celr celular celulares
+IabbrPlural circ circulação circulações
+IabbrGenderPlural crgi cirurgi ão ã ões ãs
+IabbrPlural crg cirurgia
+IabbrGenderPlural crg cirúrgic
+IabbrCapital cmv citomegalovírus
+IabbrPlural clav clavícula clavículas
+IabbrGenderPlural cln clínic
+IabbrGenderPlural coag coagulad
+IabbrPlural coagpat coagulopatia
+IabbrPlural chl colesterol colesteróis
+iabbr colono colonoscopia
+IabbrPlural cp comprimido
+IabbrPlural cctr concentração concentrações
+IabbrGenderPlural cjug conjugad
+IabbrPlural conj conjuntivo
+IabbrGenderPlural cindic contraindicad
+IabbrPlural cindic contraindicação contraindicações
+IabbrPlural core coração corações
+IabbrCapital cov coronavírus
+iabbr cxsp corticoespinal
+IabbrPlural cxoid corticoide
+IabbrPlural coag coágulo
+iabbr cresc crescimento
+IabbrPlural cria criança
+IabbrPlural crit critério
+IabbrGenderPlural crn crônic
+IabbrPlural ccl cálculo
+IabbrPlural ca carcinoma
+IabbrPlural cel célula
+IabbrPlural cx córtex córtices
+IabbrPlural def definição definições
+IabbrPlural dmc demência
+IabbrGenderPlural depr depressiv
+IabbrPlural depr depressão depressões
+IabbrGenderPlural desnutr desnutrid
+IabbrPlural desnutr desnutrição desnutrições
+iabbr difr dferenciar
+IabbrPlural dg diagnóstico
+IabbrGenderPlural dg diagnosticad
+IabbrCapital ddif diagnóstico\ diferencial
+IabbrCapital ddifs diagnósticos\ diferenciais
+IabbrPlural diarr diarréia
+IabbrGenderPlural dtol diastólic
+IabbrGenderPlural dif diferenciad
+IabbrPlural dift diferente
+IabbrPlural dif diferença
+IabbrGenderPlural dir direit
+IabbrPlural displ displasia
+IabbrGenderPlural displ displásic
+IabbrPlural dpn dispneia
+IabbrPlural dtol diástole
+IabbrPlural dca doença
+iabbr dop dopamina
+IabbrPlural duc ducto
+iabbr 2dnal duodenal
+iabbr 2dno duodeno
+iabbr deb débito
+iabbr dc débito cardíaco
+iabbr debs débitos
+iabbr dcs débitos cardíacos
+iabbr ecocg ecocardiograma
+IabbrCapital sfx1 efeito\ colateral
+IabbrCapital sfx efeitos\ colaterais
+iabbr ecg eletrocardiograma
+iabbr eda endoscopia digestiva alta
+iabbr efilo eosinofilia
+IabbrPlural efil eosinófilo
+IabbrPlural epdm epidemia
+IabbrPlural epid epidemiologia
+IabbrGenderPlural epid epidemiológic
+iabbr epo eritropoietina
+IabbrPlural espec especificidade
+iabbr sp espinha
+iabbr epmeg esplenomegalia
+IabbrGenderPlural esq esquerd
+iabbr stm estroma
+iabbr etl etilismo
+IabbrPlural eti etiologia
+IabbrGenderPlural eti etiológic
+IabbrPlural exp expiração expirações
+iabbr exta externa
+iabbr extas externas
+iabbr ext externo
+iabbr exts externos
+IabbrPlural fcresc fator\ de\ crescimento fatores\ de\ crescimento
+IabbrPlural fblast fibroblasto
+iabbr fsg fluxo sanguíneo
+IabbrCapital fc frequência\ cardíaca
+IabbrCapital fr frequência\ respiratória
+iabbr fig fígado
+IabbrPlural gi gastrointestinal gastrointestinais
+IabbrPlural gua genitourinária
+IabbrPlural gu genitourinário
+IabbrGenderPlural germt germinativ
 IabbrPlural gtt gestante
+IabbrPlural gtc gestação gestações
 IabbrPlural gz gravidez gravidezes
 iabbr htp hematopoiese
 iabbr htpt hematopoiético
 iabbr htpts hematopoiéticos
-
-IabbrGenderPlural psiq psiquiátric
-
-IabbrPlural dmc demência
-IabbrPlural neun neurônio
-
-IabbrGenderPlural amn amniótic
-IabbrPlural plct placenta
-IabbrGenderPlural utn uterin
-IabbrPlural mov movimento
-
-IabbrPlural aleitm aleitamento
-IabbrGenderPlural matn matern
-IabbrGenderPlural patn patern
-IabbrCapital ppt pós-parto
-IabbrPlural puerp puerpério
-iabbr ppar palpar
-
-IabbrPlural og órgão
-IabbrPlural ogn organismo
-IabbrPlural recep receptor
-
-IabbrPlural eti etiologia
-IabbrGenderPlural eti etiológic
-IabbrPlural epid epidemiologia
-IabbrGenderPlural epid epidemiológic
-IabbrPlural incid incidência
-IabbrPlural incidt incidente
-IabbrPlural prev prevalência
-IabbrPlural prevt prevalente
-IabbrPlural crit critério
-
-IabbrPlural mdcm medicamento
-IabbrPlural subst substância
-IabbrPlural atb antibiótico
-IabbrPlural atd antidepressivo
-IabbrPlural aco anticoncepcional anticoncepcionais
-IabbrPlural cctr concentração concentrações
-
-iabbr coag coágulo
-iabbr coags coágulos
-iabbr coagpat coagulopatia
-iabbr coagpats coagulopatias
-
-iabbr vv veia
-iabbr vvv veias
-iabbr vn venosa
-iabbr vvn venosas
-iabbr aa artéria
-iabbr aaa artérias
-iabbr al arterial
-iabbr aal arteriais
-iabbr aabc artéria braquicefálica
-iabbr vvbc veia braquicefálica
-iabbr aabcs artérias braquicefálicas
-iabbr vvbcs veias braquicefálicas
-iabbr vvcs veia cava superior
-iabbr vvci veia cava inferior
-iabbr cap capilar
-iabbr caps capilares
-iabbr nv nervo
-iabbr nvv nervos
-iabbr duc ducto
-iabbr ducs ductos
-
-iabbr trc tronco
-iabbr trcs troncos
-iabbr brqcef braquicefálico
-iabbr brqcefs braquicefálicos
-iabbr ctd carótida
-iabbr ctds carótidas
-iabbr ctdo carotídeo
-iabbr ctdos carotídeos
-iabbr ctda carotídea
-iabbr ctdas carotídeas
-
-iabbr tol tolerância
-iabbr tols tolerâncias
-
-iabbr tx tórax
-IabbrGenderPlural tx torácic
-iabbr hetx hemotórax
-iabbr pntx pneumotórax
+IabbrPlural hb hemoglobina
+IabbrPlural hg hemograma
 iabbr hptx hemopneumotórax
-iabbr hitx hidrotórax
-iabbr qutx quilotórax
-
-iabbr mem membrana
-iabbr mems membranas
-
-IabbrGenderPlural esq esquerd
-IabbrGenderPlural dir direit
-
-iabbr sup superior
-iabbr inf inferior
-iabbr ant anterior
-iabbr post posterior
-iabbr lat lateral
-iabbr med medial
-iabbr supf superficial
-iabbr prof profundo
-iabbr int interno
-iabbr ext externo
-iabbr inta interna
-iabbr exta externa
-
-iabbr sups superiores
-iabbr infs inferiores
-iabbr ants anteriores
-iabbr posts posteriores
-iabbr lats laterais
-iabbr meds mediais
-iabbr supfs superficiais
-iabbr profs profundos
-iabbr ints internos
-iabbr exts externos
-iabbr intas internas
-iabbr extas externas
-
-iabbr supm superiormente
-iabbr infm inferiormente
-iabbr antm anteriormente
-iabbr postm posteriormente
-iabbr latm lateralmente
-iabbr medm medialmente
-
-iabbr sgar sangrar
-iabbr sg sangue
-iabbr sgm sangramento
-IabbrGenderPlural sg sanguíne
-iabbr fsg fluxo sanguíneo
-iabbr ssg anemia
-iabbr vsg vaso sanguíneo
-iabbr vsgs vasos sanguíneos
-
-iabbr rvq relação ventilação-perfusão
-iabbr vol volume
-iabbr vols volumes
-iabbr volm volemia
-IabbrGenderPlural volm volêmic
-iabbr capac capacidade
-iabbr capacs capacidades
-
-iabbr suf suficiência
-iabbr suft suficiente
-iabbr insuf insuficiência
-iabbr insuft insuficiente
-iabbr pnm pneumonia
-iabbr pnms pneumonias
-iabbr insp inspiração
-iabbr expi expiração
-iabbr insps inspirações
-iabbr expis expirações
-
-IabbrPlural segm segmento
-IabbrPlural intv intervalo
-IabbrPlural stol sístole
-IabbrPlural dtol diástole
-IabbrGenderPlural stol sistólic
-IabbrGenderPlural dtolo diastólic
-IabbrPlural hrtn hipertensão hipertensões
-IabbrGenderPlural hrtnv hipertensiv
-IabbrGenderPlural hrtn hipertens
-IabbrPlural hotn hipotensão hipotensões
-IabbrGenderPlural hptnv hipotensiv
-IabbrGenderPlural hptn hipotens
-
-iabbr 2dno duodeno
-iabbr 2dnal duodenal
-iabbr core coração
-iabbr tire tireóide
-iabbr pm pulmão
-iabbr pms pulmões
-iabbr pmr pulmonar
-iabbr pmrs pulmonares
-iabbr brq brônquio
-iabbr brqs brônquios
-IabbrGenderPlural brq brônquic
-iabbr brql bronquíolo
-iabbr brqls bronquíolos
-iabbr alv alvéolo
-iabbr alvs alvéolos
-iabbr alvr alveolar
-iabbr alvrs alveolares
-iabbr mio músculo
-iabbr mios músculos
-iabbr fig fígado
-iabbr delg intestino delgado
-iabbr colec vesícula biliar
-iabbr sigm sigmóide
-iabbr bex bexiga
-iabbr ut útero
-iabbr ptt próstata
-
-iabbr pancr pâncreas
-IabbrGenderPlural pancr pancreátic
-
-iabbr ittn intestino
-iabbr ittns intestinos
-iabbr itdg intestino delgado
-iabbr ittl intestinal
-iabbr ittls intestinais
-
-IabbrGenderPlural spt simpátic
-IabbrGenderPlural pspt parassimpátic
-
-iabbr il ílio
-IabbrGenderPlural il ilíac
-
-iabbr abd abdome
-iabbr abdl abdominal
-iabbr abdls abdominais
-
-iabbr rot rotação
-iabbr rots rotações
-
-iabbr ptn peritôneo
-iabbr ptns peritôneos
-iabbr pntl peritoneal
-iabbr pntls peritoneais
-iabbr rptn retroperitôneo
-iabbr rptns retroperitôneos
-iabbr rptnl retroperitoneal
-iabbr rtpnls retroperitoneais
-
-iabbr lmio músculo liso
-iabbr lmios músculos lisos
-iabbr rmio músculo estriado
-iabbr rmios músculos estriados
-
-IabbrPlural hrpl hiperplasia
-IabbrGenderPlural hrpl hiperplásic
-IabbrPlural hppl hipoplasia
-IabbrGenderPlural hppl hipoplásic
-IabbrPlural neopl neoplasia
-IabbrGenderPlural neopl neoplásic
-IabbrPlural displ displasia
-IabbrGenderPlural displ displásic
-IabbrPlural metapl metaplasia
-IabbrGenderPlural metapl metaplásic
-IabbrPlural hrtrof hipertrofia
-IabbrGenderPlural hrtrof hipertrófic
-IabbrPlural atrof hipotrofia
-IabbrGenderPlural atrof atrófic
-IabbrPlural mtt metástase
-IabbrGenderPlural mtt metastátic
-
-iabbr secr secreção
-iabbr secra secreta
-iabbr secrm secretam
-
-iabbr necr necrose
-iabbr necrs necroses
-IabbrGenderPlural necr necrótic
-
-iabbr metab metabolismo
-iabbr metabs metabolismos
-IabbrGenderPlural metab metabólic
-iabbr catab catabolismo
-iabbr catabs catabolismos
-IabbrGenderPlural catab catabólic
-iabbr anab anabolismo
-iabbr anabs anabolismos
-IabbrGenderPlural anab anabólic
-
-iabbr isq isquemia
-iabbr isqs isquemias
-IabbrGenderPlural isq isquêmic
-
-IabbrGenderPlural hep hepátic
-
-iabbr ccl cálculo
-iabbr ccls cálculos
-
-iabbr ca câncer
-iabbr tum tumor
-iabbr tus tumores
-iabbr tul tumoral
-iabbr tuls tumorais
-IabbrGenderPlural bg benign
-IabbrGenderPlural mg malign
-IabbrPlural cfl cefaleia
-IabbrPlural migr migrânea
-
-iabbr tpnam tamponamento
-iabbr tpnams tamponamentos
-iabbr tp terapia
-iabbr tps terapias
-
-iabbr bbb barreira hematoencefálica
-
-iabbr tqpn taquipneia
-iabbr brdpn bradipneia
-
-iabbr tqcrd taquicardia
-iabbr brdcrd bradicardia
-iabbr deb débito
-iabbr debs débitos
-iabbr dc débito cardíaco
-iabbr dcs débitos cardíacos
-IabbrGenderPlural crd cardíac
-iabbr atr átrio
-iabbr atrs átrios
-iabbr vntr ventrículo
-iabbr vntrs ventrículos
-
-iabbr cx córtex
-iabbr sp espinha
-iabbr cxsp corticoespinal
-
-iabbr cxoid corticóide
-iabbr cxoids corticóides
-
-IabbrPlural nod nódulo
-iabbr lf linfa
-IabbrPlural lfn linfonodo
-IabbrGenderPlural lf linfátic
-
-iabbr cel célula
-iabbr cels células
-iabbr celr celular
-iabbr celrs celulares
-
-IabbrPlural nfil neutrófilo
-IabbrPlural bfil basófilo
-IabbrPlural efil eosinófilo
-IabbrPlural mocit monócito
-IabbrPlural lfcit linfócito
-IabbrPlural mgcit megacariócito
-IabbrPlural mtcit mastócito
-IabbrPlural lucit leucócito
-
-iabbr nfilo neutrofilia
-iabbr efilo eosinofilia
-iabbr mocito monocitose
-iabbr lfcito linfocitose
-iabbr lucito leucocitose
-
-iabbr nfilp neutropenia
-iabbr mocitp monocitopenia
-iabbr lfcitp linfopenia
-iabbr lucitp leucopenia
-iabbr pacitp pancitopenia
-iabbr bicitp bicitopenia
-
-IabbrPlural plqt plaqueta
-iabbr plqtp plaquetopenia
-
-IabbrPlural condr cartilagem cartilagens
-iabbr pqm parênquima
-iabbr stm estroma
-iabbr lig ligamento
-iabbr ligs ligamentos
-iabbr tec tecido
-iabbr tecs tecidos
-iabbr conj conjuntivo
-iabbr conjs conjuntivos
-iabbr fblast fibroblasto
-iabbr fblasts fibroblastos
-
-iabbr hb hemoglobina
-iabbr moss medula óssea
-
+iabbr hemorr hemorragia
+iabbr hetx hemotórax
 iabbr hpepmeg hepatoesplenomegalia
 iabbr hpmeg hepatomegalia
-iabbr epmeg esplenomegalia
-iabbr acromeg acromegalia
-iabbr cariomeg cariomegalia
-
-iabbr circ circulação
-iabbr micirc microcirculação
-iabbr macirc macrocirculação
-
-iabbr difr dferenciar
-IabbrPlural dift diferente
-IabbrPlural dif diferença
-IabbrGenderPlural dif diferenciad
-IabbrGenderPlural indif indiferenciad
-
-iabbr pluripot pluripotente
-iabbr totipot totipotente
-
-iabbr penetr penetração
-iabbr resol resolução
-
-iabbr fc frequência cardíaca
-iabbr fr frequência respiratória
-iabbr pa pressão arterial
-iabbr pas pressões arteriais
-iabbr pic pressão intracraniana
-iabbr Pic Pressão intracraniana
-iabbr PIc Pressão Intracraniana
-
-iabbr cresc crescimento
-iabbr fcresc fator de crescimento
-iabbr fscresc fatores de crescimento
-
-iabbr o2 oxigênio
-iabbr O2 O~2~
-iabbr sao2 SaO~2~
-
-iabbr t3 tri-iodotironina
-iabbr t4 tiroxina
-iabbr epo eritropoietina
-iabbr ilc interleucina
-iabbr ilcs interleucinas
-iabbr pgln prostalandina
-iabbr pglns prostalandinas
-iabbr l3n leucotrieno
-iabbr l3ns leucotrienos
-iabbr 5ht serotonina
-iabbr dop dopamina
-iabbr ach acetilcolina
-iabbr ang1 angiotensina-1
-iabbr ang2 angiotensina-2
-iabbr aldos aldosterona
-iabbr ig imunoglobulina
-iabbr igs imunoglobulinas
-
-IabbrPlural mng meninge
-IabbrPlural mgt meningite
-
-IabbrCapital lcr líquor
-IabbrGenderPlural lcr liquóric
-iabbr ttar tratar
-iabbr ttou tratou
-IabbrPlural tto tratamento
-IabbrGenderPlural ttd tratad
-
-IabbrPlural dg diagnóstico
-IabbrPlural intro introdução introduções
-iabbr ddif diagnóstico diferencial
-iabbr ddifs diagnósticos diferenciais
-IabbrPlural progn prognóstico
-IabbrPlural crg cirurgia
-IabbrGenderPlural crg cirúrgic
-IabbrPlural procdm procedimento
-IabbrPlural prod produção produções
-
-IabbrPlural resp respiração respirações
-IabbrGenderPlural resp respiratóri
-
+IabbrGenderPlural hep hepátic
+iabbr hitx hidrotórax
+IabbrGenderPlural hreco hiperecogênic
+IabbrPlural hrpl hiperplasia
+IabbrGenderPlural hrpl hiperplásic
+IabbrGenderPlural hrtn hipertens
+IabbrGenderPlural hrtnv hipertensiv
+IabbrPlural hrtn hipertensão hipertensões
+IabbrPlural hrtrof hipertrofia
+IabbrGenderPlural hrtrof hipertrófic
+IabbrGenderPlural hoeco hipoecogênic
+IabbrPlural hppl hipoplasia
+IabbrGenderPlural hppl hipoplásic
+IabbrGenderPlural hptn hipotens
+IabbrGenderPlural hptnv hipotensiv
+IabbrPlural hotn hipotensão hipotensões
+IabbrPlural atrof hipotrofia
+IabbrPlural ho homem homens
+IabbrGenderPlural il ilíac
 IabbrPlural icptt imunocompetente
 IabbrPlural icpmt imunocomprometido
-IabbrPlural sensi sensibilidade
-IabbrPlural espec especificidade
-iabbr rx raio-x
+IabbrPlural ig imunoglobulina
+IabbrPlural incidt incidente
+IabbrPlural incid incidência
+IabbrGenderPlural indic indicad
+IabbrPlural indic indicação indicações
+IabbrGenderPlural indif indiferenciad
+IabbrGenderPlural infec infeccios
+IabbrPlural infec infecção infecções
+IabbrPlural inf inferior inferiores
+IabbrCapital infm inferiormente
+IabbrGenderPlural inflm inflamatóri
+IabbrPlural inflm inflamação inflamações
+IabbrPlural insp inspiração inspirações
+IabbrPlural insuft insuficiente
+IabbrPlural insuf insuficiência
+iabbr ilc interleucina
+iabbr ilcs interleucinas
+iabbr inta interna
+iabbr intas internas
+iabbr int interno
+iabbr ints internos
+IabbrPlural intv intervalo
+IabbrPlural ittnl intestinal intestinais
+IabbrPlural ittn intestino
+iabbr delg intestino delgado
+iabbr itdg intestino delgado
+IabbrPlural intro introdução introduções
+IabbrGenderPlural isoeco isoecogênic
+IabbrPlural isq isquemia
+IabbrGenderPlural isq isquêmic
+IabbrPlural lab laboratorial laboratoriais
+IabbrPlural labo laboratório
+IabbrPlural lat lateral laterais
+IabbrCapital latm lateralmente
+iabbr lucito leucocitose
+iabbr lucitp leucopenia
+iabbr l3n leucotrieno
+iabbr l3ns leucotrienos
+IabbrPlural lucit leucócito
+iabbr lig ligamento
+iabbr ligs ligamentos
+iabbr lf linfa
+iabbr lfcito linfocitose
+IabbrPlural lfn linfonodo
+iabbr lfcitp linfopenia
+IabbrGenderPlural lf linfátic
+IabbrPlural lfcit linfócito
+iabbr lprot lipoproteína
+iabbr lprots lipoproteínas
+IabbrGenderPlural lcr liquóric
+IabbrCapital lcr líquor
+iabbr macirc macrocirculação
+IabbrGenderPlural mg malign
+IabbrPlural mgdd malignidade
+iabbr manom manometria
+IabbrPlural mtcit mastócito
+IabbrGenderPlural matn matern
+IabbrPlural medl medial mediais
+iabbr medm medialmente
+IabbrPlural mdcm medicamento
+iabbr moss medula óssea
+IabbrPlural mgcit megacariócito
+iabbr mem membrana
+iabbr mems membranas
+IabbrPlural mng meninge
+IabbrPlural mgt meningite
+IabbrPlural metab metabolismo
+IabbrGenderPlural metab metabólic
+IabbrPlural metapl metaplasia
+IabbrGenderPlural metapl metaplásic
+IabbrGenderPlural mtt metastátic
+IabbrPlural mtt metástase
+IabbrPlural micl miccional miccionais
+iabbr micirc microcirculação
+IabbrPlural micc micção micções
+IabbrPlural migr migrânea
+iabbr mocitp monocitopenia
+iabbr mocito monocitose
+IabbrCapital mononu mononucleose
+IabbrPlural mocit monócito
+IabbrPlural mov movimento
+IabbrPlural mu mulher mulheres
+IabbrPlural mio músculo
+iabbr rmio músculo estriado
+iabbr lmio músculo liso
+iabbr rmios músculos estriados
+iabbr lmios músculos lisos
+IabbrPlural necr necrose
+IabbrGenderPlural necr necrótic
+IabbrPlural neopl neoplasia
+IabbrGenderPlural neopl neoplásic
+IabbrPlural nv nervo
+IabbrPlural neun neurônio
+iabbr nfilo neutrofilia
+iabbr nfilp neutropenia
+IabbrPlural nfil neutrófilo
+IabbrGenderPlural nutr nutrid
+IabbrPlural nutr nutrição nutrições
+IabbrPlural nod nódulo
+IabbrGenderPlural obstr obstrutiv
+IabbrPlural obstr obstrução obstruções
+IabbrPlural ogn organismo
+IabbrCapital o2 oxigênio
+iabbr O2 O~2~
+IabbrPlural pct paciente
+IabbrCapital ppar palpar
+IabbrPlural ppc palpação palpações
+iabbr pacitp pancitopenia
+IabbrGenderPlural pancr pancreátic
+IabbrPlural pdm pandemia
+IabbrGenderPlural pspt parassimpátic
+IabbrPlural pqm parênquima
+IabbrGenderPlural patn patern
+iabbr penetr penetração
+IabbrPlural pntl peritoneal peritoneais
+IabbrPlural ptn peritôneo peritôneos
+IabbrPlural plct placenta
+IabbrPlural plqt plaqueta
+IabbrPlural plqtp plaquetopenia
+iabbr pluripot pluripotente
+IabbrPlural pnm pneumonia
+iabbr pntx pneumotórax
+IabbrPlural post posterior posteriores
+IabbrCapital postm posteriormente
+IabbrGenderPlural prescr prescrit
+IabbrPlural prescr prescrição prescrições
+IabbrPlural pa pressão\ arterial pressões\ arteriais
+iabbr PIc Pressão Intracraniana
+iabbr Pic Pressão intracraniana
+iabbr pic pressão intracraniana
+IabbrPlural ps pressão pressões
+IabbrPlural prevt prevalente
+IabbrPlural prev prevalência
+IabbrPlural procdm procedimento
+IabbrPlural prod produção produções
+iabbr prof profundo
+iabbr profs profundos
+IabbrPlural progn prognóstico
+iabbr pgln prostalandina
+iabbr pglns prostalandinas
+iabbr prot proteína
+iabbr prots proteínas
+IabbrPlural proxl proximal proximais
+IabbrPlural ptt próstata
+IabbrGenderPlural ptt prostátic
+IabbrGenderPlural psiq psiquiátric
+IabbrPlural puerp puerpério
+iabbr pmr pulmonar
+iabbr pmrs pulmonares
+iabbr pm pulmão
+iabbr pms pulmões
+iabbr pancr pâncreas
+IabbrCapital ppt pós-parto
+iabbr qmic quilomícron
+iabbr qutx quilotórax
 iabbr rxg radiografia
-iabbr rm ressonância magnética
+iabbr rx raio-x
+IabbrPlural recep receptor
+iabbr rvq relação ventilação-perfusão
+iabbr resol resolução
+IabbrGenderPlural resp respiratóri
+IabbrPlural resp respiração respirações
 iabbr rmg ressonância
-iabbr tc tomografia computadorizada
+iabbr rm ressonância magnética
+iabbr rtpnls retroperitoneais
+iabbr rptnl retroperitoneal
+iabbr rptn retroperitôneo
+iabbr rptns retroperitôneos
+iabbr rinorr rinorréia
+iabbr rot rotação
+iabbr rots rotações
+iabbr sgm sangramento
+iabbr sgar sangrar
+iabbr sg sangue
+IabbrGenderPlural sg sanguíne
+iabbr sao2 SaO~2~
+iabbr sc2 SARS-CoV-2
+iabbr secra secreta
+iabbr secrm secretam
+iabbr secr secreção
+IabbrPlural segm segmento
+IabbrGenderPlural sel selecionad
+IabbrPlural sel seleção
+IabbrPlural sensi sensibilidade
+iabbr 5ht serotonina
+iabbr sigm sigmóide
+IabbrGenderPlural spt simpátic
+IabbrPlural st sintoma
+IabbrGenderPlural sist sistêmic
+IabbrGenderPlural stol sistólic
+IabbrGenderPlural sbcl subclávi
+IabbrPlural subst substância
+IabbrPlural suft suficiente
+IabbrPlural suf suficiência
+IabbrPlural supfl superficial superficiais
+IabbrPlural supf superfície superfícies
+IabbrPlural sup superior superiores
+IabbrCapital supm superiormente
+IabbrCapital sif sífilis
+IabbrPlural sd síndrome
+IabbrPlural stol sístole
+iabbr tbg tabagismo
+iabbr tpnam tamponamento
+iabbr tpnams tamponamentos
+iabbr tqcrd taquicardia
+iabbr tqpn taquipneia
+IabbrPlural tec tecido
+IabbrPlural tp terapia
+iabbr tire tireóide
+iabbr t4 tiroxina
+iabbr tol tolerância
+iabbr tols tolerâncias
 iabbr tcg tomografia
+iabbr tc tomografia computadorizada
+IabbrGenderPlural tx torácic
+iabbr tot total
+iabbr totipot totipotente
+IabbrCapital toxo toxoplasmose
+IabbrPlural ttrn transtorno
+IabbrCapital toc transtorno\ obcessivo-compulsivo
+IabbrGenderPlural ttd tratad
+IabbrPlural tto tratamento
+iabbr ttar tratar
+IabbrPlural tgi trato\ gastrointestinal tratos\ gastrointestinais
+IabbrPlural tgu trato\ genitourinário tratos\ genitourinários
+iabbr ttou tratou
+iabbr t3 tri-iodotironina
+iabbr tgc triglicerídeo
+iabbr tgcs triglicerídeos
+iabbr trc tronco
+iabbr trcs troncos
+IabbrCapital tbc tuberculose
+IabbrPlural tum tumor tumores
+IabbrPlural tul tumoral tumorais
+IabbrCapital tx tórax
 iabbr us ultrassom
 iabbr usg ultrassonografia
-iabbr hg hemograma
-iabbr colono colonoscopia
-iabbr eda endoscopia digestiva alta
-iabbr manom manometria
-iabbr ecg eletrocardiograma
-iabbr ecocg ecocardiograma
-
-iabbr micc micção
-iabbr miccs micções
-iabbr micl miccional
-iabbr micls miccionais
-
-IabbrPlural mu mulher mulheres
-IabbrPlural ho homem homens
-
-IabbrPlural obstr obstrução obstruções
-IabbrGenderPlural obstr obstrutiv
-IabbrPlural inflm inflamação inflamações
-IabbrGenderPlural inflm inflamatóri
-
-iabbr hemorr hemorragia
-iabbr diarr diarréia
-iabbr rinorr rinorréia
-
-IabbrPlural st sintoma
-IabbrPlural sd síndrome
-IabbrPlural dca doença
-IabbrGenderPlural ast assintomátic
-
-IabbrPlural ttrn transtorno
-iabbr toc transtorno obcessivo-compulsivo
-iabbr depr depressão
-IabbrGenderPlural depr depressiv
-IabbrPlural ps pressão pressões
-
+IabbrGenderPlural utn uterin
 IabbrPlural vasc vascular
 iabbr vascz vascularização
 iabbr vasczs vascularizações
-IabbrPlural cv cardiovascular
-iabbr gu genitourinário
-iabbr gus genitourinários
-iabbr gua genitourinária
-iabbr guas genitourinárias
-iabbr tgu trato genitourinário
-IabbrPlural gi gastrointestinal gastrointestinais
-iabbr tgi trato gastrointestinal
-
-IabbrPlural cindic contraindicação
-IabbrGenderPlural cindic contraindicad
-IabbrPlural indic indicação
-IabbrGenderPlural indic indicad
-IabbrPlural sel seleção
-IabbrGenderPlural sel selecionad
-IabbrPlural prescr prescrição prescrições
-IabbrGenderPlural prescr prescrit
-IabbrPlural acomp acompanhamento
-IabbrGenderPlural acomp acompanhad
-
-iabbr sfx efeitos colaterais
-iabbr sfx1 efeito colateral
-
-IabbrPlural pct paciente
-IabbrPlural cria criança
-IabbrPlural bb bebê
-
-IabbrPlural bact bactéria
-IabbrGenderPlural bact bacterian
-
-IabbrPlural ag agudo
-IabbrGenderPlural ag agud
-IabbrGenderPlural crn crônic
-IabbrGenderPlural cln clínic
-
-IabbrCapital tbc tuberculose
-IabbrCapital sif sífilis
-IabbrCapital cmv citomegalovírus
-IabbrCapital mononu mononucleose
-IabbrCapital toxo toxoplasmose
-IabbrCapital cov coronavírus
-iabbr sc2 SARS-CoV-2
-
-IabbrPlural infec infecção infecções
-IabbrGenderPlural infec infeccios
-
-IabbrGenderPlural isoeco isoecogênic
-IabbrGenderPlural hreco hiperecogênic
-IabbrGenderPlural hoeco hipoecogênic
-
-IabbrPlural acd acidose
-IabbrPlural alc alcalose
-
-IabbrGenderPlural crgi cirurgi ão ã ões ãs
-
-IabbrPlural artm arritmia
-iabbr bica bicarbonato
-
-iabbr cttr catéter
-
-iabbr apd apêndice
+iabbr vsg vaso sanguíneo
+iabbr vsgs vasos sanguíneos
+iabbr vv veia
+iabbr vvbc veia braquicefálica
+iabbr vvci veia cava inferior
+iabbr vvcs veia cava superior
+iabbr vvv veias
+iabbr vvbcs veias braquicefálicas
+iabbr vn venosa
+iabbr vvn venosas
+IabbrPlural vntr ventrículo ventrículos
+iabbr colec vesícula biliar
+IabbrPlural vit vitamina
+IabbrPlural volm volemia
+IabbrPlural vol volume
+IabbrGenderPlural volm volêmic
 iabbr xif xifóide
-iabbr clav clavícula
-iabbr clavs clavículas
-IabbrGenderPlural sbcl subclávi
-
-iabbr lab laboratorial
-iabbr labs laboratoriais
-iabbr labo laboratório
-iabbr labos laboratórios
-
-iabbr agn antígeno
-iabbr agns antígenos
-iabbr acp anticorpo
-iabbr acps anticorpos
-
-IabbrPlural pdm pandemia
-IabbrPlural epdm epidemia
-
-IabbrPlural cp comprimido
-IabbrPlural cxa caixa
-
-iabbr vit vitamina
-iabbr chl colesterol
-iabbr tot total
-iabbr tgc triglicerídeo
-iabbr tgcs triglicerídeos
-iabbr qmic quilomícron
-iabbr prot proteína
-iabbr prots proteínas
-iabbr lprot lipoproteína
-iabbr lprots lipoproteínas
-iabbr alb albumina
-
-IabbrGenderPlural cjug conjugad
-
-iabbr etl etilismo
-iabbr tbg tabagismo
-
-iabbr abloq alfabloqueador
-iabbr abloqs alfabloqueadores
-iabbr bbloq \(\beta\)-bloqueador
-iabbr bbloqs \(\beta\)-bloqueadores
-iabbr bloqca bloqueador de canais de cálcio
-iabbr bloqcas bloqueadores de canais de cálcio
-
+IabbrPlural atr átrio
+iabbr il ílio
+IabbrPlural og órgão
+IabbrPlural ut útero
