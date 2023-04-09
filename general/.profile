@@ -61,8 +61,9 @@ export PYTHONSTARTUP="$SCRIPTS/startup.py"
 export PYTHONPATH="$PYTHONPATH:$SCRIPTS"
 export EDITOR=vim
 export VISUAL=vim
-export PAGER=less
-export SHELL=/usr/bin/profish
+export PAGER="less"
+export LESS="--RAW-CONTROL-CHARS --IGNORE-CASE --QUIET --squeeze-blank-lines --window=-3 --incsearch --use-color"
+export SHELL=/bin/sh
 export TERMINAL=kitty
 export BROWSER=firefox
 export BROWSER_PRIVATE="firefox --private"

@@ -1,12 +1,12 @@
 #! /bin/sh
 
+data="$(curl -s 'wttr.in/?format=1')" 
+status=$?
 
-while true; do
-    # sed is used to remove \uFE0F
-    data="$(curl -s 'wttr.in/?format=1')" \
-        && { echo "$data" | sed 's|️||'; } && exit
-
-    sleep 5
-
-done
+if [ "$status" -eq 0 ]; then
+     echo "$data" | sed 's|️||'
+     exit
+ else
+     echo "Error Fetching Weather!"
+fi
 
