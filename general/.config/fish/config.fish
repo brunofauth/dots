@@ -1,5 +1,5 @@
-set -x WSL_ALIASES ~/.config/fish/wsl-aliases.fish
 if uname -a | grep -q microsoft
+set -x WSL_ALIASES ~/.config/fish/wsl-aliases.fish
     test -f $WSL_ALIASES && source $WSL_ALIASES
 end
 
@@ -29,4 +29,6 @@ fish_default_key_bindings
 # yss fish-abbreviation-tips
 
 abbr pylint ruff
+abbr dash rlwrap dash
+abbr sh rlwrap dash
 
