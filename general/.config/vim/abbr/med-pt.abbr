@@ -3,6 +3,7 @@
 " '<,'>sort i /^\w\+ \w\+ /
 source ~/.config/vim/abbr/common-pt.abbr
 
+IabbrCapital apso artrite\ psoriática
 IabbrCapital eank espondilite\ anquilosante
 IabbrPlural mfstc manifestação manifestações
 IabbrCapital arh artrite\ reumatoide

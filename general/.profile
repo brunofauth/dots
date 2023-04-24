@@ -62,7 +62,7 @@ export PYTHONPATH="$PYTHONPATH:$SCRIPTS"
 export EDITOR=vim
 export VISUAL=vim
 export PAGER="less"
-export LESS="--RAW-CONTROL-CHARS --IGNORE-CASE --QUIET --squeeze-blank-lines --window=-3 --incsearch --use-color"
+export LESS="--RAW-CONTROL-CHARS --IGNORE-CASE --QUIET --squeeze-blank-lines --window=-3 --incsearch --use-color --jump-target=4"
 export SHELL=/bin/sh
 export TERMINAL=kitty
 export BROWSER=firefox
