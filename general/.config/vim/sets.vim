@@ -12,6 +12,8 @@ set number relativenumber
 
 " Highlights and seraches for words while typing
 set hlsearch incsearch
+" smart case sensitivity when searching
+set smartcase
 
 " Use \n for new lines, instead of \r or \r\n
 set fileformat=unix
@@ -69,4 +71,6 @@ let g:med_dir = $HOME . '/notes/med5/'
 
 " " This allows me to use 'fish' with ':sh' while having '$SHELL' set to '/bin/sh'
 set shell=/bin/sh
+
+
 
