@@ -3,7 +3,8 @@ let mapleader = '\'
 
 
 " Shorten REPL cycle duration.
-nnoremap <Leader>cs :!cls && shellcheck %<CR>
+nnoremap <Leader>cs :lexpr system(printf('shellcheck --format=gcc "%s"', expand('%')))<CR>:lwindow<CR>
+" nnoremap <Leader>cs :!cls && shellcheck %<CR>
 nnoremap <Leader>cc :!cls && compileit %<CR>
 
 
