@@ -2,8 +2,19 @@
 let mapleader = '\'
 
 
+const s:LINTER_COMMANDS = {
+    \ 'vim': 'vint "%s"',
+    \ 'sh': 'shellcheck --format=gcc "%s"',
+\ }
+
+function s:RunLinter()
+    lexpr system(printf(s:LINTER_COMMANDS->get(&filetype, v:none), expand('%')))
+    lwindow
+endfunction
+command RunLinter call s:RunLinter()
+
 " Shorten REPL cycle duration.
-nnoremap <Leader>cs :lexpr system(printf('shellcheck --format=gcc "%s"', expand('%')))<CR>:lwindow<CR>
+nnoremap <Leader>cs :RunLinter<CR>
 " nnoremap <Leader>cs :!cls && shellcheck %<CR>
 nnoremap <Leader>cc :!cls && compileit %<CR>
 
@@ -84,10 +95,8 @@ nnoremap <Leader>dd :Gdb<CR>
 nnoremap <Leader>dp :Program<CR>
 
 nnoremap <Leader>gg :Goyo<CR>
-nnoremap <Leader>v :Vista!!<CR>
 
 let s:path = expand('<sfile>:p:h') . '/snippets'
-
 augroup snippets
     autocmd!
     autocmd FileType markdown           exec 'source' s:path .. '/md.vim'

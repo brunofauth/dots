@@ -15,17 +15,9 @@ call plug#begin(s:PLUG_INSTALL_DIR)
 " Fish syntax highlighting
 Plug 'dag/vim-fish'
 
-" Looking cute, might test it later
-" Plug 'neoclide/coc.nvim'
-
-" " python 'intellisense'
-" Plug 'davidhalter/jedi-vim'
-" runtime cfgs/jedi.vim
-
 " Code formatting
 Plug 'psf/black'
 let g:black_linelength = 120
-
 
 " Manage tags, quotes, brackets...
 Plug 'https://github.com/tpope/vim-surround.git'
@@ -62,14 +54,8 @@ runtime cfgs/pandoc-syntax.vim
 
 " " Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
 " Plug 'godlygeek/tabular'
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_no_default_key_mappings = 1
-let g:vim_markdown_toc_autofit = 1
-let g:vim_markdown_conceal = 1
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_auto_insert_bullets = 0
-let g:vim_markdown_new_list_item_indent = 0
 Plug 'preservim/vim-markdown'
+runtime cfgs/vim-markdown.vim
 
 " Reading mode
 Plug 'https://github.com/junegunn/goyo.vim'
@@ -86,6 +72,7 @@ runtime cfgs/vim-lsp.vim
 
 " View and search LSP symbols, tags in Vim/NeoVim.
 Plug 'liuchengxu/vista.vim'
+runtime cfgs/vista.vim
 
 " Plug 'https://github.com/tpope/vim-repeat'
 

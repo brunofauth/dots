@@ -90,7 +90,7 @@ enddef
 
 
 " Remove diacritical signs from characters in specified range of lines.
-function! s:RemoveDiacritics(begin, end)
+function s:RemoveDiacritics(begin, end)
     let ilines = join(getline(a:begin, a:end), "\n")
     let olines = iconv(ilines, "utf8", "ascii//TRANSLIT")
     call setline(a:begin, split(olines, "\n"))
@@ -98,7 +98,7 @@ endfunction
 command! -range=% RemoveDiacritics call s:RemoveDiacritics(<line1>, <line2>)
 
 
-function! s:ToTitleCase(begin, end)
+function s:ToTitleCase(begin, end)
     let fst = '\w\|[áâéêíîóôúûç]'
     let nth = '\l\|[áâéêíîóôúûç]'
     let pattern = printf(' \(%s\)\(\%%(%s\)\%%(%s\)\)', fst, nth, nth)
@@ -112,7 +112,7 @@ function! s:ToTitleCase(begin, end)
 endfunction
 command! -range ToTitleCase call s:ToTitleCase(<line1>, <line2>)
 
-function! s:ToggleQuickFix()
+function s:ToggleQuickFix()
     if empty(filter(getwininfo(), 'v:val.quickfix'))
         copen
     else
@@ -121,7 +121,7 @@ function! s:ToggleQuickFix()
 endfunction
 command! ToggleQuickFix call s:ToggleQuickFix()
 
-function! s:ToggleLocList()
+function s:ToggleLocList()
     if empty(filter(getwininfo(), 'v:val.loclist'))
         lopen
     else
@@ -129,8 +129,4 @@ function! s:ToggleLocList()
     endif
 endfunction
 command! ToggleLocList call s:ToggleLocList()
-
-" function! s:ReplaceChar(begin, end)
-"     call setline(a:begin + offset, substitute(getline(a:begin, a:end), , result, 'g'))
-" endfunction
 
