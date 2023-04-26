@@ -1,7 +1,7 @@
 let g:fzf_layout = {
 \    'up':'~90%',
 \    'window': {
-\        'width': 0.8,
+\        'width': 1,
 \        'height': 0.8,
 \        'yoffset':0.5,
 \        'xoffset': 0.5,
@@ -9,6 +9,7 @@ let g:fzf_layout = {
 \        'border': 'sharp'
 \    }
 \}
+"\        'width': 0.95,
 
 
 " [Buffers] Jump to the existing window if possible
@@ -26,13 +27,15 @@ let g:fzf_action = {
   \ 'ctrl-y': {lines -> setreg('"', join(lines, "\n"))},
   \ }
 
+nnoremap <Plug>(fzf-prefix)l :FzfLines<CR>
+nnoremap <Plug>(fzf-prefix)L :FzfLocate
 nnoremap <Plug>(fzf-prefix)r :FzfRg<CR>
-nnoremap <Plug>(fzf-prefix)c :FzfColors<CR>
+nnoremap <Plug>(fzf-prefix)c :FzfCommands<CR>
 nnoremap <Plug>(fzf-prefix)f :FzfFiles<CR>
 nnoremap <Plug>(fzf-prefix)F :FzfGFiles<CR>
 nnoremap <Plug>(fzf-prefix)b :FzfBuffers<CR>
 nnoremap <Plug>(fzf-prefix)w :FzfWindows<CR>
-nnoremap <Plug>(fzf-prefix)C :FzfCommits<CR>
+nnoremap <Plug>(fzf-prefix)C :FzfColors<CR>
 nnoremap <Plug>(fzf-prefix)t :FzfFiletypes<CR>
 nnoremap <Plug>(fzf-prefix)hf :FzfHistory<CR>
 nnoremap <Plug>(fzf-prefix)hc :FzfHistory:<CR>

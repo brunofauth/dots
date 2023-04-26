@@ -52,7 +52,21 @@ if executable('jedi-language-server')
             \ })
     augroup END
 else
-    echoerr "Couldn't find 'ruff-lsp'"
+    echoerr "Couldn't find 'jedi-language-server'"
+endif
+
+if executable('marksman')
+    augroup vim_lsp_md_marksman
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'marksman',
+            \ 'cmd': {server_info->['marksman']},
+            \ 'allowlist': ['markdown', 'markdown.pandoc'],
+            \ 'capabilities': s:get_capabilities_without_formatting(),
+            \ })
+    augroup END
+else
+    echoerr "Couldn't find 'marksman'"
 endif
 
 

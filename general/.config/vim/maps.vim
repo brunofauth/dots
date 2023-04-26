@@ -44,6 +44,12 @@ nnoremap <Leader>cW ciW<C-r>0<ESC>
 " Turns off search match highlighting
 nnoremap <Leader>h :nohlsearch<CR>
 
+" Quickfix control bindings
+nnoremap <Leader>qq :ToggleLocList<CR>
+nnoremap <Leader>qt :ToggleLocList<CR>
+nnoremap <Leader>qc :lclose<CR>
+nnoremap <Leader>qo :lopen<CR>
+
 
 " Take a Screenshot and insert, or not it's path
 nnoremap <Leader>pp :call setreg('"', SaveScreenshot())<CR>P
@@ -70,11 +76,6 @@ nmap <Leader>f <Plug>(fzf-prefix)
 nmap <Leader><tab> <Plug>(fzf-maps-n)
 xmap <Leader><tab> <Plug>(fzf-maps-x)
 omap <Leader><tab> <Plug>(fzf-maps-o)
-
-
-" Mappings for https://github.com/davidhalter/jedi-vim
-" are made in './cfgs/jedi.vim', as this plugin handles
-" mappings with variables, which shouldn't be here.
 
 
 " Mappings for :help termdebug

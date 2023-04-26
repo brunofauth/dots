@@ -112,6 +112,24 @@ function! s:ToTitleCase(begin, end)
 endfunction
 command! -range ToTitleCase call s:ToTitleCase(<line1>, <line2>)
 
+function! s:ToggleQuickFix()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        copen
+    else
+        cclose
+    endif
+endfunction
+command! ToggleQuickFix call s:ToggleQuickFix()
+
+function! s:ToggleLocList()
+    if empty(filter(getwininfo(), 'v:val.loclist'))
+        lopen
+    else
+        lclose
+    endif
+endfunction
+command! ToggleLocList call s:ToggleLocList()
+
 " function! s:ReplaceChar(begin, end)
 "     call setline(a:begin + offset, substitute(getline(a:begin, a:end), , result, 'g'))
 " endfunction
