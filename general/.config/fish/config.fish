@@ -1,10 +1,11 @@
 if uname -a | grep -q microsoft
-set -x WSL_ALIASES ~/.config/fish/wsl-aliases.fish
+    set -x WSL_ALIASES ~/.config/fish/wsl-aliases.fish
     test -f $WSL_ALIASES && source $WSL_ALIASES
 end
 
 
 function qaudio --description "I did this a long time ago and don't remember what it's for."
+    # maybe qaudio stands for quick audio and this function makes audio files play faster?
     set tmp $argv[2]
     if test -z $tmp; set tmp 1.5; end
     set thd $argv[3]
@@ -17,12 +18,14 @@ end
 # Fish specific configurations
 
 set fish_greeting
-
-if pstree -s $fish_pid | grep -q kitty
-    kitty + complete setup fish | source
-end
-
 fish_default_key_bindings
+
+if status --is-interactive
+    if pstree -s $fish_pid | grep -q kitty
+        kitty + complete setup fish | source
+    end
+    zoxide init fish | source
+end
 
 
 # https://github.com/gazorby/fish-abbreviation-tips

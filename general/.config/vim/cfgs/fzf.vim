@@ -27,6 +27,15 @@ let g:fzf_action = {
   \ 'ctrl-y': {lines -> setreg('"', join(lines, "\n"))},
   \ }
 
+nmap <Leader><tab> <Plug>(fzf-maps-n)
+xmap <Leader><tab> <Plug>(fzf-maps-x)
+omap <Leader><tab> <Plug>(fzf-maps-o)
+" imap <c-x><c-k> <plug>(fzf-complete-word)
+" imap <c-x><c-f> <plug>(fzf-complete-path)
+" imap <c-x><c-l> <plug>(fzf-complete-line)
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path('find -mindepth 1 -maxdepth 1 -type d -printf "%%P/\n" , ! -type d -printf "%%P\n"')
+
+nmap <Leader>f <Plug>(fzf-prefix)
 nnoremap <Plug>(fzf-prefix)l :FzfLines<CR>
 nnoremap <Plug>(fzf-prefix)L :FzfLocate
 nnoremap <Plug>(fzf-prefix)r :FzfRg<CR>

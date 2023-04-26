@@ -70,14 +70,6 @@ nnoremap cie <ESC>
 nnoremap gqi <ESC>
 
 
-" Mappings for 'https://github.com/junegunn/fzf.vim'.
-" See './cfgs/fzf.vim'
-nmap <Leader>f <Plug>(fzf-prefix)
-nmap <Leader><tab> <Plug>(fzf-maps-n)
-xmap <Leader><tab> <Plug>(fzf-maps-x)
-omap <Leader><tab> <Plug>(fzf-maps-o)
-
-
 " Mappings for :help termdebug
 nnoremap <Leader>dt :Termdebug<CR>
 nnoremap <Leader>db :Break<CR>
@@ -91,6 +83,7 @@ nnoremap <Leader>dd :Gdb<CR>
 nnoremap <Leader>dp :Program<CR>
 
 nnoremap <Leader>gg :Goyo<CR>
+nnoremap <Leader>v :Vista!!<CR>
 
 let s:path = expand('<sfile>:p:h') . '/snippets'
 

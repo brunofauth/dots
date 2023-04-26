@@ -84,6 +84,9 @@ Plug 'ron-rs/ron.vim'
 Plug 'prabirshrestha/vim-lsp'
 runtime cfgs/vim-lsp.vim
 
+" View and search LSP symbols, tags in Vim/NeoVim.
+Plug 'liuchengxu/vista.vim'
+
 " Plug 'https://github.com/tpope/vim-repeat'
 
 call plug#end()
