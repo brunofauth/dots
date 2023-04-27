@@ -30,9 +30,14 @@ Plug 'gibiansky/vim-latex-objects'
 Plug 'https://github.com/tpope/vim-eunuch.git'
 
 " Things you can do with fzf and Vim.
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-runtime cfgs/fzf.vim
+if executable('fzf')
+    Plug 'junegunn/fzf.vim'
+    runtime cfgs/fzf.vim
+else
+    echoerr 'Could not find "fzf" plugin in runtimepath. Make sure "fzf" is installed and the vim plugin it ships with is available in "runtimepath", so that "fzf.vim" can use the functions the missing plugin should be exporting'
+    " https://github.com/junegunn/fzf
+    " https://github.com/junegunn/fzf.vim
+endif
 
 " Toggle fullscreen for vim windows, useful when using splits
 Plug 'https://github.com/vim-scripts/ZoomWin'
