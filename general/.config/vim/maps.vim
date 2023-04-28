@@ -3,18 +3,19 @@ let mapleader = '\'
 
 
 const s:LINTER_COMMANDS = {
-    \ 'vim': 'vint "%s"',
-    \ 'sh': 'shellcheck --format=gcc "%s"',
+    \ 'vim': 'vint %s',
+    \ 'sh': 'shellcheck --format=gcc --exclude=SC3043 %s',
 \ }
 
 function s:RunLinter()
-    lexpr system(printf(s:LINTER_COMMANDS->get(&filetype, v:none), expand('%')))
-    lwindow
+    const l:cmd = FmtEscaped(s:LINTER_COMMANDS->get(&filetype, v:none), expand('%'))
+    lexpr system(l:cmd) | lwindow
+    call setloclist(0, [], 'a', {'title' : l:cmd})
 endfunction
-command RunLinter call s:RunLinter()
+command RunLinter silent call s:RunLinter()
 
 " Shorten REPL cycle duration.
-nnoremap <Leader>cs :RunLinter<CR>
+nnoremap <silent> <Leader>cs :RunLinter<CR>
 " nnoremap <Leader>cs :!cls && shellcheck %<CR>
 nnoremap <Leader>cc :!cls && compileit %<CR>
 

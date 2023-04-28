@@ -6,7 +6,7 @@ runtime funcs/iabbr.vim
 
 
 def! WslToW32(path: string): string
-    return trim(SystemF('wslpath -m "%s"', path))
+    return trim(SystemFmtEscaped('wslpath -m %s', path))
 enddef
 
 
@@ -45,11 +45,11 @@ def! TakeScreenshot(out_fmt: string): void
     if s:platf == 'w32' || s:platf == 'wsl'
         var spath = ThrowIfMissing('screenshot.ps1')
         spath = s:platf == 'wsl' ? WslToW32(spath) : spath
-        SystemF("powershell.exe -File '%s' '%s'", spath, out_fmt)
+        SystemFmtEscaped("powershell.exe -File %s %s", spath, out_fmt)
 
     elseif s:platf == 'gnu' || s:platf == 'mac'
         ThrowIfMissing("import")
-        SystemF("import -window root '%s'", out_fmt)
+        SystemFmtEscaped("import -window root %s", out_fmt)
 
     endif
 enddef
