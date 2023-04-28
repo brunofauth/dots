@@ -41,7 +41,7 @@ abbr ffmpeg ffmpeg -hide_banner
 abbr ffprobe ffprobe -hide_banner
 abbr ga git add
 abbr gc git clone
-abbr gcm "read -P 'Commit Message: ' | xargs -r git commit -m"
+abbr gcm "read -P 'Commit Message: ' | xargs -rd '\n' git commit -m"
 abbr gd git diff
 abbr gp git push
 abbr gs git status
