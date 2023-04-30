@@ -1,5 +1,6 @@
 " vim9script
 
+runtime funcs/monadics.vim
 runtime funcs/platf.vim
 runtime funcs/util.vim
 runtime funcs/iabbr.vim
