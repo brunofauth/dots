@@ -21,7 +21,8 @@ function g:FmtEscaped(...)
 endfunction
 
 
-def g:EnumLines(range_begin: number, range_end: number, count_start: number = 1, count_step: number = 1, fmt: string = "%s%02d. %s")
+def g:EnumLines(range_begin: number, range_end: number,
+        count_start: number = 1, count_step: number = 1, fmt: string = "%s%02d. %s")
     var [lt_pos, gt_pos] = g:GetVisualBlockBounds()
     const rb_is_lt = lt_pos->g:AndThen((n) => n[0])->g:AndThen((num) => num == range_begin)->g:UnwrapOr(v:false)
     const re_is_gt = gt_pos->g:AndThen((n) => n[0])->g:AndThen((num) => num == range_end)->g:UnwrapOr(v:false)
