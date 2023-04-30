@@ -21,72 +21,74 @@ function g:FmtEscaped(...)
 endfunction
 
 
-function s:EnumLinesInner(start, step, col, fmt, index, value)
-    const l:head = slice(a:value, 0, a:col - 1)
-    const l:tail = slice(a:value, a:col - 1)
-    return printf(a:fmt, l:head, a:index * a:step + a:start, l:tail)
-endfunction
+def g:EnumLines(range_begin: number, range_end: number, count_start: number = 1, count_step: number = 1, fmt: string = "%s%02d. %s")
+    const Get = function('get')
+    var [lt_pos, gt_pos] = g:GetVisualBlockBounds()
+    const rb_is_lt = lt_pos->g:AndThen((n, ..._) => n[0], [])->g:AndThen((num, ..._) => num == range_begin, [])->g:UnwrapOr(v:false)
+    const re_is_gt = gt_pos->g:AndThen((n, ..._) => n[0], [])->g:AndThen((num, ..._) => num == range_end, [])->g:UnwrapOr(v:false)
+    const column = !rb_is_lt || !re_is_gt ? 1
+        \ : g:VisualSelectionStartCol(lt_pos->g:Unwrap()[1] < gt_pos->g:Unwrap()[1] ? lt_pos[1] : gt_pos[1])
 
-function s:EnumLines(range_begin, range_end, count_start=1, count_step=1, fmt="%s%02d. %s")
-    try
-        const l:block_bounds = s:GetVisualBlockBounds()
-        if s:VisualMarksMatchRange(l:block_bounds, [a:range_begin, a:range_end])
-            const l:col = s:VisualSelectionStartCol(l:block_bounds)
-        else
-            const l:col = 1
-        endif
-    catch /.*/
-        const l:col = 1
-    endtry
-    let l:Partial = function('s:EnumLinesInner', [a:count_start, a:count_step, l:col, a:fmt])
-    const l:result = map(getline(a:range_begin, a:range_end), l:Partial)
-    call setline(a:range_begin, l:result)
-endfunction
-command! -range -nargs=* EnumLines call s:EnumLines(<line1>, <line2>, <f-args>)
+    const Partial = function(g:EnumLinesInner, [count_start, count_step, column, fmt])
+    const result = map(getline(range_begin, range_end), Partial)
+    setline(range_begin, result)
+enddef
+command! -range -nargs=* EnumLines call g:EnumLines(<line1>, <line2>, <f-args>)
 
-function s:VisualSelectionStartCol(visual_block_bounds)
-    let l:visual_mode = visualmode()
-    if     l:visual_mode == 'V' || l:visual_mode == ''  | return 1
-    elseif l:visual_mode == '' | return s:GetBlockStartCol(a:visual_block_bounds)
-    endif
-    throw "bad visual mode; use 'V' or '', but not 'v'"
-endfunction
+def g:GetVisualBlockBounds(): list<any>
+    var mark_pos = g:GetMarkPos("'<", "'>")
+    var lt_pos = mark_pos->g:GetOrNone("'<")->g:AndThen((pos, ..._) => pos[1 : 2], [])
+    var gt_pos = mark_pos->g:GetOrNone("'>")->g:AndThen((pos, ..._) => pos[1 : 2], [])
+    return [lt_pos, gt_pos]
+enddef
 
-function s:VisualMarksMatchRange(visual_block_bounds, range)
-    if a:visual_block_bounds['<'][0] < a:visual_block_bounds['>'][0]
-        return a:visual_block_bounds['<'][0] == a:range[0] && a:visual_block_bounds['>'][0] == a:range[1]
-    else
-        return a:visual_block_bounds['>'][0] == a:range[0] && a:visual_block_bounds['<'][0] == a:range[1]
-    endif
-endfunction
+def g:VisualSelectionStartCol(lt_col: number): number
+    const visual_mode = visualmode()
+    if visual_mode == '' | return lt_col | endif
+    if visual_mode == 'V' || visual_mode == ''  | return 1 | endif
+    throw "InvalidVisualModeType"
+    return 1
+enddef
 
-function s:GetVisualBlockBounds()
-    let l:found = 0
-    let l:result = {}
-    for l:mark in getmarklist(bufname())
-        if l:found == 2
-            break
-        endif
-        if l:mark->get('mark') == "'<"
-            let l:result['<'] = l:mark->get('pos')[1:2]
-            let l:found += 1
-            continue
-        endif
-        if l:mark->get('mark') == "'>"
-            let l:result['>'] = l:mark->get('pos')[1:2]
-            let l:found += 1
-            continue
-        endif
+def g:EnumLinesInner(start: number, step: number, col: number, fmt: string, index: number, value: string): string
+    var column = col - 1 # Vim uses 1-based columns, but I want 0-based slices
+    var head = slice(value, 0, column)
+    var tail = slice(value, column)
+    return printf(fmt, head, index * step + start, tail)
+enddef
+
+def g:GetMarkPos(...marks: list<string>): dict<any>
+    var found_count = 0
+    var found_items = {}
+    for mark_info in getmarklist(bufname())
+        if found_count == len(marks) | break | endif
+        var mark_idx = index(marks, mark_info['mark'])
+        if mark_idx == -1 | continue | endif
+        found_items[marks[mark_idx]] = mark_info['pos']
     endfor
-    if found < 2
-        throw "Couldn't find all required marks"
-    endif
-    return l:result
-endfunction
+    return found_items
+enddef
 
-function s:GetBlockStartCol(visual_block_bounds)
-    let l:lt_col = a:visual_block_bounds['<'][1]
-    let l:gt_col = a:visual_block_bounds['>'][1]
-    return l:lt_col < l:gt_col ? l:lt_col : l:gt_col
-endfunction
+def g:IsNull(self: any): bool
+    return type(self) == v:t_none
+enddef
+
+def g:GetOrNone(self: dict<any>, key: any): any
+    return self->get(key, v:none)
+enddef
+
+def g:AndThen(self: any, Fn: func(any, list<any>): any, args: list<any>): any
+    return !g:IsNull(self) ? call(function(Fn, [self]), args) : v:none
+enddef
+
+def g:UnwrapOr(self: any, other: any): any
+    return !g:IsNull(self) ? self : other
+enddef
+
+def g:Unwrap(self: any): any
+    if g:IsNull(self)
+        throw "UnwrapNoneError"
+    endif
+    return self
+enddef
 
