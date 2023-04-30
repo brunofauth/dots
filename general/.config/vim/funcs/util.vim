@@ -22,10 +22,9 @@ endfunction
 
 
 def g:EnumLines(range_begin: number, range_end: number, count_start: number = 1, count_step: number = 1, fmt: string = "%s%02d. %s")
-    const Get = function('get')
     var [lt_pos, gt_pos] = g:GetVisualBlockBounds()
-    const rb_is_lt = lt_pos->g:AndThen((n, ..._) => n[0], [])->g:AndThen((num, ..._) => num == range_begin, [])->g:UnwrapOr(v:false)
-    const re_is_gt = gt_pos->g:AndThen((n, ..._) => n[0], [])->g:AndThen((num, ..._) => num == range_end, [])->g:UnwrapOr(v:false)
+    const rb_is_lt = lt_pos->g:AndThen((n) => n[0])->g:AndThen((num) => num == range_begin)->g:UnwrapOr(v:false)
+    const re_is_gt = gt_pos->g:AndThen((n) => n[0])->g:AndThen((num) => num == range_end)->g:UnwrapOr(v:false)
     const column = !rb_is_lt || !re_is_gt ? 1
         \ : g:VisualSelectionStartCol(lt_pos->g:Unwrap()[1] < gt_pos->g:Unwrap()[1] ? lt_pos[1] : gt_pos[1])
 
@@ -37,8 +36,8 @@ command! -range -nargs=* EnumLines call g:EnumLines(<line1>, <line2>, <f-args>)
 
 def g:GetVisualBlockBounds(): list<any>
     var mark_pos = g:GetMarkPos("'<", "'>")
-    var lt_pos = mark_pos->g:GetOrNone("'<")->g:AndThen((pos, ..._) => pos[1 : 2], [])
-    var gt_pos = mark_pos->g:GetOrNone("'>")->g:AndThen((pos, ..._) => pos[1 : 2], [])
+    var lt_pos = mark_pos->g:GetOrNone("'<")->g:AndThen((pos) => pos[1 : 2])
+    var gt_pos = mark_pos->g:GetOrNone("'>")->g:AndThen((pos) => pos[1 : 2])
     return [lt_pos, gt_pos]
 enddef
 
