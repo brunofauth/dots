@@ -7,11 +7,11 @@ def g:GetOrNone(self: dict<any>, key: any): any
 enddef
 
 def g:AndThen(self: any, Fn: func(any): any): any
-    return !g:IsNull(self) ? Fn(self) : v:none
+    return g:IsNull(self) ? self : Fn(self)
 enddef
 
 def g:UnwrapOr(self: any, other: any): any
-    return !g:IsNull(self) ? self : other
+    return g:IsNull(self) ? other : self
 enddef
 
 def g:Unwrap(self: any): any

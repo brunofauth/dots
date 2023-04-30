@@ -2,6 +2,7 @@
 
 runtime funcs/monadics.vim
 runtime funcs/platf.vim
+runtime funcs/enum_lines.vim
 runtime funcs/util.vim
 runtime funcs/iabbr.vim
 
