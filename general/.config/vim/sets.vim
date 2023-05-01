@@ -23,6 +23,8 @@ set splitbelow splitright
 
 " Shows a snippet of the last run command at the bottom of the screen
 set showcmd
+" Always show window status bars
+set laststatus=2
 
 " Insert and delete 4 spaces instead of a <Tab>
 set smarttab
@@ -46,6 +48,7 @@ set belloff=all
 
 " Enables backspacing through lines and over autoindent
 set backspace=indent,eol,start
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$
 
 " Leaves three lines as context above and below the cursor
 set scrolloff=3
@@ -63,14 +66,24 @@ set formatoptions+=j
 " Enables opening up to this number of new tabs
 set tabpagemax=50
 
+" Saving options in session and view files causes problems
+set sessionoptions-=options
+set viewoptions-=options
+
 " Show as much as possible of the last line in a window, putting "@@@" in the
 " end of that line fragment, to denote that this line hasn't ended yet.
 set display=lastline
+" Show unprintable characters hexadecimal as <xx> instead of using ^C and ~C.
+set display+=uhex
 
 let g:med_dir = $HOME . '/notes/med5/'
 
 " " This allows me to use 'fish' with ':sh' while having '$SHELL' set to '/bin/sh'
 set shell=/bin/sh
 
+" Disable a legacy behavior that can break plugin maps.
+if has('langmap') && exists('+langremap') && &langremap
+    set nolangremap
+endif
 
 

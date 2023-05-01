@@ -15,14 +15,13 @@ endfunction
 command RunLinter silent call s:RunLinter()
 
 " Shorten REPL cycle duration.
-nnoremap <silent> <Leader>cs :RunLinter<CR>
-" nnoremap <Leader>cs :!cls && shellcheck %<CR>
-nnoremap <Leader>cc :!cls && compileit %<CR>
+noremap <silent> <Leader>cs <Cmd>RunLinter<CR>
+noremap <silent> <Leader>cc <Cmd>!cls && compileit %<CR>
 
 
 " Write and backup; write as root.
-nnoremap <Leader>w :call WriteAndBackUp()<CR>
-nnoremap <Leader>W :w !sudo tee %<CR>
+noremap <Leader>w <Cmd>call WriteAndBackUp()<CR>
+noremap <Leader>W <Cmd>w !sudo tee %<CR>
 
 
 " Caret > Home; I don't want to press <S-6> every time
@@ -34,12 +33,12 @@ nnoremap gK K
 nnoremap K kJ
 
 " Move lines up and down
-nnoremap <C-J> :move +1<CR>
-nnoremap <C-K> :move -2<CR>
+nnoremap <C-J> <Cmd>move +1<CR>
+nnoremap <C-K> <Cmd>move -2<CR>
 
 " tabn/tabp in terminals which dont support pgup/pgdn
-nnoremap <Leader><right> :tabn<CR>
-nnoremap <Leader><left>  :tabp<CR>
+noremap <Leader><right> <Cmd>tabn<CR>
+noremap <Leader><left>  <Cmd>tabp<CR>
 
 " Yanks the whole buffer to '+'
 nnoremap <Leader>ya ggVG"+y<C-o><C-o>
@@ -55,13 +54,29 @@ nnoremap <Leader>cW ciW<C-r>0<ESC>
 
 
 " Turns off search match highlighting
-nnoremap <Leader>h :nohlsearch<CR>
+nnoremap <Leader>h <Cmd>set hlsearch!<CR>
+" Close help window
+nnoremap <F1> <Cmd>helpclose<CR>
+vnoremap <F1> <Cmd>helpclose<CR>
+inoremap <F1> <Cmd>helpclose<CR>
+nnoremap <F4> <Cmd>set list!<CR>
+vnoremap <F4> <Cmd>set list!<CR>
+inoremap <F4> <Cmd>set list!<CR>
 
 " Quickfix control bindings
-nnoremap <Leader>qq :ToggleLocList<CR>
-nnoremap <Leader>qt :ToggleLocList<CR>
-nnoremap <Leader>qc :lclose<CR>
-nnoremap <Leader>qo :lopen<CR>
+nnoremap <Leader>qq <Cmd>ToggleLocList<CR>
+nnoremap <Leader>qt <Cmd>ToggleLocList<CR>
+nnoremap <Leader>qc <Cmd>lclose<CR>
+nnoremap <Leader>qo <Cmd>lopen<CR>
+
+nnoremap <F5> <Cmd>source %<CR>
+vnoremap <F5> <Cmd>source %<CR>
+inoremap <F5> <Cmd>source %<CR>
+nnoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
+vnoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
+inoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
+
+nnoremap <Leader>m :vertical terminal ++close men<CR>
 
 
 " Take a Screenshot and insert, or not it's path

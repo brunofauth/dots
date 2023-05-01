@@ -79,7 +79,8 @@ runtime cfgs/vim-lsp.vim
 Plug 'liuchengxu/vista.vim'
 runtime cfgs/vista.vim
 
-" Plug 'https://github.com/tpope/vim-repeat'
+" Remaps '.' in a way that plugins can tap into it
+Plug 'https://github.com/tpope/vim-repeat'
 
 call plug#end()
 
