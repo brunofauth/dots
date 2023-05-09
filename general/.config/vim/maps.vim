@@ -59,6 +59,8 @@ nnoremap <Leader>h <Cmd>set hlsearch!<CR>
 nnoremap <F1> <Cmd>helpclose<CR>
 vnoremap <F1> <Cmd>helpclose<CR>
 inoremap <F1> <Cmd>helpclose<CR>
+nnoremap <S-F1> :help <C-R><C-W><CR>
+vnoremap <S-F1> :help <C-R><C-W><CR>
 nnoremap <F4> <Cmd>set list!<CR>
 vnoremap <F4> <Cmd>set list!<CR>
 inoremap <F4> <Cmd>set list!<CR>

@@ -86,4 +86,6 @@ if has('langmap') && exists('+langremap') && &langremap
     set nolangremap
 endif
 
+set background=dark
+
 

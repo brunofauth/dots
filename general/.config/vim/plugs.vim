@@ -82,5 +82,14 @@ runtime cfgs/vista.vim
 " Remaps '.' in a way that plugins can tap into it
 Plug 'https://github.com/tpope/vim-repeat'
 
+"file system explorer for Vim. Browse complex directory hierarchies, read or edit files
+Plug 'https://github.com/preservim/nerdtree'
+runtime cfgs/nerdtree.vim
+
+" Adds filetype glyphs (icons) to nerdtree
+Plug 'ryanoasis/vim-devicons'
+
+Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
+
 call plug#end()
 

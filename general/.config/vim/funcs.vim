@@ -108,9 +108,10 @@ function s:ToTitleCase(begin, end)
 
     let offset = 0
     for line in getline(a:begin, a:end)
-        call setline(a:begin + offset, substitute(line, pattern, result, 'g'))
+        call setline(a:begin + offset, line->substitute(pattern, result, 'g'))
         let offset +=1
     endfor
+    " call setline(a:begin, map(getline(a:begin, a:end), "substitute(v:value, pattern, result, 'g')"))
 endfunction
 command! -range ToTitleCase call s:ToTitleCase(<line1>, <line2>)
 

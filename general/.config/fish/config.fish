@@ -86,4 +86,5 @@ abbr ysi yay --aur -Si
 abbr yss yay --aur -Ss
 abbr ysyu yay --aur --sudoloop -Syu
 abbr zt zathura --fork
+abbr pk pkill
 
