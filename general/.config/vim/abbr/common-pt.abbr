@@ -108,18 +108,10 @@ iabbr --a diminui
 " iabbr --as diminuem
 " iabbr --nd
 
-iabbr +o positivo
-iabbr -o negativo
-" iabbr +os positivos
-" iabbr -os negativos
+IabbrGenderPlural pv positiv
+IabbrGenderPlural nv negativ
 
-iabbr +a positiva
-iabbr -a negativa
-" iabbr +as positivas
-" iabbr -as negativas
-
-iabbr pop população
-iabbr pops populações
+IabbrPlural pop população populações
 
 IabbrPlural dist distância
 IabbrPlural diam diâmetro
@@ -142,11 +134,13 @@ iabbr mna mínima
 iabbr mns mínimos
 iabbr mnas mínimas
 
-iabbr aqlo aquilo
-iabbr daqlo daquilo
-iabbr naqlo naquilo
+IabbrCapital aqlo aquilo
+IabbrCapital daqlo daquilo
+IabbrCapital naqlo naquilo
 IabbrPlural aqle aquele
 IabbrPlural aqla aquela
+IabbrPlural aaqle àquele
+IabbrPlural aaqla àquela
 IabbrPlural daqle daquele
 IabbrPlural daqla daquela
 IabbrPlural naqle naquele

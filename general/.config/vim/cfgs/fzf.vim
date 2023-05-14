@@ -36,7 +36,7 @@ omap <Leader><tab> <Plug>(fzf-maps-o)
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('find -mindepth 1 -maxdepth 1 -type d -printf "%%P/\n" , ! -type d -printf "%%P\n"')
 
 nmap <Leader>f <Plug>(fzf-prefix)
-nnoremap <Plug>(fzf-prefix)l :FzfLines<CR>
+nnoremap <Plug>(fzf-prefix)l :FzfBLines<CR>
 nnoremap <Plug>(fzf-prefix)L :FzfLocate
 nnoremap <Plug>(fzf-prefix)r :FzfRg<CR>
 nnoremap <Plug>(fzf-prefix)c :FzfCommands<CR>

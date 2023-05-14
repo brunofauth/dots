@@ -3,6 +3,10 @@
 " '<,'>sort i /^\w\+ \w\+ /
 source ~/.config/vim/abbr/common-pt.abbr
 
+IabbrPlural qtp quimioterapia
+IabbrPlural rtp radioterapia
+IabbrPlural itp imunoterapia
+IabbrPlural htp hormonioterapia
 IabbrGenderPlural epl esplênic
 IabbrGenderPlural ogn orgânic
 IabbrPlural dtb distúrbio
