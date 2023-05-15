@@ -15,6 +15,11 @@ let g:fzf_layout = {
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
 
+" :help fzf-vim-preview-window
+" Note that this array is passed as arguments to fzf#vim#with_preview function
+" man fzf
+let g:fzf_preview_window = ['right,50%,~3', 'ctrl-/']
+
 " Give the same prefix to the commands
 let g:fzf_command_prefix = 'Fzf'
 
