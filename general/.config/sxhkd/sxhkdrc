@@ -1,5 +1,3 @@
-# PROGRAM SHORTCUTS
-
 
 shift + F6
     xdotool search --class mpv key space
@@ -28,19 +26,16 @@ Print
     flameshot gui
 
 shift + Print
-    flameshot full -p "$XDG_PICTURES_DIR"
+    "$SCRIPTS/screenshot"
 
 super + p
-    pavucontrol
+    polybar-msg cmd restart && kill -USR1 sxhkd
 
 super + shift + p
-    polybar-msg cmd restart && kill -USR1 "$(pgrep sxhkd)"
+    "$XDG_CONFIG_HOME/polybar/scripts/color-switch.sh"
 
 super + shift + b
     "$SCRIPTS/set-bg"
-
-super + n
-    "$SCRIPTS/plumb-nag"
 
 super + shift + y
     notify-send "Downloading video from clipboard..." "Source: $(xclip -ib)" -t 3000 && "$SCRIPTS/i3-ytdl"
@@ -53,9 +48,6 @@ super + shift + u
 
 super + e
     $SCRIPTS/pick-emoji
-
-super + shift + m
-    notify-send "System Menu" "(l)ock\nswitch (u)ser\n(e)xit\nsus(p)end\n(h)ybernate\n(r)eboot\n(s)hutdown"
 
 super + m; {l, u, e, p, h, r, s}
     { \
@@ -98,15 +90,21 @@ shift + XF86AudioMute
 XF86MonBrightness{Up,Down}
     brightnessctl set 5%{+,-}
 
-super + apostrophe; {q, a, h, c, t}
-    dunstctl {close, close-all, history-pop, context, set-paused toggle}
+shift + XF86MonBrightness{Up,Down}
+    brightnessctl set {100,0}%
+
+super + s
+    "$SCRIPTS/chaudio" --set-default-sink
+
+super + shift + s
+    "$SCRIPTS/chaudio"
+
+super + n; {a, q, shift + q, h, shift + h, c, t}
+    dunstctl {action, close, close-all, history-pop, history-clear, context, set-paused toggle}
 
 super + w
     passmenu | xargs -r notify-send -t 3000 "Password Copied"
 
 super + shift + w
     networkmanager_dmenu
-
-super + s; {p,c}
-    {playsong, mpc clear}
 

@@ -63,7 +63,7 @@ entry {
 listview {
   spacing: 5px;
   dynamic: true;
-  scrollbar: false;
+  scrollbar: true;
 }
 
 element {

@@ -25,6 +25,7 @@ if status --is-interactive
         kitty + complete setup fish | source
     end
     zoxide init fish | source
+    ferium complete fish | source
 end
 
 
@@ -51,13 +52,13 @@ abbr l ls
 abbr lat ls -lAht
 abbr lht ls -lht
 abbr lhtr ls -lhtr
-abbr mpv mpv --keep-open=yes
+abbr mpv detach mpv --keep-open=yes
 abbr musb usbeast -m
 abbr pg pgrep -il
 abbr pgff pgrep -il firefox
 abbr pgp pass git push
 abbr pgs pass git status
-abbr pgv pgrep vim
+abbr pgv pgrep vim\\\$
 abbr pi sudo pacman -S
 abbr pqe "pacman -Qeq | fzf --preview-window=wrap --preview='env COLUMNS=9999 pacman -Qi {} | grep Description | cut -d: -f2-'"
 abbr pqi pacman -Qi
@@ -87,4 +88,10 @@ abbr yss yay --aur -Ss
 abbr ysyu yay --aur --sudoloop -Syu
 abbr zt zathura --fork
 abbr pk pkill
+abbr info info --vi-keys
+abbr updatedb sudo updatedb
+abbr mandb sudo mandb
+abbr locate locate --ignore-case
+abbr sxiv detach sxiv -a
+abbr sc shellcheck
 
