@@ -41,6 +41,9 @@ export WGETRC="$XDG_CONFIG_HOME"/wgetrc
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export VIMINIT=":source $XDG_CONFIG_HOME"/vim/vimrc
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export TEXMFVAR="$XDG_DATA_HOME/texlive"
+export CUPS_DATADIR="$XDG_DATA_HOME/cups"
+export CUPS_CACHEDIR="$XDG_CACHE_DIR/cups"
 
 
 
@@ -65,6 +68,7 @@ export VISUAL=vim
 export PAGER="less"
 export LESS="--RAW-CONTROL-CHARS --IGNORE-CASE --QUIET --squeeze-blank-lines --window=-3 --incsearch --use-color --jump-target=4"
 export MANPAGER="sh -c 'col --no-backspaces --spaces | bat --language=man --plain'"
+export MANROFFOPT="-c"
 export SHELL=/bin/sh
 export TERMINAL=kitty
 export BROWSER=firefox
