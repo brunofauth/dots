@@ -20,3 +20,8 @@ function g:FmtEscaped(...)
     return call(l:Partial, map(a:000[1:], 'shellescape(v:val)'))
 endfunction
 
+
+def g:MapRange(begin: number, end: number, Fn: func(string): string)
+    setline(begin, map(getline(begin, end), Fn))
+enddef
+

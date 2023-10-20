@@ -1,58 +1,70 @@
-function! s:get_capabilities_without_formatting()
-    let l:capabilities = lsp#default_get_supported_capabilities({})
-    call remove(l:capabilities.textDocument, 'formatting')
-    call remove(l:capabilities.textDocument, 'rangeFormatting')
-    return l:capabilities
-endfunction
+" for signs and virtual text. To set unique virtual text highlighting, you
+" can set or link `LspErrorVirtualText`, `LspWarningVirtualText`,
+" `LspInformationVirtualText` and `LspHintVirtualText` highlight groups.
 
-
-function! s:get_capabilities_for_ruff_lsp()
-    let l:capabilities = lsp#default_get_supported_capabilities({})
-    let l:capabilities.textDocument.completion.completionItemKind.valueSet = []
-    return l:capabilities
-endfunction
+let g:lsp_use_native_client = 1
+let g:lsp_format_sync_timeout = 1000
+let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_signature_help_enabled = 1
+let g:lsp_signature_help_delay = 50
+let g:lsp_ignorecase = v:false
+let g:lsp_semantic_enabled = v:true
 
 
 if executable('rust-analyzer')
-    augroup vim_lsp_rust
+    augroup vim_lsp_rust_rust_analyzer
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'rust-analyzer',
             \ 'cmd': {server_info->['rust-analyzer']},
             \ 'allowlist': ['rust'],
-            \ 'capabilities': s:get_capabilities_without_formatting(),
             \ })
     augroup END
 else
     echoerr "Couldn't find 'rust-analyzer'"
 endif
 
-if executable('ruff-lsp')
-    augroup vim_lsp_python_ruff
+" https://github.com/palantir/python-language-server/blob/develop/vscode-client/package.json
+" https://github.com/python-lsp/python-lsp-ruff
+if executable('pylsp')
+    augroup vim_lsp_python_pyls
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
-            \ 'name': 'ruff-lsp',
-            \ 'cmd': {server_info->['ruff-lsp']},
-            \ 'allowlist': ['python'],
-            \ 'capabilities': s:get_capabilities_without_formatting(),
-            \ })
+            \ 'name': 'pylsp',
+            \ 'cmd': {server_info->['pylsp']},
+            \ 'whitelist': ['python'],
+            \ 'workspace_config': {
+                \ 'pylsp': {
+                    \ 'plugins': {
+                        \ 'autopep8': {'enabled': v:false},
+                        \ 'yapf': {'enabled': v:false},
+                        \ 'rope_autoimport': {'enabled': v:false},
+                        \ 'rope_completion': {'enabled': v:true},
+                        \ 'black': {
+                            \ 'enabled': v:true,
+                            \ 'line_length': 120,
+                            \ 'skip_string_normalization': v:true,
+                            \ 'skip_magic_trailing_comma': v:false
+                        \ },
+                        \ 'ruff': {'enabled': v:true}
+                    \ }
+                \ }
+            \ }
+        \ })
     augroup END
-else
-    echoerr "Couldn't find 'ruff-lsp'"
 endif
 
-if executable('jedi-language-server')
-    augroup vim_lsp_python_jedi
+if executable('texlab')
+    augroup vim_lsp_tex_texlab
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
-            \ 'name': 'jedi-language-server',
-            \ 'cmd': {server_info->['jedi-language-server']},
-            \ 'allowlist': ['python'],
-            \ 'capabilities': s:get_capabilities_without_formatting(),
+            \ 'name': 'texlab',
+            \ 'cmd': {server_info->['texlab']},
+            \ 'allowlist': ['tex'],
             \ })
     augroup END
 else
-    echoerr "Couldn't find 'jedi-language-server'"
+    echoerr "Couldn't find 'texlab'"
 endif
 
 if executable('marksman')
@@ -62,18 +74,85 @@ if executable('marksman')
             \ 'name': 'marksman',
             \ 'cmd': {server_info->['marksman']},
             \ 'allowlist': ['markdown', 'markdown.pandoc'],
-            \ 'capabilities': s:get_capabilities_without_formatting(),
             \ })
     augroup END
 else
     echoerr "Couldn't find 'marksman'"
 endif
 
+if executable('arduino-language-server')
+    augroup vim_lsp_ino_arduino_language_server
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'arduino-language-server',
+            \ 'cmd': {server_info->[
+                \ 'arduino-language-server',
+                \ '-cli', '/usr/bin/arduino-cli',
+                \ '-cli-config', '/home/bruno/.config/arduino-cli/arduino.conf' ]},
+            \ 'allowlist': ['arduino'],
+            \ })
+    augroup END
+else
+    echoerr "Couldn't find 'arduino-language-server'"
+endif
+
+if executable('clangd')
+    augroup vim_lsp_cpp_clangd
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'clangd',
+            \ 'cmd': {server_info->[
+                \ 'clangd',
+                \ '--background-index',
+                \ '--clang-tidy',
+                \ '--header-insertion=iwyu',
+                \ '--header-insertion-decorators']},
+            \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+            \ })
+    augroup END
+endif
+
+if executable('vim-language-server')
+    augroup vim_lsp_vim_vim_language_server
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'vim-language-server',
+            \ 'cmd': {server_info->['vim-language-server', '--stdio']},
+            \ 'allowlist': ['vim'],
+            \ 'initialization_options': {
+            \     'isNeovim': v:false,
+            \     'vimruntime': $VIMRUNTIME,
+            \     'runtimepath': &rtp,
+            \     'diagnostic': { 'enable': v:true },
+            \     'indexes': { 'runtimepath': v:true },
+            \     'suggest': {
+            \         'fromVimruntime': v:true,
+            \         'fromRuntimepath': v:true,
+            \     }
+            \ }})
+    augroup END
+else
+    echoerr "Couldn't find 'vim-language-server'"
+endif
+
+if executable('sqlfluff-language-server')
+  augroup vim_lsp_sql_sqlfluff_language_server
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'sqlfluff-language-server',
+        \ 'cmd': {server_info->['sqlfluff-language-server']},
+        \ 'allowlist': ['sql'],
+        \ 'workspace_config': {'sqlfluff-ls': {'dialect': 'sqlite'}},
+        \ 'initialization_options': {'sqlfluff-ls': {'dialect': 'sqlite'}, 'dialect': 'sqlite'},
+        \ })
+  augroup END
+endif
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
+    setlocal tagfunc=lsp#tagfunc
     setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+
     nmap <buffer> <Leader>ld <plug>(lsp-definition)
     nmap <buffer> <Leader>ls <plug>(lsp-document-symbol-search)
     nmap <buffer> <Leader>lS <plug>(lsp-workspace-symbol-search)
@@ -84,20 +163,19 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> <leader>lk <plug>(lsp-hover)
     nmap <buffer> <Leader>le <plug>(lsp-document-diagnostics)
     nmap <buffer> <Leader>la <plug>(lsp-code-action)
+    nmap <buffer> <Leader>lf <plug>(lsp-signature-help)
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
     nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
-
-    let g:lsp_format_sync_timeout = 1000
-    let g:lsp_diagnostics_virtual_text_enabled = 0
+    inoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    inoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
     augroup lsp_on_enable
         autocmd!
-        autocmd BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+        autocmd BufWritePre *.rs,*.py call execute('LspDocumentFormatSync')
     augroup END
-    
-    " refer to doc to add more commands
+
 endfunction
 
 augroup lsp_install

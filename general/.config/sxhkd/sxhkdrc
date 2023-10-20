@@ -51,7 +51,7 @@ super + e
 
 super + m; {l, u, e, p, h, r, s}
     { \
-        i3lock-fancy, \
+        i3lock-fancy && sleep 1 && xset -display :0.0 dpms force off, \
         dm-tool switch-to-greeter, \
         i3-msg exit, \
         systemctl suspend, \

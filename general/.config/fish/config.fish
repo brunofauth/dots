@@ -26,14 +26,17 @@ if status --is-interactive
     end
     zoxide init fish | source
     ferium complete fish | source
+    register-python-argcomplete --shell fish pipx | source
 end
 
 
 # https://github.com/gazorby/fish-abbreviation-tips
 # yss fish-abbreviation-tips
 
+abbr ff firefox
+abbr kitty kitty --detach
 abbr pylint ruff
-abbr dash rlwrap dash
+abbr dash rlwrap --complete-filenames --case-insensitive dash
 abbr sh rlwrap dash
 abbr dict dict "(read -P 'Word: ')"
 abbr bim vim
@@ -52,7 +55,7 @@ abbr l ls
 abbr lat ls -lAht
 abbr lht ls -lht
 abbr lhtr ls -lhtr
-abbr mpv detach mpv --keep-open=yes
+abbr mpv detach mpv --keep-open=yes --save-position-on-quit
 abbr musb usbeast -m
 abbr pg pgrep -il
 abbr pgff pgrep -il firefox
@@ -94,4 +97,5 @@ abbr mandb sudo mandb
 abbr locate locate --ignore-case
 abbr sxiv detach sxiv -a
 abbr sc shellcheck
+abbr polybar detach polybar -c ~/.config/polybar/config.ini main
 

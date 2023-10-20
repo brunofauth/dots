@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Minecraft Launcher
+GenericName=Minecraft Launcher
+Comment=Official Minecraft Launcher
+Exec=sh -c 'TMPDIR="$XDG_CACHE_HOME/minecraft" exec /usr/bin/minecraft-launcher --workDir "$XDG_DATA_HOME/minecraft"'
+Icon=minecraft-launcher
+Terminal=false
+Categories=Game;Application;
+StartupNotify=true

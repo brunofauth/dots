@@ -3,11 +3,39 @@
 " '<,'>sort i /^\w\+ \w\+ /
 source ~/.config/vim/abbr/common-pt.abbr
 
+IabbrGenderPlural simp simpátic
+IabbrGenderPlural paras parassimpátic
+IabbrPlural param parâmetro
+IabbrPlural epig epigástrio
+IabbrGenderPlural epig epigástric
+IabbrPlural mut mutação mutações
+IabbrGenderPlural liq líquid
+IabbrGenderPlural posop pós-operatóri
+IabbrGenderPlural preop pré-operatóri
+IabbrGenderPlural eplc esplâncnic
+IabbrPlural pot potencial potenciais
+IabbrCapital potm potencialmente
+IabbrPlural ptnl peritoneal peritoneais
+IabbrPlural dgt digestão digestões
+IabbrGenderPlural dgt digestóri
+IabbrPlural vtlc ventilação ventilações
+IabbrGenderPlural vtl ventilad
+IabbrPlural mech mecanismo
+IabbrGenderPlural mech mecânic
+IabbrCapital ihq imuno-histoquímica
+IabbrPlural dtn distensão distensões
+IabbrPlural epit epitélio
+IabbrPlural esof esôfago
+IabbrGenderPlural esof esofágic
+IabbrPlural stmg estômago
+IabbrPlural stmgl estomacal estomacais
+IabbrGenderPlural cut cutâne
+IabbrPlural cxal cortical corticais
 IabbrPlural qtp quimioterapia
 IabbrPlural rtp radioterapia
 IabbrPlural itp imunoterapia
 IabbrPlural htp hormonioterapia
-IabbrGenderPlural epl esplênic
+IabbrGenderPlural epln esplênic
 IabbrGenderPlural ogn orgânic
 IabbrPlural dtb distúrbio
 IabbrPlural ht hematócrito
@@ -71,21 +99,22 @@ iabbr aabc artéria braquicefálica
 iabbr aaa artérias
 iabbr aabcs artérias braquicefálicas
 IabbrGenderPlural ast assintomátic
+IabbrGenderPlural st sintomátic
 IabbrGenderPlural atrof atrófic
 IabbrGenderPlural bact bacterian
 IabbrPlural bact bactéria
-iabbr bbb barreira hematoencefálica
+IabbrPlural bbb barreira\ hematoencefálica barreiras\ hematoencefálicas
 IabbrPlural bfil basófilo
 IabbrPlural bb bebê
 IabbrGenderPlural bg benign
-IabbrPlural bbloq betabloqueador
+IabbrPlural bbloq betabloqueador betabloqueadores
 IabbrPlural bex bexiga
 IabbrPlural bica bicarbonato
 iabbr bicitp bicitopenia
 iabbr bloqca bloqueador de canais de cálcio
 iabbr bloqcas bloqueadores de canais de cálcio
 IabbrPlural brdcrd bradicardia
-iabbr brdpn bradipneia
+IabbrPlural brdpn bradipneia
 IabbrPlural brqcef braquicefálico
 IabbrPlural brql bronquíolo
 IabbrGenderPlural brq brônquic
@@ -131,7 +160,6 @@ IabbrPlural cria criança
 IabbrPlural crit critério
 IabbrGenderPlural crn crônic
 IabbrPlural ccl cálculo
-IabbrPlural ca carcinoma
 IabbrPlural cel célula
 IabbrPlural cx córtex córtices
 IabbrPlural def definição definições
@@ -145,7 +173,7 @@ IabbrPlural dg diagnóstico
 IabbrGenderPlural dg diagnosticad
 IabbrCapital ddif diagnóstico\ diferencial
 IabbrCapital ddifs diagnósticos\ diferenciais
-IabbrPlural diarr diarréia
+IabbrPlural diarr diarreia
 IabbrGenderPlural dtol diastólic
 IabbrGenderPlural dif diferenciad
 IabbrPlural dift diferente
@@ -177,7 +205,7 @@ IabbrGenderPlural epid epidemiológic
 iabbr epo eritropoietina
 IabbrPlural espec especificidade
 iabbr sp espinha
-iabbr epmeg esplenomegalia
+IabbrPlural eplnmeg esplenomegalia
 IabbrGenderPlural esq esquerd
 iabbr stm estroma
 iabbr etl etilismo
@@ -193,7 +221,7 @@ IabbrPlural fblast fibroblasto
 iabbr fsg fluxo sanguíneo
 IabbrCapital fc frequência\ cardíaca
 IabbrCapital fr frequência\ respiratória
-iabbr fig fígado
+IabbrPlural fig fígado
 IabbrPlural gi gastrointestinal gastrointestinais
 IabbrPlural gua genitourinária
 IabbrPlural gu genitourinário
@@ -271,8 +299,7 @@ iabbr lucitp leucopenia
 iabbr l3n leucotrieno
 iabbr l3ns leucotrienos
 IabbrPlural lucit leucócito
-iabbr lig ligamento
-iabbr ligs ligamentos
+IabbrPlural lig ligamento
 iabbr lf linfa
 iabbr lfcito linfocitose
 IabbrPlural lfn linfonodo
@@ -350,6 +377,7 @@ IabbrPlural pntl peritoneal peritoneais
 IabbrPlural ptn peritôneo peritôneos
 IabbrPlural plct placenta
 IabbrPlural plqt plaqueta
+IabbrGenderPlural plqt plaquetári
 IabbrPlural plqtp plaquetopenia
 iabbr pluripot pluripotente
 IabbrPlural pnm pneumonia
@@ -395,17 +423,16 @@ iabbr resol resolução
 IabbrGenderPlural resp respiratóri
 IabbrPlural resp respiração respirações
 iabbr rmg ressonância
-iabbr rm ressonância magnética
+IabbrPlural rm ressonância\ magnética ressonâncias\ magnéticas
 iabbr rtpnls retroperitoneais
 iabbr rptnl retroperitoneal
 iabbr rptn retroperitôneo
 iabbr rptns retroperitôneos
 iabbr rinorr rinorréia
-iabbr rot rotação
-iabbr rots rotações
-iabbr sgm sangramento
+IabbrPlural rot rotação rotações
+IabbrPlural sgm sangramento
 iabbr sgar sangrar
-iabbr sg sangue
+IabbrPlural sg sangue
 IabbrGenderPlural sg sanguíne
 iabbr sao2 SaO~2~
 iabbr sc2 SARS-CoV-2
@@ -440,7 +467,7 @@ iabbr tqcrd taquicardia
 iabbr tqpn taquipneia
 IabbrPlural tec tecido
 IabbrPlural tp terapia
-iabbr tire tireóide
+IabbrPlural tire tireoide
 iabbr t4 tiroxina
 iabbr tol tolerância
 iabbr tols tolerâncias
@@ -470,7 +497,7 @@ IabbrCapital tx tórax
 iabbr us ultrassom
 iabbr usg ultrassonografia
 IabbrGenderPlural utn uterin
-IabbrPlural vasc vascular
+IabbrPlural vasc vascular vasculares
 iabbr vascz vascularização
 iabbr vasczs vascularizações
 iabbr vsg vaso sanguíneo

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Gitui
+GenericName=Version Control System
+Comment=Interact with Git through a TUI
+Icon=git
+TryExec=gitui
+Exec=/bin/sh -c 'cd "$(zenity --file-selection --directory)" && exec gitui'
+Terminal=true
+Categories=ConsoleOnly;VCS;TUI;
+StartupWMClass=gitui

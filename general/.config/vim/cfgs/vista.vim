@@ -14,5 +14,11 @@ endfunction
 augroup vista_cfg
     autocmd!
     autocmd BufWinEnter * call s:RefreshVistaSidebar()
+
+    " " Exit Vim if Vista is the only window remaining in the only tab.
+    " autocmd BufEnter __vista__ if winnr('$') == 1 | quit | endif
+    " autocmd bufenter * if winnr("$") == 1 && vista#sidebar#IsOpen() | execute "normal! :q!\<CR>" | endif
+    " autocmd BufEnter * if winnr('$') == 1 && bufname() == "__vista__" | execute "normal! :q!\<CR>" | endif
+
 augroup END
 

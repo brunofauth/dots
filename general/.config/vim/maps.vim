@@ -7,6 +7,28 @@ const s:LINTER_COMMANDS = {
     \ 'sh': 'shellcheck --format=gcc --exclude=SC3043 %s',
 \ }
 
+nnoremap Q <Nop>
+nnoremap <C-End> <Nop>
+nnoremap <C-Home> <Nop>
+inoremap <C-End> <Nop>
+inoremap <C-Home> <Nop>
+vnoremap <C-End> <Nop>
+vnoremap <C-Home> <Nop>
+
+" Mistypes
+nnoremap <Leader>g zg
+nnoremap <Leader>ug zug
+
+onoremap ib :execute "keepjumps normal ggVG"<CR>
+
+nnoremap ]<Space> o<Esc>k<End>
+nnoremap [<Space> O<Esc>j<End>
+
+nnoremap ]<Enter> o<Esc>j<End>
+nnoremap [<Enter> O<Esc>k<End>
+
+nnoremap dD "_dd
+
 function s:RunLinter()
     const l:cmd = FmtEscaped(s:LINTER_COMMANDS->get(&filetype, v:none), expand('%'))
     lexpr system(l:cmd) | lwindow
@@ -18,6 +40,10 @@ command RunLinter silent call s:RunLinter()
 noremap <silent> <Leader>cs <Cmd>RunLinter<CR>
 noremap <silent> <Leader>cc <Cmd>!cls && compileit %<CR>
 
+inoremap <Leader><Up> ↑
+inoremap <Leader><Down> ↓
+inoremap <Leader><Left> ←
+inoremap <Leader><Right> →
 
 " Write and backup; write as root.
 noremap <Leader>w <Cmd>call WriteAndBackUp()<CR>
@@ -33,8 +59,8 @@ nnoremap gK K
 nnoremap K kJ
 
 " Move lines up and down
-nnoremap <C-J> <Cmd>move +1<CR>
-nnoremap <C-K> <Cmd>move -2<CR>
+nnoremap <C-J> <Cmd>execute 'move +' .. v:count1->string()<CR>
+nnoremap <C-K> <Cmd>execute 'move -' .. string(v:count1 + 1)<CR>
 
 " tabn/tabp in terminals which dont support pgup/pgdn
 noremap <Leader><right> <Cmd>tabn<CR>
@@ -78,7 +104,8 @@ nnoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
 vnoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
 inoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
 
-nnoremap <Leader>m :vertical terminal ++close men<CR>
+nnoremap <silent> <Leader>m <Cmd>vertical terminal ++close men<CR>
+nnoremap <silent> <Leader>t <Cmd>vertical terminal ++close fish<CR>
 
 
 " Take a Screenshot and insert, or not it's path
@@ -95,9 +122,9 @@ inoremap ;;c <ESC>B~Ela
 
 " For some reason, when I accidentally type 'cie', vim hangs and I lose
 " everything, so I might as well just map it to something harmless.
-nnoremap cie <ESC>
+nnoremap cie <Nop>
 " gqi as well
-nnoremap gqi <ESC>
+nnoremap gqi <Nop>
 
 
 " Mappings for :help termdebug

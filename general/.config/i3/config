@@ -107,7 +107,9 @@ bindsym $mod+Shift+Right move right
 # WINDOW BORDERS' SETTINGS
 hide_edge_borders none
 default_border pixel 2
+# default_border none
 default_floating_border normal
+# default_floating_border none
 
 
 # APP SPECIFIC CONFIGURATION

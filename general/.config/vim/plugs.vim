@@ -45,9 +45,9 @@ Plug 'https://github.com/vim-scripts/ZoomWin'
 " Allows you to use <Tab> for insert completion (:h ins-completion).
 Plug 'https://github.com/ervandew/supertab'
 
-" This plugin uses clang for accurately completing C and C++ code.
-Plug 'https://github.com/xavierd/clang_complete'
-let g:clang_library_path='/usr/lib/'
+" " This plugin uses clang for accurately completing C and C++ code.
+" Plug 'https://github.com/xavierd/clang_complete'
+" let g:clang_library_path='/usr/lib/'
 
 " HTML, CSS abbreviations
 Plug 'https://github.com/mattn/emmet-vim/'
@@ -59,7 +59,7 @@ runtime cfgs/pandoc-syntax.vim
 
 " " Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
 " Plug 'godlygeek/tabular'
-Plug 'preservim/vim-markdown'
+" Plug 'preservim/vim-markdown'
 runtime cfgs/vim-markdown.vim
 
 " Reading mode
@@ -95,6 +95,12 @@ Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
 "    - gc in visual mode to comment out the selection
 "    - gc in operator pending mode to target a comment.
 Plug 'https://github.com/tpope/vim-commentary'
+
+" automatic table creator & formatter
+Plug 'https://github.com/dhruvasagar/vim-table-mode'
+
+Plug 'https://github.com/jceb/vim-orgmode'
+Plug 'https://github.com/tpope/vim-speeddating'
 
 call plug#end()
 

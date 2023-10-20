@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Vimpc
+GenericName=Music Player
+Comment=Play songs
+Icon=mpd
+TryExec=vimpc
+Exec=vimpc
+Terminal=true
+Categories=Audio;Player;ConsoleOnly;
+StartupWMClass=vimpc

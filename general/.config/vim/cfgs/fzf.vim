@@ -29,6 +29,7 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-s': 'source',
   \ 'ctrl-y': {lines -> setreg('"', join(lines, "\n"))},
   \ }
 
@@ -41,18 +42,20 @@ omap <Leader><tab> <Plug>(fzf-maps-o)
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('find -mindepth 1 -maxdepth 1 -type d -printf "%%P/\n" , ! -type d -printf "%%P\n"')
 
 nmap <Leader>f <Plug>(fzf-prefix)
-nnoremap <Plug>(fzf-prefix)l :FzfBLines<CR>
-nnoremap <Plug>(fzf-prefix)L :FzfLocate
-nnoremap <Plug>(fzf-prefix)r :FzfRg<CR>
-nnoremap <Plug>(fzf-prefix)c :FzfCommands<CR>
-nnoremap <Plug>(fzf-prefix)f :FzfFiles<CR>
-nnoremap <Plug>(fzf-prefix)F :FzfGFiles<CR>
-nnoremap <Plug>(fzf-prefix)b :FzfBuffers<CR>
-nnoremap <Plug>(fzf-prefix)w :FzfWindows<CR>
-nnoremap <Plug>(fzf-prefix)C :FzfColors<CR>
-nnoremap <Plug>(fzf-prefix)t :FzfFiletypes<CR>
-nnoremap <Plug>(fzf-prefix)h :FzfHelptags<CR>
-nnoremap <Plug>(fzf-prefix)Hf :FzfHistory<CR>
-nnoremap <Plug>(fzf-prefix)Hc :FzfHistory:<CR>
-nnoremap <Plug>(fzf-prefix)Hs :FzfHistory/<CR>
+nnoremap <Plug>(fzf-prefix)l  <Cmd>FzfBLines<CR>
+nnoremap <Plug>(fzf-prefix)L  :FzfLocate 
+nnoremap <Plug>(fzf-prefix)r  <Cmd>FzfRg<CR>
+nnoremap <Plug>(fzf-prefix)R  :FzfRg <C-R><C-A><CR>
+nnoremap <Plug>(fzf-prefix)c  <Cmd>FzfCommands<CR>
+nnoremap <Plug>(fzf-prefix)f  <Cmd>FzfFiles<CR>
+nnoremap <Plug>(fzf-prefix)F  <Cmd>execute "FzfFiles" g:vimrc_home_dir<CR>
+nnoremap <Plug>(fzf-prefix)g  <Cmd>FzfGFiles<CR>
+nnoremap <Plug>(fzf-prefix)b  <Cmd>FzfBuffers<CR>
+nnoremap <Plug>(fzf-prefix)w  <Cmd>FzfWindows<CR>
+nnoremap <Plug>(fzf-prefix)C  <Cmd>FzfColors<CR>
+nnoremap <Plug>(fzf-prefix)t  <Cmd>FzfFiletypes<CR>
+nnoremap <Plug>(fzf-prefix)h  <Cmd>FzfHelptags<CR>
+nnoremap <Plug>(fzf-prefix)Hf <Cmd>FzfHistory<CR>
+nnoremap <Plug>(fzf-prefix)Hc <Cmd>FzfHistory:<CR>
+nnoremap <Plug>(fzf-prefix)Hs <Cmd>FzfHistory/<CR>
 

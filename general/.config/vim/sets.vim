@@ -88,4 +88,8 @@ endif
 
 set background=dark
 
+set timeoutlen=500
+
+highlight Pmenu ctermfg=White guifg=White
+highlight Pmenu ctermbg=Black guibg=Black
 
