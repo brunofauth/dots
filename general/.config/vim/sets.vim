@@ -93,3 +93,36 @@ set timeoutlen=500
 highlight Pmenu ctermfg=White guifg=White
 highlight Pmenu ctermbg=Black guibg=Black
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set sessionoptions=
+
+" hidden and unloaded buffers, not just those in windows
+set sessionoptions+=buffers
+
+" manually created folds, opened/closed folds and local fold options
+set sessionoptions+=folds
+
+" " the help window
+" set sessionoptions+=help
+
+" sessionfile's parent dir becomes the cwd
+set sessionoptions+=sesdir
+
+" all tab pages; without this only the current tab page is restored,
+" so that you can make a session for each tab page separately
+set sessionoptions+=tabpages
+
+" " include terminal windows where the command can be restored
+" set sessionoptions+=terminal
+
+" global variables that start with an uppercase letter and contain at least
+" one lowercase letter. Only String and Number types are stored.
+set sessionoptions+=globals
+
+" options and mappings local to a window or buffer (not global values for local options)
+set sessionoptions+=localoptions
+
+" all options and mappings (also global values for local options)
+set sessionoptions+=options
+

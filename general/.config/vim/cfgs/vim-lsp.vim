@@ -9,6 +9,7 @@ let g:lsp_signature_help_enabled = 1
 let g:lsp_signature_help_delay = 50
 let g:lsp_ignorecase = v:false
 let g:lsp_semantic_enabled = v:true
+" let g:lsp_log_file = $HOME . '/vim-lsp.log'
 
 
 if executable('rust-analyzer')
@@ -31,17 +32,20 @@ if executable('pylsp')
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'pylsp',
-            \ 'cmd': {server_info->['pylsp']},
+            \ 'cmd': {server_info->[
+                \ 'pylsp',
+                \ '--verbose'
+            \ ]},
             \ 'whitelist': ['python'],
             \ 'workspace_config': {
                 \ 'pylsp': {
                     \ 'plugins': {
                         \ 'autopep8': {'enabled': v:false},
-                        \ 'yapf': {'enabled': v:false},
+                        \ 'yapf': {'enabled': v:true},
                         \ 'rope_autoimport': {'enabled': v:false},
                         \ 'rope_completion': {'enabled': v:true},
                         \ 'black': {
-                            \ 'enabled': v:true,
+                            \ 'enabled': v:false,
                             \ 'line_length': 120,
                             \ 'skip_string_normalization': v:true,
                             \ 'skip_magic_trailing_comma': v:false
