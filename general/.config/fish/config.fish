@@ -44,7 +44,7 @@ abbr c cls
 abbr ffmpeg ffmpeg -hide_banner
 abbr ffprobe ffprobe -hide_banner
 abbr ga git add
-abbr gc git clone
+abbr gc git clone \(read -P "'Repo URL: '" \)
 abbr gcm "read -P 'Commit Message: ' | xargs -rd '\n' git commit -m"
 abbr gd git diff
 abbr gp git push
