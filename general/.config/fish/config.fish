@@ -33,6 +33,9 @@ end
 # https://github.com/gazorby/fish-abbreviation-tips
 # yss fish-abbreviation-tips
 
+abbr npm pnpm
+abbr mkd mkdir -p
+abbr mkt mktemp --tempdir
 abbr ff firefox
 abbr kitty kitty --detach
 abbr pylint ruff

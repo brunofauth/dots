@@ -90,8 +90,47 @@ set background=dark
 
 set timeoutlen=500
 
+set termguicolors
 highlight Pmenu ctermfg=White guifg=White
 highlight Pmenu ctermbg=Black guibg=Black
+
+highlight QuickFixLine ctermfg=White guifg=White
+highlight QuickFixLine ctermbg=Blue guibg=Blue
+
+highlight Search term=reverse ctermfg=0 guifg=Black
+highlight Search term=reverse ctermbg=11 guibg=DarkYellow
+
+highlight WildMenu term=reverse ctermfg=0 guifg=Black
+highlight WildMenu term=reverse ctermbg=11 guibg=DarkYellow
+
+highlight Todo term=reverse ctermfg=0 guifg=Black
+highlight Todo term=reverse ctermbg=11 guibg=DarkYellow
+
+highlight StatusLine term=bold,reverse cterm=bold gui=bold
+highlight StatusLine ctermfg=Black guifg=White
+highlight StatusLine ctermbg=DarkGray guibg=#121212
+
+highlight StatusLineNC term=reverse cterm=NONE gui=NONE
+highlight StatusLineNC ctermfg=black guifg=White
+highlight StatusLineNC ctermbg=Gray guibg=#424242
+
+highlight VertSplit term=reverse cterm=NONE gui=NONE guibg=Black
+
+highlight SignColumn term=standout
+highlight SignColumn ctermfg=White guifg=White
+highlight SignColumn ctermbg=Gray guibg=#424242
+
+highlight TabLine term=underline cterm=underline gui=underline 
+highlight TabLine ctermfg=White guifg=White
+highlight TabLine ctermbg=Gray guibg=#424242
+
+highlight TabLineSel term=bold cterm=bold gui=bold
+highlight TabLineSel ctermfg=Black guifg=White
+highlight TabLineSel ctermbg=DarkGray guibg=#121212
+
+highlight TabLineFill term=reverse cterm=NONE gui=NONE
+highlight TabLineFill ctermfg=White guifg=White
+highlight TabLineFill ctermbg=Gray guibg=#424242
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

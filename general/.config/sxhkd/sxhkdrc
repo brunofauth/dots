@@ -5,6 +5,9 @@ shift + F6
 super + Return
     $TERMINAL
 
+super + F1
+    $TERMINAL
+
 super + d
     rofi -modi drun,run,window -show-icons -show drun -theme theme.rasi
 
@@ -67,6 +70,9 @@ super + shift + k
     notify-send "Network Online" "Internet connection found" -t 3000; llkk
 
 XF86TouchpadToggle
+    toggle-touchpad
+
+shift + XF86TouchpadToggle
     xset -display :0.0 dpms force {off,on}
 
 XF86Audio{Play,Next,Prev}

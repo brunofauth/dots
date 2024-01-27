@@ -102,5 +102,8 @@ Plug 'https://github.com/dhruvasagar/vim-table-mode'
 Plug 'https://github.com/jceb/vim-orgmode'
 Plug 'https://github.com/tpope/vim-speeddating'
 
+Plug 'leafOfTree/vim-svelte-plugin'
+runtime cfgs/vim-svelte.vim
+
 call plug#end()
 

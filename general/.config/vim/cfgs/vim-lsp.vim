@@ -13,7 +13,7 @@ let g:lsp_semantic_enabled = v:true
 
 
 if executable('rust-analyzer')
-    augroup vim_lsp_rust_rust_analyzer
+    augroup vim_lsp__rust__rust_analyzer
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'rust-analyzer',
@@ -28,13 +28,13 @@ endif
 " https://github.com/palantir/python-language-server/blob/develop/vscode-client/package.json
 " https://github.com/python-lsp/python-lsp-ruff
 if executable('pylsp')
-    augroup vim_lsp_python_pyls
+    augroup vim_lsp__python__pylsp
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'pylsp',
             \ 'cmd': {server_info->[
                 \ 'pylsp',
-                \ '--verbose'
+                \ '-vv'
             \ ]},
             \ 'whitelist': ['python'],
             \ 'workspace_config': {
@@ -50,7 +50,7 @@ if executable('pylsp')
                             \ 'skip_string_normalization': v:true,
                             \ 'skip_magic_trailing_comma': v:false
                         \ },
-                        \ 'ruff': {'enabled': v:true}
+                        \ 'ruff': {'enabled': v:false}
                     \ }
                 \ }
             \ }
@@ -59,33 +59,33 @@ if executable('pylsp')
 endif
 
 if executable('texlab')
-    augroup vim_lsp_tex_texlab
+    augroup vim_lsp__tex__texlab
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'texlab',
             \ 'cmd': {server_info->['texlab']},
-            \ 'allowlist': ['tex'],
-            \ })
+            \ 'allowlist': ['tex']
+        \ })
     augroup END
 else
     echoerr "Couldn't find 'texlab'"
 endif
 
 if executable('marksman')
-    augroup vim_lsp_md_marksman
+    augroup vim_lsp__md__marksman
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'marksman',
             \ 'cmd': {server_info->['marksman']},
-            \ 'allowlist': ['markdown', 'markdown.pandoc'],
-            \ })
+            \ 'allowlist': ['markdown', 'markdown.pandoc']
+        \ })
     augroup END
 else
     echoerr "Couldn't find 'marksman'"
 endif
 
 if executable('arduino-language-server')
-    augroup vim_lsp_ino_arduino_language_server
+    augroup vim_lsp__ino__arduino_language_server
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'arduino-language-server',
@@ -93,15 +93,15 @@ if executable('arduino-language-server')
                 \ 'arduino-language-server',
                 \ '-cli', '/usr/bin/arduino-cli',
                 \ '-cli-config', '/home/bruno/.config/arduino-cli/arduino.conf' ]},
-            \ 'allowlist': ['arduino'],
-            \ })
+            \ 'allowlist': ['arduino']
+        \ })
     augroup END
 else
     echoerr "Couldn't find 'arduino-language-server'"
 endif
 
 if executable('clangd')
-    augroup vim_lsp_cpp_clangd
+    augroup vim_lsp__cpp__clangd
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'clangd',
@@ -111,13 +111,13 @@ if executable('clangd')
                 \ '--clang-tidy',
                 \ '--header-insertion=iwyu',
                 \ '--header-insertion-decorators']},
-            \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-            \ })
+            \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp']
+        \ })
     augroup END
 endif
 
 if executable('vim-language-server')
-    augroup vim_lsp_vim_vim_language_server
+    augroup vim_lsp__vim__vim_language_server
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'vim-language-server',
@@ -133,14 +133,15 @@ if executable('vim-language-server')
             \         'fromVimruntime': v:true,
             \         'fromRuntimepath': v:true,
             \     }
-            \ }})
+            \ }
+    \ })
     augroup END
 else
     echoerr "Couldn't find 'vim-language-server'"
 endif
 
 if executable('sqlfluff-language-server')
-  augroup vim_lsp_sql_sqlfluff_language_server
+  augroup vim_lsp__sql__sqlfluff_language_server
     autocmd!
     autocmd User lsp_setup call lsp#register_server({
         \ 'name': 'sqlfluff-language-server',
@@ -148,7 +149,45 @@ if executable('sqlfluff-language-server')
         \ 'allowlist': ['sql'],
         \ 'workspace_config': {'sqlfluff-ls': {'dialect': 'sqlite'}},
         \ 'initialization_options': {'sqlfluff-ls': {'dialect': 'sqlite'}, 'dialect': 'sqlite'},
-        \ })
+    \ })
+  augroup END
+endif
+
+if executable('typescript-language-server')
+  augroup vim_lsp__typescript__typescript_language_server
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': {server_info->['typescript-language-server', '--stdio']},
+        \ 'allowlist': ['javascript', 'typescript'],
+        \ 'initialization_options': {'plugins': []}
+    \ })
+  augroup END
+endif
+
+if executable('tailwindcss-language-server')
+  augroup vim_lsp__css__tailwindcss_language_server
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'tailwindcss-language-server',
+        \ 'cmd': {server_info->['tailwindcss-language-server', '--stdio']},
+        \ 'allowlist': ['css', 'html', 'svelte'],
+        \ 'workspace_config': {},
+        \ 'initialization_options': {'plugins': []}
+    \ })
+  augroup END
+endif
+
+if executable('svelteserver')
+  augroup vim_lsp__svelte__svelteserver
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'svelteserver',
+        \ 'cmd': {server_info->['svelteserver', '--stdio']},
+        \ 'allowlist': ['svelte'],
+        \ 'workspace_config': {},
+        \ 'initialization_options': {'plugins': []}
+    \ })
   augroup END
 endif
 
@@ -177,7 +216,8 @@ function! s:on_lsp_buffer_enabled() abort
 
     augroup lsp_on_enable
         autocmd!
-        autocmd BufWritePre *.rs,*.py call execute('LspDocumentFormatSync')
+        " autocmd BufWritePre *.rs,*.py call execute('LspDocumentFormatSync')
+        autocmd BufWritePre *.* call execute('LspDocumentFormatSync')
     augroup END
 
 endfunction
