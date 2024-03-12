@@ -171,7 +171,7 @@ if executable('tailwindcss-language-server')
     autocmd User lsp_setup call lsp#register_server({
         \ 'name': 'tailwindcss-language-server',
         \ 'cmd': {server_info->['tailwindcss-language-server', '--stdio']},
-        \ 'allowlist': ['css', 'html', 'svelte'],
+        \ 'allowlist': ['css', 'html'],
         \ 'workspace_config': {},
         \ 'initialization_options': {'plugins': []}
     \ })
@@ -185,6 +185,32 @@ if executable('svelteserver')
         \ 'name': 'svelteserver',
         \ 'cmd': {server_info->['svelteserver', '--stdio']},
         \ 'allowlist': ['svelte'],
+        \ 'workspace_config': {},
+        \ 'initialization_options': {'plugins': []}
+    \ })
+  augroup END
+endif
+
+if executable('kotlin-language-server')
+  augroup vim_lsp__kotlin__kotlin_lanugage_server
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'kotlin-language-server',
+        \ 'cmd': {server_info->['kotlin-language-server']},
+        \ 'allowlist': ['kotlin'],
+        \ 'workspace_config': {},
+        \ 'initialization_options': {'plugins': []}
+    \ })
+  augroup END
+endif
+
+if executable('cmake-language-server')
+  augroup vim_lsp__txt__cmake_language_server
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'cmake-language-server',
+        \ 'cmd': {server_info->['cmake-language-server']},
+        \ 'allowlist': ['cmake'],
         \ 'workspace_config': {},
         \ 'initialization_options': {'plugins': []}
     \ })
@@ -216,8 +242,7 @@ function! s:on_lsp_buffer_enabled() abort
 
     augroup lsp_on_enable
         autocmd!
-        " autocmd BufWritePre *.rs,*.py call execute('LspDocumentFormatSync')
-        autocmd BufWritePre *.* call execute('LspDocumentFormatSync')
+        autocmd BufWritePre *.rs,*.py,*.html,*.ts,*.js,*.svelte,*.css call execute('LspDocumentFormatSync')
     augroup END
 
 endfunction

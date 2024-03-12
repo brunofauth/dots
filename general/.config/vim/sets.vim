@@ -94,6 +94,10 @@ set termguicolors
 highlight Pmenu ctermfg=White guifg=White
 highlight Pmenu ctermbg=Black guibg=Black
 
+highlight PmenuSel term=bold cterm=bold gui=bold
+highlight PmenuSel ctermfg=242 guifg=Black
+highlight PmenuSel ctermbg=0 guibg=DarkGrey
+
 highlight QuickFixLine ctermfg=White guifg=White
 highlight QuickFixLine ctermbg=Blue guibg=Blue
 

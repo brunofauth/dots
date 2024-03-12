@@ -19,7 +19,8 @@ vnoremap <C-Home> <Nop>
 nnoremap <Leader>g zg
 nnoremap <Leader>ug zug
 
-onoremap ib :execute "keepjumps normal ggVG"<CR>
+onoremap ib <Cmd>keepjumps normal ggVG<CR>
+vnoremap ib <Cmd>keepjumps normal ggVG<CR>
 
 nnoremap ]<Space> o<Esc>k<End>
 nnoremap [<Space> O<Esc>j<End>
@@ -58,6 +59,8 @@ noremap <S-Home> <Home>
 nnoremap gK K
 nnoremap K kJ
 
+nnoremap go <Cmd>!zathura --fork <cfile><CR>
+
 " Move lines up and down
 nnoremap <C-J> <Cmd>execute 'move +' .. v:count1->string()<CR>
 nnoremap <C-K> <Cmd>execute 'move -' .. string(v:count1 + 1)<CR>
@@ -85,15 +88,14 @@ nnoremap <Leader>h <Cmd>set hlsearch!<CR>
 nnoremap <F1> <Cmd>helpclose<CR>
 vnoremap <F1> <Cmd>helpclose<CR>
 inoremap <F1> <Cmd>helpclose<CR>
-nnoremap <S-F1> :help <C-R><C-W><CR>
-vnoremap <S-F1> :help <C-R><C-W><CR>
+nnoremap <S-F1> :vertical help <C-R><C-W><CR>
+vnoremap <S-F1> :vertical help <C-R><C-W><CR>
 nnoremap <F4> <Cmd>set list!<CR>
 vnoremap <F4> <Cmd>set list!<CR>
 inoremap <F4> <Cmd>set list!<CR>
 
 " Quickfix control bindings
 nnoremap <Leader>qq <Cmd>ToggleLocList<CR>
-nnoremap <Leader>qt <Cmd>ToggleLocList<CR>
 nnoremap <Leader>qc <Cmd>lclose<CR>
 nnoremap <Leader>qo <Cmd>lopen<CR>
 
@@ -105,6 +107,7 @@ vnoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
 inoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
 
 nnoremap <silent> <Leader>m <Cmd>vertical terminal ++close men<CR>
+nnoremap <silent> <Leader>M :Man <C-R><C-W><CR>
 nnoremap <silent> <Leader>t <Cmd>vertical terminal ++close fish<CR>
 
 
@@ -114,10 +117,6 @@ nnoremap <Leader>PP :echo 'Saved' SaveScreenshot()<CR>
 " Same as above, but use the contents of '"' instead of getcwd()
 nnoremap <Leader>pr :call setreg('"', SaveScreenshot(getreg('"')))<CR>P
 nnoremap <Leader>PR :call 'Saved' SaveScreenshot(getreg('"'))<CR>
-
-
-" Capitalize last word
-inoremap ;;c <ESC>B~Ela
 
 
 " For some reason, when I accidentally type 'cie', vim hangs and I lose
@@ -139,7 +138,6 @@ nnoremap <Leader>dr :Run<CR>
 nnoremap <Leader>dd :Gdb<CR>
 nnoremap <Leader>dp :Program<CR>
 
-nnoremap <Leader>gg :Goyo<CR>
 
 let s:path = expand('<sfile>:p:h') . '/snippets'
 augroup snippets
@@ -149,6 +147,5 @@ augroup snippets
     autocmd FileType python             exec 'source' s:path .. '/py.vim'
     autocmd FileType cpp                exec 'source' s:path .. '/cpp.vim'
     autocmd FileType c                  exec 'source' s:path .. '/c.vim'
-    autocmd FileType vim.abbr           exec 'source' s:path .. '/abbr.vim'
 augroup END
 

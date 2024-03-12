@@ -12,12 +12,32 @@ execute 'source ' . s:PLUG_FILE
 
 call plug#begin(s:PLUG_INSTALL_DIR)
 
+
+""" SYNTAX HIGHLIGHTING """
+
 " Fish syntax highlighting
 Plug 'dag/vim-fish'
 
-" Code formatting
-Plug 'psf/black'
-let g:black_linelength = 120
+" Support for all of Pandoc's markdown syntax features
+Plug 'vim-pandoc/vim-pandoc-syntax'
+runtime cfgs/pandoc-syntax.vim
+
+" " Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
+" Plug 'godlygeek/tabular'
+" Plug 'preservim/vim-markdown'
+Plug '~/cln/vim-markdown-ext/'
+runtime cfgs/vim-markdown.vim
+
+" indent, highlight syntax and detect sxhkd config files
+Plug 'kovetskiy/sxhkd-vim'
+
+" syntax highlighting and filetype detection for RON
+Plug 'ron-rs/ron.vim'
+
+Plug 'leafOfTree/vim-svelte-plugin'
+runtime cfgs/vim-svelte.vim
+
+"""""""""""""""""""""""""""
 
 " Manage tags, quotes, brackets...
 Plug 'https://github.com/tpope/vim-surround.git'
@@ -42,9 +62,6 @@ endif
 " Toggle fullscreen for vim windows, useful when using splits
 Plug 'https://github.com/vim-scripts/ZoomWin'
 
-" Allows you to use <Tab> for insert completion (:h ins-completion).
-Plug 'https://github.com/ervandew/supertab'
-
 " " This plugin uses clang for accurately completing C and C++ code.
 " Plug 'https://github.com/xavierd/clang_complete'
 " let g:clang_library_path='/usr/lib/'
@@ -53,23 +70,9 @@ Plug 'https://github.com/ervandew/supertab'
 Plug 'https://github.com/mattn/emmet-vim/'
 runtime cfgs/emmet.vim
 
-" Support for all of Pandoc's markdown syntax features
-Plug 'vim-pandoc/vim-pandoc-syntax'
-runtime cfgs/pandoc-syntax.vim
-
-" " Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
-" Plug 'godlygeek/tabular'
-" Plug 'preservim/vim-markdown'
-runtime cfgs/vim-markdown.vim
-
 " Reading mode
 Plug 'https://github.com/junegunn/goyo.vim'
-
-" indent, highlight syntax and detect sxhkd config files
-Plug 'kovetskiy/sxhkd-vim'
-
-" syntax highlighting and filetype detection for RON
-Plug 'ron-rs/ron.vim'
+runtime cfgs/goyo.vim
 
 " Async Language Server Protocol plugin for vim8 and neovim.
 Plug 'prabirshrestha/vim-lsp'
@@ -99,11 +102,21 @@ Plug 'https://github.com/tpope/vim-commentary'
 " automatic table creator & formatter
 Plug 'https://github.com/dhruvasagar/vim-table-mode'
 
-Plug 'https://github.com/jceb/vim-orgmode'
+" Use CTRL-A/CTRL-X to increment dates, times, and more
 Plug 'https://github.com/tpope/vim-speeddating'
 
-Plug 'leafOfTree/vim-svelte-plugin'
-runtime cfgs/vim-svelte.vim
+" A Vim plugin to visualizes the Vim undo tree.
+Plug 'https://github.com/simnalamburt/vim-mundo'
+
+" allows REPL shells inside Vim in a seamless way.
+Plug 'https://github.com/ubaldot/vim-replica'
+runtime cfgs/replica.vim
+
+Plug 'https://github.com/kana/vim-textobj-user'
+Plug 'https://github.com/glts/vim-textobj-comment'
+
+" Autogenerate abbreviations for many variations of a word, according its inflections 
+Plug 'https://github.com/brunofauth/vim-inflect-abbr'
 
 call plug#end()
 

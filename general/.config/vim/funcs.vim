@@ -1,10 +1,7 @@
 " vim9script
 
-runtime funcs/monadics.vim
 runtime funcs/platf.vim
-runtime funcs/enum_lines.vim
 runtime funcs/util.vim
-runtime funcs/iabbr.vim
 
 
 def! WslToW32(path: string): string
@@ -84,7 +81,7 @@ def! SaveScreenshot(out_dir: string='', mk_dirs: bool=true): string
 enddef
 
 
-def! SaveDeathSession(): void
+def! g:SaveDeathSession(): void
     if v:dying
         mksession! ~/.cache/vim/death-sess.vim
     endif
