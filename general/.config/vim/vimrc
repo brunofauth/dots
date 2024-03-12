@@ -9,22 +9,29 @@ if $XDG_DATA_HOME ==# ''
     quit!
 endif
 
+if $XDG_CACHE_HOME ==# ''
+    echoerr 'Please, set $XDG_DATA_HOME.'
+    quit!
+endif
+
+" So that Vim complies to the XDG specs
 let g:vimrc_home_dir = $XDG_CONFIG_HOME .. "/vim"
 
 
 
-" Sets the location for the viminfo file
-set viminfo+=n$XDG_DATA_HOME/vim/viminfo
+" :help viminfo-file
+set viminfo='100,<50,s10,/10,h
+set viminfofile=$XDG_CACHE_HOME/vim/viminfo
 
-" So that Vim complies to the XDG specs
-set runtimepath=$VIMRUNTIME
-set runtimepath+=/usr/share/vim/vimfiles
+set runtimepath=$
 let &runtimepath .= "," .. g:vimrc_home_dir
+set runtimepath+=/usr/share/vim/vimfiles
+set runtimepath+=$VIMRUNTIME
+set runtimepath+=/usr/share/vim/vimfiles/after
 let &runtimepath .= "," .. g:vimrc_home_dir .. "/after"
 
-let &runtimepath .= ",/home/bruno/cln/vim-markdown-ext/"
 
-
+runtime! ftplugin/man.vim
 packadd termdebug
 
 
@@ -42,7 +49,6 @@ augroup reload_when_save
     autocmd!
     autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
     autocmd BufWritePost ~/.config/vim/vimrc source %
-    autocmd BufWritePost ~/.config/vim/abbr/* source %
 augroup END
 
 augroup options_per_ftype
@@ -52,5 +58,8 @@ augroup options_per_ftype
     autocmd FileType markdown setlocal ignorecase infercase
 augroup END
 
-augroup sess_on_crash | autocmd! VimLeave * call SaveDeathSession() | augroup END
+augroup sess_on_crash
+    autocmd!
+    autocmd! VimLeave * call g:SaveDeathSession()
+augroup END
 

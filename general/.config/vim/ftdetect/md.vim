@@ -97,7 +97,7 @@ augroup ftdetect_md
     autocmd BufRead,BufNewFile *.md runtime! abbr/*.abbr
     autocmd BufRead,BufNewFile *.md setlocal omnifunc=s:CompleteAbbrs
     # autocmd BufRead,BufNewFile *.md setlocal spell spelllang=pt_br,en_us | legacy let &l:spellfile = s:GetSpellFiles(['pt.utf-8', 'en.utf-8'])
-    autocmd BufRead,BufNewFile *.md setlocal spell spelllang=pt_br | legacy let &l:spellfile = s:GetSpellFiles(['pt.utf-8'])
+    autocmd BufRead,BufNewFile *.md setlocal spell spelllang=pt | legacy let &l:spellfile = s:GetSpellFiles(['pt.utf-8'])
 
     autocmd BufRead,BufNewFile *.md command! -buffer -range ToggleCheckBox call ToggleCheckBox(<line1>, <line2>)
     autocmd BufRead,BufNewFile *.md noremap <buffer> <Leader>t :ToggleCheckBox<CR>
