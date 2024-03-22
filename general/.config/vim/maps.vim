@@ -1,7 +1,4 @@
 
-let mapleader = '\'
-
-
 const s:LINTER_COMMANDS = {
     \ 'vim': 'vint %s',
     \ 'sh': 'shellcheck --format=gcc --exclude=SC3043 %s',
@@ -15,10 +12,7 @@ inoremap <C-Home> <Nop>
 vnoremap <C-End> <Nop>
 vnoremap <C-Home> <Nop>
 
-" Mistypes
-nnoremap <Leader>g zg
-nnoremap <Leader>ug zug
-
+" Whole Buffer text object
 onoremap ib <Cmd>keepjumps normal ggVG<CR>
 vnoremap ib <Cmd>keepjumps normal ggVG<CR>
 
@@ -59,15 +53,12 @@ noremap <S-Home> <Home>
 nnoremap gK K
 nnoremap K kJ
 
-nnoremap go <Cmd>!zathura --fork <cfile><CR>
+" Open the filename under the cursor with xdg-open
+nnoremap go <Cmd>silent !nohup xdg-open <cfile> > /dev/null 2>&1 &<CR><Cmd>redraw!<CR>
 
 " Move lines up and down
 nnoremap <C-J> <Cmd>execute 'move +' .. v:count1->string()<CR>
 nnoremap <C-K> <Cmd>execute 'move -' .. string(v:count1 + 1)<CR>
-
-" tabn/tabp in terminals which dont support pgup/pgdn
-noremap <Leader><right> <Cmd>tabn<CR>
-noremap <Leader><left>  <Cmd>tabp<CR>
 
 " Yanks the whole buffer to '+'
 nnoremap <Leader>ya ggVG"+y<C-o><C-o>
@@ -88,8 +79,8 @@ nnoremap <Leader>h <Cmd>set hlsearch!<CR>
 nnoremap <F1> <Cmd>helpclose<CR>
 vnoremap <F1> <Cmd>helpclose<CR>
 inoremap <F1> <Cmd>helpclose<CR>
-nnoremap <S-F1> :vertical help <C-R><C-W><CR>
-vnoremap <S-F1> :vertical help <C-R><C-W><CR>
+nnoremap <S-F1> <Cmd>execute (winwidth(0) > 120? 'vertical': '') "help <cword>"<CR>
+vnoremap <S-F1> <Cmd>execute (winwidth(0) > 120? 'vertical': '') "help <cword>"<CR>
 nnoremap <F4> <Cmd>set list!<CR>
 vnoremap <F4> <Cmd>set list!<CR>
 inoremap <F4> <Cmd>set list!<CR>
@@ -99,15 +90,12 @@ nnoremap <Leader>qq <Cmd>ToggleLocList<CR>
 nnoremap <Leader>qc <Cmd>lclose<CR>
 nnoremap <Leader>qo <Cmd>lopen<CR>
 
-nnoremap <F5> <Cmd>source %<CR>
-vnoremap <F5> <Cmd>source %<CR>
-inoremap <F5> <Cmd>source %<CR>
 nnoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
 vnoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
 inoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
 
 nnoremap <silent> <Leader>m <Cmd>vertical terminal ++close men<CR>
-nnoremap <silent> <Leader>M :Man <C-R><C-W><CR>
+nnoremap <silent> <Leader>M <Cmd>Man <cfile><C-W><CR>
 nnoremap <silent> <Leader>t <Cmd>vertical terminal ++close fish<CR>
 
 
@@ -137,15 +125,4 @@ nnoremap <Leader>ds :Step<CR>
 nnoremap <Leader>dr :Run<CR>
 nnoremap <Leader>dd :Gdb<CR>
 nnoremap <Leader>dp :Program<CR>
-
-
-let s:path = expand('<sfile>:p:h') . '/snippets'
-augroup snippets
-    autocmd!
-    autocmd FileType markdown           exec 'source' s:path .. '/md.vim'
-    autocmd FileType markdown.pandoc    exec 'source' s:path .. '/md.vim'
-    autocmd FileType python             exec 'source' s:path .. '/py.vim'
-    autocmd FileType cpp                exec 'source' s:path .. '/cpp.vim'
-    autocmd FileType c                  exec 'source' s:path .. '/c.vim'
-augroup END
 

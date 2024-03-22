@@ -35,6 +35,9 @@ runtime! ftplugin/man.vim
 packadd termdebug
 
 
+nnoremap <SPACE> <Nop>
+let mapleader = "\<Space>"
+
 " Must run first
 runtime plugs.vim
 " Must run after plugs.vim

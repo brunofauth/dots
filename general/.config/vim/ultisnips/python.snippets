@@ -1,0 +1,44 @@
+snippet main-simple "define _main_impl(), main()"
+def _main_impl() -> int:
+    pass$0
+
+
+def main() -> None:
+    raise SystemExit(_main_impl())
+
+
+if __name__ == "__main__":
+    main()
+endsnippet
+
+
+snippet main-cli "define _main_impl(), main(), get_cli()"
+def get_cli() -> ap.Namespace:
+    parser = ap.ArgumentParser()
+${1/^\s*(\w+)\s*:\s*(\w+)\s*(?:\|\s*None\s*)?(?:=\s*(\S+)\s*)?,\s*$/    parser.add_argument('--$1', type=$2(?3:, default=$3))/gm}
+
+    return parser.parse_args()
+
+def _main_impl(
+    $1
+) -> int:
+    $0
+    return 0
+
+def main() -> None:
+    raise SystemExit(_main_impl(**vars(get_cli())))
+
+if __name__ == "__main__":
+    main()
+endsnippet
+
+
+snippet is-none-ternary "some_VAR = ALT if VAR is None else VAR"
+some_${1:value} = ${2:alternative} if $1 is None else $1
+endsnippet
+
+
+snippet not-none-next "Check if next(iterator) is None"
+if (${1:value} := next(${2:iterator}, None)) is not None:
+    ${3: # TODO}
+endsnippet

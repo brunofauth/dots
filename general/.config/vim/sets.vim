@@ -43,6 +43,9 @@ set breakindentopt=shift:4,min:40
 " set breakindentopt=shift:2,min:40,sbr
 " set showbreak=>>
 
+" wrap long lines at a character in 'breakat'
+set linebreak
+
 " Disables annoying ding everywhere
 set belloff=all
 

@@ -87,24 +87,33 @@ function ToggleCheckBoxObject()
 endfunction
 
 
-# function ItemsToLine(begin, end, prefix="- ", sep=";")
-#     let re_in = printf('^\s*%s', a:prefix)
-# endfunction
-
-
 augroup ftdetect_md
     autocmd!
-    autocmd BufRead,BufNewFile *.md runtime! abbr/*.abbr
     autocmd BufRead,BufNewFile *.md setlocal omnifunc=s:CompleteAbbrs
-    # autocmd BufRead,BufNewFile *.md setlocal spell spelllang=pt_br,en_us | legacy let &l:spellfile = s:GetSpellFiles(['pt.utf-8', 'en.utf-8'])
-    autocmd BufRead,BufNewFile *.md setlocal spell spelllang=pt | legacy let &l:spellfile = s:GetSpellFiles(['pt.utf-8'])
 
-    autocmd BufRead,BufNewFile *.md command! -buffer -range ToggleCheckBox call ToggleCheckBox(<line1>, <line2>)
-    autocmd BufRead,BufNewFile *.md noremap <buffer> <Leader>t :ToggleCheckBox<CR>
+    autocmd BufRead,BufNewFile *.md
+        \ setlocal spell spelllang=pt | legacy let &l:spellfile = s:GetSpellFiles(['pt.utf-8'])
 
-    autocmd BufRead,BufNewFile *.md command! -buffer -range ToggleCheckBoxObject call ToggleCheckBoxObject()
-    autocmd BufRead,BufNewFile *.md noremap <buffer> <Leader>T :ToggleCheckBoxObject<CR>
+    autocmd BufRead,BufNewFile *.md
+        \ command! -buffer -range ToggleCheckBox call ToggleCheckBox(<line1>, <line2>)
+    autocmd BufRead,BufNewFile *.md
+        \ noremap <buffer> <Leader>t :ToggleCheckBox<CR>
+
+    autocmd BufRead,BufNewFile *.md
+        \ command! -buffer -range ToggleCheckBoxObject call ToggleCheckBoxObject()
+    autocmd BufRead,BufNewFile *.md
+        \ noremap <buffer> <Leader>T :ToggleCheckBoxObject<CR>
 
     autocmd FileType *markdown* setlocal formatoptions+=wa
-augroup END
 
+    # These were copied from another file; TODO=refactor
+    autocmd BufRead,BufNewFile *.md setlocal autoindent
+    autocmd BufRead,BufNewFile *.md inoremap <buffer> ;a á
+    autocmd BufRead,BufNewFile *.md inoremap <buffer> ;e é
+    autocmd BufRead,BufNewFile *.md inoremap <buffer> ;i í
+    autocmd BufRead,BufNewFile *.md inoremap <buffer> ;o ó
+    autocmd BufRead,BufNewFile *.md inoremap <buffer> ;u ú
+    autocmd BufRead,BufNewFile *.md inoremap <buffer> ;c ç
+    autocmd BufRead,BufNewFile *.md noremap <buffer> <Up> gk
+    autocmd BufRead,BufNewFile *.md noremap <buffer> <Down> gj
+augroup END

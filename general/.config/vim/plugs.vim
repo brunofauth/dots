@@ -51,7 +51,7 @@ Plug 'https://github.com/tpope/vim-eunuch.git'
 
 " Things you can do with fzf and Vim.
 if executable('fzf')
-    Plug 'junegunn/fzf.vim'
+    Plug 'https://github.com/brunofauth/fzf.vim'
     runtime cfgs/fzf.vim
 else
     echoerr 'Could not find "fzf" plugin in runtimepath. Make sure "fzf" is installed and the vim plugin it ships with is available in "runtimepath", so that "fzf.vim" can use the functions the missing plugin should be exporting'
@@ -114,9 +114,16 @@ runtime cfgs/replica.vim
 
 Plug 'https://github.com/kana/vim-textobj-user'
 Plug 'https://github.com/glts/vim-textobj-comment'
+Plug 'https://github.com/preservim/vim-textobj-sentence'
+runtime cfgs/vim-textobj-sentence.vim
 
 " Autogenerate abbreviations for many variations of a word, according its inflections 
 Plug 'https://github.com/brunofauth/vim-inflect-abbr'
+runtime cfgs/inflect-abbr.vim
+
+" the ultimate solution for snippets in Vim. It has many features, speed being one of them.
+Plug 'https://github.com/SirVer/ultisnips'
+runtime cfgs/ultisnips.vim
 
 call plug#end()
 
