@@ -1,4 +1,3 @@
-
 const s:LINTER_COMMANDS = {
     \ 'vim': 'vint %s',
     \ 'sh': 'shellcheck --format=gcc --exclude=SC3043 %s',
@@ -35,14 +34,10 @@ command RunLinter silent call s:RunLinter()
 noremap <silent> <Leader>cs <Cmd>RunLinter<CR>
 noremap <silent> <Leader>cc <Cmd>!cls && compileit %<CR>
 
-inoremap <Leader><Up> ↑
-inoremap <Leader><Down> ↓
-inoremap <Leader><Left> ←
-inoremap <Leader><Right> →
-
-" Write and backup; write as root.
-noremap <Leader>w <Cmd>call WriteAndBackUp()<CR>
-noremap <Leader>W <Cmd>w !sudo tee %<CR>
+inoremap <F1><Up> ↑
+inoremap <F1><Down> ↓
+inoremap <F1><Left> ←
+inoremap <F1><Right> →
 
 
 " Caret > Home; I don't want to press <S-6> every time
@@ -79,16 +74,19 @@ nnoremap <Leader>h <Cmd>set hlsearch!<CR>
 nnoremap <F1> <Cmd>helpclose<CR>
 vnoremap <F1> <Cmd>helpclose<CR>
 inoremap <F1> <Cmd>helpclose<CR>
-nnoremap <S-F1> <Cmd>execute (winwidth(0) > 120? 'vertical': '') "help <cword>"<CR>
-vnoremap <S-F1> <Cmd>execute (winwidth(0) > 120? 'vertical': '') "help <cword>"<CR>
+nnoremap <S-F1> <Cmd>execute (winwidth(0) > 120? 'vertical': '') "help" expand("<cword>")<CR>
+vnoremap <S-F1> <Cmd>execute (winwidth(0) > 120? 'vertical': '') "help" expand("<cword>")<CR>
 nnoremap <F4> <Cmd>set list!<CR>
 vnoremap <F4> <Cmd>set list!<CR>
 inoremap <F4> <Cmd>set list!<CR>
 
 " Quickfix control bindings
-nnoremap <Leader>qq <Cmd>ToggleLocList<CR>
-nnoremap <Leader>qc <Cmd>lclose<CR>
-nnoremap <Leader>qo <Cmd>lopen<CR>
+nnoremap <Leader>q <Cmd>ToggleLocList<CR>
+nnoremap <Leader>w <Cmd>ToggleQuickFix<CR>
+nnoremap ]l <Cmd>lnext<CR>
+nnoremap [l <Cmd>lprev<CR>
+nnoremap ]c <Cmd>cnext<CR>
+nnoremap [c <Cmd>cprev<CR>
 
 nnoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
 vnoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
@@ -112,17 +110,3 @@ nnoremap <Leader>PR :call 'Saved' SaveScreenshot(getreg('"'))<CR>
 nnoremap cie <Nop>
 " gqi as well
 nnoremap gqi <Nop>
-
-
-" Mappings for :help termdebug
-nnoremap <Leader>dt :Termdebug<CR>
-nnoremap <Leader>db :Break<CR>
-nnoremap <Leader>dg :Continue<CR>
-nnoremap <Leader>df :Finish<CR>
-nnoremap <Leader>dc :Clear<CR>
-nnoremap <Leader>do :Over<CR>
-nnoremap <Leader>ds :Step<CR>
-nnoremap <Leader>dr :Run<CR>
-nnoremap <Leader>dd :Gdb<CR>
-nnoremap <Leader>dp :Program<CR>
-

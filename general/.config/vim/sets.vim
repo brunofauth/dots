@@ -1,3 +1,5 @@
+" vim: foldmethod=marker foldlevel=0 foldclose=all
+
 " Turns on syntax highlighting, without
 " overriding user defined syntax
 syntax enable
@@ -13,7 +15,7 @@ set number relativenumber
 " Highlights and seraches for words while typing
 set hlsearch incsearch
 " smart case sensitivity when searching
-set smartcase
+set ignorecase smartcase
 
 " Use \n for new lines, instead of \r or \r\n
 set fileformat=unix
@@ -59,6 +61,9 @@ set scrolloff=3
 " Disable considering number starting with a 0 as octal when inc/dec
 set nrformats-=octal
 
+" directories to be searched when using: gf, [f, ]f, ^Wf, :find...
+set path+=**
+
 " Enable better glob completion
 set wildmode=longest,full
 set wildmenu
@@ -70,7 +75,6 @@ set formatoptions+=j
 set tabpagemax=50
 
 " Saving options in session and view files causes problems
-set sessionoptions-=options
 set viewoptions-=options
 
 " Show as much as possible of the last line in a window, putting "@@@" in the
@@ -89,11 +93,13 @@ if has('langmap') && exists('+langremap') && &langremap
     set nolangremap
 endif
 
-set background=dark
 
 set timeoutlen=500
 
+" Colors {{{
+set background=dark
 set termguicolors
+
 highlight Pmenu ctermfg=White guifg=White
 highlight Pmenu ctermbg=Black guibg=Black
 
@@ -139,8 +145,17 @@ highlight TabLineFill term=reverse cterm=NONE gui=NONE
 highlight TabLineFill ctermfg=White guifg=White
 highlight TabLineFill ctermbg=Gray guibg=#424242
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+highlight Folded ctermbg=Black guibg=Black
+"}}}
 
+
+if executable("rg")
+    let &grepprg = "rg --engine=pcre2 --smart-case --line-number --column $*"
+    let &grepformat = "%f:%l:%c:%m"
+endif
+
+
+" Session {{{
 set sessionoptions=
 
 " hidden and unloaded buffers, not just those in windows
@@ -171,4 +186,5 @@ set sessionoptions+=localoptions
 
 " all options and mappings (also global values for local options)
 set sessionoptions+=options
+"}}}
 

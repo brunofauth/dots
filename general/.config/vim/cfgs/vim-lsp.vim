@@ -1,7 +1,11 @@
+" vim: foldmethod=marker foldlevel=0 foldclose=all
+
 " for signs and virtual text. To set unique virtual text highlighting, you
 " can set or link `LspErrorVirtualText`, `LspWarningVirtualText`,
 " `LspInformationVirtualText` and `LspHintVirtualText` highlight groups.
 
+
+" :help vim-lsp-options {{{
 let g:lsp_use_native_client = 1
 let g:lsp_format_sync_timeout = 1000
 let g:lsp_diagnostics_virtual_text_enabled = 0
@@ -10,8 +14,47 @@ let g:lsp_signature_help_delay = 50
 let g:lsp_ignorecase = v:false
 let g:lsp_semantic_enabled = v:true
 " let g:lsp_log_file = $HOME . '/vim-lsp.log'
+" }}}
 
 
+" Rundown of :help vim-lsp-server_info {{{
+"
+"" Name of the language server. Needs to be unique.
+"   'name': 'name-of-server',
+"
+"" Function or array representing the command to start the language server.
+"   'cmd': {server_info->['server-exectuable']},
+"
+"   'allowlist': ['filetype to allowlist'],
+"   'blocklist': ['filetype to blocklist'],
+"
+"" Used to pass additional config to be used by the cmd function and to set
+"" per-server vim-lsp configuration (instead of relying on global variables).
+"   'config': {},
+"
+"" Pass workspace configuration to each ls, after initialization.
+"   'workspace_config': {'server1-name': {'s1-setting1': v:true}, 'server2-name': {}},
+"
+"" The rootUri of the workspace. Is null if no folder is open.
+"" @deprecated in favour of `workspaceFolders`
+"   'root_uri': DocumentUri | null;
+"
+"" User provided initialization options.
+"   'initialization_options': LSPAny;
+"
+"" The capabilities provided by the client (editor or tool)
+"   'capabilities': ClientCapabilities;
+"
+"" The initial trace setting. If omitted trace is disabled ('off').
+"   'trace': TraceValue;
+"
+"" The workspace folders configured in the client when the server starts.
+"" This property is only available if the client supports workspace folders.
+"   'workspaceFolders': WorkspaceFolder[] | null;
+" }}}
+
+
+" Server definitions: {{{
 if executable('rust-analyzer')
     augroup vim_lsp__rust__rust_analyzer
         autocmd!
@@ -21,8 +64,6 @@ if executable('rust-analyzer')
             \ 'allowlist': ['rust'],
             \ })
     augroup END
-else
-    echoerr "Couldn't find 'rust-analyzer'"
 endif
 
 " https://github.com/palantir/python-language-server/blob/develop/vscode-client/package.json
@@ -67,8 +108,6 @@ if executable('texlab')
             \ 'allowlist': ['tex']
         \ })
     augroup END
-else
-    echoerr "Couldn't find 'texlab'"
 endif
 
 if executable('marksman')
@@ -80,8 +119,6 @@ if executable('marksman')
             \ 'allowlist': ['markdown', 'markdown.pandoc']
         \ })
     augroup END
-else
-    echoerr "Couldn't find 'marksman'"
 endif
 
 if executable('arduino-language-server')
@@ -96,8 +133,6 @@ if executable('arduino-language-server')
             \ 'allowlist': ['arduino']
         \ })
     augroup END
-else
-    echoerr "Couldn't find 'arduino-language-server'"
 endif
 
 if executable('clangd')
@@ -136,8 +171,6 @@ if executable('vim-language-server')
             \ }
     \ })
     augroup END
-else
-    echoerr "Couldn't find 'vim-language-server'"
 endif
 
 if executable('sqlfluff-language-server')
@@ -160,7 +193,6 @@ if executable('typescript-language-server')
         \ 'name': 'typescript-language-server',
         \ 'cmd': {server_info->['typescript-language-server', '--stdio']},
         \ 'allowlist': ['javascript', 'typescript'],
-        \ 'initialization_options': {'plugins': []}
     \ })
   augroup END
 endif
@@ -172,8 +204,6 @@ if executable('tailwindcss-language-server')
         \ 'name': 'tailwindcss-language-server',
         \ 'cmd': {server_info->['tailwindcss-language-server', '--stdio']},
         \ 'allowlist': ['css', 'html'],
-        \ 'workspace_config': {},
-        \ 'initialization_options': {'plugins': []}
     \ })
   augroup END
 endif
@@ -185,8 +215,6 @@ if executable('svelteserver')
         \ 'name': 'svelteserver',
         \ 'cmd': {server_info->['svelteserver', '--stdio']},
         \ 'allowlist': ['svelte'],
-        \ 'workspace_config': {},
-        \ 'initialization_options': {'plugins': []}
     \ })
   augroup END
 endif
@@ -198,8 +226,6 @@ if executable('kotlin-language-server')
         \ 'name': 'kotlin-language-server',
         \ 'cmd': {server_info->['kotlin-language-server']},
         \ 'allowlist': ['kotlin'],
-        \ 'workspace_config': {},
-        \ 'initialization_options': {'plugins': []}
     \ })
   augroup END
 endif
@@ -211,11 +237,23 @@ if executable('cmake-language-server')
         \ 'name': 'cmake-language-server',
         \ 'cmd': {server_info->['cmake-language-server']},
         \ 'allowlist': ['cmake'],
-        \ 'workspace_config': {},
-        \ 'initialization_options': {'plugins': []}
     \ })
   augroup END
 endif
+
+if executable('typst-lsp')
+    augroup vim_lsp__typ___typst_lsp
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'typst-lsp',
+            \ 'cmd': {server_info->['typst-lsp']},
+            \ 'allowlist': ['typst', 'typ'],
+        \ })
+    augroup END
+endif
+
+" }}}
+
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete

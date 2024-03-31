@@ -648,7 +648,7 @@ InflectAbbrCp toxo toxoplasmose
 InflectAbbrCpPl ttrn transtorno
 InflectAbbrCp toc transtorno\ obcessivo-compulsivo
 InflectAbbrCpPlGn ttd tratad
-InflectAbbrCpPl tto tratamento
+InflectAbbrCpPl ttm tratamento
 iabbr ttar tratar
 InflectAbbrCpPl tgi trato\ gastrointestinal tratos\ gastrointestinais
 InflectAbbrCpPl tgu trato\ genitourinário tratos\ genitourinários

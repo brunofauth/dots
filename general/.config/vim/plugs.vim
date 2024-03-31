@@ -1,3 +1,6 @@
+packadd termdebug
+runtime cfgs/termdebug.vim
+
 let s:PLUG_URL = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 let s:PLUG_INSTALL_DIR = $XDG_DATA_HOME . '/vim/plugged/'
 let s:PLUG_FILE = s:PLUG_INSTALL_DIR . 'plug.vim'
@@ -36,6 +39,9 @@ Plug 'ron-rs/ron.vim'
 
 Plug 'leafOfTree/vim-svelte-plugin'
 runtime cfgs/vim-svelte.vim
+
+" OBS: Work In Progress
+Plug 'https://github.com/kaarmu/typst.vim'
 
 """""""""""""""""""""""""""
 
@@ -124,6 +130,9 @@ runtime cfgs/inflect-abbr.vim
 " the ultimate solution for snippets in Vim. It has many features, speed being one of them.
 Plug 'https://github.com/SirVer/ultisnips'
 runtime cfgs/ultisnips.vim
+
+" plugin for interacting with databases
+Plug 'https://github.com/tpope/vim-dadbod'
 
 call plug#end()
 

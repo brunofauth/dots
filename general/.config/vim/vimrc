@@ -32,7 +32,6 @@ let &runtimepath .= "," .. g:vimrc_home_dir .. "/after"
 
 
 runtime! ftplugin/man.vim
-packadd termdebug
 
 
 nnoremap <SPACE> <Nop>
@@ -66,3 +65,5 @@ augroup sess_on_crash
     autocmd! VimLeave * call g:SaveDeathSession()
 augroup END
 
+command! -nargs=+ Grep execute 'silent lgrep! <args>' | lopen
+command! -nargs=+ Hg execute 'helpgrep <args>' | copen
