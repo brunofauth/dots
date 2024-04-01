@@ -96,7 +96,7 @@ endif
 
 set timeoutlen=500
 
-" Colors {{{
+" -------- Colors {{{
 set background=dark
 set termguicolors
 
@@ -155,7 +155,7 @@ if executable("rg")
 endif
 
 
-" Session {{{
+" -------- Session {{{
 set sessionoptions=
 
 " hidden and unloaded buffers, not just those in windows

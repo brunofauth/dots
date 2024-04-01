@@ -1,8 +1,9 @@
-# SETTINGS SPECIFIC TO i3-gaps
+# vim: foldmethod=marker foldlevel=1 foldclose=all
+# http://i3wm.org/docs/userguide.html
+# file:///usr/share/doc/i3/userguide.html
 
-# Set inner/outer gaps
-# gaps inner 14
-# gaps outer -2
+
+# -------- Gaps {{{
 set $igaps 20
 set $ogaps 0
 
@@ -13,6 +14,7 @@ gaps outer $ogaps
 # on (always active)|no_gaps (creen is 0)
 # smart_borders on
 
+# -------- Gap Mode {{{
 # Mode for adjusting inner and outer gaps at any time.
 set $mode_gaps Gaps: (o)uter, (i)nner
 set $mode_gaps_outer Outer Gaps: +, -, 0, (r)estore
@@ -46,23 +48,24 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+# }}}
+# }}}
 
 
 # Desktop Environment startup routines
-include new_cfg_split/startup.conf
+include ./startup.conf
 
-
-# BEGIN LAPTOP
-# END LAPTOP
-
-
-
-# i3wm GENERAL SETTINGS (http://i3wm.org/docs/userguide.html)
-
+font pango:monospace 8
 set $mod Mod4
 floating_modifier $mod
-font pango:monospace 8
-# font xft:URWGothic-Book 11
+
+# reload cfg / restart i3
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+
+# -------- Window Manipulation {{{
+# Close a window
 bindsym $mod+Shift+q kill
 
 # enter fullscreen mode for the focused container
@@ -71,17 +74,54 @@ bindsym $mod+f fullscreen toggle
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
-# reload cfg / restart i3
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-
 # change window splitting axis
-bindsym $mod+h split h
-bindsym $mod+v split v
+bindsym $mod+bar split h
+bindsym $mod+minus split v
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# -------- Mode for Window Resizing {{{
+bindsym $mod+r mode "$mode_resize"
+set $mode_resize h width-10 | j height-10 | k height+10 | l width+10
+
+mode "$mode_resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+    
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# }}}
+
+# -------- Mode for Moving Floating Windows {{{
+bindsym $mod+Shift+m mode "$mode_move" focus floating
+set $mode_move h | j | k | l
+
+mode "$mode_move" {
+    bindsym h move left  15
+    bindsym j move down  15
+    bindsym k move up    15
+    bindsym l move right 15
+    bindsym Shift+h move left  50
+    bindsym Shift+j move down  50
+    bindsym Shift+k move up    50
+    bindsym Shift+l move right 50
+    
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# }}}
+
+# }}}
 
 
-
-# WINDOW FOCUS
+# -------- Window Focus {{{
 
 # Child-parent focus switching
 bindsym $mod+a focus parent
@@ -91,32 +131,27 @@ bindsym $mod+Shift+a focus child
 bindsym $mod+space focus mode_toggle
 
 # change focus
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-# move focused window
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+# }}}
 
 
-
-# WINDOW BORDERS' SETTINGS
+# -------- Window Borders {{{
 hide_edge_borders none
 default_border pixel 2
 # default_border none
 default_floating_border normal
 # default_floating_border none
+# }}}
 
 
 # APP SPECIFIC CONFIGURATION
-include ./new_cfg_split/window_specifics.conf
+include ./window_specifics.conf
 
 
-# WORKSPACE SPECIFICS
+# -------- Workspaces {{{
 
 # Workspace back and forth (windows alt+tab)
 workspace_auto_back_and_forth yes
@@ -162,6 +197,8 @@ bindsym --whole-window --border $mod+Prior workspace prev
 bindsym --whole-window --border $mod+Next workspace next
 bindsym --whole-window --border $mod+button4 workspace prev
 bindsym --whole-window --border $mod+button5 workspace next
+# }}}
+
 
 # scratchpad control
 bindsym $mod+Shift+minus move scratchpad
@@ -171,32 +208,6 @@ bindsym $mod+plus scratchpad show
 
 # MISCELLANEOUS SETTINGS
 
-bindsym $mod+r mode "$mode_resize"
-set $mode_resize ← width-10, → width+10, ↑ height+10, ↓ height-10
-
-mode "$mode_resize" {
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
-    
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-# MOVE FLOATING WINDOWS WITH KEYS
-bindsym $mod+Shift+m mode "$mode_move" focus floating
-set $mode_move ←, →, ↑, ↓
-
-mode "$mode_move" {
-    bindsym Left  move left  15
-    bindsym Down  move down  15
-    bindsym Up    move up    15
-    bindsym Right move right 15
-    
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
 
 
 # Color palette used for the terminal ( ~/.Xresources file )
@@ -231,7 +242,7 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 # i3bar configuration
-include new_cfg_split/bar.conf
+include ./bar.conf
 
 # hide/unhide i3status bar
 bindsym $mod+b bar mode toggle

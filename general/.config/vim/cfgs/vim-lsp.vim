@@ -5,7 +5,7 @@
 " `LspInformationVirtualText` and `LspHintVirtualText` highlight groups.
 
 
-" :help vim-lsp-options {{{
+" -------- :help vim-lsp-options {{{
 let g:lsp_use_native_client = 1
 let g:lsp_format_sync_timeout = 1000
 let g:lsp_diagnostics_virtual_text_enabled = 0
@@ -17,7 +17,7 @@ let g:lsp_semantic_enabled = v:true
 " }}}
 
 
-" Rundown of :help vim-lsp-server_info {{{
+" -------- Rundown of :help vim-lsp-server_info {{{
 "
 "" Name of the language server. Needs to be unique.
 "   'name': 'name-of-server',
@@ -54,7 +54,7 @@ let g:lsp_semantic_enabled = v:true
 " }}}
 
 
-" Server definitions: {{{
+" -------- Server definitions: {{{
 if executable('rust-analyzer')
     augroup vim_lsp__rust__rust_analyzer
         autocmd!

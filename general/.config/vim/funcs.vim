@@ -1,3 +1,4 @@
+" vim: foldmethod=marker foldlevel=1 foldclose=all
 " vim9script
 
 runtime funcs/platf.vim
@@ -39,48 +40,6 @@ def! WriteToClipboard(data: string): void
 enddef
 
 
-def! TakeScreenshot(out_fmt: string): void
-
-    if s:platf == 'w32' || s:platf == 'wsl'
-        var spath = ThrowIfMissing('screenshot.ps1')
-        spath = s:platf == 'wsl' ? WslToW32(spath) : spath
-        SystemFmtEscaped("powershell.exe -File %s %s", spath, out_fmt)
-
-    elseif s:platf == 'gnu' || s:platf == 'mac'
-        ThrowIfMissing("import")
-        SystemFmtEscaped("import -window root %s", out_fmt)
-
-    endif
-enddef
-
-
-def! SaveScreenshot(out_dir: string='', mk_dirs: bool=true): string
-
-    const win32_cmd = 'powershell -Command Get-Date -UFormat %Y-%m-%d_%H-%M-%S_.png'
-    const linux_cmd = 'date "+%Y-%m-%d_%H-%M-%S_.png"'
-    const file_name = trim(system(s:platf == 'w32' ? win32_cmd : linux_cmd))
-    
-    if s:platf != 'w32' && !executable('date')
-        throw 'Unsupported platform.'
-    endif
-
-    var dname = !!out_dir ? out_dir : (expand("%:p") .. ".shots")
-    if !isdirectory(out_dir)
-        if !mk_dirs
-            throw printf('Directory "%s" does not exist')
-        endif
-        mkdir(dname, 'p')
-    endif
-
-    dname = s:platf == 'wsl' ? s:WslToW32(dname) : dname
-    const out_file = printf("%s/%s", dname, file_name)
-
-    s:TakeScreenshot(out_file)
-    return out_file
-
-enddef
-
-
 def! g:SaveDeathSession(): void
     if v:dying
         mksession! ~/.cache/vim/death-sess.vim
@@ -112,21 +71,17 @@ function s:ToTitleCase(begin, end)
 endfunction
 command! -range ToTitleCase call s:ToTitleCase(<line1>, <line2>)
 
+
+" -------- QuickFix and LocationList {{{
+
 function s:ToggleQuickFix()
-    if empty(filter(getwininfo(), 'v:val.quickfix'))
-        copen
-    else
-        cclose
-    endif
+    execute empty(filter(getwininfo(), 'v:val.quickfix')) ? "copen" : "cclose"
 endfunction
 command! ToggleQuickFix call s:ToggleQuickFix()
 
 function s:ToggleLocList()
-    if empty(filter(getwininfo(), 'v:val.loclist'))
-        lopen
-    else
-        lclose
-    endif
+    execute empty(filter(getwininfo(), 'v:val.loclist')) ? "lopen" : "lclose"
 endfunction
 command! ToggleLocList call s:ToggleLocList()
 
+" }}}

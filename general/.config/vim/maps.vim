@@ -1,15 +1,33 @@
+" vim: foldmethod=marker foldlevel=1 foldclose=all
 const s:LINTER_COMMANDS = {
     \ 'vim': 'vint %s',
     \ 'sh': 'shellcheck --format=gcc --exclude=SC3043 %s',
 \ }
 
+
+" -------- set undesired mappings to <Nop> {{{
 nnoremap Q <Nop>
 nnoremap <C-End> <Nop>
-nnoremap <C-Home> <Nop>
 inoremap <C-End> <Nop>
-inoremap <C-Home> <Nop>
 vnoremap <C-End> <Nop>
+nnoremap <C-Home> <Nop>
+inoremap <C-Home> <Nop>
 vnoremap <C-Home> <Nop>
+nnoremap <Up> <Nop>
+vnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+vnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+vnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+vnoremap <Right> <Nop>
+
+" For some reason, when I accidentally type 'cie' or 'gqi', vim hangs, so I
+" remapped it to something harmless.
+nnoremap cie <Nop>
+nnoremap gqi <Nop>
+" }}}
+
 
 " Whole Buffer text object
 onoremap ib <Cmd>keepjumps normal ggVG<CR>
@@ -34,10 +52,15 @@ command RunLinter silent call s:RunLinter()
 noremap <silent> <Leader>cs <Cmd>RunLinter<CR>
 noremap <silent> <Leader>cc <Cmd>!cls && compileit %<CR>
 
-inoremap <F1><Up> ↑
-inoremap <F1><Down> ↓
-inoremap <F1><Left> ←
-inoremap <F1><Right> →
+
+" -------- Insert mode Unicode characters {{{
+inoremap <F1>h ←
+inoremap <F1>j ↓
+inoremap <F1>k ↑
+inoremap <F1>l →
+inoremap <F1>m ♂
+inoremap <F1>f ♀
+" }}}
 
 
 " Caret > Home; I don't want to press <S-6> every time
@@ -56,11 +79,9 @@ nnoremap <C-J> <Cmd>execute 'move +' .. v:count1->string()<CR>
 nnoremap <C-K> <Cmd>execute 'move -' .. string(v:count1 + 1)<CR>
 
 " Yanks the whole buffer to '+'
-nnoremap <Leader>ya ggVG"+y<C-o><C-o>
+nnoremap <Leader>ya "+yib
 " Copies '+' register into system clipboard
 nnoremap <Leader>yc :call WriteToClipboard(getreg('+'))<CR>
-" Copies te whole buffer to '+' and then copies it into the system's clipboard
-nmap <Leader>yC yayc
 
 
 " Substitutes inner word/WORD by yanked text.
@@ -80,13 +101,16 @@ nnoremap <F4> <Cmd>set list!<CR>
 vnoremap <F4> <Cmd>set list!<CR>
 inoremap <F4> <Cmd>set list!<CR>
 
-" Quickfix control bindings
+
+" -------- Quickfix and Location List {{{
 nnoremap <Leader>q <Cmd>ToggleLocList<CR>
 nnoremap <Leader>w <Cmd>ToggleQuickFix<CR>
 nnoremap ]l <Cmd>lnext<CR>
 nnoremap [l <Cmd>lprev<CR>
 nnoremap ]c <Cmd>cnext<CR>
 nnoremap [c <Cmd>cprev<CR>
+" }}}
+
 
 nnoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
 vnoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
@@ -96,17 +120,3 @@ nnoremap <silent> <Leader>m <Cmd>vertical terminal ++close men<CR>
 nnoremap <silent> <Leader>M <Cmd>Man <cfile><C-W><CR>
 nnoremap <silent> <Leader>t <Cmd>vertical terminal ++close fish<CR>
 
-
-" Take a Screenshot and insert, or not it's path
-nnoremap <Leader>pp :call setreg('"', SaveScreenshot())<CR>P
-nnoremap <Leader>PP :echo 'Saved' SaveScreenshot()<CR>
-" Same as above, but use the contents of '"' instead of getcwd()
-nnoremap <Leader>pr :call setreg('"', SaveScreenshot(getreg('"')))<CR>P
-nnoremap <Leader>PR :call 'Saved' SaveScreenshot(getreg('"'))<CR>
-
-
-" For some reason, when I accidentally type 'cie', vim hangs and I lose
-" everything, so I might as well just map it to something harmless.
-nnoremap cie <Nop>
-" gqi as well
-nnoremap gqi <Nop>

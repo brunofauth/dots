@@ -14,4 +14,3 @@ enddef
 
 command -range=% BulletListToInline call BulletListToInline(<line1>, <line2>)
 
-           bbaacc

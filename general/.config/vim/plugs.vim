@@ -113,6 +113,7 @@ Plug 'https://github.com/tpope/vim-speeddating'
 
 " A Vim plugin to visualizes the Vim undo tree.
 Plug 'https://github.com/simnalamburt/vim-mundo'
+runtime cfgs/mundo.vim
 
 " allows REPL shells inside Vim in a seamless way.
 Plug 'https://github.com/ubaldot/vim-replica'
