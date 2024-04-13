@@ -261,6 +261,7 @@ function! s:on_lsp_buffer_enabled() abort
     setlocal signcolumn=yes
 
     nmap <buffer> <Leader>ld <plug>(lsp-definition)
+    nmap <buffer> <Leader>lD <plug>(lsp-declaration)
     nmap <buffer> <Leader>ls <plug>(lsp-document-symbol-search)
     nmap <buffer> <Leader>lS <plug>(lsp-workspace-symbol-search)
     nmap <buffer> <Leader>lR <plug>(lsp-references)

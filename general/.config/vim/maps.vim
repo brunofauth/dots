@@ -40,6 +40,7 @@ nnoremap ]<Enter> o<Esc>j<End>
 nnoremap [<Enter> O<Esc>k<End>
 
 nnoremap dD "_dd
+nnoremap cC "_cc
 
 function s:RunLinter()
     const l:cmd = FmtEscaped(s:LINTER_COMMANDS->get(&filetype, v:none), expand('%'))
@@ -60,6 +61,8 @@ inoremap <F1>k ↑
 inoremap <F1>l →
 inoremap <F1>m ♂
 inoremap <F1>f ♀
+inoremap <F1>- ⊖
+inoremap <F1>= ⊕
 " }}}
 
 

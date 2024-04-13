@@ -26,3 +26,5 @@ inoremap <buffer> =- ±
 inoremap <buffer> .= ≥
 inoremap <buffer> ,= ≤
 
+setlocal commentstring=//%s
+

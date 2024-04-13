@@ -12,14 +12,17 @@ super + d
     rofi -modi drun,run,window -show-icons -show drun -theme theme.rasi
 
 super + F2
-    notify-send "Starting '$BROWSER'" -t 3000 && $BROWSER
+    notify-send "Starting '$BROWSER'" -t 3000 \
+	&& $BROWSER
 
 super + shift + F2
-    notify-send "Starting '$BROWSER' in private mode" -t 3000 && priv "$BROWSER"
+    notify-send "Starting '$BROWSER' in private mode" -t 3000 \
+	&& priv "$BROWSER"
 
 # Starts file manager at ~
 super + F3
-    xdg-open ~
+    notify-send "Starting '$FILE_MANAGER'" -t 3000 \
+	&& "$FILE_MANAGER"
 
 # Starts file manager at ~ as sudo
 super + shift + F3
@@ -32,16 +35,16 @@ shift + Print
     "$SCRIPTS/screenshot"
 
 super + p
-    polybar-msg cmd restart && kill -USR1 sxhkd
+    notify-send "Restarted polybar, picom and sxhkd" -t 3000 \
+	&& polybar-msg cmd restart \
+	&& /usr/bin/kill -s USR1 sxhkd \
+	&& /usr/bin/kill -s USR1 picom
 
 super + shift + p
     "$XDG_CONFIG_HOME/polybar/scripts/color-switch.sh"
 
 super + shift + b
     "$SCRIPTS/set-bg"
-
-super + shift + y
-    notify-send "Downloading video from clipboard..." "Source: $(xclip -ib)" -t 3000 && "$SCRIPTS/i3-ytdl"
 
 super + u
     $SCRIPTS/usbeast -m
@@ -63,14 +66,8 @@ super + m; {l, u, e, p, h, r, s}
         systemctl poweroff \
     }
 
-super + k
-    notify-send "Network Error" "No internet connection" -t 3000; llk
-
-super + shift + k
-    notify-send "Network Online" "Internet connection found" -t 3000; llkk
-
 XF86TouchpadToggle
-    toggle-touchpad
+    toggle-touchpad --notify
 
 shift + XF86TouchpadToggle
     xset -display :0.0 dpms force {off,on}
@@ -112,5 +109,6 @@ super + w
     passmenu | xargs -r notify-send -t 3000 "Password Copied"
 
 super + shift + w
-    networkmanager_dmenu
+    as-dialogue --work-dir $HOME/proj/wifi-menu poetry run wmenu
+    # networkmanager_dmenu
 

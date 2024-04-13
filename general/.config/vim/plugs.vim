@@ -1,6 +1,8 @@
 packadd termdebug
 runtime cfgs/termdebug.vim
 
+packadd cfilter
+
 let s:PLUG_URL = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 let s:PLUG_INSTALL_DIR = $XDG_DATA_HOME . '/vim/plugged/'
 let s:PLUG_FILE = s:PLUG_INSTALL_DIR . 'plug.vim'
