@@ -52,9 +52,6 @@ mode "$mode_gaps_outer" {
 # }}}
 
 
-# Desktop Environment startup routines
-include ./startup.conf
-
 font pango:monospace 8
 set $mod Mod4
 floating_modifier $mod
@@ -243,6 +240,9 @@ set_from_resource $term_color15    color15
 
 # i3bar configuration
 include ./bar.conf
+
+# Desktop Environment startup routines
+include ./startup.conf
 
 # hide/unhide i3status bar
 bindsym $mod+b bar mode toggle
