@@ -1,5 +1,11 @@
 #! /bin/sh -l
 
 # This passes the values read on ~/.profile to fish
-exec fish "$@"
+[ "$XDG_SESSION_TYPE" != tty ] \
+    && exec fish "$@"
+
+which tmux >/dev/null 2>&1 \
+    && exec tmux new-session "$@"
+
+exec fish "@$"
 
