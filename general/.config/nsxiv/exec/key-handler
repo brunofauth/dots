@@ -32,13 +32,22 @@ cmd_feedback() {
 while read file; do
     case "$1" in
         c)
-            <"$file" xclip -t "$(file -b --mime-type "$file")" -sel c
+            <"$file" xclip -t "$(file -b --mime-type "$file")" -selection clipboard
+            cmd_feedback \
+                "Copied the contents of '$file' into the clipboard" \
+                "Couldn't copy the contents of '$file' into the clipboard"
             ;;
         d)
             mv "$file" ~/.recycle-bin
+            cmd_feedback \
+                "Moved '$file' into the recycle bin ('~/.recycle-bin')" \
+                "Couldn't move '$file' into the recycle bin ('~/.recycle-bin')"
             ;;
         n)
-            printf "%s" "$file" | xclip -sel c
+            printf "%s" "$file" | xclip -selection clipboard
+            cmd_feedback \
+                "Copied the filename '$file' into the clipboard" \
+                "Couldn't copy the filename '$file' into the clipboard"
             ;;
         m)
             destination="$(query_destination "$file")"
@@ -50,32 +59,32 @@ while read file; do
             mv -n "$file" "$destination"
             cmd_feedback \
                 "Moved file successfully '$file' -> '$destination'" \
-                "Failed to move file '$file' -> '$destination'"
+                "Failed moving file '$file' -> '$destination'"
             ;;
         M)
             destination="$(query_destination "$file")"
             mv -f "$file" "$destination"
             cmd_feedback \
                 "Moved file successfully '$file' -> '$destination'" \
-                "Failed to move file '$file' -> '$destination'"
+                "Failed moving file '$file' -> '$destination'"
             ;;
         r)
             mogrify -rotate 90 "$file"
             cmd_feedback \
                 "Rotated '$file' 90 degrees." \
-                "Failed to rotate '$file'"
+                "Failed rotating '$file'"
             ;;
         R)
             mogrify -rotate -90 "$file"
             cmd_feedback \
                 "Rotated '$file' -90 degrees." \
-                "Failed to rotate '$file'"
+                "Failed rotating '$file'"
             ;;
         w)
             xwallpaper --zoom "$file"
-            # cmd_feedback \
-            #     "Set desktop wallpaper to '$1'" \
-            #     "Failed setting desktop wallpaper to '$1'"
+            cmd_feedback \
+                "Set desktop wallpaper to '$1'" \
+                "Failed setting desktop wallpaper to '$1'"
             ;;
     esac
 done

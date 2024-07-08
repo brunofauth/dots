@@ -1,32 +1,34 @@
+# vim: foldmethod=marker foldlevel=0
 
-shift + F6
-    xdotool search --class mpv key space
-
-super + Return
-    $TERMINAL
-
-super + F1
-    $TERMINAL
+super + q
+    wmctrl -c :ACTIVE:
 
 super + d
     rofi -modi drun,run,window -show-icons -show drun -theme theme.rasi
 
+# Most Used Apps {{{
+super + F1
+    "$TERMINAL"
+
+# Start $BROWSER or switch to it
 super + F2
-    notify-send "Starting '$BROWSER'" -t 3000 \
-	&& $BROWSER
+    wmctrl -xa "$BROWSER" \
+	|| \{ notify-send "Starting '$BROWSER'" -t 3000 && $BROWSER; \}
 
-super + shift + F2
-    notify-send "Starting '$BROWSER' in private mode" -t 3000 \
-	&& priv "$BROWSER"
-
-# Starts file manager at ~
+# Starts $FILE_MANAGER or switch to it
 super + F3
-    notify-send "Starting '$FILE_MANAGER'" -t 3000 \
-	&& "$FILE_MANAGER"
+    wmctrl -xa "$FILE_MANAGER" \
+	|| \{ notify-send "Starting '$FILE_MANAGER'" "as $USER" -t 3000 && "$FILE_MANAGER"; \}
+# }}}
 
-# Starts file manager at ~ as sudo
-super + shift + F3
-    gksu xdg-open ~ || kdsu xdg-open ~
+super + a; c
+    galculator
+super + a; h
+    gtk-launch htop
+super + a; w
+    gtk-launch libreoffice-writer
+super + a; m
+    gtk-launch vimpc
 
 Print
     flameshot gui
@@ -46,37 +48,32 @@ super + shift + p
 super + shift + b
     "$SCRIPTS/set-bg"
 
-super + u
-    $SCRIPTS/usbeast -m
-
-super + shift + u
-    $SCRIPTS/usbeast -u
-
 super + e
     $SCRIPTS/pick-emoji
 
-super + m; {l, u, e, p, h, r, s}
-    { \
-        i3lock-fancy && sleep 1 && xset -display :0.0 dpms force off, \
-        dm-tool switch-to-greeter, \
-        i3-msg exit, \
-        systemctl suspend, \
-        systemctl hybernate, \
-        systemctl reboot, \
-        systemctl poweroff \
-    }
+# System Menu {{{
+super + m; l
+    i3lock-fancy && xset -display :0.0 dpms force off
+super + m; p
+    systemctl poweroff
+super + m; r
+    systemctl reboot
+super + m; h
+    systemctl hybernate
+super + m; s
+    systemctl suspend
+super + m; g
+    dm-tool switch-to-greeter
+# }}}
 
 XF86TouchpadToggle
     toggle-touchpad --notify
 
 shift + XF86TouchpadToggle
-    xset -display :0.0 dpms force {off,on}
+    xset -display :0.0 dpms force off
 
 XF86Audio{Play,Next,Prev}
     mpc {toggle,next,prev}
-
-shift + XF86Audio{Play,Next,Prev}
-    wcc {toggle_cycle,next,prev}
 
 shift + XF86Audio{Raise,Lower}Volume
     mpc seek {+,-}00:00:05
@@ -102,13 +99,26 @@ super + s
 super + shift + s
     "$SCRIPTS/chaudio"
 
-super + n; {a, q, shift + q, h, shift + h, c, t}
-    dunstctl {action, close, close-all, history-pop, history-clear, context, set-paused toggle}
+# Notifications {{{
+super + n; a
+    dunstctl action
+super + n; q
+    dunstctl close
+super + n; shift + q
+    dunstctl close-all
+super + n; h
+    dunstctl history-pop
+super + n; shift + h
+    dunstctl history-clear
+super + n; c
+    dunstctl context
+super + n; t
+    dunstctl {set-paused toggle}
+# }}}
 
 super + w
     passmenu | xargs -r notify-send -t 3000 "Password Copied"
 
 super + shift + w
-    as-dialogue --work-dir $HOME/proj/wifi-menu poetry run wmenu
-    # networkmanager_dmenu
+    as-dialogue --work-dir $HOME/proj/wifi-menu -- poetry run wmenu
 
