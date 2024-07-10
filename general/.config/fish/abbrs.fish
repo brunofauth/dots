@@ -69,7 +69,7 @@ abbr sctl systemctl
 abbr sctlu systemctl --user
 abbr sh rlwrap dash
 abbr sof detach soffice
-abbr sxiv detach sxiv -a
+abbr sxiv detach nsxiv -a
 abbr touche touch
 abbr updatedb sudo updatedb
 abbr xo xdg-open
@@ -81,3 +81,5 @@ abbr uu usbeast -u
 abbr uusb usbeast -u
 
 abbr bbl bbl "(read -P 'book and chapter: ' | string split ' ')" in ntlh
+
+abbr ts tmux-sessions
