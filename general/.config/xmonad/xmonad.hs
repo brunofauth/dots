@@ -38,10 +38,10 @@ main = xmonad . modal [modeGaps] . docks . ewmhFullscreen . ewmh $ cfg
         ]
     `additionalKeysP`
         -- [ ("M-b", sendMessage ToggleStruts)
-        [ ("M-h", prevWS)
-        , ("M-l", nextWS)
-        , ("M-S-h", shiftToPrev *> prevWS)
-        , ("M-S-l", shiftToNext *> nextWS)
+        [ ("M-[", prevWS), ("M-h", prevWS)
+        , ("M-]", nextWS), ("M-l", nextWS)
+        , ("M-S-[", shiftToPrev *> prevWS) , ("M-S-h", shiftToPrev *> prevWS)
+        , ("M-S-]", shiftToNext *> nextWS) , ("M-S-l", shiftToNext *> nextWS)
         , ("M-g", setMode modeGapsLabel)
         , ("M-r", restartXmonad)
         , ("M-S-,", sendMessage Shrink)
@@ -58,7 +58,9 @@ cfg = def
     , focusedBorderColor = "red"
     }
 
-myLayoutHook = avoidStruts
+{-# ANN myLayoutHook "HLint: ignore Redundant id" #-}
+myLayoutHook = id
+    $ avoidStruts
     $ spacingRaw False borderSize True borderSize True
     $ smartBorders
     $ tiled ||| Mirror tiled ||| Full ||| Accordion

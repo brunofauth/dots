@@ -15,7 +15,7 @@
   green:      #95ee8f;
   yellow:     #f8c456;
   blue:       #6eaafb;
-  magenta:   #d886f3;
+  magenta:    #d886f3;
   cyan:       #6cdcf7;
   emphasis:   #50536b;
   text:       #dfdfdf;
@@ -33,7 +33,8 @@
 window {
   transparency: "real";
   fullscreen: true;
-  background-color: #282c34dd;
+  /* background-color: #282c34dd; */
+  background-color: #00000011;
 }
 
 mainbox {
@@ -62,7 +63,15 @@ entry {
 listview {
   spacing: 5px;
   dynamic: true;
-  scrollbar: false;
+  scrollbar: true;
+}
+
+scrollbar {
+    width:        4px ;
+    padding:      0;
+    handle-width: 8px ;
+    border:       0;
+    handle-color: var(fg);
 }
 
 element {

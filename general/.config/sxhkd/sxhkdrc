@@ -4,7 +4,7 @@ super + q
     wmctrl -c :ACTIVE:
 
 super + d
-    rofi -modi drun,run,window -show-icons -show drun -theme theme.rasi
+    rofi -show combi -modi combi -combi-modes drun,run -show-icons
 
 super + b
     polybar-msg cmd toggle
@@ -27,11 +27,11 @@ super + F3
 super + a; c
     galculator
 super + a; h
-    gtk-launch htop
+    as-dialogue htop
 super + a; w
     gtk-launch libreoffice-writer
 super + a; m
-    gtk-launch vimpc
+    as-dialogue vimpc
 super + a; p
     pavucontrol
 
@@ -42,9 +42,9 @@ shift + Print
 
 super + p
     notify-send "Restarted polybar, picom and sxhkd" -t 3000 \
-	&& polybar-msg cmd restart \
-	&& /usr/bin/kill -s USR1 sxhkd \
-	&& /usr/bin/kill -s USR1 picom
+	; polybar-msg cmd restart \
+	; /usr/bin/kill -s USR1 sxhkd \
+	; /usr/bin/kill -s USR1 picom
 
 super + shift + p
     "$XDG_CONFIG_HOME/polybar/scripts/color-switch.sh"
@@ -57,7 +57,7 @@ super + e
 
 # System Menu {{{
 super + m; l
-    i3lock-fancy && xset -display :0.0 dpms force off
+    i3lock-fancy-rapid 50 10 && xset -display :0.0 dpms force off
 super + m; p
     systemctl poweroff
 super + m; r
