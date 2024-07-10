@@ -11,20 +11,11 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Accordion
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
-import XMonad.Layout.Hidden
 import XMonad.Hooks.ManageHelpers (doCenterFloat)
 import qualified XMonad.StackSet as W
 
 import Data.Maybe
 import Control.Monad.State
-
-
-withBars :: (Window -> X ()) -> X ()
-withBars func = withDisplay $ \d -> withWindowSet $ \mySet -> do
-    windowsAndProps <- forM (W.allWindows mySet) $ \myWindow -> do
-        prop <- getStringProperty d myWindow "_NET_WM_STRUT"
-        return (myWindow, prop)
-    mapM_ func [myWin | (myWin, prop) <- windowsAndProps, isJust prop]
 
 
 restartXmonad = spawn $ concat
@@ -68,7 +59,6 @@ cfg = def
     }
 
 myLayoutHook = avoidStruts
-    $ hiddenWindows 
     $ spacingRaw False borderSize True borderSize True
     $ smartBorders
     $ tiled ||| Mirror tiled ||| Full ||| Accordion
