@@ -59,11 +59,12 @@ floating_modifier $mod
 # reload cfg / restart i3
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
+bindsym $mod+Shift+q exit
 
 
 # -------- Window Manipulation {{{
 # Close a window
-bindsym $mod+Shift+q kill
+# bindsym $mod+q # this is now done by sxhkd+wmctrl
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -239,7 +240,7 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 # i3bar configuration
-include ./bar.conf
+# include ./bar.conf
 
 # Desktop Environment startup routines
 include ./startup.conf

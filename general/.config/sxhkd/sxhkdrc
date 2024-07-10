@@ -6,6 +6,9 @@ super + q
 super + d
     rofi -modi drun,run,window -show-icons -show drun -theme theme.rasi
 
+super + b
+    polybar-msg cmd toggle
+
 # Most Used Apps {{{
 super + F1
     "$TERMINAL"
@@ -29,10 +32,11 @@ super + a; w
     gtk-launch libreoffice-writer
 super + a; m
     gtk-launch vimpc
+super + a; p
+    pavucontrol
 
 Print
     flameshot gui
-
 shift + Print
     "$SCRIPTS/screenshot"
 
@@ -92,12 +96,6 @@ XF86MonBrightness{Up,Down}
 
 shift + XF86MonBrightness{Up,Down}
     brightnessctl set {100,0}%
-
-super + s
-    "$SCRIPTS/chaudio" --set-default-sink
-
-super + shift + s
-    "$SCRIPTS/chaudio"
 
 # Notifications {{{
 super + n; a
