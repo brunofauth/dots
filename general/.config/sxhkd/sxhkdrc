@@ -10,6 +10,8 @@ super + b
     polybar-msg cmd toggle
 
 # Most Used Apps {{{
+super + Return
+    "$TERMINAL"
 super + F1
     "$TERMINAL"
 
