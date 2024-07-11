@@ -3,50 +3,26 @@
 super + q
     wmctrl -c :ACTIVE:
 
-super + d
-    rofi -show combi -modi combi -combi-modes drun,run -show-icons
-
-super + b
-    polybar-msg cmd toggle
-
-# Most Used Apps {{{
-super + Return
-    "$TERMINAL"
-super + F1
-    "$TERMINAL"
-
-# Start $BROWSER or switch to it
-super + F2
-    wmctrl -xa "$BROWSER" \
-	|| \{ notify-send "Starting '$BROWSER'" -t 3000 && $BROWSER; \}
-
-# Starts $FILE_MANAGER or switch to it
-super + F3
-    wmctrl -xa "$FILE_MANAGER" \
-	|| \{ notify-send "Starting '$FILE_MANAGER'" "as $USER" -t 3000 && "$FILE_MANAGER"; \}
-# }}}
-
-super + a; c
-    galculator
-super + a; h
-    as-dialogue htop
-super + a; w
-    gtk-launch libreoffice-writer
-super + a; m
-    as-dialogue vimpc
-super + a; p
-    pavucontrol
-
-Print
-    flameshot gui
-shift + Print
-    "$SCRIPTS/screenshot"
-
 super + p
     notify-send "Restarted polybar, picom and sxhkd" -t 3000 \
 	; polybar-msg cmd restart \
 	; /usr/bin/kill -s USR1 sxhkd \
 	; /usr/bin/kill -s USR1 picom
+
+super + b
+    polybar-msg cmd toggle
+
+super + d
+    env SHELL=/bin/sh rofi -show combi -modi combi -combi-modes drun,run -show-icons
+
+super + Tab; w
+    env SHELL=/bin/sh rofi -show window -modi window -show-icons
+
+super + w
+    passmenu | xargs -r notify-send -t 3000 "Password Copied"
+
+super + shift + w
+    as-dialogue --work-dir $HOME/proj/wifi-menu -- poetry run wmenu
 
 super + shift + p
     "$XDG_CONFIG_HOME/polybar/scripts/color-switch.sh"
@@ -56,6 +32,26 @@ super + shift + b
 
 super + e
     $SCRIPTS/pick-emoji
+
+# Most Used Apps {{{
+super + Return
+    "$TERMINAL"
+
+super + a; c
+    wmctrl -xa galculator || galculator
+super + a; h
+    wmctrl -a htop || as-dialogue htop
+super + a; w
+    wmctrl -xa libreoffice-writer || gtk-launch libreoffice-writer
+super + a; m
+    wmctrl -a vimpc || as-dialogue vimpc
+super + a; p
+    wmctrl -xa pavucontrol || pavucontrol
+super + a; f
+    wmctrl -xa "$FILE_MANAGER" || "$FILE_MANAGER"
+super + a; b
+    wmctrl -xa "$BROWSER" || "$BROWSER"
+# }}}
 
 # System Menu {{{
 super + m; l
@@ -71,6 +67,12 @@ super + m; s
 super + m; g
     dm-tool switch-to-greeter
 # }}}
+
+# Fn Buttons {{{
+Print
+    flameshot gui
+shift + Print
+    "$SCRIPTS/screenshot"
 
 XF86TouchpadToggle
     toggle-touchpad --notify
@@ -99,6 +101,8 @@ XF86MonBrightness{Up,Down}
 shift + XF86MonBrightness{Up,Down}
     brightnessctl set {100,0}%
 
+# }}}
+
 # Notifications {{{
 super + n; a
     dunstctl action
@@ -115,10 +119,4 @@ super + n; c
 super + n; t
     dunstctl {set-paused toggle}
 # }}}
-
-super + w
-    passmenu | xargs -r notify-send -t 3000 "Password Copied"
-
-super + shift + w
-    as-dialogue --work-dir $HOME/proj/wifi-menu -- poetry run wmenu
 

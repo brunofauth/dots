@@ -1,8 +1,12 @@
 #! /bin/sh
 
 
-# while true; do
-    echo " $(checkupdates | wc -l)"
-    # sleep 600
-# done
+updates="$(checkupdates)"
+status="$?"
+
+case "$status" in
+    0) echo "󰏗 $(echo "$updates" | wc -l)" ;;
+    1) exit 1 ;;
+    2) echo "󰏗 0" ;;
+esac
 

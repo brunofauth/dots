@@ -8,16 +8,17 @@ import XMonad.Util.SpawnOnce (spawnOnce)
 import XMonad.Hooks.Modal (Mode, modal, setMode, mode, mkKeysEz)
 import XMonad.Hooks.EwmhDesktops (ewmh, ewmhFullscreen)
 import XMonad.Hooks.ManageDocks
+import qualified XMonad.StackSet as W
 import XMonad.Layout.Accordion
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
 import XMonad.Hooks.ManageHelpers (doCenterFloat)
-import qualified XMonad.StackSet as W
 
 import Data.Maybe
 import Control.Monad.State
 
 
+restartXmonad :: X ()
 restartXmonad = spawn $ concat
     [ "if type xmonad;"
     , " then xmonad --recompile && xmonad --restart;"
@@ -28,7 +29,8 @@ restartXmonad = spawn $ concat
 main :: IO ()
 main = xmonad . modal [modeGaps] . docks . ewmhFullscreen . ewmh $ cfg
     `removeKeysP`
-        [ "M-S-<Tab>", "M-<Tab>" -- extra next/prev window
+        [ "M-S-<Return>", "M-<Return>"
+        , "M-S-<Tab>", "M-<Tab>" -- extra next/prev window
         , "M-S-w", "M-w" -- xinerama screen 1
         , "M-S-e", "M-e" -- xinerama screen 2
         , "M-S-r", "M-r" -- xinerama screen 3
@@ -37,8 +39,8 @@ main = xmonad . modal [modeGaps] . docks . ewmhFullscreen . ewmh $ cfg
         , "M-h", "M-l" -- now using < and >
         ]
     `additionalKeysP`
-        -- [ ("M-b", sendMessage ToggleStruts)
-        [ ("M-[", prevWS), ("M-h", prevWS)
+        [ ("M-S-<Return>", windows W.swapMaster)
+        , ("M-[", prevWS), ("M-h", prevWS)
         , ("M-]", nextWS), ("M-l", nextWS)
         , ("M-S-[", shiftToPrev *> prevWS) , ("M-S-h", shiftToPrev *> prevWS)
         , ("M-S-]", shiftToNext *> nextWS) , ("M-S-l", shiftToNext *> nextWS)
