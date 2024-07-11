@@ -32,10 +32,10 @@ update_colors() {
 if [ $# -ge 2 ]; then
     update_colors "$1" "$2"
 else
-    fg=$(echo "$FGS" | rofi -theme theme.rasi -sep '\n' -dmenu -i -p "Pick Foreground Color")
+    fg=$(echo "$FGS" | rofi -sep '\n' -dmenu -i -p "Pick Foreground Color")
     [ -z "$fg" ] && { >&2 echo "No fg color picked. Exiting.";  exit 1; }
 
-    bg=$(echo "$BGS" | rofi -theme theme.rasi -sep '\n' -dmenu -i -p "Pick Background Color")
+    bg=$(echo "$BGS" | rofi -sep '\n' -dmenu -i -p "Pick Background Color")
     [ -z "$bg" ] && { >&2 echo "No bg color picked. Exiting.";  exit 1; }
 
     update_colors "$fg" "$bg"

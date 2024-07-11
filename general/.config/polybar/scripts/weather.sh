@@ -4,12 +4,12 @@ data="$(curl -s 'wttr.in/?format=1')"
 status=$?
 
 [ "$status" -ne 0 ] && {
-    echo "Error Fetching Weather!"
+    echo "󱔱"
     exit 1
 }
 echo "$data" | grep -q '<html>' && {
-    echo "Error Fetching Weather (code=$status)"
+    echo "󱔱"
     exit 2
 }
-echo "$data" | sed 's|️||'
+echo "$data"
 

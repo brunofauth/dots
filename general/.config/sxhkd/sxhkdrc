@@ -3,14 +3,11 @@
 super + q
     wmctrl -c :ACTIVE:
 
-super + p
+super + shift + p
     notify-send "Restarted polybar, picom and sxhkd" -t 3000 \
 	; polybar-msg cmd restart \
 	; /usr/bin/kill -s USR1 sxhkd \
 	; /usr/bin/kill -s USR1 picom
-
-super + b
-    polybar-msg cmd toggle
 
 super + d
     env SHELL=/bin/sh rofi -show combi -modi combi -combi-modes drun,run -show-icons
@@ -24,8 +21,18 @@ super + w
 super + shift + w
     as-dialogue --work-dir $HOME/proj/wifi-menu -- poetry run wmenu
 
-super + shift + p
+# pick a [C]olor
+super + b; c
     "$XDG_CONFIG_HOME/polybar/scripts/color-switch.sh"
+# toggle [T]ray
+super + b; t
+    polybar-msg action "#tray.module_toggle"
+# toggle [D]ate
+super + b; d
+    polybar-msg action "#date.toggle"
+# [H]ide bar
+super + b; h
+    polybar-msg cmd toggle
 
 super + shift + b
     "$SCRIPTS/set-bg"
