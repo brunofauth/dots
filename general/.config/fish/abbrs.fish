@@ -56,7 +56,7 @@ abbr pgff pgrep -il firefox
 abbr pgp pass git push
 abbr pgs pass git status
 abbr pk pkill
-abbr polybar detach polybar -c ~/.config/polybar/config.ini main
+abbr polybar polybar main
 abbr pvt fish --private
 abbr py ptpython
 abbr pt ptpython
