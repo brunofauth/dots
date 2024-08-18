@@ -1,5 +1,13 @@
 #! /usr/bin/env sh
 
 
-TMPDIR="$XDG_CACHE_HOME/minecraft" minecraft-launcher --workDir "$XDG_DATA_HOME/minecraft"
+# This is needed because minecraft tries to execute code from /tmp,
+# which is not allowed by my /etc/fstab
+export TMPDIR="${XDG_CACHE_DIR:-$HOME/.cache}/mc-tmp"
+
+# This is needed because I dont want .folders littering my ~/
+minecraft_dir="${XDG_DATA_HOME:-$HOME/.local/share}/minecraft"
+
+exec optirun -b primus \
+    /usr/bin/minecraft-launcher --workDir="$minecraft_dir" "$@"
 
