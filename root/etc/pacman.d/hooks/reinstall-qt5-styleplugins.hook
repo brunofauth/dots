@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = qt5-base
+
+[Action]
+Description = qt5-base was upgraded, reinstalling qt5-styleplugins...
+When = PostTransaction
+Depends = yay
+Exec = yay --aur --noconfirm --removemake --sudoloop qt5-styleplugins
+
