@@ -1,0 +1,12 @@
+#1/bin/sh
+
+
+nobody_user_id="$(getent passwd nobody | cut -d: -f3)"
+non_system_user_ids="$(getent passwd | cut -d: -f3 | awk "\$1 >= 1000 && \$1 != $nobody_user_id")"
+
+
+for user_id in $non_system_user_ids; do
+    /usr/bin/sudo --user "#$user_id" /usr/bin/xmonad --recompile
+done
+
+exit 0

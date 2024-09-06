@@ -1,0 +1,41 @@
+#! /bin/sh
+
+
+[ $# -lt 1 ]  && {
+    >&2 echo 'arg1 must be the name of a group'
+    exit 1
+}
+group="$1"
+shift
+
+
+if [ $USER != root ] && ! { groups | grep -q "$group"; }; then
+    >&2 echo "Can not notify group to which you do not belong, unless you are root."
+    exit 1
+fi
+
+
+if pgrep --exact Xorg; then
+    [ -z "$DISPLAY" ] && {
+        export DISPLAY=:0
+    }
+else
+    >&2 echo "Xorg is not running. Exiting."
+    exit 1
+fi
+
+
+user_data="$(getent group "$group")"
+[ $? -eq 2 ] && {
+    >&2 printf "The given group (%s) does not exist. Exiting.\n" "$group"
+    exit 1
+}
+
+
+user_ids="$(echo "$user_data" | cut -d: -f4 | tr -d "\n" | xargs -rd, id --user)"
+for user_id in $user_ids; do
+    sudo --user "#$user_id" -- \
+        env DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$user_id/bus" \
+            notify-send "$@"
+done
+

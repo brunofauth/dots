@@ -1,0 +1,17 @@
+
+# man 5 systemd.unit
+[Unit]
+Description=Daily fetch package updates
+Documentation=man:pacman(8)
+ConditionACPower=true
+ConditionFileIsExecutable=/usr/bin/pacman
+ConditionFileIsExecutable=/usr/bin/pgrep
+After=network-online.target
+
+# man 5 systemd.service
+[Service]
+Type=oneshot
+ExecCondition=/bin/sh -c "! { pgrep --exact pacman && exit 255; }"
+ExecStart=pacman -Syuw --noconfirm --color=always
+ExecStopPost=/bin/sh -c 'if [ $SERVICE_RESULT != success ]; then notify-grp notify-all --urgency=critical "Fetch Updates" "Could not fetch updates"; else notify-grp notify-all --urgency=low "Fetch Updates" "Finished fetching updates"; fi'
+

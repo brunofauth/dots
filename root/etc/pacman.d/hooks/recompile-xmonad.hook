@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = xmonad
+
+[Action]
+Description = Recompiling xmonad...
+When = PostTransaction
+Exec = /usr/local/bin/recompile-xmonad
+

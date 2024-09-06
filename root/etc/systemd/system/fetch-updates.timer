@@ -1,0 +1,28 @@
+
+# man 5 systemd.unit
+
+[Unit]
+Description=Daily fetch package updates
+Documentation=man:pacman(8)
+ConditionFileIsExecutable=/usr/bin/pacman
+After=network-online.target
+
+
+# man 5 systemd.timer
+
+[Timer]
+# Multiple directives may be combined of the same and of different types, in
+# which case the timer unit will trigger whenever any of the specified timer
+# expressions elapse.
+
+# Timer relative to when the machine was booted up.
+OnBootSec=15min
+
+# Timer relative to the last time this unit was activated.
+OnUnitActiveSec=6h
+
+# Delay the timer by a randomly selected, evenly distributed amount of time
+# between 0 and the specified time value. This is useful to prevent similarly
+# configured timer events to fire at the same time, avoiding possible resource
+# congestion.
+RandomizedDelaySec=3h
