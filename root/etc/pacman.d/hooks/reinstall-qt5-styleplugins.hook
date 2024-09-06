@@ -8,5 +8,5 @@ Target = qt5-base
 Description = qt5-base was upgraded, reinstalling qt5-styleplugins...
 When = PostTransaction
 Depends = yay
-Exec = yay --aur --noconfirm --removemake --sudoloop qt5-styleplugins
+Exec = /usr/bin/yay --aur --noconfirm --removemake --sudoloop -S qt5-styleplugins
 
