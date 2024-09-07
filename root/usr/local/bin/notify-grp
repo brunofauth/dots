@@ -10,7 +10,7 @@ shift
 
 
 if [ $USER != root ] && ! { groups | grep -q "$group"; }; then
-    >&2 echo "Can not notify group to which you do not belong, unless you are root."
+    >&2 echo "Unless you are root, can not notify group to which you do not belong."
     exit 1
 fi
 
