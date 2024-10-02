@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = qt6-base
+
+[Action]
+Description = qt6-base was upgraded, reinstalling qt6gtk2...
+When = PostTransaction
+Depends = yay
+Exec = /usr/bin/yay --aur --answerclean=All --noconfirm --removemake --sudoloop -S qt6gtk2
+
