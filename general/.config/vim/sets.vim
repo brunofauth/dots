@@ -28,9 +28,24 @@ set showcmd
 " Always show window status bars
 set laststatus=2
 
-" Insert and delete 4 spaces instead of a <Tab>
+" When on, a <Tab> in front of a line inserts blanks (tabs or spaces)
+" according to 'shiftwidth'. 'tabstop' or 'softtabstop' is used in places
+" other than the start of a line. A <BS> will delete a 'shiftwidth' worth of
+" space at the start of the line.
+"
+" When off, a <Tab>, in all places, inserts blanks according to 'tabstop' or
+" 'softtabstop'; and 'shiftwidth' is only used for shifting text left or
+" right.
+"
+" What gets inserted (a <Tab> or spaces) depends on 'expandtab'.
+" Also see ins-expandtab.
 set smarttab
+
+" The ammount of spaces to shift text left or right when using << and >>. if
+" 'smarttab' is set, 'shiftwidth' is also used to determine how many spaces to
+" insert when at the beginning of a line.
 set shiftwidth=4
+
 set expandtab
 
 " Enable folding indented code. Only start doing it
@@ -57,6 +72,9 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$
 
 " Leaves three lines as context above and below the cursor
 set scrolloff=3
+
+" Scrolling works with screenlines instead of filelines
+set smoothscroll
 
 " Disable considering number starting with a 0 as octal when inc/dec
 set nrformats-=octal
@@ -146,11 +164,15 @@ highlight TabLineFill ctermfg=White guifg=White
 highlight TabLineFill ctermbg=Gray guibg=#424242
 
 highlight Folded ctermbg=Black guibg=Black
+
+" lspInlayHintsType xxx links to Label
+highlight lspInlayHintsType ctermbg=Black guibg=Black cterm=underline guifg=DarkGray
+highlight lspInlayHintsParameter guibg=Black cterm=underline gui=underline guifg=DarkGray
 "}}}
 
 
 if executable("rg")
-    let &grepprg = "rg --engine=pcre2 --smart-case --line-number --column $*"
+    let &grepprg = "rg --engine=pcre2 --smart-case --line-number --column --with-filename --no-heading $*"
     let &grepformat = "%f:%l:%c:%m"
 endif
 

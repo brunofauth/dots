@@ -1,4 +1,4 @@
-packadd termdebug
+" packadd termdebug
 runtime cfgs/termdebug.vim
 
 packadd cfilter
@@ -44,6 +44,9 @@ runtime cfgs/vim-svelte.vim
 
 " OBS: Work In Progress
 Plug 'https://github.com/kaarmu/typst.vim'
+
+" Add syntax highlighting support for mbsync config file
+Plug 'https://github.com/Fymyte/mbsync.vim'
 
 """""""""""""""""""""""""""
 
@@ -117,10 +120,6 @@ Plug 'https://github.com/tpope/vim-speeddating'
 Plug 'https://github.com/simnalamburt/vim-mundo'
 runtime cfgs/mundo.vim
 
-" allows REPL shells inside Vim in a seamless way.
-Plug 'https://github.com/ubaldot/vim-replica'
-runtime cfgs/replica.vim
-
 Plug 'https://github.com/kana/vim-textobj-user'
 Plug 'https://github.com/glts/vim-textobj-comment'
 Plug 'https://github.com/preservim/vim-textobj-sentence'
@@ -134,8 +133,12 @@ runtime cfgs/inflect-abbr.vim
 Plug 'https://github.com/SirVer/ultisnips'
 runtime cfgs/ultisnips.vim
 
-" plugin for interacting with databases
-Plug 'https://github.com/tpope/vim-dadbod'
+" " plugin for interacting with databases
+" Plug 'https://github.com/tpope/vim-dadbod'
+
+" A simple, easy-to-use Vim alignment plugin.
+Plug 'https://github.com/junegunn/vim-easy-align'
+runtime cfgs/easy-align.vim
 
 call plug#end()
 

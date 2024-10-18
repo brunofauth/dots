@@ -13,6 +13,8 @@ let g:lsp_signature_help_enabled = 1
 let g:lsp_signature_help_delay = 50
 let g:lsp_ignorecase = v:false
 let g:lsp_semantic_enabled = v:true
+let g:lsp_inlay_hints_enabled = 1
+let g:lsp_inlay_hints_delay = 250
 " let g:lsp_log_file = $HOME . '/vim-lsp.log'
 " }}}
 
@@ -248,6 +250,22 @@ if executable('typst-lsp')
             \ 'name': 'typst-lsp',
             \ 'cmd': {server_info->['typst-lsp']},
             \ 'allowlist': ['typst', 'typ'],
+        \ })
+    augroup END
+endif
+
+if executable('haskell-language-server')
+    augroup vim_lsp__hs__haskell_language_server
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'haskell-language-server',
+            \ 'cmd': {server_info->['haskell-language-server-wrapper', '--lsp']},
+            \ 'allowlist': ['hs', 'haskell', 'lhaskell'],
+            \ 'root_uri':{server_info->lsp#utils#path_to_uri(
+            \     lsp#utils#find_nearest_parent_file_directory(
+            \         lsp#utils#get_buffer_path(),
+            \         ['.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', 'hie.yaml', '.git'],
+            \ ))}
         \ })
     augroup END
 endif

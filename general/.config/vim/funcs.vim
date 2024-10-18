@@ -80,7 +80,7 @@ endfunction
 command! ToggleQuickFix call s:ToggleQuickFix()
 
 function s:ToggleLocList()
-    execute empty(filter(getwininfo(), 'v:val.loclist')) ? "lopen" : "lclose"
+    execute empty(filter(getwininfo(), 'v:val.loclist')) ? "silent! lopen" : "lclose"
 endfunction
 command! ToggleLocList call s:ToggleLocList()
 

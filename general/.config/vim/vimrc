@@ -23,7 +23,7 @@ let g:vimrc_home_dir = $XDG_CONFIG_HOME .. "/vim"
 set viminfo='100,<50,s10,/10,h
 set viminfofile=$XDG_CACHE_HOME/vim/viminfo
 
-set runtimepath=$
+set runtimepath=
 let &runtimepath .= "," .. g:vimrc_home_dir
 set runtimepath+=/usr/share/vim/vimfiles
 set runtimepath+=$VIMRUNTIME

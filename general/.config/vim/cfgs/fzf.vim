@@ -54,6 +54,7 @@ nnoremap <Plug>(fzf-prefix)b  <Cmd>FzfBuffers<CR>
 nnoremap <Plug>(fzf-prefix)w  <Cmd>FzfWindows<CR>
 nnoremap <Plug>(fzf-prefix)C  <Cmd>FzfColors<CR>
 nnoremap <Plug>(fzf-prefix)t  <Cmd>FzfFiletypes<CR>
+nnoremap <Plug>(fzf-prefix)s  <Cmd>FzfTags<CR>
 nnoremap <Plug>(fzf-prefix)h  <Cmd>FzfHelptags<CR>
 nnoremap <Plug>(fzf-prefix)Hf <Cmd>FzfHistory<CR>
 nnoremap <Plug>(fzf-prefix)Hc <Cmd>FzfHistory:<CR>
