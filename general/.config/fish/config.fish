@@ -1,8 +1,8 @@
-set fish_greeting
-fish_default_key_bindings
-
 if status --is-interactive
-    cd $HOME
+    set fish_greeting
+    fish_default_key_bindings
+    source ~/.config/fish/abbrs.fish
+
     if pstree -s $fish_pid | grep -q kitty
         kitty + complete setup fish | source
     end
@@ -10,8 +10,6 @@ if status --is-interactive
     ferium complete fish | source
     register-python-argcomplete --shell fish pipx | source
     rye self completion --shell fish | source
+
 end
-
-
-source ~/.config/fish/abbrs.fish
 

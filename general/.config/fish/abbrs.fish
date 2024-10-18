@@ -23,6 +23,7 @@ abbr ysi yay --aur -Si
 abbr yss yay --aur -Ss
 abbr ysyu yay --aur --sudoloop -Syu
 
+abbr make make -j(nproc)
 abbr dash rlwrap --complete-filenames --case-insensitive dash
 abbr dict dict "(read -P 'Word: ')"
 abbr ff firefox
@@ -34,6 +35,7 @@ abbr gcm "read -P 'Commit Message: ' | xargs -rd '\n' git commit -m"
 abbr gd git diff
 abbr gp git push
 abbr gs git status
+abbr gco git checkout
 abbr gt gitui
 abbr hn hugo new
 abbr hs hugo server
