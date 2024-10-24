@@ -1,7 +1,11 @@
+" vim: foldmethod=marker foldlevel=0
 " packadd termdebug
 runtime cfgs/termdebug.vim
 
 packadd cfilter
+
+
+" Automatically download and install vim-plug if not found {{{
 
 let s:PLUG_URL = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 let s:PLUG_INSTALL_DIR = $XDG_DATA_HOME . '/vim/plugged/'
@@ -14,11 +18,13 @@ endif
 
 execute 'source ' . s:PLUG_FILE
 
+" }}}
+
 
 call plug#begin(s:PLUG_INSTALL_DIR)
 
 
-""" SYNTAX HIGHLIGHTING """
+" SYNTAX HIGHLIGHTING {{{
 
 " Fish syntax highlighting
 Plug 'dag/vim-fish'
@@ -48,14 +54,110 @@ Plug 'https://github.com/kaarmu/typst.vim'
 " Add syntax highlighting support for mbsync config file
 Plug 'https://github.com/Fymyte/mbsync.vim'
 
-"""""""""""""""""""""""""""
+" }}}
 
-" Manage tags, quotes, brackets...
+
+" TEXT-EDITING AIDS/FEATURES {{{
+
+
+" vim-surround {{{
 Plug 'https://github.com/tpope/vim-surround.git'
-runtime cfgs/surround.vim
+let g:surround_{char2nr('i')} = "*\r*"
+let g:surround_{char2nr('8')} = "*\r*"
+let g:surround_{char2nr('b')} = "**\r**"
+let g:surround_{char2nr('a')} = "***\r***"
+let g:surround_{char2nr('s')} = "~~\r~~"
+let g:surround_{char2nr('c')} = "`\r`"
+let g:surround_{char2nr('u')} = "!u[\r]"
+let g:surround_{char2nr('h')} = "==\r=="
+" }}}
+
+
+" vim-commentary: Toggle commenting stuff out. {{{
+"    - Use gcc to comment out a line (takes a count)
+"    - gc to comment out the target of a motion
+"    - gc in visual mode to comment out the selection
+"    - gc in operator pending mode to target a comment.
+Plug 'https://github.com/tpope/vim-commentary'
+" }}}
+
+
+" vim-repeat: Remaps '.' in a way that plugins can tap into it{{{
+Plug 'https://github.com/tpope/vim-repeat'
+"}}}
+
+
+" vim-easy-align: a simple, easy-to-use Vim alignment plugin. {{{
+Plug 'https://github.com/junegunn/vim-easy-align'
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" }}}
+
+
+" vim-speeddatign: Use CTRL-A/CTRL-X to increment dates, times, and more {{{
+Plug 'https://github.com/tpope/vim-speeddating'
+
+" }}}
+
+
+" }}}
+
+
+" EYE CANDY {{{
+
+
+" vista.vim: View and search LSP symbols, tags in Vim/NeoVim. {{{
+Plug 'liuchengxu/vista.vim'
+runtime cfgs/vista.vim
+" }}}
+
+
+" goyo.vim: Reading mode {{{
+Plug 'https://github.com/junegunn/goyo.vim'
+nnoremap <Leader>gg :Goyo<CR>
+" }}}
+
+
+" nerdtree: file system explorer for Vim. {{{
+Plug 'https://github.com/preservim/nerdtree'
+runtime cfgs/nerdtree.vim
+" Adds filetype glyphs (icons) to nerdtree
+Plug 'ryanoasis/vim-devicons'
+Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
+
+" }}}
+
+
+" }}}
+
+
+" Async Language Server Protocol plugin for vim8 and neovim.
+Plug 'prabirshrestha/vim-lsp'
+runtime cfgs/vim-lsp.vim
+
+" A Vim plugin to visualizes the Vim undo tree.
+Plug 'https://github.com/simnalamburt/vim-mundo'
+nnoremap U <Cmd>MundoToggle<CR>
+
+" Properly render ANSI escape sequences
+Plug 'powerman/vim-plugin-AnsiEsc'
+
+" Toggle fullscreen for vim windows, useful when using splits
+Plug 'https://github.com/vim-scripts/ZoomWin'
 
 " Text objects and motions for Latex editing
 Plug 'gibiansky/vim-latex-objects'
+
+Plug 'https://github.com/kana/vim-textobj-user'
+Plug 'https://github.com/glts/vim-textobj-comment'
+" Improving on Vim's native sentence text object and motion
+Plug 'https://github.com/preservim/vim-textobj-sentence'
+runtime cfgs/vim-textobj-sentence.vim
 
 " Vim sugar for the UNIX shell commands that need it the most
 Plug 'https://github.com/tpope/vim-eunuch.git'
@@ -70,60 +172,12 @@ else
     " https://github.com/junegunn/fzf.vim
 endif
 
-" Toggle fullscreen for vim windows, useful when using splits
-Plug 'https://github.com/vim-scripts/ZoomWin'
-
-" " This plugin uses clang for accurately completing C and C++ code.
-" Plug 'https://github.com/xavierd/clang_complete'
-" let g:clang_library_path='/usr/lib/'
-
 " HTML, CSS abbreviations
 Plug 'https://github.com/mattn/emmet-vim/'
 runtime cfgs/emmet.vim
 
-" Reading mode
-Plug 'https://github.com/junegunn/goyo.vim'
-runtime cfgs/goyo.vim
-
-" Async Language Server Protocol plugin for vim8 and neovim.
-Plug 'prabirshrestha/vim-lsp'
-runtime cfgs/vim-lsp.vim
-
-" View and search LSP symbols, tags in Vim/NeoVim.
-Plug 'liuchengxu/vista.vim'
-runtime cfgs/vista.vim
-
-" Remaps '.' in a way that plugins can tap into it
-Plug 'https://github.com/tpope/vim-repeat'
-
-"file system explorer for Vim. Browse complex directory hierarchies, read or edit files
-Plug 'https://github.com/preservim/nerdtree'
-runtime cfgs/nerdtree.vim
-" Adds filetype glyphs (icons) to nerdtree
-Plug 'ryanoasis/vim-devicons'
-Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
-
-" Toggle commenting stuff out.
-"    - Use gcc to comment out a line (takes a count)
-"    - gc to comment out the target of a motion
-"    - gc in visual mode to comment out the selection
-"    - gc in operator pending mode to target a comment.
-Plug 'https://github.com/tpope/vim-commentary'
-
 " automatic table creator & formatter
 Plug 'https://github.com/dhruvasagar/vim-table-mode'
-
-" Use CTRL-A/CTRL-X to increment dates, times, and more
-Plug 'https://github.com/tpope/vim-speeddating'
-
-" A Vim plugin to visualizes the Vim undo tree.
-Plug 'https://github.com/simnalamburt/vim-mundo'
-runtime cfgs/mundo.vim
-
-Plug 'https://github.com/kana/vim-textobj-user'
-Plug 'https://github.com/glts/vim-textobj-comment'
-Plug 'https://github.com/preservim/vim-textobj-sentence'
-runtime cfgs/vim-textobj-sentence.vim
 
 " Autogenerate abbreviations for many variations of a word, according its inflections 
 Plug 'https://github.com/brunofauth/vim-inflect-abbr'
@@ -132,13 +186,6 @@ runtime cfgs/inflect-abbr.vim
 " the ultimate solution for snippets in Vim. It has many features, speed being one of them.
 Plug 'https://github.com/SirVer/ultisnips'
 runtime cfgs/ultisnips.vim
-
-" " plugin for interacting with databases
-" Plug 'https://github.com/tpope/vim-dadbod'
-
-" A simple, easy-to-use Vim alignment plugin.
-Plug 'https://github.com/junegunn/vim-easy-align'
-runtime cfgs/easy-align.vim
 
 call plug#end()
 
