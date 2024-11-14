@@ -5,48 +5,6 @@ runtime funcs/platf.vim
 runtime funcs/util.vim
 
 
-def! WslToW32(path: string): string
-    return trim(SystemFmtEscaped('wslpath -m %s', path))
-enddef
-
-
-def! WriteAndBackUp(): void
-    const bak = printf("%s/.%s.bak", expand('%:h'), expand('%:t'))
-    silent execute 'write!'
-    silent execute 'write!' bak
-    echo printf('Wrote "%s" and "%s"', expand('%'), bak)
-enddef
-
-
-def! ThrowIfMissing(exec_file: string): string
-    var path = exepath(exec_file)
-    if !path
-        throw "Couldn't find executable: " .. exec_file
-    endif
-    return path
-enddef
-
-
-def! WriteToClipboard(data: string): void
-    if s:platf == 'w32' || s:platf == 'wsl'
-        ThrowIfMissing("clip.exe")
-        system('clip.exe', data)
-    elseif s:platf == 'gnu' || s:platf == 'mac'
-        ThrowIfMissing("xsel")
-        system('xsel -ib', data)
-    else
-        throw 'Unsupported platform'
-    endif
-enddef
-
-
-def! g:SaveDeathSession(): void
-    if v:dying
-        mksession! ~/.cache/vim/death-sess.vim
-    endif
-enddef
-
-
 " Remove diacritical signs from characters in specified range of lines.
 function s:RemoveDiacritics(begin, end)
     let ilines = join(getline(a:begin, a:end), "\n")

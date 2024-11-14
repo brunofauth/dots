@@ -1,0 +1,36 @@
+" vim: foldmethod=marker foldlevel=0
+
+syntax enable
+filetype plugin on
+
+set nocompatible
+set number relativenumber
+set foldmethod=marker foldlevel=0
+set hlsearch incsearch ignorecase smartcase
+set belloff=all showcmd ruler splitbelow splitright
+set laststatus=2 display=lastline,uhex
+set expandtab smarttab shiftwidth=4
+set wildmenu wildmode=longest,full
+set hidden
+set backspace=indent,eol,start
+set smoothscroll
+set nrformats-=octal
+set path+=**
+set viminfo=
+
+if executable("rg")
+    let &grepprg = "rg --engine=pcre2 --smart-case --line-number --column --with-filename --no-heading $*"
+    set grepformat=%f:%l:%c:%m
+endif
+
+
+nnoremap <SPACE> <Nop>
+let mapleader = "\<Space>"
+
+nnoremap <Leader>h <Cmd>set hlsearch! hlsearch?<CR>
+nnoremap <Leader>p <Cmd>set paste! paste?<CR>
+nnoremap <leader>l <Cmd>set list! list?<CR>
+
+" Move lines up and down
+nnoremap <C-J> <Cmd>execute 'move +' .. v:count1->string()<CR>
+nnoremap <C-K> <Cmd>execute 'move -' .. string(v:count1 + 1)<CR>

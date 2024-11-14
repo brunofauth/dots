@@ -50,8 +50,7 @@ set expandtab
 
 " Enable folding indented code. Only start doing it
 " automatically after 99 indentations, though.
-set foldmethod=indent
-set foldlevel=99
+set foldmethod=marker foldlevel=0
 " set foldclose=all
 
 " Indent wrapped ((curr indent + 1) AKA 4 spaces)

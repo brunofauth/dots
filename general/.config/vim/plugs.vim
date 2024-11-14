@@ -164,12 +164,11 @@ Plug 'https://github.com/tpope/vim-eunuch.git'
 
 " Things you can do with fzf and Vim.
 if executable('fzf')
-    Plug 'https://github.com/brunofauth/fzf.vim'
+    " Plug 'https://github.com/brunofauth/fzf.vim'
+    Plug 'https://github.com/junegunn/fzf.vim'
     runtime cfgs/fzf.vim
 else
     echoerr 'Could not find "fzf" plugin in runtimepath. Make sure "fzf" is installed and the vim plugin it ships with is available in "runtimepath", so that "fzf.vim" can use the functions the missing plugin should be exporting'
-    " https://github.com/junegunn/fzf
-    " https://github.com/junegunn/fzf.vim
 endif
 
 " HTML, CSS abbreviations

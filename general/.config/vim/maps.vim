@@ -55,6 +55,7 @@ noremap <silent> <Leader>cc <Cmd>!cls && compileit %<CR>
 
 
 " -------- Insert mode Unicode characters {{{
+" These are 'deprecated' in favor of digraphs (:help *digraph-table-mbyte*)
 inoremap <F1>h ←
 inoremap <F1>j ↓
 inoremap <F1>k ↑
@@ -81,11 +82,6 @@ nnoremap go <Cmd>silent !nohup xdg-open <cfile> > /dev/null 2>&1 &<CR><Cmd>redra
 nnoremap <C-J> <Cmd>execute 'move +' .. v:count1->string()<CR>
 nnoremap <C-K> <Cmd>execute 'move -' .. string(v:count1 + 1)<CR>
 
-" Yanks the whole buffer to '+'
-nnoremap <Leader>ya "+yib
-" Copies '+' register into system clipboard
-nnoremap <Leader>yc :call WriteToClipboard(getreg('+'))<CR>
-
 
 " Substitutes inner word/WORD by yanked text.
 nnoremap <Leader>cw ciw<C-r>0<ESC>
@@ -93,16 +89,14 @@ nnoremap <Leader>cW ciW<C-r>0<ESC>
 
 
 " Turns off search match highlighting
-nnoremap <Leader>h <Cmd>set hlsearch!<CR>
+nnoremap <Leader>h <Cmd>set hlsearch! hlsearch?<CR>
+nnoremap <Leader>p <Cmd>set paste! paste?<CR>
+nnoremap <F4>      <Cmd>set list! list?<CR>
+
 " Close help window
-nnoremap <F1> <Cmd>helpclose<CR>
-vnoremap <F1> <Cmd>helpclose<CR>
+ noremap <F1> <Cmd>helpclose<CR>
 inoremap <F1> <Cmd>helpclose<CR>
-nnoremap <S-F1> <Cmd>execute (winwidth(0) > 120? 'vertical': '') "help" expand("<cword>")<CR>
-vnoremap <S-F1> <Cmd>execute (winwidth(0) > 120? 'vertical': '') "help" expand("<cword>")<CR>
-nnoremap <F4> <Cmd>set list!<CR>
-vnoremap <F4> <Cmd>set list!<CR>
-inoremap <F4> <Cmd>set list!<CR>
+ noremap <S-F1> <Cmd>execute (winwidth(0) > 120? 'vertical': '') "help" expand("<cword>")<CR>
 
 
 " -------- Quickfix and Location List {{{
@@ -115,11 +109,9 @@ nnoremap [c <Cmd>cprev<CR>
 " }}}
 
 
-nnoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
-vnoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
+ noremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
 inoremap <S-F5> <Cmd>write<CR><Cmd>source %<CR>
 
 nnoremap <silent> <Leader>m <Cmd>vertical terminal ++close men<CR>
-nnoremap <silent> <Leader>M <Cmd>Man <cfile><C-W><CR>
 nnoremap <silent> <Leader>t <Cmd>vertical terminal ++close fish<CR>
 
