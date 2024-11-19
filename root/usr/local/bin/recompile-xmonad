@@ -1,10 +1,33 @@
 #!/bin/sh
 
 
-non_system_user_ids="$(getent passwd | awk -F: '$3 >= 1000 && $1 != "nobody" {print $3}')"
+g_xmonad_cfg_fp=
 
-for user_id in $non_system_user_ids; do
-    /usr/bin/sudo --user "#$user_id" /usr/bin/xmonad --recompile
-done
 
-exit 0
+find_xmonad_cfg() { # {{{
+    [ -n "$XMONAD_CONFIG_DIR" ] && {
+        file_path="$XMONAD_CONFIG_DIR/xmonad.hs"
+        [ -f "$file_path" ] && { g_xmonad_cfg_fp="$file_path"; return 0; }
+    }
+
+    file_path="${XDG_CONFIG_HOME:-$HOME/.config}/xmonad/xmonad.hs"
+    [ -f "$file_path" ] && { g_xmonad_cfg_fp="$file_path"; return 0; }
+
+    file_path="$HOME/.xmonad/xmonad.hs"
+    [ -f "$file_path" ] && { g_xmonad_cfg_fp="$file_path"; return 0; }
+
+    return 1
+} # }}}
+
+
+main() { # {{{
+    find_xmonad_cfg
+    if [ -n "$g_xmonad_cfg_fp" ]; then
+        >&2 echo "Recompiling $(whoami)'s Xmonad..."
+        exec /usr/bin/xmonad --recompile
+    fi
+    return 1
+} # }}}
+
+
+main

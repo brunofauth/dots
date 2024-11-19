@@ -1,0 +1,11 @@
+#!/bin/sh
+
+
+# user ids that are not system accounts
+non_system_user_ids="$(getent passwd | awk -F: '$3 >= 1000 && $1 != "nobody" {print $3}')"
+
+for user_id in $non_system_user_ids; do
+    /usr/bin/sudo --user "#$user_id" --login /usr/local/bin/recompile-xmonad
+done
+
+exit 0
