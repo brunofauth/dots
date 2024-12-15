@@ -25,6 +25,7 @@ shopt -s nocaseglob
 shopt -s nocasematch
 
 
+# https://bash-prompt-generator.org/
 PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null | xargs -r printf "(%s)\n")'
 PS1='\[\e[2m\]\A\[\e[0m\] \[\e[92;1m\]\u\[\e[0m\]@\[\e[96;1m\]\h\[\e[0m\] \[\e[93m\]\w\[\e[0m\] ${PS1_CMD1}\n\\$ '
 # PS1='\[\e[90m\]\A\[\e[0m\] \[\e[92;1m\]\u\[\e[0m\]@\[\e[96;1m\]\h\[\e[0m\] \[\e[93m\]\w\[\e[0m\] ${PS1_CMD1}\n\\$ '
