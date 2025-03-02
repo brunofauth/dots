@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = python
+
+[Action]
+Description = Reinstalling pipx-managed software...
+When = PostTransaction
+Exec = /usr/local/bin/for-all-users /usr/bin/pipx reinstall-all
+
