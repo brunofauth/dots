@@ -1,0 +1,60 @@
+// SEE polkit(8) § AUTHORIZATION RULES
+//      $ man 8 polkit
+
+// Rules files are written in the JavaScript[7] programming language and
+// interface with polkitd through the global polkit object (of type Polkit).
+// Rule functions are called in the order they have been added until one of the
+// functions returns a value.  Hence, to add an authorization rule that is
+// processed before other rules, put it in a file in /etc/polkit-1/rules.d with
+// a name that sorts before other rules files, for example
+// 00-early-checks.rules.
+
+// The following methods are available on the polkit object:
+// - void addRule(polkit.Result function(action, subject) {...});
+// - void addAdminRule(string[] function(action, subject) {...});
+// - void log(string message);
+// - string spawn(string[] argv);
+
+
+// addRule() is used for adding a function that may be called when an auth
+// check for 'action' and 'subject' is performed.  These callbacks are called
+// in the order they have been added until one of the functions returns a
+// value. Thus, to add an authorization rule that is processed before other
+// rules, put it in a file in /etc/polkit-1/rules.d with a name that sorts
+// before other rules files, for example 00-early-checks.rules. Each function
+// should return a value from polkit.Result corresponding to the values that
+// can be used as defaults. If the function returns polkit.Result.NOT_HANDLED,
+// null, undefined or does not return a value at all, the next user function is
+// tried.
+
+// See Also: https://github.com/coldfix/udiskie/wiki/Permissions
+polkit.addRule(function(action, subject) {
+    if (0 !== action.id.indexOf("org.freedesktop.udisks2."))
+        return polkit.Result.NOT_HANDLED;
+    var actionVerb = action.id.substring(24);
+
+    var localAllowedActions = [
+        "filesystem-mount",
+        "eject-media",
+        "encrypted-unlock",
+        "power-off-drive",
+        "modify-device"
+    ];
+
+    if (-1 !== localAllowedActions.indexOf(actionVerb)
+        && subject.isInGroup("plugdev")
+    )
+        return polkit.Result.YES;
+
+    var remoteAllowedActions = [
+        "eject-media-other-seat",
+        "encrypted-unlock-other-seat",
+        "filesystem-mount-other-seat",
+        "modify-device-other-seat",
+        "power-off-drive-other-seat",
+    ];
+    if (-1 !== remoteAllowedActions.indexOf(actionVerb)
+        && subject.isInGroup("plugdev")
+    )
+        return polkit.Result.AUTH_ADMIN_KEEP;
+});
