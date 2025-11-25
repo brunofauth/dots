@@ -7,6 +7,9 @@ abbr c cls
 abbr CLS cls
 abbr CD cd
 
+abbr es snow ~/scripts
+abbr ec snow ~/.config
+
 abbr pqe "pacman -Qeq | fzf --preview-window=wrap --preview='env COLUMNS=9999 pacman -Qi {} | grep Description | cut -d: -f2-'"
 abbr pqi pacman -Qi
 abbr pql pacman -Ql
