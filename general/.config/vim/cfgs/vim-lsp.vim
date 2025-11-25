@@ -13,7 +13,7 @@ let g:lsp_signature_help_enabled = 1
 let g:lsp_signature_help_delay = 50
 let g:lsp_ignorecase = v:false
 let g:lsp_semantic_enabled = v:true
-let g:lsp_inlay_hints_enabled = 1
+let g:lsp_inlay_hints_enabled = 0
 let g:lsp_inlay_hints_delay = 250
 " let g:lsp_log_file = $HOME . '/vim-lsp.log'
 " }}}
@@ -64,9 +64,17 @@ if executable('rust-analyzer')
             \ 'name': 'rust-analyzer',
             \ 'cmd': {server_info->['rust-analyzer']},
             \ 'allowlist': ['rust'],
-            \ })
+        \ })
     augroup END
 endif
+
+            " \ 'initialization_options': {
+            " \     'rust-analyzer': {
+            " \         'formatting': {
+            " \             'enable': v:false
+            " \         }
+            " \     }
+            " \ }
 
 " https://github.com/palantir/python-language-server/blob/develop/vscode-client/package.json
 " https://github.com/python-lsp/python-lsp-ruff
@@ -84,7 +92,7 @@ if executable('pylsp')
                 \ 'pylsp': {
                     \ 'plugins': {
                         \ 'autopep8': {'enabled': v:false},
-                        \ 'yapf': {'enabled': v:true},
+                        \ 'yapf': {'enabled': v:false},
                         \ 'rope_autoimport': {'enabled': v:false},
                         \ 'rope_completion': {'enabled': v:true},
                         \ 'black': {
@@ -299,7 +307,8 @@ function! s:on_lsp_buffer_enabled() abort
 
     augroup lsp_on_enable
         autocmd!
-        autocmd BufWritePre *.rs,*.py,*.html,*.ts,*.js,*.svelte,*.css call execute('LspDocumentFormatSync')
+        " autocmd BufWritePre *.rs,*.py,*.html,*.ts,*.js,*.svelte,*.css call execute('LspDocumentFormatSync')
+        autocmd BufWritePre *.py,*.html,*.ts,*.js,*.svelte,*.css call execute('LspDocumentFormatSync')
     augroup END
 
 endfunction

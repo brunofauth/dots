@@ -30,14 +30,17 @@ call plug#begin(s:PLUG_INSTALL_DIR)
 Plug 'dag/vim-fish'
 
 " Support for all of Pandoc's markdown syntax features
-Plug 'vim-pandoc/vim-pandoc-syntax'
-runtime cfgs/pandoc-syntax.vim
+" Plug 'vim-pandoc/vim-pandoc-syntax'
+" runtime cfgs/pandoc-syntax.vim
+" *ft-pandoc-syntax*
+" *ft-markdown-plugin*
+" *ft-markdown-syntax*
 
 " " Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
 " Plug 'godlygeek/tabular'
 " Plug 'preservim/vim-markdown'
-Plug '~/cln/vim-markdown-ext/'
-runtime cfgs/vim-markdown.vim
+" Plug '~/cln/vim-markdown-ext/'
+" runtime cfgs/vim-markdown.vim
 
 " indent, highlight syntax and detect sxhkd config files
 Plug 'kovetskiy/sxhkd-vim'
@@ -185,6 +188,9 @@ runtime cfgs/inflect-abbr.vim
 " the ultimate solution for snippets in Vim. It has many features, speed being one of them.
 Plug 'https://github.com/SirVer/ultisnips'
 runtime cfgs/ultisnips.vim
+
+" Titlecase is a vim plugin that adds a new operator (command that takes a text object or motion to act on) for titlecasing text.
+Plug 'https://github.com/christoomey/vim-titlecase'
 
 call plug#end()
 
