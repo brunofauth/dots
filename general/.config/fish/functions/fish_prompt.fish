@@ -6,6 +6,10 @@ function fish_prompt --description 'Write out the prompt'
     set -q fish_color_status
     or set -g fish_color_status --background=red white
 
+    if ps -o ppid= | string trim | xargs -I {} cat /proc/{}/comm 2>/dev/null | grep -q vim
+        printf '[Inside Vim] '
+    end
+
     # Color the prompt differently when we're root
     set -l color_cwd $fish_color_cwd
     set -l suffix '>'

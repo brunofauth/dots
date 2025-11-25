@@ -1,7 +1,6 @@
 if status --is-interactive
     set fish_greeting
     fish_default_key_bindings
-    source ~/.config/fish/abbrs.fish
 
     if pstree -s $fish_pid | grep -q kitty
         kitty + complete setup fish | source

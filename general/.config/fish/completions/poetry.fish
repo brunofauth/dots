@@ -1,3 +1,7 @@
+# "/usr/share/fish/vendor_completions.d/poetry.fish" was errorring out, so I
+# copied it and fixed said errors
+
+
 function __fish_poetry_9cf82bc144790825_complete_no_subcommand
     for i in (commandline -opc)
         if contains -- $i about add build 'cache clear' 'cache list' check config 'debug info' 'debug resolve' 'env info' 'env list' 'env remove' 'env use' export help init install list lock new publish remove run search 'self add' 'self install' 'self lock' 'self remove' 'self show' 'self show plugins' 'self update' shell show 'source add' 'source remove' 'source show' update version

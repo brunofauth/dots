@@ -2,8 +2,6 @@
 [[ $- != *i* ]] && return
 
 
-source "$XDG_CONFIG_HOME/aliases.sh"
-
 # Completion for Bash
 [ -f /usr/share/bash-completion/bash_completion ] && \
     source /usr/share/bash-completion/bash_completion

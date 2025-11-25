@@ -1,11 +1,68 @@
 #!/bin/sh
 
 
+# Usage Message {{{
+
+USAGE="
+SYNOPSYS
+    ${0##*/} [options] [--] <command> [command options]...
+
+DESCRIPTION
+    Run <command> as for every user in the system.
+
+OPTIONS
+    -h, --help
+        Displays this usage information and exits
+
+    -v, --verbose
+        Print the name of the user for which <command> is currently being run
+"
+
+# }}}
+
+fatal() {
+    >&2 echo "$@"
+    exit 1
+}
+
+g_opt_verbose=0
+
+# getopt argument parsing {{{
+args="$(getopt -o "hv" -l "help,verbose" -n "${0##*/}" -- "$@")" \
+    || fatal "Error parsing arguments!"
+eval set -- "$args"
+
+while true; do
+    case "$1" in
+        -h|--help)
+            >&2 echo "$USAGE"
+            exit 0
+            ;;
+        -v|--verbose)
+            g_opt_verbose=1
+            shift
+            ;;
+        --)
+            shift
+            break
+            ;;
+    esac
+done
+# }}}
+
+
 # user ids that are not system accounts
 non_system_user_ids="$(getent passwd | awk -F: '$3 >= 1000 && $1 != "nobody" {print $3}')"
 
-for user_id in $non_system_user_ids; do
-    /usr/bin/sudo --user "#$user_id" --login "$1"
-done
+if [ "$g_opt_verbose" -eq 1 ]; then
+    for user_id in $non_system_user_ids; do
+        echo "===> running as '$(id -nu "$user_id")': $@"
+        /usr/bin/sudo --user "#$user_id" --login "$@"
+    done
+else
+    for user_id in $non_system_user_ids; do
+        /usr/bin/sudo --user "#$user_id" --login "$@"
+    done
+fi
 
 exit 0

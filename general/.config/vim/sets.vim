@@ -82,8 +82,7 @@ set nrformats-=octal
 set path+=**
 
 " Enable better glob completion
-set wildmode=longest,full
-set wildmenu
+set wildmenu wildmode=longest,full wildoptions=pum
 
 " remove a comment leader when joining lines
 set formatoptions+=j
@@ -209,3 +208,11 @@ set sessionoptions+=localoptions
 set sessionoptions+=options
 "}}}
 
+
+" https://stackoverflow.com/questions/59956790/terminal-vim-strikethrough
+if &term =~ 'xterm\|kitty\|alacritty\|tmux'
+    let &t_Ts = "\e[9m"   " Strikethrough
+    let &t_Te = "\e[29m"
+    let &t_Cs = "\e[4:3m" " Undercurl
+    let &t_Ce = "\e[4:0m"
+endif
