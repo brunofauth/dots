@@ -11,18 +11,14 @@ set fish_greeting
 fish_default_key_bindings
 
 
-if pstree -s $fish_pid | grep -q kitty
-    kitty + complete setup fish | source
-end
-
 set __three_months_in_secs 7776000
 
 
 function __mycomplgen_kitty # {{{
-    if not pstree -s $fish_pid | grep -q kitty
+    if not command -v kitty >/dev/null 2>&1
         return
     end
-    set -l compl_file $__fish_config_dir/completions/kitty.fish
+    set -l compl_file $__fish_config_dir/completions/kitty_autogen.fish
 
     if not test -f $compl_file
         kitty + complete setup fish | tee $compl_file | source
@@ -41,7 +37,7 @@ function __mycomplgen_pipx # {{{
     if not command -v pipx >/dev/null 2>&1
         return
     end
-    set -l compl_file $__fish_config_dir/completions/pipx.fish
+    set -l compl_file $__fish_config_dir/completions/pipx_autogen.fish
 
     if not test -f $compl_file
         register-python-argcomplete --shell fish pipx | tee $compl_file | source
@@ -60,7 +56,7 @@ function __mycomplgen_zoxide # {{{
     if not command -v zoxide >/dev/null 2>&1
         return
     end
-    set -l compl_file $__fish_config_dir/completions/zoxide.fish
+    set -l compl_file $__fish_config_dir/completions/zoxide_autogen.fish
 
     if not test -f $compl_file
         zoxide init fish | tee $compl_file | source
@@ -79,7 +75,7 @@ function __mycomplgen_ferium # {{{
     if not command -v ferium >/dev/null 2>&1
         return
     end
-    set -l compl_file $__fish_config_dir/completions/ferium.fish
+    set -l compl_file $__fish_config_dir/completions/ferium_autogen.fish
 
     if not test -f $compl_file
         ferium complete fish | tee $compl_file | source
@@ -98,7 +94,7 @@ function __mycomplgen_rye # {{{
     if not command -v rye >/dev/null 2>&1
         return
     end
-    set -l compl_file $__fish_config_dir/completions/rye.fish
+    set -l compl_file $__fish_config_dir/completions/rye_autogen.fish
 
     if not test -f $compl_file
         rye self completion --shell fish | tee $compl_file | source
