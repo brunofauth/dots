@@ -29,7 +29,7 @@ abbr ysyu yay --aur --sudoloop -Syu
 abbr make make -j(nproc)
 abbr dash rlwrap --complete-filenames --case-insensitive dash
 abbr dict dict "(read -P 'Word: ')"
-abbr ff firefox
+
 abbr ffmpeg ffmpeg -hide_banner
 abbr ffprobe ffprobe -hide_banner
 abbr ga git add
@@ -40,8 +40,7 @@ abbr gp git push
 abbr gs git status
 abbr gco git checkout
 abbr gt gitui
-abbr hn hugo new
-abbr hs hugo server
+
 abbr info info --vi-keys
 abbr kitty kitty --detach
 abbr l ls
@@ -61,7 +60,6 @@ abbr pgff pgrep -il firefox
 abbr pgp pass git push
 abbr pgs pass git status
 abbr pk pkill
-abbr polybar polybar main
 abbr pvt fish --private
 abbr py ptpython
 abbr pt ptpython
@@ -70,8 +68,7 @@ abbr pylint ruff
 abbr rf rm -rf
 abbr rr rm -r
 abbr sc shellcheck
-abbr sctl systemctl
-abbr sctlu systemctl --user
+
 abbr sh rlwrap dash
 abbr sof detach soffice
 abbr sxiv detach nsxiv -a
