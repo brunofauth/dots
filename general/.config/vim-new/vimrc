@@ -1,0 +1,169 @@
+vim9script
+
+runtime defaults.vim
+
+set foldmethod=marker foldlevel=1
+set expandtab smarttab shiftwidth=4
+set ignorecase smartcase
+set number relativenumber
+set wildmenu wildoptions=pum
+set ignorecase smartcase
+set display=lastline laststatus=2 smoothscroll
+set linebreak breakindent breakindentopt=shift:2
+set hlsearch
+set modeline
+
+# GUI OPTIONS {{{
+set mouse=a
+# }}}
+
+g:mapleader = "\<Space>"
+g:maplocalleader = "\<Space>"
+nnoremap <Leader>h <Cmd>nohlsearch<CR>
+nnoremap <Leader>p <Cmd>set paste!<CR>
+nnoremap <Leader>l <Cmd>set list!<CR>
+
+cabbrev h vertical help
+cabbrev here chdir %:h
+
+colorscheme desert
+
+
+# Plugin management {{{
+
+def GetPluginHome(): string #{{{
+    if $XDG_DATA_HOME !=# ''
+        return $XDG_DATA_HOME .. '/vim-plug'
+    endif
+    return $HOME .. '/.local/share/vim-plug'
+enddef #}}}
+
+
+def LoadVimPlug(): void #{{{
+    var plugin_home = GetPluginHome()
+    var plug_file = (plugin_home, 'plug.vim')->join('/')
+
+    if !filereadable(plug_file)
+        var src = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+        echo '"vim-plug" not found. Downloading...'
+        execute ('!curl -fLo', plug_file, '--create-dirs', src)->join()
+    endif
+
+    execute 'source' plug_file
+enddef # }}}
+
+
+function RegisterPlugins() "{{{
+    call plug#begin(s:GetPluginHome() .. '/repositories')
+
+    " vim-surround {{{
+    Plug 'https://github.com/tpope/vim-surround.git'
+    let g:surround_{char2nr('i')} = "*\r*"
+    let g:surround_{char2nr('8')} = "*\r*"
+    let g:surround_{char2nr('b')} = "**\r**"
+    let g:surround_{char2nr('a')} = "***\r***"
+    let g:surround_{char2nr('s')} = "~~\r~~"
+    let g:surround_{char2nr('c')} = "`\r`"
+    let g:surround_{char2nr('u')} = "!u[\r]"
+    let g:surround_{char2nr('h')} = "==\r=="
+    " }}}
+
+    " vim-commentary: Toggle commenting stuff out. {{{
+    "    - Use gcc to comment out a line (takes a count)
+    "    - gc to comment out the target of a motion
+    "    - gc in visual mode to comment out the selection
+    "    - gc in operator pending mode to target a comment.
+    Plug 'https://github.com/tpope/vim-commentary'
+    " }}}
+
+    " vim-repeat: Remaps '.' in a way that plugins can tap into it
+    Plug 'https://github.com/tpope/vim-repeat'
+
+    " vim-easy-align: a simple, easy-to-use Vim alignment plugin. {{{
+    Plug 'https://github.com/junegunn/vim-easy-align'
+
+    " Start interactive EasyAlign in visual mode (e.g. vipga)
+    xmap ga <Plug>(EasyAlign)
+
+    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+    nmap ga <Plug>(EasyAlign)
+    " }}}
+
+    " vim-speeddatign: Use CTRL-A/CTRL-X to increment dates, times, and more
+    Plug 'https://github.com/tpope/vim-speeddating'
+
+    " A Vim plugin to visualizes the Vim undo tree.
+    Plug 'https://github.com/simnalamburt/vim-mundo'
+    nnoremap U <Cmd>MundoToggle<CR>
+
+    " LSP plugin written using only the Vim9 script.
+    Plug 'https://github.com/yegappan/lsp'
+    
+    call plug#end()
+endfunction "}}}
+
+# }}} Plugin Management
+
+
+# LSP Servers {{{
+
+# :help lsp-options
+const lsp_options = {
+    autoPopulateDiags: v:true,
+    completionMatcher: 'icase',
+
+    diagVirtualTextAlign: 'above',
+    showDiagWithVirtualText: v:true,
+}
+
+# Run this command for docs on what fields a LSP server entry may have
+# :helpgrep To\ add\ a\ language\ server,\ the\ following\ information\ is\ needed:
+var lsp_servers: list<dict<any>> = []
+
+
+def RegisterLspServers(): void
+
+    TryAddServer(lsp_servers, 'rust-analyzer', {
+        name: 'rust-analyzer',
+        filetype: ['rust'],
+        args: [],
+        syncInit: v:true,
+    })
+
+    augroup lsp_client_setup
+        autocmd!
+        autocmd User LspSetup g:LspOptionsSet(lsp_options) 
+        autocmd User LspSetup g:LspAddServer(lsp_servers)
+    augroup END
+enddef
+
+
+def TryAddServer(servers: list<dict<any>>, server_name: string, server_opts: dict<any>): void
+    var server_path = exepath(server_name)
+    if server_path ==# ''
+        return
+    endif
+    server_opts['path'] = server_path
+    servers->add(server_opts)
+enddef
+
+# }}} Lsp Servers
+
+
+def Main(): void
+    if $USER !=# 'root'
+        call LoadVimPlug()
+    else
+        echomsg 'running as root --> plugins are disabled'
+    endif
+
+    if get(g:, "loaded_plug", 0)
+        RegisterPlugins()
+    endif
+
+    RegisterLspServers()
+
+enddef
+
+
+Main()
