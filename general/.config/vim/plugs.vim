@@ -26,36 +26,11 @@ call plug#begin(s:PLUG_INSTALL_DIR)
 
 " SYNTAX HIGHLIGHTING {{{
 
-" Fish syntax highlighting
-Plug 'dag/vim-fish'
-
-" Support for all of Pandoc's markdown syntax features
-" Plug 'vim-pandoc/vim-pandoc-syntax'
-" runtime cfgs/pandoc-syntax.vim
-" *ft-pandoc-syntax*
-" *ft-markdown-plugin*
-" *ft-markdown-syntax*
-
-" " Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
-" Plug 'godlygeek/tabular'
-" Plug 'preservim/vim-markdown'
-" Plug '~/cln/vim-markdown-ext/'
-" runtime cfgs/vim-markdown.vim
-
 " indent, highlight syntax and detect sxhkd config files
 Plug 'kovetskiy/sxhkd-vim'
 
-" syntax highlighting and filetype detection for RON
-Plug 'ron-rs/ron.vim'
-
-Plug 'leafOfTree/vim-svelte-plugin'
-runtime cfgs/vim-svelte.vim
-
-" OBS: Work In Progress
-Plug 'https://github.com/kaarmu/typst.vim'
-
-" Add syntax highlighting support for mbsync config file
-Plug 'https://github.com/Fymyte/mbsync.vim'
+"" Add syntax highlighting support for mbsync config file
+"Plug 'https://github.com/Fymyte/mbsync.vim'
 
 " }}}
 
@@ -104,35 +79,6 @@ nmap ga <Plug>(EasyAlign)
 
 " vim-speeddatign: Use CTRL-A/CTRL-X to increment dates, times, and more {{{
 Plug 'https://github.com/tpope/vim-speeddating'
-
-" }}}
-
-
-" }}}
-
-
-" EYE CANDY {{{
-
-
-" vista.vim: View and search LSP symbols, tags in Vim/NeoVim. {{{
-Plug 'liuchengxu/vista.vim'
-runtime cfgs/vista.vim
-" }}}
-
-
-" goyo.vim: Reading mode {{{
-Plug 'https://github.com/junegunn/goyo.vim'
-nnoremap <Leader>gg :Goyo<CR>
-" }}}
-
-
-" nerdtree: file system explorer for Vim. {{{
-Plug 'https://github.com/preservim/nerdtree'
-runtime cfgs/nerdtree.vim
-" Adds filetype glyphs (icons) to nerdtree
-Plug 'ryanoasis/vim-devicons'
-Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
-
 " }}}
 
 
@@ -149,9 +95,6 @@ nnoremap U <Cmd>MundoToggle<CR>
 
 " Properly render ANSI escape sequences
 Plug 'powerman/vim-plugin-AnsiEsc'
-
-" Toggle fullscreen for vim windows, useful when using splits
-Plug 'https://github.com/vim-scripts/ZoomWin'
 
 " Text objects and motions for Latex editing
 Plug 'gibiansky/vim-latex-objects'
