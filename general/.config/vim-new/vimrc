@@ -7,11 +7,11 @@ set expandtab smarttab shiftwidth=4
 set ignorecase smartcase
 set number relativenumber
 set wildmenu wildoptions=pum
-set ignorecase smartcase
-set display=lastline laststatus=2 smoothscroll
+set display=lastline,uhex laststatus=2 smoothscroll
 set linebreak breakindent breakindentopt=shift:2
 set hlsearch
-set modeline
+set formatoptions+=j
+set splitbelow splitright
 
 # GUI OPTIONS {{{
 set mouse=a

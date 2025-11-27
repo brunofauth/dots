@@ -8,65 +8,29 @@ syntax enable
 " plugins for each filetype
 filetype plugin on
 " filetype plugin indent on
+"
+" Disable considering number starting with a 0 as octal when inc/dec
+set nrformats-=octal
 
-" Displays numbers on the left side of each line
-set number relativenumber
-
-" Highlights and seraches for words while typing
-set hlsearch incsearch
-" smart case sensitivity when searching
+set foldmethod=marker foldlevel=1
+set expandtab smarttab shiftwidth=4
 set ignorecase smartcase
+set number relativenumber
+set wildmenu wildoptions=pum
+set linebreak breakindent breakindentopt=shift:4,min:40
+set splitbelow splitright
+set hlsearch
 
 " Use \n for new lines, instead of \r or \r\n
 set fileformat=unix
 
-" Places new windows below and to the right with :sp and :vs
-set splitbelow splitright
-
-" Shows a snippet of the last run command at the bottom of the screen
-set showcmd
 " Always show window status bars
 set laststatus=2
-
-" When on, a <Tab> in front of a line inserts blanks (tabs or spaces)
-" according to 'shiftwidth'. 'tabstop' or 'softtabstop' is used in places
-" other than the start of a line. A <BS> will delete a 'shiftwidth' worth of
-" space at the start of the line.
-"
-" When off, a <Tab>, in all places, inserts blanks according to 'tabstop' or
-" 'softtabstop'; and 'shiftwidth' is only used for shifting text left or
-" right.
-"
-" What gets inserted (a <Tab> or spaces) depends on 'expandtab'.
-" Also see ins-expandtab.
-set smarttab
-
-" The ammount of spaces to shift text left or right when using << and >>. if
-" 'smarttab' is set, 'shiftwidth' is also used to determine how many spaces to
-" insert when at the beginning of a line.
-set shiftwidth=4
-
-set expandtab
-
-" Enable folding indented code. Only start doing it
-" automatically after 99 indentations, though.
-set foldmethod=marker foldlevel=0
-" set foldclose=all
-
-" Indent wrapped ((curr indent + 1) AKA 4 spaces)
-set breakindent
-set breakindentopt=shift:4,min:40
-" set breakindentopt=shift:2,min:40,sbr
-" set showbreak=>>
-
-" wrap long lines at a character in 'breakat'
-set linebreak
 
 " Disables annoying ding everywhere
 set belloff=all
 
 " Enables backspacing through lines and over autoindent
-set backspace=indent,eol,start
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$
 
 " Leaves three lines as context above and below the cursor
@@ -75,14 +39,8 @@ set scrolloff=3
 " Scrolling works with screenlines instead of filelines
 set smoothscroll
 
-" Disable considering number starting with a 0 as octal when inc/dec
-set nrformats-=octal
-
 " directories to be searched when using: gf, [f, ]f, ^Wf, :find...
 set path+=**
-
-" Enable better glob completion
-set wildmenu wildmode=longest,full wildoptions=pum
 
 " remove a comment leader when joining lines
 set formatoptions+=j
