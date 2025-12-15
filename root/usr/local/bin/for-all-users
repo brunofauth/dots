@@ -56,8 +56,10 @@ non_system_user_ids="$(getent passwd | awk -F: '$3 >= 1000 && $1 != "nobody" {pr
 
 if [ "$g_opt_verbose" -eq 1 ]; then
     for user_id in $non_system_user_ids; do
-        echo "===> running as '$(id -nu "$user_id")': $@"
+        local user_name="$(id -nu "$user_id")"
+        echo "===> running as '$user_name': $@"
         /usr/bin/sudo --user "#$user_id" --login "$@"
+        echo "===> finished running as '$user_name'"
     done
 else
     for user_id in $non_system_user_ids; do
