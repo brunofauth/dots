@@ -41,6 +41,11 @@ super + e
     $SCRIPTS/pick-emoji
 
 # Most Used Apps {{{
+
+# TERMINAL
+#     When $TERMINAL is urxvt and a shell to be run is not passed in the CLI
+#     (-e <my-shell>), urxvt will try and use in this order: $SHELL,
+#     getpwuid(3) or /bin/sh
 super + Return
     "$TERMINAL"
 
@@ -126,4 +131,16 @@ super + n; c
 super + n; t
     dunstctl {set-paused toggle}
 # }}}
+
+super + r: j
+    ; redshiftctl decrease --ammount 300
+
+super + r: k
+    ; redshiftctl increase --ammount 300
+
+super + r: r
+    ; redshiftctl reset
+
+super + r: c
+    ; redshiftctl clear
 
