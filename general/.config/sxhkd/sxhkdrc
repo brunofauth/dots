@@ -132,11 +132,19 @@ super + n; t
     dunstctl {set-paused toggle}
 # }}}
 
+
+# Redshift/brightness {{{
 super + r: j
-    ; redshiftctl decrease --ammount 300
+    ; redshiftctl update --temperature_delta -300
 
 super + r: k
-    ; redshiftctl increase --ammount 300
+    ; redshiftctl update --temperature_delta 300
+
+super + r: h
+    ; redshiftctl update --brightness_delta -0.05
+
+super + r: l
+    ; redshiftctl update --brightness_delta 0.05
 
 super + r: r
     ; redshiftctl reset
@@ -144,3 +152,4 @@ super + r: r
 super + r: c
     ; redshiftctl clear
 
+# }}} Redshift/brightness

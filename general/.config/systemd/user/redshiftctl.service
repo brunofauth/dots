@@ -1,0 +1,12 @@
+[Unit]
+Description=Activate redshiftctl upon login
+# Documentation=
+After=display-manager.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sh -c "redshiftctl reset"
+# Restart=always
+
+[Install]
+WantedBy=default.target
