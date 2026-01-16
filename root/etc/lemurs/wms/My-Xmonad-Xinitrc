@@ -1,0 +1,33 @@
+#! /bin/sh
+
+# launch() {
+#     { ¨$@¨ | xargs -L1 printf ¨$1: %s\n¨ } &
+# }
+
+echo ========================================================
+echo THIS COMES FROM THE XMONAD XINITRC
+
+
+echo -e XDG_CONFIG_HOME "\t$XDG_CONFIG_HOME"
+echo -e XDG_CACHE_HOME "\t$XDG_CACHE_HOME"
+echo -e XDG_DATA_HOME "\t$XDG_DATA_HOME"
+echo -e XDG_DESKTOP_DIR "\t$XDG_DESKTOP_DIR"
+echo -e XDG_DOCUMENTS_DIR "\t$XDG_DOCUMENTS_DIR"
+echo -e XDG_DOWNLOAD_DIR "\t$XDG_DOWNLOAD_DIR"
+echo -e XDG_MUSIC_DIR "\t$XDG_MUSIC_DIR"
+echo -e XDG_PICTURES_DIR "\t$XDG_PICTURES_DIR"
+echo -e XDG_PUBLICSHARE_DIR "\t$XDG_PUBLICSHARE_DIR"
+echo -e XDG_TEMPLATES_DIR "\t$XDG_TEMPLATES_DIR"
+echo -e XDG_VIDEOS_DIR "\t$XDG_VIDEOS_DIR"
+
+
+sxhkd &
+lxqt-policykit-agent &
+picom &
+udiskie &
+
+xwallpaper --zoom $XDG_DATA_HOME/wallpaper
+xsetroot -cursor_name left_ptr
+
+echo ========================================================
+exec xmonad

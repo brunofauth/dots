@@ -7,15 +7,45 @@ set expandtab smarttab shiftwidth=4
 set ignorecase smartcase
 set number relativenumber
 set wildmenu wildoptions=pum
-set display=lastline,uhex laststatus=2 smoothscroll
+set ignorecase smartcase
+set display=lastline laststatus=2 smoothscroll
 set linebreak breakindent breakindentopt=shift:2
 set hlsearch
-set formatoptions+=j
-set splitbelow splitright
+set modeline
+
+&grepprg = [
+    'grep',
+    '--line-number',
+    '--recursive',
+    '--ignore-case',
+    '--perl-regexp',
+    '--exclude-dir .git',
+    '--exclude-dir .cvs',
+    '--exclude-dir .svn',
+    '--exclude-dir .hg',
+    '--exclude-dir node_modules',
+    '--binary-files=without-match',
+    '$*'
+]->join()
 
 # GUI OPTIONS {{{
 set mouse=a
 # }}}
+
+command! -nargs=+ GrepCustom {
+    execute 'silent grep! <args>'
+    copen
+    redraw!
+}
+
+var vertical_help_threshold: number = 160
+command! -nargs=1 -complete=help HelpCustom {
+    var modifier: string = (
+        getwininfo(win_getid())[0].width < vertical_help_threshold
+            ? "horizontal" : "vertical"
+    )
+    execute modifier '<mods> help <args>'
+}
 
 g:mapleader = "\<Space>"
 g:maplocalleader = "\<Space>"
@@ -23,8 +53,9 @@ nnoremap <Leader>h <Cmd>nohlsearch<CR>
 nnoremap <Leader>p <Cmd>set paste!<CR>
 nnoremap <Leader>l <Cmd>set list!<CR>
 
-cabbrev h vertical help
+cabbrev h HelpCustom
 cabbrev here chdir %:h
+cabbrev grep GrepCustom
 
 colorscheme desert
 
@@ -98,8 +129,8 @@ function RegisterPlugins() "{{{
 
     " LSP plugin written using only the Vim9 script.
     Plug 'https://github.com/yegappan/lsp'
-    
-    call plug#end()
+
+    call plug#end()                         
 endfunction "}}}
 
 # }}} Plugin Management
@@ -130,10 +161,18 @@ def RegisterLspServers(): void
         syncInit: v:true,
     })
 
+
+    TryAddServer(lsp_servers, 'clangd', {
+        name: 'clangd',
+        filetype: ['c', 'cpp'],
+        args: ['--background-index', '--clang-tidy'],
+    })
+
     augroup lsp_client_setup
         autocmd!
-        autocmd User LspSetup g:LspOptionsSet(lsp_options) 
-        autocmd User LspSetup g:LspAddServer(lsp_servers)
+        autocmd User LspSetup    g:LspOptionsSet(lsp_options) 
+        autocmd User LspSetup    g:LspAddServer(lsp_servers)
+        autocmd User LspAttached SetLspBuffer()
     augroup END
 enddef
 
@@ -145,6 +184,20 @@ def TryAddServer(servers: list<dict<any>>, server_name: string, server_opts: dic
     endif
     server_opts['path'] = server_path
     servers->add(server_opts)
+enddef
+
+def SetLspBuffer(): void
+    set keywordprg=:LspHover
+    nnoremap <buffer> <Localleader>la <Cmd>LspCodeAction<CR>
+    nnoremap <buffer> <Localleader>lh <Cmd>LspHover<CR>
+    nnoremap <buffer> <Localleader>ld <Cmd>LspPeekDeclaration<CR>
+    nnoremap <buffer> <Localleader>lD <Cmd>LspGotoDefinition<CR>
+    nnoremap <buffer> <Localleader>li <Cmd>LspGotoImpl<CR>
+    nnoremap <buffer> <Localleader>lr :LspRename\ 
+    nnoremap <buffer> <Localleader>lR <Cmd>LspShowReferences<CR>
+    nnoremap <buffer> <Localleader>ln <Cmd>LspDiag nextWrap<CR>
+    nnoremap <buffer> <Localleader>lp <Cmd>LspDiag prevWrap<CR>
+    nnoremap <buffer> <Localleader>ll <Cmd>LspDiag show<CR>
 enddef
 
 # }}} Lsp Servers

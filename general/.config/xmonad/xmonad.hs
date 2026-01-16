@@ -45,7 +45,7 @@ main = xmonad . modal [modeGaps] . docks . ewmhFullscreen . ewmh $ cfg
         , ("M-S-[", shiftToPrev *> prevWS) , ("M-S-h", shiftToPrev *> prevWS)
         , ("M-S-]", shiftToNext *> nextWS) , ("M-S-l", shiftToNext *> nextWS)
         , ("M-g", setMode modeGapsLabel)
-        , ("M-r", restartXmonad)
+        , ("M-S-r", restartXmonad)
         , ("M-S-,", sendMessage Shrink)
         , ("M-S-.", sendMessage Expand)
         , ("M-y", withFocused hide)
