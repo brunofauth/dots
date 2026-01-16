@@ -129,6 +129,23 @@ function RegisterPlugins() "{{{
 
     " LSP plugin written using only the Vim9 script.
     Plug 'https://github.com/yegappan/lsp'
+    call s:RegisterLspServers()
+
+    " Vim's internal markdown plugin (:help ft-markdown-plugin) is decent and,
+    " though it supports folding (g:markdown_folding = 1), it does not support
+    " pandoc's extensions. Because of that, vim's docs also suggest using
+    " their internal markdown plugin (:help ft-pandoc-syntax), by setting
+    " g:filetype_md to 'pandoc'. Unfortunately, said plugin doesn't seem to be
+    " willing to detect folds and I need heading-level folding. And, thus,
+    " this plugin comes to the game.
+    " Plug 'https://github.com/preservim/vim-markdown'
+    Plug 'https://github.com/brunofauth/vim-markdown'
+    " I've put my settings to this plugin on $MYVIMDIR/ftplugin/markdown.vim
+    " and $MYVIMDIR/after/ftplugin/markdown.vim
+
+    " These BufWritePost autocmds are giving me trouble when editing markdown
+    "       call s:MarkdownRefreshSyntax(0)
+    "       call s:MarkdownSetupFolding() 
 
     call plug#end()                         
 endfunction "}}}
@@ -213,8 +230,6 @@ def Main(): void
     if get(g:, "loaded_plug", 0)
         RegisterPlugins()
     endif
-
-    RegisterLspServers()
 
 enddef
 
