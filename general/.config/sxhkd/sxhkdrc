@@ -50,31 +50,45 @@ super + Return
     "$TERMINAL"
 
 super + a; c
-    wmctrl -xa galculator || galculator
+    wmctrl -xa galculator         || gui-launch galculator
+
 super + a; h
-    wmctrl -a htop || as-dialogue htop
+    wmctrl -a htop                || gui-launch htop.desktop
+
 super + a; w
-    wmctrl -xa libreoffice-writer || gtk-launch libreoffice-writer
+    wmctrl -xa libreoffice-writer || gui-launch libreoffice-writer.desktop
+
 super + a; m
-    wmctrl -a vimpc || as-dialogue vimpc
+    wmctrl -a vimpc               || as-dialogue vimpc
+
 super + a; p
-    wmctrl -xa pavucontrol || pavucontrol
+    wmctrl -xa pavucontrol        || gui-launch pavucontrol
+
 super + a; f
-    wmctrl -xa "$FILE_MANAGER" || "$FILE_MANAGER"
+    wmctrl -xa pcmanfm-qt         || gui-launch pcmanfm-qt.desktop
+
 super + a; b
-    wmctrl -xa "$BROWSER" || "$BROWSER"
+    wmctrl -xa "$BROWSER"         || gui-launch "$BROWSER"
+
+super + a; z
+    wmctrl -xa zathura            || gui-launch org.pwmt.zathura-pdf-mupdf.desktop
+
 # }}}
 
 # System Menu {{{
 super + m; l
     i3lock-fancy-rapid 50 10 && xset -display :0.0 dpms force off
 super + m; p
+    notify-send "System Information" "Powering off"
     systemctl poweroff
 super + m; r
+    notify-send "System Information" "Rebooting"
     systemctl reboot
 super + m; h
+    notify-send "System Information" "Hybernating"
     systemctl hybernate
 super + m; s
+    notify-send "System Information" "Suspending"
     systemctl suspend
 super + m; g
     dm-tool switch-to-greeter

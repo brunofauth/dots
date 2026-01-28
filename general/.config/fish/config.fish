@@ -3,7 +3,7 @@ if not status is-interactive
 end
 
 
-if test -z $TMUX; and command -v tmux &> /dev/null
+if test -z $TMUX; and command -v tmux &> /dev/null; and test $TERM != xterm-kitty
     exec tmux new-session
 end
 

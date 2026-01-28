@@ -1,0 +1,11 @@
+[Added Associations]
+application/zip=userapp-unp-H9XTG3.desktop;
+
+[Default Applications]
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
+application/xhtml=librewolf.desktop
+application/xml=librewolf.desktop
+inode/directory=pcmanfm-qt.desktop
+text/*=vim.desktop
+x-scheme-handler/http=librewolf.desktop
+x-scheme-handler/https=librewolf.desktop
