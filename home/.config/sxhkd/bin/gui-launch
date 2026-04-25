@@ -71,12 +71,12 @@ launch_desktopfile() {
         return 1
     fi
 
-    app_name="$(\
-        grep --perl-regexp --only-matching \
-            '(?<=^Name=).+' "$desktopfile_path")"
-    app_icon="$(\
-        grep --perl-regexp --only-matching \
-            '(?<=^Icon=).+' "$desktopfile_path")"
+    _part_inside_entry_section="$(grep -A1000 '^\[Desktop Entry\]' "$desktopfile_path")"
+    app_name="$(printf '%s' "$_part_inside_entry_section" \
+        | grep --perl-regexp --only-matching --max-count=1 '(?<=^Name=).+')"
+
+    app_icon="$(printf '%s' "$_part_inside_entry_section" \
+        | grep --perl-regexp --only-matching --max-count=1 '(?<=^Icon=).+')"
 
     notify_launch --icon "$app_icon" "Starting $app_name"
     dex --term="$TERMINAL" "$desktopfile_path"

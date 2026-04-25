@@ -4,16 +4,18 @@ super + q
     wmctrl -c :ACTIVE:
 
 super + shift + p
-    notify-send "Restarted polybar, picom and sxhkd" -t 3000 \
+    notify-send "Restarted polybar, picom, sxhkd and dunst" -t 3000 \
 	; polybar-msg cmd restart \
 	; /usr/bin/kill -s USR1 sxhkd \
-	; /usr/bin/kill -s USR1 picom
+	; /usr/bin/kill -s USR1 picom \
+        ; dunstctl reload
 
 super + d
-    env SHELL=/bin/sh rofi -show combi -modi combi -combi-modes drun,run -show-icons
+    env SHELL=/bin/sh rofi -show drun -modi drun -show-icons
+    # env SHELL=/bin/sh rofi -show combi -modi combi -combi-modes drun,run -show-icons
 
-super + Tab; w
-    env SHELL=/bin/sh rofi -show window -modi window -show-icons
+super + Tab
+    env SHELL=/bin/sh rofi -show window -modi window -show-icons -window-thumbnail
 
 super + w
     passmenu | xargs -r notify-send -t 3000 "Password Copied"
@@ -63,29 +65,45 @@ super + shift + {bracketleft,bracketright}
 super + Return
     "$TERMINAL"
 
-super + a; c
-    wmctrl -xa galculator         || gui-launch galculator
+# HEADS-UP!
+# The `-x` flag on `wmctrl` makes it look for the string inputted in windows'
+# class names, not necessarily in their titles. That's useful for non-terminal
+# apps. If you ever use it with terminal apps, they will never match, because
+# the class will be the host terminal's class, not the app you're looking for.
+# If you're using a GUI app, then `-x` increases the *specificity* of your
+# search.
 
 super + a; h
-    wmctrl -a htop                || gui-launch htop.desktop
-
-super + a; w
-    wmctrl -xa libreoffice-writer || gui-launch libreoffice-writer.desktop
+    wmctrl -a htop \
+        || "$\{XDG_CONFIG_HOME:-$HOME/.config\}/sxhkd/bin/gui-launch" htop.desktop
 
 super + a; m
-    wmctrl -a vimpc               || as-dialogue vimpc
+    wmctrl -a vimpc \
+        || as-dialogue vimpc
+
+super + a; c
+    wmctrl -xa galculator \
+        || "$\{XDG_CONFIG_HOME:-$HOME/.config\}/sxhkd/bin/gui-launch" galculator
+
+super + a; w
+    wmctrl -xa libreoffice-writer \
+        || "$\{XDG_CONFIG_HOME:-$HOME/.config\}/sxhkd/bin/gui-launch" libreoffice-writer.desktop
 
 super + a; p
-    wmctrl -xa pavucontrol        || gui-launch pavucontrol
+    wmctrl -xa pavucontrol \
+        || "$\{XDG_CONFIG_HOME:-$HOME/.config\}/sxhkd/bin/gui-launch" pavucontrol
 
 super + a; f
-    wmctrl -xa pcmanfm-qt         || gui-launch pcmanfm-qt.desktop
+    wmctrl -xa pcmanfm-qt \
+        || "$\{XDG_CONFIG_HOME:-$HOME/.config\}/sxhkd/bin/gui-launch" pcmanfm-qt.desktop
 
 super + a; b
-    wmctrl -xa "$BROWSER"         || gui-launch "$BROWSER"
+    wmctrl -xa librewolf \
+        || "$\{XDG_CONFIG_HOME:-$HOME/.config\}/sxhkd/bin/gui-launch" librewolf.desktop
 
 super + a; z
-    wmctrl -xa zathura            || gui-launch org.pwmt.zathura-pdf-mupdf.desktop
+    wmctrl -xa zathura \
+        || "$\{XDG_CONFIG_HOME:-$HOME/.config\}/sxhkd/bin/gui-launch" org.pwmt.zathura-pdf-mupdf.desktop
 
 # }}}
 
@@ -144,20 +162,20 @@ shift + XF86MonBrightness{Up,Down}
 # }}}
 
 # Notifications {{{
-super + n; a
+super + n: a
     dunstctl action
-super + n; q
+super + n: q
     dunstctl close
-super + n; shift + q
+super + n: shift + q
     dunstctl close-all
-super + n; h
+super + n: h
     dunstctl history-pop
-super + n; shift + h
+super + n: shift + h
     dunstctl history-clear
-super + n; c
+super + n: c
     dunstctl context
-super + n; t
-    dunstctl {set-paused toggle}
+super + n: t
+    dunstctl set-paused toggle
 # }}}
 
 
