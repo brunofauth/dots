@@ -1,0 +1,128 @@
+#! /bin/sh
+# vim: foldmethod=marker foldlevel=0
+# shellcheck disable=SC3043
+
+
+# constants are c_* prefixed
+readonly c_awk_prev_ws='{
+    lines[NR] = $0;
+    if ($0 ~ /\*/) marked = NR
+} END {
+    if (marked) print lines[\
+        (marked == 1 ? NR : marked - 1)\
+    ]
+}'
+
+readonly c_awk_next_ws='{
+    lines[NR] = $0;
+    if ($0 ~ /\*/) marked = NR
+} END {
+    if (marked) print lines[\
+        (marked % NR) + 1\
+    ]
+}'
+
+
+# Global variables are g_* prefixed
+g_opt_log=0
+
+
+# Usage Message
+# {{{
+USAGE="
+SYNOPSYS
+    ${0##*/} [options] <command>
+
+DESCRIPTION
+    Wrapper around wmctrl to be called from sxhkd as a fallback for when I'm in
+    a fallback WM I haven't configured (like OpenBox should XMonad ever break)
+
+OPTIONS
+    -h, --help
+        Displays this usage information and exits
+
+NOTE
+    If the names of your files conflict with those of the flags, put them
+    after a double dash (--), like this:
+        ${0##*/} -- --help
+    This will rename a file called '--help', instead of activating the
+    '--help' switch.
+"
+# }}}
+
+
+fatal() {
+    # {{{
+    >&2 echo "$@"
+    exit 1
+} # }}}
+
+
+escape_quotes() {
+    # {{{
+    printf "'%s'" "$(printf '%s' "$1" | sed "s|'|'\\\\''|g")"
+} # }}}
+
+
+parse_cli_args() {
+    # {{{
+    # NOTE: functions like this CAN NOT be called inside subshells $(myfunc)
+    # because they will modify variables that, upon return, will STAY on those
+    # subshells and, thus, the globals defined in the calling instance WILL NOT
+    # be modified (and that's a bug).
+
+    args="$(getopt -o "h" -l "help" -n "${0##*/}" -- "$@")" \
+        || fatal "Error parsing arguments!"
+    eval set -- "$args"
+
+    while true; do
+        case "$1" in
+            --) shift; break ;;
+            -h|--help)
+                >&2 echo "$USAGE"
+                exit 0
+                ;;
+        esac
+    done
+    g_pos_args="$@" # Return remaining (positional) arguments
+} # }}}
+
+
+main() {
+    # {{{
+
+    parse_cli_args "$@"
+    eval set -- "$g_pos_args"
+
+    [ $# -lt 1 ] \
+        && fatal "No arguments supplied! Run `$0 --help` for usage information."
+
+    case "$1" in
+        go-to-prev-ws)
+            wmctrl -d | awk "$c_awk_prev_ws" | xargs -r wmctrl -s
+            ;;
+        go-to-next-ws)
+            wmctrl -d | awk "$c_awk_next_ws" | xargs -r wmctrl -s
+            ;;
+        send-to-prev-ws)
+            window_id="$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')"
+            desktop_id="$(wmctrl -d | awk "$c_awk_prev_ws")"
+            wmctrl -i -r "$window_id" -t "$desktop_id"
+            wmctrl -i -a "$window_id"
+            ;;
+        send-to-next-ws)
+            window_id="$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')"
+            desktop_id="$(wmctrl -d | awk "$c_awk_next_ws")"
+            wmctrl -i -r "$window_id" -t "$desktop_id"
+            wmctrl -i -a "$window_id"
+            ;;
+        *)
+            fatal "Bad command: $(escape_quotes "$1")."
+            ;;
+    esac
+
+} # }}}
+
+
+main "$@"
+

@@ -12,24 +12,26 @@ set display=lastline laststatus=2 smoothscroll
 set linebreak breakindent breakindentopt=shift:2
 set hlsearch
 set modeline
+set belloff=all
 
 &grepprg = [
     'grep',
     '--line-number',
+    '--with-filename',
     '--recursive',
     '--ignore-case',
     '--perl-regexp',
+    '--binary-files=without-match',
     '--exclude-dir .git',
     '--exclude-dir .cvs',
     '--exclude-dir .svn',
     '--exclude-dir .hg',
     '--exclude-dir node_modules',
-    '--binary-files=without-match',
     '$*'
 ]->join()
 
 # GUI OPTIONS {{{
-set mouse=a
+set mouse=
 # }}}
 
 command! -nargs=+ GrepCustom {
@@ -44,7 +46,7 @@ command! -nargs=1 -complete=help HelpCustom {
         getwininfo(win_getid())[0].width < vertical_help_threshold
             ? "horizontal" : "vertical"
     )
-    execute modifier '<mods> help <args>'
+    execute modifier "<mods> help <args>"
 }
 
 g:mapleader = "\<Space>"
@@ -56,6 +58,8 @@ nnoremap <Leader>l <Cmd>set list!<CR>
 cabbrev h HelpCustom
 cabbrev here chdir %:h
 cabbrev grep GrepCustom
+
+command! -nargs=1 -complete=file SudoWrite silent write !sudo tee <args> >/dev/nul
 
 colorscheme desert
 
@@ -178,11 +182,17 @@ def RegisterLspServers(): void
         syncInit: v:true,
     })
 
-
     TryAddServer(lsp_servers, 'clangd', {
         name: 'clangd',
         filetype: ['c', 'cpp'],
         args: ['--background-index', '--clang-tidy'],
+    })
+
+    TryAddServer(lsp_servers, 'nil', {
+        name: 'nil',
+        filetype: ['nix'],
+        args: [],
+        syncInit: v:true,
     })
 
     augroup lsp_client_setup

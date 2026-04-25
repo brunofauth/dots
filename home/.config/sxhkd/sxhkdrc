@@ -1,4 +1,4 @@
-# vim: foldmethod=marker foldlevel=0
+# vim: foldenable foldmethod=marker foldlevel=1
 
 super + q
     wmctrl -c :ACTIVE:
@@ -21,17 +21,19 @@ super + w
 super + shift + w
     as-dialogue --work-dir $HOME/proj/wifi-menu -- poetry run wmenu
 
+
+
 # pick a [C]olor
-super + b; c
+super + b: c
     "$XDG_CONFIG_HOME/polybar/scripts/color-switch.sh"
 # toggle [T]ray
-super + b; t
+super + b: t
     polybar-msg action "#tray.module_toggle"
 # toggle [D]ate
-super + b; d
+super + b: d
     polybar-msg action "#date.toggle"
 # [H]ide bar
-super + b; h
+super + b: h
     polybar-msg cmd toggle
 
 super + shift + b
@@ -39,6 +41,18 @@ super + shift + b
 
 super + e
     $SCRIPTS/pick-emoji
+
+
+# Desktop and Window navigation {{{
+
+super + {bracketleft,bracketright}
+    "$\{XDG_CONFIG_HOME:-$HOME/.config\}/sxhkd/bin/ewmhwrap" go-to-{prev,next}-ws
+
+super + shift + {bracketleft,bracketright}
+    "$\{XDG_CONFIG_HOME:-$HOME/.config\}/sxhkd/bin/ewmhwrap" send-to-{prev,next}-ws
+
+# }}}
+
 
 # Most Used Apps {{{
 

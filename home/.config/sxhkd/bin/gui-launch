@@ -1,0 +1,117 @@
+#! /bin/sh
+
+# vim: foldmethod=marker foldlevel=1
+# shellcheck disable=SC3043
+
+
+desktopfile_lookup_path="${XDG_DATA_HOME:-$HOME/.local/share}/applications"
+desktopfile_lookup_path="$desktopfile_lookup_path:/usr/share/applications"
+
+
+escape_quotes() {
+    # {{{
+    printf "'%s'" "$(printf '%s' "$1" | sed "s|'|'\\\\''|g")"
+} # }}}
+
+
+notify_error() {
+    # {{{
+    notify-send \
+        --icon=dialog-error \
+        --urgency=NORMAL \
+        "App Launcher" \
+        "$@"
+} # }}}
+
+
+notify_launch() {
+    # {{{
+    notify-send \
+        --icon=preferences-desktop-launch-feedback \
+        --urgency=NORMAL \
+        "App Launcher" \
+        "$@"
+} # }}}
+
+
+find_filename_in_dirs() {
+    # {{{
+    local filename_needle="$1"
+    local dirs_haystack="$2"
+    local separator="${3:-:}"
+
+    local old_ifs=$IFS
+    IFS=$separator
+    set -- $dirs_haystack
+    IFS=$old_ifs
+
+    for haystack_dir; do
+        >&2 echo "hsd=$haystack_dir"
+        if [ -f "$haystack_dir/$filename_needle" ]; then
+            printf "%s/%s" "$haystack_dir" "$filename_needle"
+            return 0
+        fi
+    done
+    return 1
+} # }}}
+
+
+launch_desktopfile() {
+    # {{{
+    local desktopfile_name="$1"
+    local desktopfile_path="$desktopfile_name"
+
+    if ! [ -f "$desktopfile_path" ]; then
+        desktopfile_path="$(find_filename_in_dirs "$desktopfile_name" "$desktopfile_lookup_path")"
+        >&2 echo "done looking for it: $?"
+    fi
+
+    if [ -z "$desktopfile_path" ]; then
+        notify_error "Could not find $(escape_quotes "$desktopfile_name") in $(escape_quotes "$desktopfile_lookup_path")"
+        return 1
+    fi
+
+    app_name="$(\
+        grep --perl-regexp --only-matching \
+            '(?<=^Name=).+' "$desktopfile_path")"
+    app_icon="$(\
+        grep --perl-regexp --only-matching \
+            '(?<=^Icon=).+' "$desktopfile_path")"
+
+    notify_launch --icon "$app_icon" "Starting $app_name"
+    dex --term="$TERMINAL" "$desktopfile_path"
+} # }}}
+
+
+launch_binary() {
+    # {{{
+    local app_binary="$1"
+    shift
+
+    if ! command -v "$app_binary" &> /dev/null; then
+        notify_error "Could not find $(escape_quotes "$app_binary") in \$PATH"
+        return 1
+    fi
+
+    notify_launch "Starting $(escape_quotes "$app_binary")"
+    "$app_binary" "$@"
+} # }}}
+
+
+main() {
+    # {{{
+    if [ $# -lt 1 ]; then
+        >&2 echo "USAGE: $0 <program> [args...]"
+        exit 1
+    fi
+
+    if [ "${1##*.}" = desktop ]; then
+        launch_desktopfile "$@"
+    else
+        launch_binary "$@"
+    fi
+
+} # }}}
+
+
+main "$@"

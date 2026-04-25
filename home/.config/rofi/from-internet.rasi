@@ -10,60 +10,93 @@
 
 
 * {
-  black:      #000000;
-  red:        #eb6e67;
-  green:      #95ee8f;
-  yellow:     #f8c456;
-  blue:       #6eaafb;
-  magenta:    #d886f3;
-  cyan:       #6cdcf7;
-  emphasis:   #50536b;
-  text:       #dfdfdf;
-  text-alt:   #b2b2b2;
-  fg:         #abb2bf;
-  bg:         #282c34;
+    black:      #000000;
+    red:        #eb6e67;
+    green:      #95ee8f;
+    yellow:     #f8c456;
+    blue:       #6eaafb;
+    magenta:    #d886f3;
+    cyan:       #6cdcf7;
+    emphasis:   #50536baa;
+    text:       #dfdfdf;
+    text-alt:   #b2b2b2;
+    // fg:         #abb2bf;
+    fg:         @emphasis;
+    bg:         #282c34;
+    white: #ffffff;
 
-  spacing: 0;
-  background-color: transparent;
+    spacing: 0;
+    background-color: transparent;
 
-  font: "Knack Nerd Font 14";
-  text-color: @text;
+    font: "Knack Nerd Font 10";
+    text-color: @text;
 }
 
 window {
-  transparency: "real";
-  fullscreen: true;
-  /* background-color: #282c34dd; */
-  background-color: #00000011;
+    transparency: "real";
+    fullscreen: true;
+    /* background-color: #282c34dd; */
+    background-color: #00000011;
 }
 
 mainbox {
-  padding: 30% 30%;
+    border:         2px;
+    border-color:  @emphasis;
+    border-radius:  5px;
+
+    padding: 
+        /* top        */ 15px
+        /* left&right */ 15px
+        /* bottom     */ 15px
+    ;
+
+    margin: 
+        /* top        */ calc(10% - 2px - 15px)
+        /* left&right */ calc(32% - 2px - 15px)
+        /* bottom     */ calc(10% - 2px - 15px)
+    ;
 }
 
 inputbar {
-  margin: 0px 0px 20px 0px;
-  children: [prompt, textbox-prompt-colon, entry, case-indicator];
+    margin:
+        /* top    */  0px
+        /* right  */  0px
+        /* bottom */ 20px
+        /* left   */  0px
+    ;
+    children: [prompt, textbox-prompt-colon, entry, case-indicator];
 }
 
 prompt {
-  text-color: @blue;
+    text-color: @blue;
 }
 
 textbox-prompt-colon {
-  expand: false;
-  str: ":";
-  text-color: @text-alt;
+    expand: false;
+    str: ":";
+    text-color: @text-alt;
 }
 
 entry {
-  margin: 0px 10px;
+    margin:
+        /* top&bottom */  0px
+        /* left&right */ 10px
+    ;
+}
+
+element-icon {
+    margin:
+        /* top    */  0px
+        /* right  */  5px
+        /* bottom */  0px
+        /* left   */  0px
+    ;
 }
 
 listview {
-  spacing: 5px;
-  dynamic: true;
-  scrollbar: true;
+    spacing: 0px;
+    dynamic: true;
+    scrollbar: true;
 }
 
 scrollbar {
@@ -71,39 +104,45 @@ scrollbar {
     padding:      0;
     handle-width: 8px ;
     border:       0;
-    handle-color: var(fg);
+    handle-color: @fg;
+    margin:
+        /* top    */  0px
+        /* right  */  0px
+        /* bottom */  0px
+        /* left   */ 15px
+    ;
 }
 
 element {
-  padding: 5px;
-  text-color: @text-alt;
-  highlight: bold #95ee8f; /* green */
-  border-radius: 3px;
+    padding: 5px;
+    text-color: @text-alt;
+    highlight: bold #95ee8f; /* green */
+    border-radius: 5px;
 }
 
 element selected {
-  background-color: @emphasis;
-  text-color: @text;
+    background-color: @emphasis;
+    text-color: @text;
 }
 
 element urgent, element selected urgent {
-  text-color: @red;
+    text-color: @red;
 }
 
 element active, element selected active {
-  text-color: @magenta;
+    text-color: @magenta;
 }
 
 message {
-  padding: 5px;
-  border-radius: 3px;
-  background-color: @emphasis;
-  border: 1px;
-  border-color: @cyan;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: @emphasis;
+    border: 1px;
+    border-color: @cyan;
 }
 
 button selected {
-  padding: 5px;
-  border-radius: 3px;
-  background-color: @emphasis;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: @emphasis;
 }
