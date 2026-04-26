@@ -15,10 +15,11 @@ super + d
     # env SHELL=/bin/sh rofi -show combi -modi combi -combi-modes drun,run -show-icons
 
 super + Tab
-    env SHELL=/bin/sh rofi -show window -modi window -show-icons -window-thumbnail
+    rofi -show window -modi window -window-thumbnail
 
 super + w
-    passmenu | xargs -r notify-send -t 3000 "Password Copied"
+    "$\{XDG_CONFIG_HOME:-$HOME/.config\}/sxhkd/bin/passmenu-rofi" \
+        && notify-send "Password Copied"
 
 super + shift + w
     as-dialogue --work-dir $HOME/proj/wifi-menu -- poetry run wmenu
@@ -41,8 +42,9 @@ super + b: h
 super + shift + b
     "$SCRIPTS/set-bg"
 
+# This requires these packages: rofi-emoji noto-fonts-emoji
 super + e
-    $SCRIPTS/pick-emoji
+    rofi -modi emoji -show emoji
 
 
 # Desktop and Window navigation {{{
@@ -114,16 +116,20 @@ super + m; p
     notify-send "System Information" "Powering off"
     systemctl poweroff
 super + m; r
-    notify-send "System Information" "Rebooting"
+    notify-send "System Information" "Soft-rebooting"
+    systemctl soft-reboot
+super + m; shift + r
+    notify-send "System Information" "Hard-rebooting"
     systemctl reboot
 super + m; h
     notify-send "System Information" "Hybernating"
     systemctl hybernate
-super + m; s
-    notify-send "System Information" "Suspending"
-    systemctl suspend
+# super + m; s
+#     notify-send "System Information" "Suspending"
+#     systemctl suspend
 super + m; g
-    dm-tool switch-to-greeter
+    notify-send "System Information" "$(if which dm-tool >/dev/null 2>&1; then echo "Quitting to display manager"; else echo "Could not quit to display manager: 'dm-tool' is not installed"; fi)"
+    # dm-tool switch-to-greeter
 # }}}
 
 # Fn Buttons {{{

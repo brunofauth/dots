@@ -1,0 +1,134 @@
+#! /bin/sh
+# vim: foldmethod=marker foldlevel=0
+# shellcheck disable=SC3043
+
+# Constants are c_* prefixed
+readonly c_script_name="Rofi Passmenu"
+readonly c_pass_home="${PASSWORD_STORE_DIR:-$HOME/.password-store}"
+
+# Global variables are g_* prefixed
+g_pos_args=
+g_bin_notify_send=COMMAND-THAT-DOES-NOT-EXIST
+
+
+# Usage Message
+# {{{
+USAGE="
+SYNOPSYS
+    ${0##*/} [options] [files...]
+
+DESCRIPTION
+    TODO!
+
+OPTIONS
+    -h, --help
+        Displays this usage information and exits
+
+NOTE
+    If the names of your files conflict with those of the flags, put them
+    after a double dash (--), like this:
+        ${0##*/} -- --help
+    This will rename a file called '--help', instead of activating the
+    '--help' switch.
+"
+# }}}
+
+
+fatal() {
+    # {{{
+    >&2 echo "$@"
+    exit 1
+} # }}}
+
+
+parse_cli_args() {
+    # {{{
+    # NOTE: functions like this CAN NOT be called inside subshells $(myfunc)
+    # because they will modify variables that, upon return, will STAY on those
+    # subshells and, thus, the globals defined in the calling instance WILL NOT
+    # be modified (and that's a bug).
+
+    args="$(getopt -o "h" -l "help" -n "${0##*/}" -- "$@")" \
+        || fatal "Error parsing arguments!"
+    eval set -- "$args"
+
+    while true; do
+        case "$1" in
+            --) shift; break ;;
+            -h|--help)
+                >&2 echo "$USAGE"
+                exit 0
+                ;;
+        esac
+    done
+
+    # Return remaining (positional) arguments and pray that none of them
+    # contains newlines .
+    g_pos_args="$(printf '%s\n' "$@")"
+} # }}}
+
+
+picker_rofi() {
+    rofi -dmenu "$@" -p "Pick a secret"
+}
+
+
+find_optional_deps() {
+    # {{{
+    if ! g_bin_notify_send="$(which notify-send 2>/dev/null)"; then
+        g_bin_notify_send=:
+    fi
+} # }}}
+
+
+log_error() {
+    # {{{
+    local msg="$1"
+
+    "$g_bin_notify_send" \
+        --icon=dialog-error \
+        --urgency=NORMAL \
+        "$c_script_name" \
+        "$msg"
+    >&2 echo "$msg"
+} # }}}
+
+
+main() {
+    # {{{
+
+    parse_cli_args "$@"
+    set --
+    while IFS= read -r line; do
+        set -- "$@" "$line"
+    done <<EOF
+$g_pos_args
+EOF
+
+    printf '%s\n' "$@"
+
+    find_optional_deps
+
+    if [ -n "$WAYLAND_DISPLAY" ]; then
+        log_error "Wayland is currently not supported"
+        exit 1
+    elif [ -n "$DISPLAY" ]; then
+        picker=picker_rofi
+    else
+        >&2 echo "Error: No Wayland or X11 display detected"
+        exit 1
+    fi
+
+    password="$(
+        find "$c_pass_home" -type f -iname \*.gpg -printf '%P\n' \
+            | sed 's|\.gpg$||' \
+            | "$picker" \
+        )"
+
+    [ -n "$password" ] || exit
+    pass show -c "$password" 2>/dev/null
+
+} # }}}
+
+
+main "$@"
