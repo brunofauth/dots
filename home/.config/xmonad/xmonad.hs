@@ -37,6 +37,9 @@ main = xmonad . modal [modeGaps] . docks . ewmhFullscreen . ewmh $ cfg
         , "M-S-p", "M-p" -- dmenu and qmrun
         , "M-S-c" -- kill window (sxhkd does that)
         , "M-h", "M-l" -- now using < and >
+        , "M-q" -- use M-q in sxhkd;
+        , "M-m" -- switch to master --> sxhkd menu mode
+        , "M-n" -- 'Refresh viewed sizes' (???) --> sxhkd notifications mode
         ]
     `additionalKeysP`
         [ ("M-S-<Return>", windows W.swapMaster)
@@ -74,7 +77,7 @@ myLayoutHook = id
         borderSize = Border 0 0 0 0
 
 myStartupHook = do
-    spawnOnce "polybar -c ~/.config/polybar/config.ini main"
+    spawnOnce "polybar main"
 
 myManageHook = composeAll
     [ className =? "Galculator" --> doCenterFloat

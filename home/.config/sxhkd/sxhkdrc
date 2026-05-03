@@ -113,14 +113,14 @@ super + a; z
 super + m; l
     i3lock-fancy-rapid 50 10 && xset -display :0.0 dpms force off
 super + m; p
-    notify-send "System Information" "Powering off"
-    systemctl poweroff
+    notify-send "System Information" "Powering off" \
+    ; systemctl poweroff
 super + m; r
-    notify-send "System Information" "Soft-rebooting"
-    systemctl soft-reboot
+    notify-send "System Information" "Soft-rebooting" \
+    ; systemctl soft-reboot
 super + m; shift + r
-    notify-send "System Information" "Hard-rebooting"
-    systemctl reboot
+    notify-send "System Information" "Hard-rebooting" \
+    ; systemctl reboot
 super + m; h
     notify-send "System Information" "Hybernating"
     systemctl hybernate

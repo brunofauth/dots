@@ -109,4 +109,23 @@ end
 __mycomplgen_rye # }}}
 
 
+function __mycomplgen_fzf # {{{
+    if not command -v fzf >/dev/null 2>&1
+        return
+    end
+    set -l compl_file $__fish_config_dir/completions/fzf_autogen.fish
+
+    if not test -f $compl_file
+        fzf --fish | tee $compl_file | source
+        return
+    end
+
+    if test (expr (date +%s) - (stat --format=%Y $compl_file)) -gt $__three_months_in_secs
+        fzf --fish | tee $compl_file | source
+        return
+    end
+end
+__mycomplgen_fzf # }}}
+
+
 set -e __three_months_in_secs 7776000
