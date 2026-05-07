@@ -30,4 +30,4 @@ xwallpaper --zoom $XDG_DATA_HOME/wallpaper
 xsetroot -cursor_name left_ptr
 
 echo ========================================================
-exec xmonad
+exec openbox-session

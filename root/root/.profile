@@ -6,7 +6,6 @@
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
-
 export XDG_DESKTOP_DIR="$HOME/top"
 export XDG_DOCUMENTS_DIR="$HOME/docs"
 export XDG_DOWNLOAD_DIR="$HOME/dl"
@@ -38,7 +37,6 @@ export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/config
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export RANDFILE="$XDG_RUNTIME_DIR"/rnd
 export WGETRC="$XDG_CONFIG_HOME"/wgetrc
-export VIMINIT=":source $XDG_CONFIG_HOME"/vim/vimrc
 export MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
@@ -83,4 +81,15 @@ export LESS="\
     --use-color \
     --jump-target=4 \
 "
+
+
+# If tmux is installed
+#    && we're in a VT (not inside a Xorg session)
+#    && we're not already inside tmux
+if command -v tmux &> /dev/null \
+    && [ -n "$PS1" ] \
+    && [ -z "$TMUX" ]
+then
+    exec tmux new-session -A -t main
+fi
 
