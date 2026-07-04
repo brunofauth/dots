@@ -2,7 +2,8 @@ vim9script
 
 runtime defaults.vim
 
-set foldmethod=marker foldlevel=1
+# set foldmethod=marker foldlevel=1
+set foldmethod=marker
 set expandtab smarttab shiftwidth=4
 set ignorecase smartcase
 set number relativenumber

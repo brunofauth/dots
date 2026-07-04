@@ -1,7 +1,8 @@
-# vim: foldmethod=marker foldlevel=0 foldclose=all
+# vim: foldmethod=marker foldlevel=0
 
 
-# XDG FOLDER DEFINITIONS {{{
+# XDG FOLDER DEFINITIONS
+# {{{
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -16,7 +17,8 @@ export XDG_TEMPLATES_DIR="$HOME/templ"
 export XDG_VIDEOS_DIR="$HOME/vids"
 # }}} XDG FOLDER DEFINITIONS
 
-# $HOME folder .dotfile cleanup {{{
+# $HOME folder .dotfile cleanup
+# {{{
 
 # Ruby
 export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME"/bundle
@@ -68,7 +70,8 @@ alias feedthebeast="\
 "
 # }}} $HOME folder .dotfile cleanup
 
-# Default Apps {{{
+# Default Apps
+# {{{
 
 # Unix standard
 export EDITOR=vim
@@ -87,7 +90,8 @@ export SCRIPTS="$HOME/scripts"
 
 # }}} Default Apps
 
-# Configs for many programs {{{
+# Configs for many programs
+# {{{
 export FZF_DEFAULT_OPTS="--reverse -e -i --walker=file,hidden --walker-skip=.cache,.git,node_modules"
 export IDF_TOOLS_PATH="$XDG_CACHE_HOME/esp-idf"
 export LESS="\
@@ -109,11 +113,15 @@ export SXHKD_SHELL="/bin/sh"
 export WINEDLLOVERRIDES="mscoree=d;mshtml=d"
 # }}} Configs for many programs
 
-# $PATH extensions {{{
+# $PATH extensions
+# {{{
 export PATH="$CARGO_HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 # }}} $PATH extensions
+
+# ssh-agent
+# {{{
 
 # If we're using: systemctl --user enable ssh-agent.socket
 is_ssh_agent_socket_enabled=1
@@ -130,6 +138,11 @@ else
         source "$XDG_RUNTIME_DIR/ssh-agent.env" > /dev/null
     fi
 fi
+
+# Don't forget to add this to ~/.ssh/config
+#     AddKeysToAgent yes
+
+# }}}
 
 # espup (https://esp-rs.github.io/book/installation/riscv-and-xtensa.html)
 rustup_toolchains="$RUSTUP_HOME/toolchains"
