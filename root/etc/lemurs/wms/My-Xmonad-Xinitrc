@@ -24,7 +24,7 @@ echo -e XDG_VIDEOS_DIR "\t$XDG_VIDEOS_DIR"
 sxhkd &
 lxqt-policykit-agent &
 picom &
-udiskie &
+udiskie --smart-tray &
 
 xwallpaper --zoom $XDG_DATA_HOME/wallpaper
 xsetroot -cursor_name left_ptr

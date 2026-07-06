@@ -1,36 +1,70 @@
 " vim: foldmethod=marker foldlevel=0
+vim9script
 
-syntax enable
-filetype plugin on
+runtime defaults.vim
 
-set nocompatible
-set number relativenumber
-set foldmethod=marker foldlevel=0
-set hlsearch incsearch ignorecase smartcase
-set belloff=all showcmd ruler splitbelow splitright
-set laststatus=2 display=lastline,uhex
+
+set foldmethod=marker foldlevel=1
+set modeline
 set expandtab smarttab shiftwidth=4
-set wildmenu wildmode=longest,full
-set hidden
-set backspace=indent,eol,start
-set smoothscroll
-set nrformats-=octal
-set path+=**
+set ignorecase smartcase
+set number relativenumber
+set wildmenu wildoptions=pum
+set hlsearch
+set belloff=all
+set splitbelow splitright
+set display=lastline,uhex laststatus=2 smoothscroll
+set linebreak breakindent breakindentopt=shift:2
 set viminfo=
 
-if executable("rg")
-    let &grepprg = "rg --engine=pcre2 --smart-case --line-number --column --with-filename --no-heading $*"
-    set grepformat=%f:%l:%c:%m
-endif
+
+# Custom Grepping Behavior
+# {{{
+&grepprg = [
+    'grep',
+    '--line-number',
+    '--with-filename',
+    '--recursive',
+    '--ignore-case',
+    '--perl-regexp',
+    '--binary-files=without-match',
+    '--exclude-dir .git',
+    '--exclude-dir .cvs',
+    '--exclude-dir .svn',
+    '--exclude-dir .hg',
+    '--exclude-dir node_modules',
+    '$*'
+]->join()
+
+command! -nargs=+ GrepCustom {
+    silent grep! <args>
+    copen
+    redraw!
+}
+
+cabbrev grep GrepCustom
+# }}}
 
 
-nnoremap <SPACE> <Nop>
-let mapleader = "\<Space>"
+# Smart vertical/horizontal :h
+# {{{
+var vertical_help_threshold: number = 160
+command! -nargs=1 -complete=help HelpCustom {
+    var modifier: string = (
+        getwininfo(win_getid())[0].width < vertical_help_threshold
+            ? "horizontal" : "vertical"
+    )
+    execute modifier "<mods> help <args>"
+}
+
+cabbrev h HelpCustom
+# }}}
+
+
+g:mapleader = "\<Space>"
+g:maplocalleader = "\<Space>"
 
 nnoremap <Leader>h <Cmd>set hlsearch! hlsearch?<CR>
 nnoremap <Leader>p <Cmd>set paste! paste?<CR>
-nnoremap <leader>l <Cmd>set list! list?<CR>
+nnoremap <Leader>l <Cmd>set list! list?<CR>
 
-" Move lines up and down
-nnoremap <C-J> <Cmd>execute 'move +' .. v:count1->string()<CR>
-nnoremap <C-K> <Cmd>execute 'move -' .. string(v:count1 + 1)<CR>
