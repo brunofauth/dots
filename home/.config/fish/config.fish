@@ -14,7 +14,7 @@ set __three_months_in_secs 7776000
 function __complgen -a cmd
     command -q $cmd; or return
     set -l compl_file $__fish_config_dir/completions/{$cmd}_autogen.fish
-    if not test -f $compl_file; or test (math (date +%s) - (path mtime $compl_file)) -gt __three_months_in_secs
+    if not test -f $compl_file; or test (math (date +%s) - (path mtime $compl_file)) -gt $__three_months_in_secs
         $argv[2..] | tee $compl_file | source
     end
 end
