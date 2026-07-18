@@ -1,9 +1,7 @@
-if not status is-interactive
-    return
-end
+status is-interactive; or return
 
 
-if test -z $TMUX; and command -v tmux &> /dev/null; and test $TERM != xterm-kitty
+if test -z "$TMUX"; and command -q tmux ; and test $TERM != xterm-kitty
     exec tmux new-session
 end
 
@@ -15,9 +13,9 @@ set __three_months_in_secs 7776000
 
 function __complgen -a cmd
     command -q $cmd; or return
-    set -l f $__fish_config_dir/completions/{$cmd}_autogen.fish
-    if not test -f $f; or test (math (date +%s) - (path mtime $f)) -gt __three_months_in_secs
-        $argv[2..] | tee $f | source
+    set -l compl_file $__fish_config_dir/completions/{$cmd}_autogen.fish
+    if not test -f $compl_file; or test (math (date +%s) - (path mtime $compl_file)) -gt __three_months_in_secs
+        $argv[2..] | tee $compl_file | source
     end
 end
 
@@ -29,6 +27,6 @@ __complgen rye         rye self completion --shell fish
 __complgen fzf         fzf --fish
 __complgen redshiftctl register-python-argcomplete --shell fish ~/scripts/redshiftctl
 
-set -e __three_months_in_secs 7776000
+set -e __three_months_in_secs
 set -e __complgen
 
