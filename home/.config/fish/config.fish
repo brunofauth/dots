@@ -13,138 +13,22 @@ fish_default_key_bindings
 
 set __three_months_in_secs 7776000
 
-
-function __mycomplgen_kitty # {{{
-    if not command -v kitty >/dev/null 2>&1
-        return
-    end
-    set -l compl_file $__fish_config_dir/completions/kitty_autogen.fish
-
-    if not test -f $compl_file
-        kitty + complete setup fish | tee $compl_file | source
-        return
-    end
-
-    if test (expr (date +%s) - (stat --format=%Y $compl_file)) -gt $__three_months_in_secs
-        kitty + complete setup fish | tee $compl_file | source
-        return
+function __complgen -a cmd
+    command -q $cmd; or return
+    set -l f $__fish_config_dir/completions/{$cmd}_autogen.fish
+    if not test -f $f; or test (math (date +%s) - (path mtime $f)) -gt __three_months_in_secs
+        $argv[2..] | tee $f | source
     end
 end
-__mycomplgen_kitty # }}}
 
-
-function __mycomplgen_pipx # {{{
-    if not command -v pipx >/dev/null 2>&1
-        return
-    end
-    set -l compl_file $__fish_config_dir/completions/pipx_autogen.fish
-
-    if not test -f $compl_file
-        register-python-argcomplete --shell fish pipx | tee $compl_file | source
-        return
-    end
-
-    if test (expr (date +%s) - (stat --format=%Y $compl_file)) -gt $__three_months_in_secs
-        register-python-argcomplete --shell fish pipx | tee $compl_file | source
-        return
-    end
-end
-__mycomplgen_pipx # }}}
-
-
-function __mycomplgen_zoxide # {{{
-    if not command -v zoxide >/dev/null 2>&1
-        return
-    end
-    set -l compl_file $__fish_config_dir/completions/zoxide_autogen.fish
-
-    if not test -f $compl_file
-        zoxide init fish | tee $compl_file | source
-        return
-    end
-
-    if test (expr (date +%s) - (stat --format=%Y $compl_file)) -gt $__three_months_in_secs
-        zoxide init fish | tee $compl_file | source
-        return
-    end
-end
-__mycomplgen_zoxide # }}}
-
-
-function __mycomplgen_ferium # {{{
-    if not command -v ferium >/dev/null 2>&1
-        return
-    end
-    set -l compl_file $__fish_config_dir/completions/ferium_autogen.fish
-
-    if not test -f $compl_file
-        ferium complete fish | tee $compl_file | source
-        return
-    end
-
-    if test (expr (date +%s) - (stat --format=%Y $compl_file)) -gt $__three_months_in_secs
-        ferium complete fish | tee $compl_file | source
-        return
-    end
-end
-__mycomplgen_ferium # }}}
-
-
-function __mycomplgen_rye # {{{
-    if not command -v rye >/dev/null 2>&1
-        return
-    end
-    set -l compl_file $__fish_config_dir/completions/rye_autogen.fish
-
-    if not test -f $compl_file
-        rye self completion --shell fish | tee $compl_file | source
-        return
-    end
-
-    if test (expr (date +%s) - (stat --format=%Y $compl_file)) -gt $__three_months_in_secs
-        rye self completion --shell fish | tee $compl_file | source
-        return
-    end
-end
-__mycomplgen_rye # }}}
-
-
-function __mycomplgen_fzf # {{{
-    if not command -v fzf >/dev/null 2>&1
-        return
-    end
-    set -l compl_file $__fish_config_dir/completions/fzf_autogen.fish
-
-    if not test -f $compl_file
-        fzf --fish | tee $compl_file | source
-        return
-    end
-
-    if test (expr (date +%s) - (stat --format=%Y $compl_file)) -gt $__three_months_in_secs
-        fzf --fish | tee $compl_file | source
-        return
-    end
-end
-__mycomplgen_fzf # }}}
-
-
-function __mycomplgen_redshiftctl # {{{
-    if not command -v redshiftctl >/dev/null 2>&1
-        return
-    end
-    set -l compl_file $__fish_config_dir/completions/redshiftctl_autogen.fish
-
-    if not test -f $compl_file
-        register-python-argcomplete --shell fish ~/scripts/redshiftctl | tee $compl_file | source
-        return
-    end
-
-    if test (expr (date +%s) - (stat --format=%Y $compl_file)) -gt $__three_months_in_secs
-        register-python-argcomplete --shell fish ~/scripts/redshiftctl | tee $compl_file | source
-        return
-    end
-end
-__mycomplgen_redshiftctl # }}}
-
+__complgen kitty       kitty + complete setup fish
+__complgen pipx        register-python-argcomplete --shell fish pipx
+__complgen zoxide      zoxide init fish
+__complgen ferium      ferium complete fish
+__complgen rye         rye self completion --shell fish
+__complgen fzf         fzf --fish
+__complgen redshiftctl register-python-argcomplete --shell fish ~/scripts/redshiftctl
 
 set -e __three_months_in_secs 7776000
+set -e __complgen
+
