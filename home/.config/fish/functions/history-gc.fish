@@ -1,4 +1,5 @@
 function history-gc
+    echo This function is somewhat deprecated. Consider using ~/scripts/gc-fish-history
     for cmd in ls cd rm mv cp mkdir bmv man men rg zathura firefox es vim
         prompt_user "delete history for '$cmd'?" \
             && history delete --prefix $cmd

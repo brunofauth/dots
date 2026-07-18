@@ -1,3 +1,8 @@
+if not status --is-interactive
+    return
+end
+
+
 function rm
     git status >/dev/null 2>&1
     set inside_repo $status

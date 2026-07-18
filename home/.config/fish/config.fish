@@ -128,4 +128,23 @@ end
 __mycomplgen_fzf # }}}
 
 
+function __mycomplgen_redshiftctl # {{{
+    if not command -v redshiftctl >/dev/null 2>&1
+        return
+    end
+    set -l compl_file $__fish_config_dir/completions/redshiftctl_autogen.fish
+
+    if not test -f $compl_file
+        register-python-argcomplete --shell fish ~/scripts/redshiftctl | tee $compl_file | source
+        return
+    end
+
+    if test (expr (date +%s) - (stat --format=%Y $compl_file)) -gt $__three_months_in_secs
+        register-python-argcomplete --shell fish ~/scripts/redshiftctl | tee $compl_file | source
+        return
+    end
+end
+__mycomplgen_redshiftctl # }}}
+
+
 set -e __three_months_in_secs 7776000
