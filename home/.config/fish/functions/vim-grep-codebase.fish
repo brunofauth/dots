@@ -12,14 +12,23 @@ function vim-grep-codebase --wraps=grep
     set -a fzf_preview_cmd --line-range=$preview_range_fst:$preview_range_lst
     set -a fzf_preview_cmd {1}
 
+    set fzf_header "GREPing codebase"
+
     set fzf_bind_cmds \
         "esc:cancel" \
         "enter:execute(vim {1} +{2})+clear-selection" \
-        "alt-enter:become(vim {1} +{2})+clear-selection"
+        "alt-enter:become(vim {1} +{2})"
+
+    set fzf_footer "\
+enter: edit the highlighted file inside this grep session
+enter: end this grep session and edit the highlighted file"
+
 
     grep-codebase $argv \
         | fzf \
             --exact --ignore-case --select-1 --exit-0 \
+            --header=$fzf_header --header-first \
+            --footer=$fzf_footer \
             --delimiter=: --accept-nth=1 \
             --preview=(string join ' ' -- $fzf_preview_cmd) --preview-window=$fzf_preview_window \
             --bind=(string join ',' -- $fzf_bind_cmds) \
