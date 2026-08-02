@@ -1,4 +1,5 @@
 vim9script
+# vim: foldenable foldlevel=0
 
 runtime defaults.vim
 
@@ -52,9 +53,10 @@ command! -nargs=1 -complete=help HelpCustom {
 
 g:mapleader = "\<Space>"
 g:maplocalleader = "\<Space>"
-nnoremap <Leader>h <Cmd>nohlsearch<CR>
-nnoremap <Leader>p <Cmd>set paste!<CR>
-nnoremap <Leader>l <Cmd>set list!<CR>
+nnoremap <Leader>h <Cmd>set hlsearch! hlsearch?<CR>
+nnoremap <Leader>p <Cmd>set paste! paste?<CR>
+nnoremap <Leader>l <Cmd>set list! list?<CR>
+nnoremap <Leader>n <Cmd>set number! relativenumber!<CR>
 
 cabbrev h HelpCustom
 cabbrev here chdir %:h
@@ -63,6 +65,14 @@ cabbrev grep GrepCustom
 command! -nargs=1 -complete=file SudoWrite silent write !sudo tee <args> >/dev/nul
 
 colorscheme desert
+
+def CountRepeated(cmd: string): string
+    return repeat([cmd], v:count1)->join("|")->printf("\<Cmd>%s\<CR>")
+enddef
+
+nnoremap <expr> g] <SID>CountRepeated("bn")
+nnoremap <expr> g[ <SID>CountRepeated("bp")
+
 
 
 # Plugin management {{{
@@ -109,7 +119,11 @@ function RegisterPlugins() "{{{
     "    - gc to comment out the target of a motion
     "    - gc in visual mode to comment out the selection
     "    - gc in operator pending mode to target a comment.
+
+    " If we're on this patch, we should be using `:packadd comment` instead
+    if !has('patch-9.1.0375')
     Plug 'https://github.com/tpope/vim-commentary'
+    endif
     " }}}
 
     " vim-repeat: Remaps '.' in a way that plugins can tap into it
@@ -152,10 +166,42 @@ function RegisterPlugins() "{{{
     "       call s:MarkdownRefreshSyntax(0)
     "       call s:MarkdownSetupFolding() 
 
+    let g:minisnip_default_maps = 1
+    let g:minisnip_default_maps = 0
+    Plug 'https://github.com/habamax/vim-minisnip'
+    imap <C-j> <Plug>(minisnipTrigger)
+    smap <C-j> <Plug>(minisnipTrigger)
+    imap <C-r><C-j> <Plug>(minisnipShowAvailable)
+
+    Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'
+
     call plug#end()                         
 endfunction "}}}
 
 # }}} Plugin Management
+
+
+def LoadBuiltinPackages(): void # {{{
+
+    if has('patch-9.1.0375')
+        packadd comment
+    endif
+
+    if has('patch-9.1.1230')
+        packadd helptoc
+
+        command! HelpTocFallback {
+            HelpToc
+            if b:->get("toc", {})->len() == 0
+                execute "HelpCustom help.txt"
+            endif
+        }
+
+        nnoremap <F1> <Cmd>HelpTocFallback<CR>
+    endif
+
+enddef
+# }}}
 
 
 # LSP Servers {{{
@@ -166,7 +212,12 @@ const lsp_options = {
     completionMatcher: 'icase',
 
     diagVirtualTextAlign: 'above',
-    showDiagWithVirtualText: v:true,
+    showDiagWithVirtualText: v:false,
+
+    showDiagWithSign: v:true,
+    showDiagInPopup: v:true,
+    # showDiagInBaloon: v:true,
+    # showDiagWithVirtualText: v:false,
 }
 
 # Run this command for docs on what fields a LSP server entry may have
@@ -193,6 +244,20 @@ def RegisterLspServers(): void
         name: 'nil',
         filetype: ['nix'],
         args: [],
+        syncInit: v:true,
+    })
+
+    TryAddServer(lsp_servers, 'ty', {
+        name: 'ty',
+        filetype: ['python'],
+        args: ['server'],
+        syncInit: v:true,
+    })
+
+    TryAddServer(lsp_servers, 'ruff', {
+        name: 'ruff',
+        filetype: ['python'],
+        args: ['server'],
         syncInit: v:true,
     })
 
@@ -235,12 +300,14 @@ def Main(): void
     if $USER !=# 'root'
         call LoadVimPlug()
     else
-        echomsg 'running as root --> plugins are disabled'
+        echomsg 'running as root --> third-party plugins are disabled'
     endif
 
     if get(g:, "loaded_plug", 0)
         RegisterPlugins()
     endif
+
+    LoadBuiltinPackages()
 
 enddef
 
