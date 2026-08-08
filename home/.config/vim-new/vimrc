@@ -162,6 +162,8 @@ function RegisterPlugins() "{{{
     " I've put my settings to this plugin on $MYVIMDIR/ftplugin/markdown.vim
     " and $MYVIMDIR/after/ftplugin/markdown.vim
 
+    Plug 'https://github.com/brunofauth/vim-md-vibes'
+
     " These BufWritePost autocmds are giving me trouble when editing markdown
     "       call s:MarkdownRefreshSyntax(0)
     "       call s:MarkdownSetupFolding() 
