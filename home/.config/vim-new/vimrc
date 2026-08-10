@@ -190,7 +190,7 @@ function RegisterPlugins() "{{{
     " .vimrc|.exrc|.gvimrc files.
     "
     " NOTE: read    |localvimrc-variables|  |localvimrc-settings|
-    let g:localvimrc_persistence_file = GetDataHome() .. '/localvimrc-persistence-file'
+    let g:localvimrc_persistence_file = s:GetDataHome() .. '/localvimrc-persistence-file'
     let g:localvimrc_persistent = 1
     Plug 'embear/vim-localvimrc'
 
