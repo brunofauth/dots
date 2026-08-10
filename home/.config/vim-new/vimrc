@@ -106,96 +106,100 @@ def LoadVimPlug(): void #{{{
 enddef # }}}
 
 
-function RegisterPlugins() "{{{
-    call plug#begin(s:GetPluginHome() .. '/repositories')
+def RegisterPlugins(): void
+    #{{{
+    plug#begin(s:GetPluginHome() .. '/repositories')
 
-    " vim-surround {{{
-    Plug 'https://github.com/tpope/vim-surround.git'
-    let g:surround_{char2nr('i')} = "*\r*"
-    let g:surround_{char2nr('8')} = "*\r*"
-    let g:surround_{char2nr('b')} = "**\r**"
-    let g:surround_{char2nr('a')} = "***\r***"
-    let g:surround_{char2nr('s')} = "~~\r~~"
-    let g:surround_{char2nr('c')} = "`\r`"
-    let g:surround_{char2nr('u')} = "!u[\r]"
-    let g:surround_{char2nr('h')} = "==\r=="
-    " }}}
+    # vim-surround {{{
+    plug#('https://github.com/tpope/vim-surround.git')
+    g:['surround_' .. char2nr('i')] = "*\r*"
+    g:['surround_' .. char2nr('8')] = "*\r*"
+    g:['surround_' .. char2nr('b')] = "**\r**"
+    g:['surround_' .. char2nr('a')] = "***\r***"
+    g:['surround_' .. char2nr('s')] = "~~\r~~"
+    g:['surround_' .. char2nr('c')] = "{{clozeblank::\r::}}"
+    g:['surround_' .. char2nr('u')] = "!u[\r]"
+    g:['surround_' .. char2nr('h')] = "==\r=="
+    g:['surround_' .. char2nr('m')] = "::: incremental\n\r\n:::"
+    # }}}
 
-    " vim-commentary: Toggle commenting stuff out. {{{
-    "    - Use gcc to comment out a line (takes a count)
-    "    - gc to comment out the target of a motion
-    "    - gc in visual mode to comment out the selection
-    "    - gc in operator pending mode to target a comment.
-
-    " If we're on this patch, we should be using `:packadd comment` instead
+    # vim-commentary: Toggle commenting stuff out. {{{
+    #    - Use gcc to comment out a line (takes a count)
+    #    - gc to comment out the target of a motion
+    #    - gc in visual mode to comment out the selection
+    #    - gc in operator pending mode to target a comment.
+    # If we're on this patch, we should be using `:packadd comment` instead
     if !has('patch-9.1.0375')
-    Plug 'https://github.com/tpope/vim-commentary'
+        plug#('https://github.com/tpope/vim-commentary')
     endif
-    " }}}
+    # }}}
 
-    " vim-repeat: Remaps '.' in a way that plugins can tap into it
-    Plug 'https://github.com/tpope/vim-repeat'
+    # vim-repeat: Remaps '.' in a way that plugins can tap into it
+    plug#('https://github.com/tpope/vim-repeat')
 
-    " vim-easy-align: a simple, easy-to-use Vim alignment plugin. {{{
-    Plug 'https://github.com/junegunn/vim-easy-align'
+    # vim-easy-align: a simple, easy-to-use Vim alignment plugin. {{{
+    plug#('https://github.com/junegunn/vim-easy-align')
 
-    " Start interactive EasyAlign in visual mode (e.g. vipga)
+    # Start interactive EasyAlign in visual mode (e.g. vipga)
     xmap ga <Plug>(EasyAlign)
 
-    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+    # Start interactive EasyAlign for a motion/text object (e.g. gaip)
     nmap ga <Plug>(EasyAlign)
-    " }}}
+    # }}}
 
-    " vim-speeddatign: Use CTRL-A/CTRL-X to increment dates, times, and more
-    Plug 'https://github.com/tpope/vim-speeddating'
+    # vim-speeddating: Use CTRL-A/CTRL-X to increment dates, times, and more
+    plug#('https://github.com/tpope/vim-speeddating')
 
-    " A Vim plugin to visualizes the Vim undo tree.
-    Plug 'https://github.com/simnalamburt/vim-mundo'
+    # A Vim plugin to visualize the Vim undo tree.
+    plug#('https://github.com/simnalamburt/vim-mundo')
     nnoremap U <Cmd>MundoToggle<CR>
 
-    " LSP plugin written using only the Vim9 script.
-    Plug 'https://github.com/yegappan/lsp'
-    call s:RegisterLspServers()
+    # LSP plugin written using only the Vim9 script.
+    plug#('https://github.com/yegappan/lsp')
+    s:RegisterLspServers()
 
-    " Vim's internal markdown plugin (:help ft-markdown-plugin) is decent and,
-    " though it supports folding (g:markdown_folding = 1), it does not support
-    " pandoc's extensions. Because of that, vim's docs also suggest using
-    " their internal markdown plugin (:help ft-pandoc-syntax), by setting
-    " g:filetype_md to 'pandoc'. Unfortunately, said plugin doesn't seem to be
-    " willing to detect folds and I need heading-level folding. And, thus,
-    " this plugin comes to the game.
-    " Plug 'https://github.com/preservim/vim-markdown'
-    Plug 'https://github.com/brunofauth/vim-markdown'
-    " I've put my settings to this plugin on $MYVIMDIR/ftplugin/markdown.vim
-    " and $MYVIMDIR/after/ftplugin/markdown.vim
+    # Vim's internal markdown plugin (:help ft-markdown-plugin) is decent and,
+    # though it supports folding (g:markdown_folding = 1), it does not support
+    # pandoc's extensions. Because of that, vim's docs also suggest using
+    # their internal markdown plugin (:help ft-pandoc-syntax), by setting
+    # g:filetype_md to 'pandoc'. Unfortunately, said plugin doesn't seem to be
+    # willing to detect folds and I need heading-level folding. And, thus,
+    # this plugin comes to the game.
+    # plug#('https://github.com/preservim/vim-markdown')
+    plug#('https://github.com/brunofauth/vim-markdown')
+    # I've put my settings to this plugin on $MYVIMDIR/ftplugin/markdown.vim
+    # and $MYVIMDIR/after/ftplugin/markdown.vim
+    # These BufWritePost autocmds are giving me trouble when editing markdown
+    #       s:MarkdownRefreshSyntax(0)
+    #       s:MarkdownSetupFolding()
 
-    Plug 'https://github.com/brunofauth/vim-md-vibes'
+    plug#('https://github.com/brunofauth/vim-md-vibes')
 
-    " These BufWritePost autocmds are giving me trouble when editing markdown
-    "       call s:MarkdownRefreshSyntax(0)
-    "       call s:MarkdownSetupFolding() 
+    plug#('/home/bruno/repo/ankicards/tools/vim-ankicards/')
 
-    let g:minisnip_default_maps = 1
-    let g:minisnip_default_maps = 0
-    Plug 'https://github.com/habamax/vim-minisnip'
+    g:minisnip_default_maps = 0
+    plug#('https://github.com/habamax/vim-minisnip')
     imap <C-j> <Plug>(minisnipTrigger)
     smap <C-j> <Plug>(minisnipTrigger)
     imap <C-r><C-j> <Plug>(minisnipShowAvailable)
 
-    Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'
+    # plug#('https://github.com/tpope/vim-dadbod')
+    # plug#('https://github.com/kristijanhusak/vim-dadbod-ui')
 
-    " The following plug-in could be replaced by the enabling of vim's
-    " 'exrc'+'secure' settings, but I've opted for this plugin because it
-    " the option to show a confirmation prompt before sourcing project-local
-    " .vimrc|.exrc|.gvimrc files.
-    "
-    " NOTE: read    |localvimrc-variables|  |localvimrc-settings|
-    let g:localvimrc_persistence_file = s:GetDataHome() .. '/localvimrc-persistence-file'
-    let g:localvimrc_persistent = 1
-    Plug 'embear/vim-localvimrc'
+    plug#('https://github.com/powerman/vim-plugin-AnsiEsc')
 
-    call plug#end()                         
-endfunction "}}}
+    # The following plug-in could be replaced by the enabling of vim's
+    # 'exrc'+'secure' settings, but I've opted for this plugin because it
+    # gives the option to show a confirmation prompt before sourcing
+    # project-local .vimrc|.exrc|.gvimrc files.
+    #
+    # NOTE: read    |localvimrc-variables|  |localvimrc-settings|
+    g:localvimrc_persistence_file = GetDataHome() .. '/localvimrc-persistence-file'
+    g:localvimrc_persistent = 1
+    plug#('embear/vim-localvimrc')
+
+    plug#end()
+enddef #}}}
 
 # }}} Plugin Management
 
