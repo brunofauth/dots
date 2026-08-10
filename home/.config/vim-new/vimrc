@@ -77,11 +77,18 @@ nnoremap <expr> g[ <SID>CountRepeated("bp")
 
 # Plugin management {{{
 
-def GetPluginHome(): string #{{{
+def GetDataHome(): string
+    # {{{
     if $XDG_DATA_HOME !=# ''
-        return $XDG_DATA_HOME .. '/vim-plug'
+        return $XDG_DATA_HOME
     endif
-    return $HOME .. '/.local/share/vim-plug'
+    return $HOME .. '/.local/share'
+enddef # }}}
+
+
+def GetPluginHome(): string
+    #{{{
+    return GetDataHome() .. '/vim-plug'
 enddef #}}}
 
 
@@ -176,6 +183,16 @@ function RegisterPlugins() "{{{
     imap <C-r><C-j> <Plug>(minisnipShowAvailable)
 
     Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'
+
+    " The following plug-in could be replaced by the enabling of vim's
+    " 'exrc'+'secure' settings, but I've opted for this plugin because it
+    " the option to show a confirmation prompt before sourcing project-local
+    " .vimrc|.exrc|.gvimrc files.
+    "
+    " NOTE: read    |localvimrc-variables|  |localvimrc-settings|
+    let g:localvimrc_persistence_file = GetDataHome() .. '/localvimrc-persistence-file'
+    let g:localvimrc_persistent = 1
+    Plug 'embear/vim-localvimrc'
 
     call plug#end()                         
 endfunction "}}}
