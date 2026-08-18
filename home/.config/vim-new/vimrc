@@ -58,9 +58,9 @@ nnoremap <Leader>p <Cmd>set paste! paste?<CR>
 nnoremap <Leader>l <Cmd>set list! list?<CR>
 nnoremap <Leader>n <Cmd>set number! relativenumber!<CR>
 
-cabbrev h HelpCustom
-cabbrev here chdir %:h
-cabbrev grep GrepCustom
+cnoreabbrev <expr> h getcmdtype()    =~ '[/?]' ? 'h'    : 'HelpCustom'
+cnoreabbrev <expr> here getcmdtype() =~ '[/?]' ? 'here' : 'chdir %:h'
+cnoreabbrev <expr> grep getcmdtype() =~ '[/?]' ? 'grep' : 'GrepCustom'
 
 command! -nargs=1 -complete=file SudoWrite silent write !sudo tee <args> >/dev/nul
 
