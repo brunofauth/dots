@@ -13,12 +13,14 @@ function vim-find-codebase --wraps=find
         "esc:cancel" \
         "ctrl-g:execute(fish -c \"vim-grep-codebase . {1}\")" \
         "enter:execute(vim {1})+clear-selection" \
-        "alt-enter:become(vim {1})"
+        "alt-enter:become(vim {1})" \
+        "ctrl-x:exclude-multi"
 
     set fzf_footer "\
 ctrl-g: grep lines from the highlighted file
 enter: edit the highlighted file inside this find session
-enter: end this find session and edit the highlighted file"
+enter: end this find session and edit the highlighted file
+ctrl-x: remove entries from listing"
 
     find-codebase $argv \
         | fzf \

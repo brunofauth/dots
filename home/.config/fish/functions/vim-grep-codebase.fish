@@ -17,11 +17,13 @@ function vim-grep-codebase --wraps=grep
     set fzf_bind_cmds \
         "esc:cancel" \
         "enter:execute(vim {1} +{2})+clear-selection" \
-        "alt-enter:become(vim {1} +{2})"
+        "alt-enter:become(vim {1} +{2})" \
+        "ctrl-x:exclude-multi"
 
     set fzf_footer "\
 enter: edit the highlighted file inside this grep session
-enter: end this grep session and edit the highlighted file"
+alt-enter: end this grep session and edit the highlighted file
+ctrl-x: remove entries from listing"
 
 
     grep-codebase $argv \
