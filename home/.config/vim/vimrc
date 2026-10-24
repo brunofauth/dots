@@ -37,7 +37,7 @@ set mouse=
 # }}}
 
 command! -nargs=+ GrepCustom {
-    execute 'silent grep! <args>'
+    silent grep! <args>
     copen
     redraw!
 }
@@ -64,7 +64,8 @@ cnoreabbrev <expr> grep getcmdtype() =~ '[/?]' ? 'grep' : 'GrepCustom'
 
 command! -nargs=1 -complete=file SudoWrite silent write !sudo tee <args> >/dev/nul
 
-colorscheme desert
+colorscheme sorbet
+
 
 def CountRepeated(cmd: string): string
     return repeat([cmd], v:count1)->join("|")->printf("\<Cmd>%s\<CR>")
