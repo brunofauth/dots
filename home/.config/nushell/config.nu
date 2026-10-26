@@ -20,29 +20,40 @@
 $env.config.filesize.unit = 'binary'
 $env.config.table.mode = 'light'
 $env.config.table.abbreviated_row_count = 150
+$env.config.completions.algorithm = "substring"
 
-# Custom prompt
-# {{{
+# builtins, resolved external commands and unresolved one get different colors
+$env.config.highlight_resolved_externals = true
+$env.config.color_config.shape_external = "red"
+
+$env.config.hooks.command_not_found = {||
+    nix-locate --whole-name bin/htop
+}
+
+
 let default_prompt = $env.PROMPT_COMMAND
-
 $env.PROMPT_COMMAND = {||
-    let prompt = (do $default_prompt)
-    let git_dir_cmd_out = (^git rev-parse --git-dir | complete)
-    if $git_dir_cmd_out.exit_code != 0 {
-        return $prompt
-    }
+    # {{{
 
-    let git_dir = ($git_dir_cmd_out.stdout | str trim)
+    let prompt = (do $default_prompt)
+    let git_dir = (^git rev-parse --git-dir | complete)
+    if $git_dir.exit_code != 0 { return $prompt }                 # not in a git repo
+    let git_dir = ($git_dir.stdout | str trim)
     let in_git_dir = {|name| $git_dir | path join $name | path exists }
 
-    let operation =
-             if (do $in_git_dir 'rebase-merge')     { 'REBASING' }
-        else if (do $in_git_dir 'rebase-apply')     { 'REBASING' }
-        else if (do $in_git_dir 'MERGE_HEAD')       { 'MERGING' }
-        else if (do $in_git_dir 'CHERRY_PICK_HEAD') { 'CHERRY-PICKING' }
-        else if (do $in_git_dir 'REVERT_HEAD')      { 'REVERTING' }
-        else if (do $in_git_dir 'BISECT_LOG')       { 'BISECTING' }
-        else                                        { null }
+    let operation = if (do $in_git_dir 'rebase-merge') or (do $in_git_dir 'rebase-apply') {
+        'REBASING'
+    } else if (do $in_git_dir 'MERGE_HEAD') {
+        'MERGING'
+    } else if (do $in_git_dir 'CHERRY_PICK_HEAD') {
+        'CHERRY-PICKING'
+    } else if (do $in_git_dir 'REVERT_HEAD') {
+        'REVERTING'
+    } else if (do $in_git_dir 'BISECT_LOG') {
+        'BISECTING'
+    } else {
+        null
+    }
 
     # During a rebase HEAD is detached; the branch being rebased is in rebase-merge/head-name.
     let rebased = ['rebase-merge' 'rebase-apply']
@@ -59,100 +70,32 @@ $env.PROMPT_COMMAND = {||
         ^git diff --name-only --diff-filter=U | lines | length
     }
 
-    let colors = if (config use-colors) { {
-        branch:    (ansi magenta)
-        operation: (ansi yellow_bold)
-        conflicts: (ansi red_bold)
-    } } else { {
-        branch:    ''
-        operation: ''
-        conflicts: ''
-    } }
+    let colors = if (config use-colors) {
+        {branch: (ansi magenta), operation: (ansi yellow_bold), conflicts: (ansi red_bold)}
+    } else {
+        {branch: '', operation: '', conflicts: ''}
+    }
     mut segment = $"($colors.branch)($branch)(ansi reset)"
-    if $operation != null {
-        $segment += $" ($colors.operation)($operation)(ansi reset)"
-    }
-    if $conflicts > 0 {
-        $segment += $" ($colors.conflicts)($conflicts) conflicted(ansi reset)"
-    }
+    if $operation != null { $segment += $" ($colors.operation)($operation)(ansi reset)" }
+    if $conflicts > 0 { $segment += $" ($colors.conflicts)($conflicts) conflicted(ansi reset)" }
+    if $conflicts > 0 { $segment += $" ($colors.conflicts)($conflicts) conflicted(ansi reset)" }
     $"($prompt) ($segment)"
-}
-
-# }}}
+} # }}}
 
 
-$env.ABBREVIATIONS = {
-    gs: 'git status'
+$env.config.abbreviations = {
+    # {{{
+    gs:  'git status'
     gss: 'git status --short'
     gco: 'git checkout'
-    gca: 'git commit --ammend'
-    ll: 'ls -l'
-    la: 'ls -la'
-}
-
-
-# Fish-like abbr implementation
-# {{{
-
-# The buffer with the abbreviation just before the cursor expanded, and the new cursor; null when
-# the word there isn't an abbreviation in command position (line start, or after | ; or `(`).
-def abbreviation-expanded [buffer: string, cursor: int] {
-    let before = ($buffer | str substring --grapheme-clusters 0..<$cursor)
-    let after = ($buffer | str substring --grapheme-clusters $cursor..)
-    let parsed = ($before | parse --regex '^(?<head>.*?)(?<word>[^\s|;(]*)$' | first)
-    let in_command_position = ($parsed.head | str trim --right | str replace --regex '.*?(\S?)$' '$1') in ['' '|' ';' '(']
-    let expansion = ($env.ABBREVIATIONS | get --optional $parsed.word)
-    if $parsed.word == '' or not $in_command_position or $expansion == null { return null }
-    let expanded_before = $"($parsed.head)($expansion)"
-    {buffer: $"($expanded_before)($after)", cursor: ($expanded_before | str length --grapheme-clusters)}
-}
-
-
-# Expands the abbreviation before the cursor in the line being typed (for the keybindings).
-def expand-abbreviation [] {
-    let expanded = (abbreviation-expanded (commandline) (commandline get-cursor))
-    if $expanded != null {
-        commandline edit --replace $expanded.buffer
-        commandline set-cursor $expanded.cursor
-    }
-}
-
-
-$env.config.keybindings ++= [
-    {
-        name: expand_abbreviation_on_space
-        modifier: none
-        keycode: space
-        mode: [emacs vi_insert]
-        # Caveat: this relies on the line editor stopping the event list after
-        # a nushell command runs. That's what 0.116.1 does, as tested above. If
-        # a future nushell version changes it, you'd see doubled spaces after
-        # words with no menu open.
-        event: [
-            {
-                until: [
-                    [{send: menunext} {send: menuprevious}]
-                    {send: executehostcommand cmd: "expand-abbreviation; commandline edit --insert ' '"}
-                ]
-            }
-            {edit: insertchar value: ' '}
-        ]
-    }
-    {
-        name: expand_abbreviation_on_enter
-        modifier: none
-        keycode: enter
-        mode: [emacs vi_insert]
-        event: {
-            until: [
-                {send: menuaccept}
-                {send: executehostcommand cmd: 'expand-abbreviation; commandline edit --replace --accept (commandline)'}
-            ]
-        }
-    }
-]
-
-# }}}
+    gca: 'git commit --amend'
+    gp:  'git push'
+    gpu: 'git push --set-upstream'
+    gt:  'gitui'
+    ll:  'ls -l'
+    la:  'ls -la'
+    cls: 'clear'
+} # }}}
 
 
 # Use fish as the completer command
@@ -172,4 +115,46 @@ $env.config.completions.external = {
 }
 
 # }}}
+
+
+# Suggest which package provides a missing command: nix-index on Nix, pkgfile on Arch.
+# The returned string becomes the `help:` line of the "command not found" error.
+$env.config.hooks.command_not_found = {|cmd|
+    # {{{
+    let has = {|name| which $name | is-not-empty }
+
+    let nix_hint = if not (do $has nix) { null } else if not (do $has nix-locate) {
+        "nix: install nix-index to find the package that provides it: `nix profile install nixpkgs#nix-index`"
+    } else {
+        let found = (^nix-locate --minimal --no-group --type x --type s --whole-name --at-root $"/bin/($cmd)" | complete)
+        # `(attr)` lines are packages that only depend on the one holding the file
+        let pkgs = ($found.stdout | lines | where not ($it | str starts-with '(') | str replace --regex '\.out$' '' | uniq)
+        if $found.exit_code != 0 {
+            "nix: nix-index has no database yet; build it with `nix-index`"
+        } else if ($pkgs | is-empty) {
+            $"nix: no nixpkgs package provides `($cmd)`"
+        } else {
+            $"nix: provided by ($pkgs | str join ', '); try `nix shell nixpkgs#($pkgs | first)`"
+        }
+    }
+
+    let pacman_hint = if not (do $has pacman) { null } else if not (do $has pkgfile) {
+        "pacman: install pkgfile to find the package that provides it: `sudo pacman -S pkgfile && sudo pkgfile --update`"
+    } else {
+        let found = (^pkgfile --binaries $cmd | complete)
+        let pkgs = ($found.stdout | lines | where $it != '')
+        if ($pkgs | is-not-empty) {
+            $"pacman: provided by ($pkgs | str join ', '); try `sudo pacman -S ($pkgs | first)`"
+        } else if ($found.stderr | str trim | is-not-empty) {
+            # most likely the file lists were never downloaded
+            $"pacman: pkgfile failed: ($found.stderr | str trim); try `sudo pkgfile --update`"
+        } else {
+            $"pacman: no repository package provides `($cmd)`"
+        }
+    }
+
+    let hints = ([$nix_hint $pacman_hint] | compact)
+    # `collect`: `str join` returns a stream, and a hook returning one is silently ignored
+    if ($hints | is-empty) { null } else { $hints | str join "\n" | collect }
+} # }}}
 
