@@ -98,6 +98,8 @@ $env.config.abbreviations = {
     ll:  'ls -l'
     la:  'ls -la'
     cls: 'clear'
+    mkd: 'mkdir'
+    cdd: 'cd (ls | where type == dir | get name | str join "\n" | fzf --exact --margin=15%,25%)'
 } # }}}
 
 
@@ -161,3 +163,68 @@ $env.config.hooks.command_not_found = {|cmd|
     if ($hints | is-empty) { null } else { $hints | str join "\n" | collect }
 } # }}}
 
+
+const snippets = [{
+    desc: "open merge conflicts in vim"
+    cmd: "git status --short | grep -Po '^UU \\K.*' | xargs -ro vim"
+}, {
+    desc: "cd into a git worktree"
+    cmd: "cd (git worktree list --porcelain | lines | parse 'worktree {path}' | get path | input list --fuzzy)"
+}, {
+    desc: "remove merged branches and their workspaces"
+    cmd: "git-cleanup"
+}
+]
+
+$env.config.menus ++= [
+{
+    name: snippets_menu
+    # {{{
+    input_mode: full_buffer     # the menu gets the whole line as a filter
+    output_mode: full_buffer    # the chosen snippet replaces the whole line
+    marker: "# "
+    # type: { layout: list, page_size: 10, description_position: after }
+    # type: { layout: columnar, columns: 1 }
+    type: { layout: ide, columns: 1 }
+    style: { text: green, selected_text: green_reverse, description_text: yellow }
+    source: {|buffer|
+        # open $snippets_file
+        $snippets
+        | where {|s| $"($s.cmd) ($s.desc)" | str contains --ignore-case $buffer }
+        | each {|s| {value: $s.cmd, description: $s.desc} }
+    }
+} # }}}
+]
+
+$env.config.keybindings ++= [{
+    name: snippets_menu
+    modifier: alt
+    keycode: char_s
+    mode: [emacs vi_insert vi_normal]
+    event: { send: menu, name: snippets_menu }
+}]
+
+
+# Removes clean worktrees whose branch is merged into master, and deletes those branches.
+# Leaves master, the branch checked out here, and locked worktrees alone.
+def git-cleanup [] {
+    # {{{
+    (git branch 
+        --merged master
+        --format "%(HEAD)\t%(refname:short)\t%(worktreepath)"
+        | lines
+        | parse "{head}\t{branch}\t{path}"
+        | where head != "*" and branch != master and path != ""
+        | where {|wt| git -C $wt.path status --porcelain | is-empty }
+        | select branch path
+        | insert removed {|wt|
+            try {
+                git worktree remove $wt.path;
+                git branch -D $wt.branch;
+                true
+            } catch {
+                false
+            }
+        }
+    )
+} # }}}
