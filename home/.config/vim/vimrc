@@ -9,7 +9,6 @@ set expandtab smarttab shiftwidth=4
 set ignorecase smartcase
 set number relativenumber
 set wildmenu wildoptions=pum
-set ignorecase smartcase
 set display=lastline laststatus=2 smoothscroll
 set linebreak breakindent breakindentopt=shift:2
 set hlsearch
@@ -38,7 +37,7 @@ set mouse=
 
 command! -nargs=+ GrepCustom {
     silent grep! <args>
-    copen
+    cwindow
     redraw!
 }
 
@@ -64,7 +63,7 @@ def CmdAbbrev(lhs: string, rhs: string)
 enddef
 
 CmdAbbrev('h', 'HelpCustom')
-CmdAbbrev('here', 'chdir %:h')
+CmdAbbrev('here', 'lcd %:h')
 CmdAbbrev('grep', 'GrepCustom')
 
 
@@ -198,7 +197,12 @@ def RegisterPlugins(): void
 
     plug#('https://github.com/brunofauth/vim-md-vibes')
 
-    plug#('/home/bruno/repo/ankicards/tools/vim-ankicards/')
+    const vim_ankicards_repo = expand('~/repo/ankicards/tools/vim-ankicards/')
+    if isdirectory(vim_ankicards_repo)
+        plug#(vim_ankicards_repo)
+    else
+        echoerr "skipping ankicards plugin, for there's no repo at" vim_ankicards_repo
+    endif
 
     g:minisnip_default_maps = 0
     plug#('https://github.com/habamax/vim-minisnip')
@@ -332,7 +336,7 @@ def SetLspBuffer(): void
     nnoremap <buffer> <Localleader>ld <Cmd>LspPeekDeclaration<CR>
     nnoremap <buffer> <Localleader>lD <Cmd>LspGotoDefinition<CR>
     nnoremap <buffer> <Localleader>li <Cmd>LspGotoImpl<CR>
-    nnoremap <buffer> <Localleader>lr :LspRename\ 
+    nnoremap <buffer> <Localleader>lr <Cmd>LspRename<CR>
     nnoremap <buffer> <Localleader>lR <Cmd>LspShowReferences<CR>
     nnoremap <buffer> <Localleader>ln <Cmd>LspDiag nextWrap<CR>
     nnoremap <buffer> <Localleader>lp <Cmd>LspDiag prevWrap<CR>
