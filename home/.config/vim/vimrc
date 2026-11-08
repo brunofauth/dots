@@ -55,7 +55,30 @@ g:maplocalleader = "\<Space>"
 nnoremap <Leader>h <Cmd>set hlsearch! hlsearch?<CR>
 nnoremap <Leader>p <Cmd>set paste! paste?<CR>
 nnoremap <Leader>l <Cmd>set list! list?<CR>
-nnoremap <Leader>n <Cmd>set number! relativenumber!<CR>
+
+# True only while t_ut holds a value that this mapping put there
+var forced_t_ut = false
+
+def ToggleCopyMode()
+    set number! relativenumber!
+    if !&number
+        # Numbers just went off, so we're entering copy mode
+        if empty(&t_ut)
+            &t_ut = 'y'
+            forced_t_ut = true
+            redraw!
+        endif
+    elseif forced_t_ut
+        # Numbers just came back, so undo only what we changed
+        &t_ut = ''
+        forced_t_ut = false
+        redraw!
+    endif
+    echo (&number ? '  number' : 'nonumber')
+       \ (&relativenumber ? '  relativenumber' : 'norelativenumber')
+       \ (forced_t_ut ? 't_ut=y' : 't_ut=' .. &t_ut)
+enddef
+nnoremap <Leader>n <ScriptCmd>ToggleCopyMode()<CR>
 
 
 def CmdAbbrev(lhs: string, rhs: string)
@@ -66,13 +89,6 @@ CmdAbbrev('h', 'HelpCustom')
 CmdAbbrev('here', 'lcd %:h')
 CmdAbbrev('grep', 'GrepCustom')
 
-
-command! -nargs=? -complete=file SudoWrite {
-    execute 'write !sudo tee' shellescape(<q-args> ?? expand('%'), true) '> /dev/null'
-    if v:shell_error == 0
-        setlocal nomodified
-    endif
-}
 
 colorscheme sorbet
 
