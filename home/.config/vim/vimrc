@@ -161,16 +161,25 @@ def RegisterPlugins(): void
     g:['surround_' .. char2nr('m')] = "::: incremental\n\r\n:::"
     # }}}
 
-    # vim-commentary: Toggle commenting stuff out. {{{
-    #    - Use gcc to comment out a line (takes a count)
-    #    - gc to comment out the target of a motion
-    #    - gc in visual mode to comment out the selection
-    #    - gc in operator pending mode to target a comment.
-    # If we're on this patch, we should be using `:packadd comment` instead
-    if !has('patch-9.1.0375')
+    if has('patch-9.1.0375')
+        packadd comment
+    else
+        # vim-commentary: Toggle commenting stuff out. {{{
+        #    - Use gcc to comment out a line (takes a count)
+        #    - gc to comment out the target of a motion
+        #    - gc in visual mode to comment out the selection
+        #    - gc in operator pending mode to target a comment.
+        # If we're on this patch, we should be using `:packadd comment` instead
         plug#('https://github.com/tpope/vim-commentary')
+        # }}}
     endif
-    # }}}
+
+    if has('patch-9.1.1984')
+        packadd osc52
+        set clipmethod+=osc52
+    else
+        echomsg "Running a vim older than 9.1.1984: the osc52 is not bundled: copying to register `+` won't work via SSH or containers."
+    endif
 
     # vim-repeat: Remaps '.' in a way that plugins can tap into it
     plug#('https://github.com/tpope/vim-repeat')
@@ -248,10 +257,6 @@ enddef #}}}
 
 
 def LoadBuiltinPackages(): void # {{{
-
-    if has('patch-9.1.0375')
-        packadd comment
-    endif
 
     if has('patch-9.1.1230')
         packadd helptoc
