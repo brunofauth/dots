@@ -290,10 +290,12 @@ def --wrapped nvim [...args] { if (in-vim) { refuse-nested nvim }; ^nvim ...$arg
 def --wrapped vi   [...args] { if (in-vim) { refuse-nested vi }; ^vi ...$args }
 
 
+# Read the base64 encoded bytes of a binary file pasted into stdin, decode them
+# back to binary and save it as a file.
 def paste-b64-into-file [
-    output_filepath: string
-    --force (-f)
-    --verbose (-v)
+    output_filepath: string # Where to put the decoded bytes at
+    --force (-f) # Overwrite `$output_filepath` if it already exists
+    --verbose (-v) # Print debug information
 ]: nothing -> nothing {
 
     let echo_enabled = (
