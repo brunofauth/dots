@@ -33,56 +33,75 @@ $env.config.hooks.command_not_found = {||
 }
 
 
-let default_prompt = $env.PROMPT_COMMAND
-$env.PROMPT_COMMAND = {||
-    # {{{
+module prompt {
+    # This assumes the caller has already checked that we are inside a repo.
+    def prompt-segment-git [git_dir: string, use_colors: bool]: nothing -> string {
+        # {{{
+        let in_git_dir = {|name| $git_dir | path join $name | path exists }
 
-    let prompt = (do $default_prompt)
-    let git_dir = (^git rev-parse --git-dir | complete)
-    if $git_dir.exit_code != 0 { return $prompt }                 # not in a git repo
-    let git_dir = ($git_dir.stdout | str trim)
-    let in_git_dir = {|name| $git_dir | path join $name | path exists }
+        let operation = (
+                 if (do $in_git_dir 'rebase-merge')     { 'REBASING' }
+            else if (do $in_git_dir 'rebase-apply')     { 'REBASING' }
+            else if (do $in_git_dir 'MERGE_HEAD')       { 'MERGING' }
+            else if (do $in_git_dir 'CHERRY_PICK_HEAD') { 'CHERRY-PICKING' }
+            else if (do $in_git_dir 'REVERT_HEAD')      { 'REVERTING' }
+            else if (do $in_git_dir 'BISECT_LOG')       { 'BISECTING' }
+            else { null }
+        )
 
-    let operation = if (do $in_git_dir 'rebase-merge') or (do $in_git_dir 'rebase-apply') {
-        'REBASING'
-    } else if (do $in_git_dir 'MERGE_HEAD') {
-        'MERGING'
-    } else if (do $in_git_dir 'CHERRY_PICK_HEAD') {
-        'CHERRY-PICKING'
-    } else if (do $in_git_dir 'REVERT_HEAD') {
-        'REVERTING'
-    } else if (do $in_git_dir 'BISECT_LOG') {
-        'BISECTING'
-    } else {
-        null
-    }
+        # During a rebase HEAD is detached; the branch being rebased is in rebase-merge/head-name.
+        let rebased = ['rebase-merge' 'rebase-apply']
+            | each {|d| $git_dir | path join $d 'head-name' }
+            | where {|f| $f | path exists }
 
-    # During a rebase HEAD is detached; the branch being rebased is in rebase-merge/head-name.
-    let rebased = ['rebase-merge' 'rebase-apply']
-        | each {|d| $git_dir | path join $d 'head-name' }
-        | where {|f| $f | path exists }
-    let branch = if ($rebased | is-not-empty) {
-        open --raw ($rebased | first) | str trim | str replace 'refs/heads/' ''
-    } else {
-        let current = (^git branch --show-current | str trim)
-        if $current != '' { $current } else { $"\((^git rev-parse --short HEAD | str trim)\)" }
-    }
+        let branch = if ($rebased | is-not-empty) {
+            open --raw ($rebased | first) | str trim | str replace 'refs/heads/' ''
+        } else {
+            let current = (^git branch --show-current | str trim)
+            if $current != '' { $current } else { $"\((^git rev-parse --short HEAD | str trim)\)" }
+        }
 
-    let conflicts = if $operation == null { 0 } else {
-        ^git diff --name-only --diff-filter=U | lines | length
-    }
+        let conflicts = if $operation == null { 0 } else {
+            ^git diff --name-only --diff-filter=U | lines | length
+        }
 
-    let colors = if (config use-colors) {
-        {branch: (ansi magenta), operation: (ansi yellow_bold), conflicts: (ansi red_bold)}
-    } else {
-        {branch: '', operation: '', conflicts: ''}
-    }
-    mut segment = $"($colors.branch)($branch)(ansi reset)"
-    if $operation != null { $segment += $" ($colors.operation)($operation)(ansi reset)" }
-    if $conflicts > 0 { $segment += $" ($colors.conflicts)($conflicts) conflicted(ansi reset)" }
-    if $conflicts > 0 { $segment += $" ($colors.conflicts)($conflicts) conflicted(ansi reset)" }
-    $"($prompt) ($segment)"
-} # }}}
+        let colors = if $use_colors {
+            {branch: (ansi magenta), operation: (ansi yellow_bold), conflicts: (ansi red_bold)}
+        } else {
+            {branch: '', operation: '', conflicts: ''}
+        }
+        mut segment = $"($colors.branch)($branch)(ansi reset)"
+        if $operation != null { $segment += $" ($colors.operation)($operation)(ansi reset)" }
+        if $conflicts > 0 { $segment += $" ($colors.conflicts)($conflicts) conflicted(ansi reset)" }
+        $segment
+    } # }}}
+
+    export def build []: nothing -> string {
+        # {{{
+        mut prompt_parts = [(do $env.__BASE_PROMPT_COMMAND)]
+        let use_colors = (config use-colors)
+
+        let git_dir = (^git rev-parse --git-dir | complete)
+        if $git_dir.exit_code == 0 {
+            $prompt_parts ++= [(
+                prompt-segment-git
+                    ($git_dir.stdout | str trim)
+                    $use_colors
+            )]
+        }
+
+        $prompt_parts ++= ["\n"]
+        $prompt_parts | str join ' '
+    } # }}}
+}
+
+use prompt
+
+# Capture the original prompt only the first time this config is sourced.
+if $env.__BASE_PROMPT_COMMAND? == null {
+    $env.__BASE_PROMPT_COMMAND = $env.PROMPT_COMMAND
+}
+$env.PROMPT_COMMAND = {|| prompt build }
 
 
 $env.config.abbreviations = {
@@ -164,36 +183,41 @@ $env.config.hooks.command_not_found = {|cmd|
 } # }}}
 
 
-const snippets = [{
+const snippets = [
+# {{{
+   {
     desc: "open merge conflicts in vim"
     cmd: "git status --short | grep -Po '^UU \\K.*' | xargs -ro vim"
 }, {
     desc: "cd into a git worktree"
-    cmd: "cd (git worktree list --porcelain | lines | parse 'worktree {path}' | get path | input list --fuzzy)"
+    cmd: "git worktree list --porcelain | lines | parse 'worktree {path}' | get path | input list --fuzzy | if $in != null { cd $in }"
 }, {
     desc: "remove merged branches and their workspaces"
     cmd: "git-cleanup"
+}, {
+    desc: "see parent process chain until the top"
+    cmd: "pstree -s -p $nu.pid"
 }
-]
+] # }}}
 
 $env.config.menus ++= [
-{
-    name: snippets_menu
+    # Snippets menu
     # {{{
-    input_mode: full_buffer     # the menu gets the whole line as a filter
-    output_mode: full_buffer    # the chosen snippet replaces the whole line
-    marker: "# "
-    # type: { layout: list, page_size: 10, description_position: after }
-    # type: { layout: columnar, columns: 1 }
-    type: { layout: ide, columns: 1 }
-    style: { text: green, selected_text: green_reverse, description_text: yellow }
-    source: {|buffer|
-        # open $snippets_file
-        $snippets
-        | where {|s| $"($s.cmd) ($s.desc)" | str contains --ignore-case $buffer }
-        | each {|s| {value: $s.cmd, description: $s.desc} }
-    }
-} # }}}
+    {
+        name: snippets_menu
+        input_mode: full_buffer     # the menu gets the whole line as a filter
+        output_mode: full_buffer    # the chosen snippet replaces the whole line
+        marker: "# "
+        # type: { layout: list, page_size: 10, description_position: after }
+        # type: { layout: columnar, columns: 1 }
+        type: { layout: ide, columns: 1 }
+        style: { text: green, selected_text: green_reverse, description_text: yellow }
+        source: {|buffer|
+            $snippets
+            | where {|s| $"($s.cmd) ($s.desc)" | str contains --ignore-case $buffer }
+            | each {|s| {value: $s.cmd, description: $s.desc} }
+        }
+    } # }}}
 ]
 
 $env.config.keybindings ++= [{
@@ -207,7 +231,7 @@ $env.config.keybindings ++= [{
 
 # Removes clean worktrees whose branch is merged into master, and deletes those branches.
 # Leaves master, the branch checked out here, and locked worktrees alone.
-def git-cleanup [] {
+def git-cleanup []: nothing -> table {
     # {{{
     (git branch 
         --merged master
@@ -228,3 +252,77 @@ def git-cleanup [] {
         }
     )
 } # }}}
+
+
+const VIM_NAMES = [vim nvim gvim vi view vimdiff rvim nvim-qt]
+
+# True if this shell runs, directly or indirectly, under a vim process.
+def in-vim []: nothing -> bool {
+    if ('VIM_TERMINAL' in $env) or ('NVIM' in $env) {
+        return true
+    }
+
+    let procs = (ps | select pid ppid name)
+    mut p = $nu.pid
+    while $p > 1 {
+        let row = ($procs | where pid == $p)
+        if ($row | is-empty) { break }
+        let r = ($row | first)
+        if ($r.name in $VIM_NAMES) { return true }
+        $p = $r.ppid
+    }
+    false
+}
+
+
+def refuse-nested [program_name: string]: nothing -> error {
+    let msg = [
+        $"Did not start ($program_name) for we're already inside it."
+        "Exit this shell to get back to it."
+        $"You can also use `^($program_name)` to force starting it."
+    ] | str join " "
+    error make --unspanned { msg: $msg }
+}
+
+
+def --wrapped vim  [...args] { if (in-vim) { refuse-nested vim }; ^vim ...$args }
+def --wrapped nvim [...args] { if (in-vim) { refuse-nested nvim }; ^nvim ...$args }
+def --wrapped vi   [...args] { if (in-vim) { refuse-nested vi }; ^vi ...$args }
+
+
+def paste-b64-into-file [
+    output_filepath: string
+    --force (-f)
+    --verbose (-v)
+]: nothing -> nothing {
+
+    let echo_enabled = (
+      ^stty --all --file=/dev/tty
+        | into string
+        | split words
+        | any {|mode| $mode == "echo" }
+    )
+
+    if $echo_enabled {
+        if $verbose {
+            print "`echo` is enabled on the TTY. Disabling it for pasting the encoded file."
+        }
+        ^stty --file=/dev/tty -echo
+    }
+
+    print "Paste the b64 encoded filecontents and, after it, type Ctrl-D"
+    (
+        try {
+            ^base64 --decode | save --raw ...{force: $force} $output_filepath
+        }
+        catch { |err| print $err.msg }
+        finally {
+            if $echo_enabled {
+                ^stty --file=/dev/tty echo
+                if $verbose {
+                    print "Re-enabled `echo` on the TTY."
+                }
+            }
+        }
+    )
+}
